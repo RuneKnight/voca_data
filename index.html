@@ -3,230 +3,198 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily Vocab Flashcards</title>
-  <!-- Tailwind CSS CDN -->
+  <title>Language Digest & Flashcards</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- PapaParse CDN (CSV 파싱용) -->
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <style>
-    /* 3D 카드 플립 애니메이션 */
-    .perspective {
-      perspective: 1000px;
-    }
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.5s;
-      transform-style: preserve-3d;
-    }
-    .card-inner.flipped {
-      transform: rotateY(180deg);
-    }
-    .card-front, .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .card-back {
-      transform: rotateY(180deg);
-    }
-    /* 인쇄 최적화 */
-    @media print {
-      .no-print { display: none !important; }
-      .card-inner { transform: none !important; }
-      .card-back { position: static !important; transform: none !important; border-top: 1px dashed #cbd5e1; margin-top: 8px; padding-top: 8px; }
-      .card-front { position: static !important; }
-    }
+    .perspective { perspective: 1000px; }
+    .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.5s; transform-style: preserve-3d; }
+    .card-inner.flipped { transform: rotateY(180deg); }
+    .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .card-back { transform: rotateY(180deg); }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
 
-  <!-- 상단 네비게이션 -->
+  <!-- 헤더 & 뷰 전환 -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center space-x-2">
         <span class="text-2xl">⚡</span>
-        <h1 class="text-lg font-bold tracking-tight text-slate-900">Daily Vocab Cards</h1>
+        <h1 class="text-lg font-bold tracking-tight text-slate-900">Language Hub</h1>
       </div>
-      <div id="stats" class="text-xs text-slate-500 font-medium">단어 불러오는 중...</div>
+      <!-- 대메뉴 전환 (단어 vs 문장) -->
+      <div class="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200">
+        <button onclick="switchView('vocab')" id="tab-vocab" class="px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition">단어 카드</button>
+        <button onclick="switchView('sentence')" id="tab-sentence" class="px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition">학습 문장</button>
+      </div>
     </div>
 
-    <!-- 필터 및 검색 컨트롤러 -->
-    <div class="max-w-5xl mx-auto px-4 pb-3 flex flex-wrap items-center justify-between gap-2 no-print">
+    <!-- 서브 컨트롤러 (필터/검색) -->
+    <div class="max-w-5xl mx-auto px-4 pb-3 flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center space-x-1.5 overflow-x-auto py-1">
-        <button onclick="setFilter('All')" id="btn-All" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white transition">전체</button>
-        <button onclick="setFilter('English')" id="btn-English" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇬🇧 English (A2)</button>
-        <button onclick="setFilter('German')" id="btn-German" class="filter-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇩🇪 Deutsch (B1-B2)</button>
+        <button onclick="setLangFilter('All')" id="btn-All" class="lang-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white transition">전체</button>
+        <button onclick="setLangFilter('English')" id="btn-English" class="lang-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇬🇧 English</button>
+        <button onclick="setLangFilter('German')" id="btn-German" class="lang-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇩🇪 Deutsch</button>
       </div>
-
-      <div class="flex items-center space-x-2 w-full sm:w-auto">
-        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="단어 또는 뜻 검색..." class="w-full sm:w-48 px-3 py-1.5 text-xs bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
-        <button onclick="toggleAllFlip()" class="whitespace-nowrap px-3 py-1.5 text-xs font-medium border border-slate-200 bg-white rounded-lg hover:bg-slate-50 text-slate-700 transition">전체 뒤집기</button>
+      <div class="flex items-center space-x-2">
+        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="검색..." class="px-3 py-1.5 text-xs bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
       </div>
     </div>
   </header>
 
-  <!-- 메인 단어 카드 영역 -->
+  <!-- 메인 뷰 -->
   <main class="max-w-5xl mx-auto px-4 py-6 flex-1 w-full">
-    <div id="cardGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <!-- 동적 카드 렌더링 위치 -->
+    <!-- 단어 그리드 뷰 -->
+    <div id="vocabSection">
+      <div id="vocabGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
     </div>
-    
-    <div id="emptyMessage" class="hidden py-16 text-center text-slate-400 text-sm">
-      표시할 단어가 없습니다.
+
+    <!-- 문장 리스트 뷰 -->
+    <div id="sentenceSection" class="hidden">
+      <div id="sentenceList" class="space-y-4"></div>
     </div>
+
+    <div id="emptyMessage" class="hidden py-16 text-center text-slate-400 text-sm">항목이 없습니다.</div>
   </main>
 
   <script>
     // ==========================================
-    // ⚙️ 설정: 구글 시트 웹 게시 CSV URL을 입력하세요.
+    // ⚙️ 2개의 구글 시트 CSV URL 설정
     // ==========================================
-    const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vROZVuSBM5EBQQdyFKHBHbpsz3r6uoHAcgnkq_8hFzNQHnvO5kvIkAcy83lXf-qYmfHLVPtSSIY-lJx/pub?output=csv';
+    const VOCAB_CSV_URL = '단어_시트_웹게시_CSV_URL';
+    const SENTENCE_CSV_URL = '문장_시트_웹게시_CSV_URL';
 
-    let vocabData = [];
+    let currentView = 'vocab'; // 'vocab' | 'sentence'
     let currentLang = 'All';
     let currentSearch = '';
-    let isAllFlipped = false;
+    let vocabData = [];
+    let sentenceData = [];
 
-    // 초기 데이터 로드 (URL 미설정 시 기본 샘플 데이터 표시)
     document.addEventListener('DOMContentLoaded', () => {
-      if (!GOOGLE_SHEET_CSV_URL || GOOGLE_SHEET_CSV_URL === 'YOUR_GOOGLE_SHEET_PUBLISHED_CSV_URL') {
-        renderSampleData();
-      } else {
-        loadDataFromSheet();
-      }
+      loadData(VOCAB_CSV_URL, (data) => { vocabData = data; render(); });
+      loadData(SENTENCE_CSV_URL, (data) => { sentenceData = data; });
     });
 
-    function loadDataFromSheet() {
-      Papa.parse(GOOGLE_SHEET_CSV_URL, {
+    function loadData(url, callback) {
+      if (!url || url.includes('_URL')) return;
+      Papa.parse(url, {
         download: true,
         header: true,
         skipEmptyLines: true,
-        complete: function(results) {
-          vocabData = results.data.filter(item => item['Word/Phrase'] || item['Word']);
-          applyFilters();
-        },
-        error: function(err) {
-          console.error("데이터 로드 실패:", err);
-          renderSampleData();
-        }
+        complete: (results) => callback(results.data.filter(r => Object.values(r).some(v => v)))
       });
     }
 
-    function renderSampleData() {
-      vocabData = [
-        { Language: 'English', Level: 'A2', 'Word/Phrase': 'deadline', 'Part of Speech / Gender': 'Noun', Meaning: '마감 기한, 마감일', 'Collocation / Example': 'meet the deadline' },
-        { Language: 'English', Level: 'A2', 'Word/Phrase': 'confirm', 'Part of Speech / Gender': 'Verb', Meaning: '확인하다, 확정하다', 'Collocation / Example': 'confirm the schedule' },
-        { Language: 'German', Level: 'B1-B2', 'Word/Phrase': 'die Vereinbarung', 'Part of Speech / Gender': 'Feminin (-en)', Meaning: '합의, 약정', 'Collocation / Example': 'eine Vereinbarung treffen' },
-        { Language: 'German', Level: 'B1-B2', 'Word/Phrase': 'die Frist', 'Part of Speech / Gender': 'Feminin (-en)', Meaning: '기한, 마감일', 'Collocation / Example': 'eine Frist einhalten' }
-      ];
-      applyFilters();
+    function switchView(view) {
+      currentView = view;
+      document.getElementById('tab-vocab').className = view === 'vocab' 
+        ? 'px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition' 
+        : 'px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition';
+      document.getElementById('tab-sentence').className = view === 'sentence' 
+        ? 'px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition' 
+        : 'px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition';
+
+      document.getElementById('vocabSection').classList.toggle('hidden', view !== 'vocab');
+      document.getElementById('sentenceSection').classList.toggle('hidden', view !== 'sentence');
+      render();
     }
 
-    function applyFilters() {
-      const filtered = vocabData.filter(item => {
-        const langMatch = currentLang === 'All' || item.Language === currentLang;
-        const word = (item['Word/Phrase'] || item['Word'] || '').toLowerCase();
-        const meaning = (item.Meaning || '').toLowerCase();
-        const searchMatch = !currentSearch || word.includes(currentSearch) || meaning.includes(currentSearch);
-        return langMatch && searchMatch;
-      });
-
-      renderCards(filtered);
-      updateStats(filtered.length);
-    }
-
-    function renderCards(data) {
-      const grid = document.getElementById('cardGrid');
-      const empty = document.getElementById('emptyMessage');
-      grid.innerHTML = '';
-
-      if (data.length === 0) {
-        empty.classList.remove('hidden');
-        return;
-      }
-      empty.classList.add('hidden');
-
-      data.forEach((item, index) => {
-        const isGerman = item.Language === 'German';
-        const badgeColor = isGerman ? 'bg-amber-50 text-amber-700 border-amber-200' : 'bg-blue-50 text-blue-700 border-blue-200';
-        const langIcon = isGerman ? '🇩🇪' : '🇬🇧';
-
-        const card = document.createElement('div');
-        card.className = 'perspective h-48 cursor-pointer select-none';
-        card.onclick = () => {
-          card.querySelector('.card-inner').classList.toggle('flipped');
-        };
-
-        card.innerHTML = `
-          <div class="card-inner ${isAllFlipped ? 'flipped' : ''}">
-            <!-- 앞면 -->
-            <div class="card-front bg-white border border-slate-200 hover:border-slate-300 rounded-xl p-5 shadow-sm">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-semibold px-2 py-0.5 rounded-full border ${badgeColor}">
-                  ${langIcon} ${item.Language || ''} · ${item.Level || ''}
-                </span>
-                <span class="text-[11px] text-slate-400">${item['Part of Speech / Gender'] || ''}</span>
-              </div>
-              <div class="my-auto py-2">
-                <div class="text-lg font-bold text-slate-900 tracking-tight">${item['Word/Phrase'] || item['Word'] || ''}</div>
-              </div>
-              <div class="text-[11px] text-slate-400">터치하여 뜻 확인 👆</div>
-            </div>
-
-            <!-- 뒷면 -->
-            <div class="card-back bg-slate-900 border border-slate-900 rounded-xl p-5 text-white shadow-sm">
-              <div class="flex items-center justify-between">
-                <span class="text-xs font-medium text-slate-400">한국어 해석</span>
-                <span class="text-[11px] text-slate-500">${item.Language || ''}</span>
-              </div>
-              <div class="my-auto py-2">
-                <div class="text-base font-bold text-amber-300">${item.Meaning || ''}</div>
-                ${item['Collocation / Example'] ? `
-                  <div class="mt-2 text-xs text-slate-300 bg-slate-800/80 px-2.5 py-1.5 rounded-lg border border-slate-700/50 inline-block text-left">
-                    💡 ${item['Collocation / Example']}
-                  </div>
-                ` : ''}
-              </div>
-              <div class="text-[11px] text-slate-500">터치하여 단어로 복귀</div>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    function setFilter(lang) {
+    function setLangFilter(lang) {
       currentLang = lang;
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.className = 'filter-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.className = 'lang-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
       });
-      document.getElementById(`btn-${lang}`).className = 'filter-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white transition';
-      applyFilters();
+      document.getElementById(`btn-${lang}`).className = 'lang-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-900 text-white transition';
+      render();
     }
 
     function handleSearch() {
       currentSearch = document.getElementById('searchInput').value.trim().toLowerCase();
-      applyFilters();
+      render();
     }
 
-    function toggleAllFlip() {
-      isAllFlipped = !isAllFlipped;
-      document.querySelectorAll('.card-inner').forEach(card => {
-        if (isAllFlipped) card.classList.add('flipped');
-        else card.classList.remove('flipped');
+    function render() {
+      if (currentView === 'vocab') renderVocab();
+      else renderSentences();
+    }
+
+    // 단어 렌더링
+    function renderVocab() {
+      const grid = document.getElementById('vocabGrid');
+      grid.innerHTML = '';
+      const filtered = vocabData.filter(d => {
+        const langMatch = currentLang === 'All' || d.Language === currentLang;
+        const textMatch = !currentSearch || (d['Word/Phrase'] || '').toLowerCase().includes(currentSearch) || (d.Meaning || '').toLowerCase().includes(currentSearch);
+        return langMatch && textMatch;
+      });
+
+      toggleEmpty(filtered.length === 0);
+      filtered.forEach(item => {
+        const isGerman = item.Language === 'German';
+        const card = document.createElement('div');
+        card.className = 'perspective h-44 cursor-pointer select-none';
+        card.onclick = () => card.querySelector('.card-inner').classList.toggle('flipped');
+        card.innerHTML = `
+          <div class="card-inner">
+            <div class="card-front bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+              <div class="flex justify-between items-center text-xs">
+                <span class="px-2 py-0.5 rounded-full ${isGerman ? 'bg-amber-50 text-amber-700' : 'bg-blue-50 text-blue-700'} font-medium">
+                  ${isGerman ? '🇩🇪' : '🇬🇧'} ${item.Level || ''}
+                </span>
+                <span class="text-slate-400 text-[11px]">${item['Part of Speech / Gender'] || ''}</span>
+              </div>
+              <div class="my-auto font-bold text-base text-slate-900">${item['Word/Phrase'] || ''}</div>
+              <div class="text-[11px] text-slate-400">터치하여 뜻 확인 👆</div>
+            </div>
+            <div class="card-back bg-slate-900 border border-slate-900 rounded-xl p-4 text-white shadow-sm">
+              <div class="text-xs text-slate-400">의미 및 표현</div>
+              <div class="my-auto">
+                <div class="text-sm font-bold text-amber-300">${item.Meaning || ''}</div>
+                ${item['Collocation / Example'] ? `<div class="mt-1.5 text-[11px] text-slate-300 bg-slate-800 px-2 py-1 rounded">💡 ${item['Collocation / Example']}</div>` : ''}
+              </div>
+              <div class="text-[11px] text-slate-500">터치하여 단어로 복귀</div>
+            </div>
+          </div>`;
+        grid.appendChild(card);
       });
     }
 
-    function updateStats(count) {
-      document.getElementById('stats').innerText = `총 ${count}개 단어 표시 중`;
+    // 문장 렌더링
+    function renderSentences() {
+      const list = document.getElementById('sentenceList');
+      list.innerHTML = '';
+      const filtered = sentenceData.filter(d => {
+        const langMatch = currentLang === 'All' || d.Language === currentLang;
+        const textMatch = !currentSearch || (d.Sentence || '').toLowerCase().includes(currentSearch) || (d.Translation || '').toLowerCase().includes(currentSearch);
+        return langMatch && textMatch;
+      });
+
+      toggleEmpty(filtered.length === 0);
+      filtered.forEach(item => {
+        const isGerman = item.Language === 'German';
+        const el = document.createElement('div');
+        el.className = 'bg-white border border-slate-200 rounded-xl p-4 shadow-sm space-y-2';
+        el.innerHTML = `
+          <div class="flex justify-between items-center text-xs">
+            <span class="px-2 py-0.5 rounded-full ${isGerman ? 'bg-amber-50 text-amber-700' : 'bg-blue-50 text-blue-700'} font-semibold">
+              ${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${item.Level || ''}
+            </span>
+            <span class="text-slate-400 text-xs">${item.Date || ''}</span>
+          </div>
+          <p class="text-base font-bold text-slate-900 leading-snug">"${item.Sentence || ''}"</p>
+          <p class="text-sm text-slate-600 font-medium">${item.Translation || ''}</p>
+          ${item['Key Points'] ? `
+            <div class="mt-2 text-xs bg-slate-50 border border-slate-100 p-2.5 rounded-lg text-slate-700">
+              <span class="font-bold text-slate-900">📌 Key Point:</span> ${item['Key Points']}
+            </div>` : ''}
+        `;
+        list.appendChild(el);
+      });
+    }
+
+    function toggleEmpty(isEmpty) {
+      document.getElementById('emptyMessage').classList.toggle('hidden', !isEmpty);
     }
   </script>
 </body>
