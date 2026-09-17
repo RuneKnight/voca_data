@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,13 +8,40 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <style>
-    .perspective { perspective: 1000px; }
-    .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); transform-style: preserve-3d; }
-    .card-inner.flipped { transform: rotateY(180deg); }
-    .card-front, .card-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; flex-direction: column; justify-content: space-between; }
-    .card-back { transform: rotateY(180deg); }
+    .perspective {
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+    }
   </style>
 </head>
+
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
 
   <!-- 상단 네비게이션 -->
@@ -26,26 +54,39 @@
           <div id="stats" class="text-[11px] text-slate-400 font-medium">데이터 동기화 중...</div>
         </div>
       </div>
-      
+
       <!-- 뷰 모드 전환 (단어 vs 문장) -->
       <div class="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200">
-        <button onclick="switchView('vocab')" id="tab-vocab" class="px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition">단어 카드</button>
-        <button onclick="switchView('sentence')" id="tab-sentence" class="px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition">학습 문장</button>
+        <button onclick="switchView('vocab')" id="tab-vocab"
+          class="px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition">단어 카드</button>
+        <button onclick="switchView('sentence')" id="tab-sentence"
+          class="px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition">학습
+          문장</button>
       </div>
     </div>
 
     <!-- 필터 및 컨트롤 바 -->
     <div class="max-w-5xl mx-auto px-4 pb-3 flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center space-x-1.5 overflow-x-auto py-1">
-        <button onclick="setLangFilter('All')" id="btn-All" class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 text-white transition">전체</button>
-        <button onclick="setLangFilter('English')" id="btn-English" class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇬🇧 English</button>
-        <button onclick="setLangFilter('German')" id="btn-German" class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇩🇪 Deutsch</button>
-        <button onclick="toggleNewOnly()" id="btn-NewOnly" class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition">✨ New만 보기</button>
+        <button onclick="setLangFilter('All')" id="btn-All"
+          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 text-white transition">전체</button>
+        <button onclick="setLangFilter('English')" id="btn-English"
+          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇬🇧
+          English</button>
+        <button onclick="setLangFilter('German')" id="btn-German"
+          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇩🇪
+          Deutsch</button>
+        <button onclick="toggleNewOnly()" id="btn-NewOnly"
+          class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition">✨
+          New만 보기</button>
       </div>
 
       <div class="flex items-center space-x-2 w-full sm:w-auto">
-        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="단어, 문장, 뜻 검색..." class="w-full sm:w-48 px-3 py-1 text-xs bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
-        <button id="btnFlipAll" onclick="toggleAllFlip()" class="whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 bg-white rounded-lg hover:bg-slate-50 text-slate-700 transition">전체 뒤집기</button>
+        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="단어, 문장, 뜻 검색..."
+          class="w-full sm:w-48 px-3 py-1 text-xs bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
+        <button id="btnFlipAll" onclick="toggleAllFlip()"
+          class="whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 bg-white rounded-lg hover:bg-slate-50 text-slate-700 transition">전체
+          뒤집기</button>
       </div>
     </div>
   </header>
@@ -71,8 +112,8 @@
     // ==========================================
     // ⚙️ 사용 중인 구글 시트 웹 게시 CSV URL 입력
     // ==========================================
-    const VOCAB_CSV_URL = '단어_시트_웹게시_CSV_URL';
-    const SENTENCE_CSV_URL = '문장_시트_웹게시_CSV_URL';
+    const VOCAB_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vROZVuSBM5EBQQdyFKHBHbpsz3r6uoHAcgnkq_8hFzNQHnvO5kvIkAcy83lXf-qYmfHLVPtSSIY-lJx/pubhtml?gid=0&single=true';
+    const SENTENCE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vROZVuSBM5EBQQdyFKHBHbpsz3r6uoHAcgnkq_8hFzNQHnvO5kvIkAcy83lXf-qYmfHLVPtSSIY-lJx/pubhtml?gid=765046051&single=true';
 
     let currentView = 'vocab';
     let currentLang = 'All';
@@ -132,11 +173,11 @@
 
     function switchView(view) {
       currentView = view;
-      document.getElementById('tab-vocab').className = view === 'vocab' 
-        ? 'px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition' 
+      document.getElementById('tab-vocab').className = view === 'vocab'
+        ? 'px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition'
         : 'px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition';
-      document.getElementById('tab-sentence').className = view === 'sentence' 
-        ? 'px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition' 
+      document.getElementById('tab-sentence').className = view === 'sentence'
+        ? 'px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition'
         : 'px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition';
 
       document.getElementById('vocabSection').classList.toggle('hidden', view !== 'vocab');
@@ -329,4 +370,5 @@
     }
   </script>
 </body>
+
 </html>
