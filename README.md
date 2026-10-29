@@ -8,16 +8,18 @@
 
 ## 📌 주요 특징 (Key Features)
 
-- 🔄 **서버리스 실시간 동기화**: Google Sheets 웹 게시(CSV) 링크를 통해 시트 수정 내용이 웹에 즉시 반영
-- 🗂️ **듀얼 뷰 모드 지원**:
+- 🔄 **서버리스 실시간 동기화 & 오프라인 캐싱**: Google Sheets 웹 게시(CSV) 링크를 통해 시트 수정 내용이 웹에 즉시 반영되며, 네트워크 단절 시에도 `localStorage` 오프라인 캐시로 중단 없는 학습 가능
+- 🗂️ **트리플 뷰 모드 지원**:
   - **단어 카드(Flashcard)**: 3D 인터랙티브 카드 플립 애니메이션으로 단어 앞면 ↔ 뜻/예문 뒷면 토글
   - **학습 문장(Sentences)**: 예문 원문, 번역, CEFR 레벨, 핵심 포인트(Key Point)를 직관적으로 확인
+  - **🎯 퀴즈 모드(Quiz)**: 학습한 단어 데이터를 바탕으로 생성되는 4지선다형 맞춤 퀴즈
 - 🇩🇪 **독일어 관사(성별) 컬러 코딩**: `der`(남성/파랑), `die`(여성/로즈), `das`(중성/에메랄드) 명사 성별을 카드 테두리 및 뱃지로 시각화
 - 🧠 **능동적 인출 학습(Active Recall) UI**: 문장 탭에서 정답(해석/Key Point)을 가려두고 스스로 인출해본 뒤 펼쳐보는 아코디언 토글 적용
-- 🔀 **전체 뒤집기(Flip All) & ✨ New 단어 필터**: 한 번의 클릭으로 전체 카드를 일괄 반전하거나 신규 단어만 필터링하여 집중 복습
-- 🔊 **Web Speech API 네이티브 TTS**: 단어 및 문장 발음 즉시 재생 (영어 `en-US` / 독일어 `de-DE` 음성 엔진 자동 분기)
-- 📊 **실시간 학습 통계 표시**: 필터 및 검색 조건에 맞는 항목 수를 헤더에 실시간 카운팅
-- 🔍 **확장된 실시간 검색**: 단어, 뜻은 물론 예문(`Collocation`) 및 `Key Points`까지 포괄 검색
+- ⭐ **즐겨찾기(북마크) & ✅ 완숙 단어 숨기기**: 암기 여부를 체크하고 중요한 단어만 추려서 집중 복습
+- 🔀 **전체 뒤집기(Flip All) & 셔플(Shuffle) & ✨ New 단어 필터**: 무작위 순서 섞기, 한 번의 클릭으로 전체 카드 반전, 신규 단어 필터 제공
+- 🔊 **Web Speech API 네이티브 TTS**: 단어, 문장, 예문(Collocation) 발음 즉시 재생 (영어 `en-US` / 독일어 `de-DE` 음성 엔진 자동 분기)
+- 📊 **실시간 학습 통계 & 타임스탬프**: 필터 및 검색 조건에 맞는 항목 수와 구글 시트 최근 동기화 시각 실시간 표시
+- 🌙 **다크 모드 지원**: 사용자 선호 및 시스템 설정에 맞춰 눈이 편안한 테마 제공
 - 📱 **반응형 디자인**: Tailwind CSS 기반 모바일, 태블릿, 데스크톱 완벽 대응
 - ⚡ **경량성 & zero-build**: 번들러나 빌드 과정 없이 `index.html` 단일 파일로 즉시 실행 가능
 
@@ -35,11 +37,12 @@
 - **기능**: 문장 뷰에서 한국어 해석과 문법 메모를 상시 노출하지 않고, `<details>` 태그 기반의 "👉 한국어 해석 및 Key Point 보기" 토글로 숨김 처리했습니다.
 - **학습 효과**: 정답을 바로 확인하는 수동적 학습(Passive Reading)을 차단하고, 뇌가 스스로 의미를 인출(Recall)하도록 유도하여 기억 보존율(Retention)을 극대화합니다.
 
-### 3. ✨ New만 보기 & 전체 뒤집기 일괄 모드
+### 3. ✨ New만 보기, 즐겨찾기 & 카드 셔플 모드
 - **기능**: 
   - `Review Status`가 'New'인 항목만 추려보는 원클릭 토글 버튼 제공
-  - `toggleAllFlip`을 통해 수십 개의 카드를 한 번에 뒷면(의미) 또는 앞면(단어)으로 일괄 반전
-- **학습 효과**: 누적된 데이터 중 오늘 새로 배운 표현만 빠르게 훑거나(Skimming), 전체 뜻을 먼저 띄워놓고 거꾸로 단어를 맞추는 역방향 암기 훈련이 가능합니다.
+  - 즐겨찾기(⭐) 및 완숙 단어 체크(✓) 기능으로 나만의 단어장 구성
+  - 🔀 셔플 버튼으로 순서 암기 타파
+- **학습 효과**: 누적된 데이터 중 오늘 새로 배운 표현이나 취약 단어만 빠르게 복습할 수 있습니다.
 
 ---
 
@@ -49,15 +52,15 @@
 | :--- | :--- | :--- |
 | **Frontend** | HTML5, Vanilla JavaScript (ES6+) | 가볍고 빠른 네이티브 돔 조작 |
 | **Voice Engine** | Web Speech API (`speechSynthesis`) | 브라우저 내장 네이티브 TTS 음성 합성 (무과금) |
-| **Styling** | [Tailwind CSS (CDN)](https://tailwindcss.com/) | 유틸리티 퍼스트 반응형 스타일링 |
+| **Styling** | [Tailwind CSS (CDN)](https://tailwindcss.com/) | 유틸리티 퍼스트 반응형 스타일링 & 다크모드 |
 | **Data Parser** | [PapaParse](https://www.papaparse.com/) | 브라우저 내 강력한 CSV 스트리밍 및 파싱 |
-| **Data Source** | Google Sheets (Published CSV) | 무료 헤드리스 CMS 데이터 저장소 |
+| **Data Source** | Google Sheets (Published CSV / GViz API) | 무료 헤드리스 CMS 데이터 저장소 |
 
 ---
 
 ## 📊 데이터 구조 및 스키마 (Google Sheets Schema)
 
-본 프로젝트는 2개의 구글 시트 탭(단어 탭 / 문장 탭)의 CSV 발행 링크를 연동하여 동작합니다.
+본 프로젝트는 2개의 구글 시트 탭(단어 탭 / 문장 탭)의 CSV/GViz 연동을 통해 동작합니다.
 
 ### 1. 단어 시트 (`VOCAB_CSV_URL` / Gid: 0)
 
@@ -103,11 +106,11 @@ python3 -m http.server 8080
 ### 2. 본인의 구글 시트로 변경하는 법
 1. Google Sheets에서 단어/문장 시트 생성 (위 컬럼 구조 준수)
 2. **[파일] → [공유] → [웹에 게시]** 선택
-3. 게시 형식으로 **쉼표로 구분된 값(.csv)** 선택 후 게시 링크 복사
-4. `index.html` 스크립트 상단의 상수를 본인 시트 URL로 교체:
+3. `index.html` 스크립트 상단의 상수를 본인 시트 ID로 교체:
    ```javascript
-   const VOCAB_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/.../pub?gid=0&single=true&output=csv';
-   const SENTENCE_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/.../pub?gid=...&single=true&output=csv';
+   const SPREADSHEET_ID = 'your-google-sheet-id';
+   const VOCAB_GID = '0';
+   const SENTENCE_GID = '765046051';
    ```
 
 ---
@@ -129,14 +132,13 @@ python3 -m http.server 8080
 - [x] **인출 학습(Active Recall) 문장 뷰**: 해석/Key Point 접기/펼치기 아코디언
 - [x] **카드 일괄 뒤집기(Flip All) & New 단어 필터링**
 - [x] **실시간 학습 카운트 통계 표시**
-- [ ] **오프라인 캐싱 (IndexedDB / LocalStorage)**: 네트워크 단절 시에도 기존 데이터로 학습 유지
-- [ ] **학습 모드 강화**:
+- [x] **오프라인 캐싱 (IndexedDB / LocalStorage)**: 네트워크 단절 시에도 기존 데이터로 학습 유지
+- [x] **학습 모드 강화**:
   - 오답 노트 및 즐겨찾기(북마크)
   - 암기 완료 단어 숨기기 체크박스
   - 단어 셔플(랜덤 섞기) 및 퀴즈 모드
-- [ ] **UI/UX 고도화**:
+- [x] **UI/UX 고도화**:
   - 다크 모드 지원
   - 예문(Collocation) TTS 발음 버튼 복원
   - 로딩 스켈레톤 및 데이터 갱신 타임스탬프 표시
-- [ ] **보안 및 예외처리**: 데이터 내 따옴표/특수문자 이스케이프 견고성 강화
-
+- [x] **보안 및 예외처리**: 데이터 내 따옴표/특수문자 이스케이프 견고성 강화
