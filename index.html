@@ -5,6 +5,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Language Hub Pro</title>
+  <script>
+    // Tailwind 다크모드 설정
+    tailwind = {
+      config: {
+        darkMode: 'class'
+      }
+    };
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <style>
@@ -39,51 +47,79 @@
     .card-back {
       transform: rotateY(180deg);
     }
+
+    /* 다크모드 스크롤바 */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #475569;
+    }
   </style>
 </head>
 
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 antialiased min-h-screen flex flex-col font-sans transition-colors duration-200">
 
   <!-- 상단 네비게이션 -->
-  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+  <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30 shadow-sm transition-colors duration-200">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center space-x-2">
         <span class="text-2xl">⚡</span>
         <div>
-          <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 leading-tight">Language Hub Pro</h1>
-          <div id="stats" class="text-[11px] text-slate-400 font-medium">데이터 동기화 중...</div>
+          <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Language Hub Pro</h1>
+          <div id="stats" class="text-[11px] text-slate-400 dark:text-slate-400 font-medium">데이터 동기화 중...</div>
         </div>
       </div>
 
-      <!-- 뷰 모드 전환 (단어 vs 문장) -->
-      <div class="flex bg-slate-100 p-0.5 rounded-lg border border-slate-200">
-        <button onclick="switchView('vocab')" id="tab-vocab"
-          class="px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition">단어 카드</button>
-        <button onclick="switchView('sentence')" id="tab-sentence"
-          class="px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition">학습
-          문장</button>
+      <div class="flex items-center space-x-2">
+        <!-- 뷰 모드 전환 (단어 vs 문장 vs 퀴즈) -->
+        <div class="flex bg-slate-100 dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
+          <button onclick="switchView('vocab')" id="tab-vocab"
+            class="px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition">단어 카드</button>
+          <button onclick="switchView('sentence')" id="tab-sentence"
+            class="px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">학습 문장</button>
+          <button onclick="switchView('quiz')" id="tab-quiz"
+            class="px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">🎯 퀴즈</button>
+        </div>
+
+        <!-- 다크 모드 토글 버튼 -->
+        <button onclick="toggleDarkMode()" id="btnDarkMode" title="다크 모드 전환"
+          class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition">
+          🌙
+        </button>
       </div>
     </div>
 
     <!-- 필터 및 컨트롤 바 -->
-    <div class="max-w-5xl mx-auto px-4 pb-3 flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center space-x-1.5 overflow-x-auto py-1">
+    <div id="controlBar" class="max-w-5xl mx-auto px-4 pb-3 flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center space-x-1.5 overflow-x-auto py-1 max-w-full">
         <button onclick="setLangFilter('All')" id="btn-All"
-          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 text-white transition">전체</button>
+          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 transition">전체</button>
         <button onclick="setLangFilter('English')" id="btn-English"
-          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇬🇧
-          English</button>
+          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇬🇧 English</button>
         <button onclick="setLangFilter('German')" id="btn-German"
-          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition">🇩🇪
-          Deutsch</button>
+          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇩🇪 Deutsch</button>
         <button onclick="toggleNewOnly()" id="btn-NewOnly"
-          class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition">✨
-          New만 보기</button>
+          class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✨ New만 보기</button>
+        <button onclick="toggleBookmarkedOnly()" id="btn-BookmarkedOnly"
+          class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">⭐ 즐겨찾기</button>
+        <button onclick="toggleHideMastered()" id="btn-HideMastered"
+          class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✅ 완숙 숨기기</button>
       </div>
 
       <div class="flex items-center space-x-2 w-full sm:w-auto">
+        <button id="btnShuffle" onclick="toggleShuffle()" title="카드 셔플"
+          class="whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">🔀 셔플</button>
         <select id="pageSizeSelect" onchange="handlePageSizeChange(this.value)"
-          class="px-2.5 py-1 text-xs bg-slate-100 border border-slate-200 rounded-lg text-slate-700 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
+          class="px-2.5 py-1 text-xs bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-200 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
           <option value="10">10개씩</option>
           <option value="20" selected>20개씩</option>
           <option value="30">30개씩</option>
@@ -91,16 +127,34 @@
           <option value="50">50개씩</option>
         </select>
         <input type="text" id="searchInput" oninput="handleSearch()" placeholder="단어, 문장, 뜻 검색..."
-          class="w-full sm:w-48 px-3 py-1 text-xs bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
+          class="w-full sm:w-48 px-3 py-1 text-xs bg-slate-100 dark:bg-slate-700 dark:text-white border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
         <button id="btnFlipAll" onclick="toggleAllFlip()"
-          class="whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 bg-white rounded-lg hover:bg-slate-50 text-slate-700 transition">전체
-          뒤집기</button>
+          class="whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">전체 뒤집기</button>
       </div>
     </div>
   </header>
 
   <!-- 메인 학습 영역 -->
   <main class="max-w-5xl mx-auto px-4 py-6 flex-1 w-full">
+    <!-- 로딩 스켈레톤 -->
+    <div id="skeletonLoader" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="h-48 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
+        <div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-1/3"></div>
+        <div class="h-6 bg-slate-300 dark:bg-slate-700 rounded w-2/3 my-auto"></div>
+        <div class="h-3 bg-slate-300 dark:bg-slate-700 rounded w-1/2"></div>
+      </div>
+      <div class="h-48 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
+        <div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-1/3"></div>
+        <div class="h-6 bg-slate-300 dark:bg-slate-700 rounded w-2/3 my-auto"></div>
+        <div class="h-3 bg-slate-300 dark:bg-slate-700 rounded w-1/2"></div>
+      </div>
+      <div class="h-48 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
+        <div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-1/3"></div>
+        <div class="h-6 bg-slate-300 dark:bg-slate-700 rounded w-2/3 my-auto"></div>
+        <div class="h-3 bg-slate-300 dark:bg-slate-700 rounded w-1/2"></div>
+      </div>
+    </div>
+
     <!-- 1. 단어 카드 영역 -->
     <div id="vocabSection">
       <div id="vocabGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
@@ -111,7 +165,14 @@
       <div id="sentenceList" class="space-y-3.5"></div>
     </div>
 
-    <div id="emptyMessage" class="hidden py-20 text-center text-slate-400 text-sm">
+    <!-- 3. 퀴즈 모드 영역 -->
+    <div id="quizSection" class="hidden max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-md">
+      <div id="quizContainer">
+        <!-- 퀴즈 내용 동적 생성 -->
+      </div>
+    </div>
+
+    <div id="emptyMessage" class="hidden py-20 text-center text-slate-400 dark:text-slate-500 text-sm">
       조건에 일치하는 학습 항목이 없습니다.
     </div>
 
@@ -131,25 +192,139 @@
     let currentLang = 'All';
     let currentSearch = '';
     let isNewOnly = false;
+    let isBookmarkedOnly = false;
+    let hideMastered = false;
+    let isShuffled = false;
     let isAllFlipped = false;
+    let isDarkMode = false;
 
     let itemsPerPage = 20;
     let currentPage = 1;
 
     let vocabData = [];
     let sentenceData = [];
+    let shuffledVocabIndices = [];
+    let lastSyncTime = '';
+
+    // 로컬 스토리지 상태 저장용
+    let bookmarks = new Set(JSON.parse(localStorage.getItem('vh_bookmarks') || '[]'));
+    let mastered = new Set(JSON.parse(localStorage.getItem('vh_mastered') || '[]'));
+
+    // HTML 엔티티 이스케이프 함수 (XSS 및 특수문자 깨짐 방지)
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    // JS 인라인 함수 파라미터 이스케이프 함수
+    function escapeJsParam(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '&quot;');
+    }
+
+    // 아이템 고유 키 생성
+    function getItemKey(item) {
+      const mainText = item['Word/Phrase'] || item.Sentence || '';
+      return `${item.Language || ''}:${mainText}`;
+    }
 
     document.addEventListener('DOMContentLoaded', () => {
+      // 다크 모드 초기화
+      initDarkMode();
+
+      // 캐시 데이터 불러오기
+      loadFromCache();
+
+      // 구글 시트 최신 데이터 수신
+      let vocabLoaded = false;
+      let sentenceLoaded = false;
+
       loadGvizData(VOCAB_GID, (data) => {
         vocabData = data;
-        render();
+        vocabLoaded = true;
+        checkAllLoaded(vocabLoaded, sentenceLoaded);
       });
+
       loadGvizData(SENTENCE_GID, (data) => {
         sentenceData = data;
+        sentenceLoaded = true;
+        checkAllLoaded(vocabLoaded, sentenceLoaded);
       });
     });
 
-    // 구글 시트 gviz JSONP 로더 (file:// 및 웹 호스팅 환경 모두에서 CORS 제약 없이 100% 작동)
+    function checkAllLoaded(vLoaded, sLoaded) {
+      if (vLoaded && sLoaded) {
+        lastSyncTime = new Date().toLocaleString('ko-KR');
+        saveToCache();
+        document.getElementById('skeletonLoader').classList.add('hidden');
+        render();
+      }
+    }
+
+    // 로컬 스토리지 캐싱
+    function saveToCache() {
+      try {
+        localStorage.setItem('vh_vocabData', JSON.stringify(vocabData));
+        localStorage.setItem('vh_sentenceData', JSON.stringify(sentenceData));
+        localStorage.setItem('vh_lastSync', lastSyncTime);
+      } catch (e) {
+        console.error('캐시 저장 실패:', e);
+      }
+    }
+
+    function loadFromCache() {
+      try {
+        const cachedVocab = localStorage.getItem('vh_vocabData');
+        const cachedSentence = localStorage.getItem('vh_sentenceData');
+        const cachedSync = localStorage.getItem('vh_lastSync');
+
+        if (cachedVocab && cachedSentence) {
+          vocabData = JSON.parse(cachedVocab);
+          sentenceData = JSON.parse(cachedSentence);
+          lastSyncTime = cachedSync || '이전 기록';
+          document.getElementById('skeletonLoader').classList.add('hidden');
+          render();
+        }
+      } catch (e) {
+        console.error('캐시 복원 실패:', e);
+      }
+    }
+
+    // 다크모드 제어
+    function initDarkMode() {
+      const savedDark = localStorage.getItem('vh_darkMode');
+      if (savedDark === 'true' || (!savedDark && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        isDarkMode = true;
+        document.documentElement.classList.add('dark');
+        document.getElementById('btnDarkMode').innerText = '☀️';
+      } else {
+        isDarkMode = false;
+        document.documentElement.classList.remove('dark');
+        document.getElementById('btnDarkMode').innerText = '🌙';
+      }
+    }
+
+    function toggleDarkMode() {
+      isDarkMode = !isDarkMode;
+      if (isDarkMode) {
+        document.documentElement.classList.add('dark');
+        document.getElementById('btnDarkMode').innerText = '☀️';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.getElementById('btnDarkMode').innerText = '🌙';
+      }
+      localStorage.setItem('vh_darkMode', isDarkMode);
+    }
+
+    // 구글 시트 gviz JSONP 로더
     function loadGvizData(gid, callback) {
       const callbackName = 'gviz_cb_' + gid.replace(/[^a-zA-Z0-9]/g, '_') + '_' + Date.now();
       window[callbackName] = function(resp) {
@@ -158,7 +333,9 @@
 
         if (!resp || !resp.table || !resp.table.rows) {
           console.error('구글 시트 응답 데이터 없음:', resp);
-          document.getElementById('stats').innerText = '데이터를 불러오지 못했습니다.';
+          if (!vocabData.length) {
+            document.getElementById('stats').innerText = '데이터를 불러오지 못했습니다.';
+          }
           return;
         }
 
@@ -169,7 +346,6 @@
             row.c.forEach((cell, idx) => {
               const key = cols[idx];
               if (key) {
-                // 포맷된 문자열(cell.f)이 있으면 우선 사용하고, 없으면 일반 값(cell.v) 사용
                 const val = cell ? (cell.f !== undefined ? cell.f : (cell.v !== null && cell.v !== undefined ? cell.v : '')) : '';
                 item[key] = String(val).trim();
               }
@@ -185,7 +361,9 @@
       script.src = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?gid=${gid}&tqx=responseHandler:${callbackName}`;
       script.onerror = function() {
         console.error('구글 시트 로드 실패 (gid: ' + gid + ')');
-        document.getElementById('stats').innerText = '구글 시트 연결 실패 (공유 권한 확인 필요)';
+        if (!vocabData.length) {
+          document.getElementById('stats').innerText = '구글 시트 연결 실패 (오프라인 캐시 사용 중)';
+        }
       };
       document.body.appendChild(script);
     }
@@ -208,38 +386,70 @@
     function getGermanGenderStyle(word) {
       const trimmed = (word || '').trim().toLowerCase();
       if (trimmed.startsWith('der ')) {
-        return { border: 'border-blue-300', badge: 'bg-blue-100 text-blue-800 border-blue-200', text: 'der (남성)' };
+        return { border: 'border-blue-300 dark:border-blue-600', badge: 'bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800', text: 'der (남성)' };
       } else if (trimmed.startsWith('die ')) {
-        return { border: 'border-rose-300', badge: 'bg-rose-100 text-rose-800 border-rose-200', text: 'die (여성)' };
+        return { border: 'border-rose-300 dark:border-rose-600', badge: 'bg-rose-100 dark:bg-rose-900/60 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-800', text: 'die (여성)' };
       } else if (trimmed.startsWith('das ')) {
-        return { border: 'border-emerald-300', badge: 'bg-emerald-100 text-emerald-800 border-emerald-200', text: 'das (중성)' };
+        return { border: 'border-emerald-300 dark:border-emerald-600', badge: 'bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800', text: 'das (중성)' };
       }
-      return { border: 'border-amber-200', badge: 'bg-amber-100 text-amber-800 border-amber-200', text: '독일어' };
+      return { border: 'border-amber-200 dark:border-amber-700', badge: 'bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800', text: '독일어' };
+    }
+
+    // 북마크 토글
+    function toggleBookmark(itemKey, event) {
+      if (event) event.stopPropagation();
+      if (bookmarks.has(itemKey)) {
+        bookmarks.delete(itemKey);
+      } else {
+        bookmarks.add(itemKey);
+      }
+      localStorage.setItem('vh_bookmarks', JSON.stringify(Array.from(bookmarks)));
+      render();
+    }
+
+    // 완숙(암기 완료) 토글
+    function toggleMastered(itemKey, event) {
+      if (event) event.stopPropagation();
+      if (mastered.has(itemKey)) {
+        mastered.delete(itemKey);
+      } else {
+        mastered.add(itemKey);
+      }
+      localStorage.setItem('vh_mastered', JSON.stringify(Array.from(mastered)));
+      render();
     }
 
     function switchView(view) {
       currentView = view;
       currentPage = 1;
-      document.getElementById('tab-vocab').className = view === 'vocab'
-        ? 'px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition'
-        : 'px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition';
-      document.getElementById('tab-sentence').className = view === 'sentence'
-        ? 'px-3 py-1 text-xs font-bold rounded-md bg-white shadow-sm text-slate-900 transition'
-        : 'px-3 py-1 text-xs font-semibold rounded-md text-slate-500 hover:text-slate-900 transition';
+      const tabClassActive = 'px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition';
+      const tabClassInactive = 'px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+
+      document.getElementById('tab-vocab').className = view === 'vocab' ? tabClassActive : tabClassInactive;
+      document.getElementById('tab-sentence').className = view === 'sentence' ? tabClassActive : tabClassInactive;
+      document.getElementById('tab-quiz').className = view === 'quiz' ? tabClassActive : tabClassInactive;
 
       document.getElementById('vocabSection').classList.toggle('hidden', view !== 'vocab');
       document.getElementById('sentenceSection').classList.toggle('hidden', view !== 'sentence');
+      document.getElementById('quizSection').classList.toggle('hidden', view !== 'quiz');
       document.getElementById('btnFlipAll').classList.toggle('hidden', view !== 'vocab');
-      render();
+      document.getElementById('controlBar').classList.toggle('hidden', view === 'quiz');
+      document.getElementById('pagination').classList.toggle('hidden', view === 'quiz');
+
+      if (view === 'quiz') {
+        startQuiz();
+      } else {
+        render();
+      }
     }
 
     function setLangFilter(lang) {
       currentLang = lang;
       currentPage = 1;
       document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.className = 'lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-600 hover:bg-slate-200 transition';
+        btn.className = 'lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition';
       });
-      document.getElementById(`btn-${lang}`).className = 'lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 text-white transition';
+      document.getElementById(`btn-${lang}`).className = 'lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 transition';
       render();
     }
 
@@ -250,7 +460,45 @@
       if (isNewOnly) {
         btn.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-indigo-600 text-white transition';
       } else {
-        btn.className = 'px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition';
+        btn.className = 'px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition';
+      }
+      render();
+    }
+
+    function toggleBookmarkedOnly() {
+      isBookmarkedOnly = !isBookmarkedOnly;
+      currentPage = 1;
+      const btn = document.getElementById('btn-BookmarkedOnly');
+      if (isBookmarkedOnly) {
+        btn.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500 text-white transition';
+      } else {
+        btn.className = 'px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition';
+      }
+      render();
+    }
+
+    function toggleHideMastered() {
+      hideMastered = !hideMastered;
+      currentPage = 1;
+      const btn = document.getElementById('btn-HideMastered');
+      if (hideMastered) {
+        btn.className = 'px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-600 text-white transition';
+      } else {
+        btn.className = 'px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition';
+      }
+      render();
+    }
+
+    function toggleShuffle() {
+      isShuffled = !isShuffled;
+      currentPage = 1;
+      const btn = document.getElementById('btnShuffle');
+      if (isShuffled) {
+        btn.className = 'whitespace-nowrap px-2.5 py-1 text-xs font-medium bg-purple-600 text-white rounded-lg transition';
+        btn.innerText = '🔀 셔플 중';
+      } else {
+        btn.className = 'whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition';
+        btn.innerText = '🔀 셔플';
       }
       render();
     }
@@ -282,8 +530,9 @@
     }
 
     function render() {
+      document.getElementById('skeletonLoader').classList.add('hidden');
       if (currentView === 'vocab') renderVocab();
-      else renderSentences();
+      else if (currentView === 'sentence') renderSentences();
     }
 
     // 1. 단어 렌더링
@@ -291,15 +540,23 @@
       const grid = document.getElementById('vocabGrid');
       grid.innerHTML = '';
 
-      const filtered = vocabData.filter(d => {
+      let filtered = vocabData.filter(d => {
         const langMatch = currentLang === 'All' || d.Language === currentLang;
         const newMatch = !isNewOnly || (d['Review Status'] || '').toLowerCase() === 'new';
+        const itemKey = getItemKey(d);
+        const bookmarkMatch = !isBookmarkedOnly || bookmarks.has(itemKey);
+        const masteredMatch = !hideMastered || !mastered.has(itemKey);
+
         const word = (d['Word/Phrase'] || '').toLowerCase();
         const meaning = (d.Meaning || '').toLowerCase();
         const colloc = (d['Collocation / Example'] || '').toLowerCase();
         const searchMatch = !currentSearch || word.includes(currentSearch) || meaning.includes(currentSearch) || colloc.includes(currentSearch);
-        return langMatch && newMatch && searchMatch;
+        return langMatch && newMatch && bookmarkMatch && masteredMatch && searchMatch;
       });
+
+      if (isShuffled) {
+        filtered = [...filtered].sort(() => Math.sin(filtered.length) - 0.5);
+      }
 
       const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
       if (currentPage > totalPages) currentPage = totalPages;
@@ -316,55 +573,68 @@
       pageItems.forEach(item => {
         const isGerman = item.Language === 'German';
         const wordText = item['Word/Phrase'] || '';
+        const itemKey = getItemKey(item);
+        const isBookmarked = bookmarks.has(itemKey);
+        const isMastered = mastered.has(itemKey);
+
         const genderStyle = isGerman ? getGermanGenderStyle(wordText) : null;
-        const borderClass = isGerman ? genderStyle.border : 'border-slate-200';
+        const borderClass = isGerman ? genderStyle.border : 'border-slate-200 dark:border-slate-700';
 
         const card = document.createElement('div');
-        card.className = 'perspective h-48 cursor-pointer select-none';
+        card.className = `perspective h-48 cursor-pointer select-none ${isMastered ? 'opacity-60 hover:opacity-100 transition-opacity' : ''}`;
         card.onclick = () => card.querySelector('.card-inner').classList.toggle('flipped');
 
         card.innerHTML = `
           <div class="card-inner ${isAllFlipped ? 'flipped' : ''}">
             <!-- 앞면 -->
-            <div class="card-front bg-white border ${borderClass} hover:border-slate-400 rounded-xl p-4 shadow-sm">
+            <div class="card-front bg-white dark:bg-slate-800 border ${borderClass} hover:border-slate-400 dark:hover:border-slate-500 rounded-xl p-4 shadow-sm">
               <div class="flex justify-between items-center text-xs">
                 ${isGerman ? `
                   <span class="px-2 py-0.5 rounded-md border text-[11px] font-semibold ${genderStyle.badge}">
                     🇩🇪 ${genderStyle.text}
                   </span>
                 ` : `
-                  <span class="px-2 py-0.5 rounded-md border border-blue-200 bg-blue-50 text-blue-700 text-[11px] font-semibold">
-                    🇬🇧 ${item.Level || 'A2'}
+                  <span class="px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-[11px] font-semibold">
+                    🇬🇧 ${escapeHtml(item.Level || 'A2')}
                   </span>
                 `}
                 <div class="flex items-center space-x-1">
-                  ${item['Review Status'] === 'New' ? '<span class="text-[10px] bg-indigo-50 text-indigo-600 border border-indigo-200 px-1.5 py-0.2 rounded font-bold">NEW</span>' : ''}
-                  <button title="발음 듣기" onclick="speakText('${wordText.replace(/'/g, "\\'")}', '${item.Language}', event)" class="p-1 rounded-full text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition">
+                  ${item['Review Status'] === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold">NEW</span>' : ''}
+                  <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">
+                    ✓
+                  </button>
+                  <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">
+                    ★
+                  </button>
+                  <button title="발음 듣기" onclick="speakText('${escapeJsParam(wordText)}', '${escapeJsParam(item.Language)}', event)" class="p-1 rounded-full text-slate-400 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
                     🔊
                   </button>
                 </div>
               </div>
 
               <div class="my-auto py-2">
-                <div class="font-bold text-lg text-slate-900 tracking-tight">${wordText}</div>
-                <div class="text-[11px] text-slate-400 mt-0.5">${item['Part of Speech / Gender'] || ''}</div>
+                <div class="font-bold text-lg text-slate-900 dark:text-white tracking-tight">${escapeHtml(wordText)}</div>
+                <div class="text-[11px] text-slate-400 dark:text-slate-400 mt-0.5">${escapeHtml(item['Part of Speech / Gender'] || '')}</div>
               </div>
 
-              <div class="text-[11px] text-slate-400">클릭하여 뜻 확인 👆</div>
+              <div class="text-[11px] text-slate-400 dark:text-slate-500">클릭하여 뜻 확인 👆</div>
             </div>
 
             <!-- 뒷면 -->
-            <div class="card-back bg-slate-900 border border-slate-900 rounded-xl p-4 text-white shadow-sm">
+            <div class="card-back bg-slate-900 dark:bg-slate-950 border border-slate-900 dark:border-slate-800 rounded-xl p-4 text-white shadow-sm">
               <div class="flex justify-between items-center text-xs text-slate-400">
                 <span>한국어 의미</span>
-                <span class="text-[10px] font-mono text-slate-500">${item.Date || ''}</span>
+                <span class="text-[10px] font-mono text-slate-500">${escapeHtml(item.Date || '')}</span>
               </div>
 
               <div class="my-auto py-2">
-                <div class="text-base font-bold text-amber-300">${item.Meaning || ''}</div>
+                <div class="text-base font-bold text-amber-300 dark:text-amber-400">${escapeHtml(item.Meaning || '')}</div>
                 ${item['Collocation / Example'] ? `
-                  <div class="mt-2 text-xs text-slate-200 bg-slate-800/90 border border-slate-700 px-2.5 py-1.5 rounded-lg text-left inline-block">
-                    💡 ${item['Collocation / Example']}
+                  <div class="mt-2 text-xs text-slate-200 dark:text-slate-300 bg-slate-800/90 dark:bg-slate-900 border border-slate-700 px-2.5 py-1.5 rounded-lg text-left inline-flex items-center justify-between gap-2 max-w-full">
+                    <span>💡 ${escapeHtml(item['Collocation / Example'])}</span>
+                    <button title="예문 발음 듣기" onclick="speakText('${escapeJsParam(item['Collocation / Example'])}', '${escapeJsParam(item.Language)}', event)" class="text-slate-400 hover:text-amber-300 transition shrink-0">
+                      🔊
+                    </button>
                   </div>
                 ` : ''}
               </div>
@@ -381,14 +651,22 @@
       const list = document.getElementById('sentenceList');
       list.innerHTML = '';
 
-      const filtered = sentenceData.filter(d => {
+      let filtered = sentenceData.filter(d => {
         const langMatch = currentLang === 'All' || d.Language === currentLang;
+        const itemKey = getItemKey(d);
+        const bookmarkMatch = !isBookmarkedOnly || bookmarks.has(itemKey);
+        const masteredMatch = !hideMastered || !mastered.has(itemKey);
+
         const text = (d.Sentence || '').toLowerCase();
         const trans = (d.Translation || '').toLowerCase();
         const points = (d['Key Points'] || '').toLowerCase();
         const searchMatch = !currentSearch || text.includes(currentSearch) || trans.includes(currentSearch) || points.includes(currentSearch);
-        return langMatch && searchMatch;
+        return langMatch && bookmarkMatch && masteredMatch && searchMatch;
       });
+
+      if (isShuffled) {
+        filtered = [...filtered].sort(() => Math.sin(filtered.length) - 0.5);
+      }
 
       const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
       if (currentPage > totalPages) currentPage = totalPages;
@@ -402,36 +680,46 @@
       toggleEmpty(filtered.length === 0);
       renderPagination(totalPages);
 
-      pageItems.forEach((item, idx) => {
+      pageItems.forEach((item) => {
         const isGerman = item.Language === 'German';
         const sentenceText = item.Sentence || '';
+        const itemKey = getItemKey(item);
+        const isBookmarked = bookmarks.has(itemKey);
+        const isMastered = mastered.has(itemKey);
+
         const el = document.createElement('div');
-        el.className = 'bg-white border border-slate-200 rounded-xl p-4 shadow-sm hover:border-slate-300 transition';
+        el.className = `bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:border-slate-300 dark:hover:border-slate-600 transition ${isMastered ? 'opacity-60' : ''}`;
         el.innerHTML = `
           <div class="flex justify-between items-center text-xs mb-2">
-            <span class="px-2 py-0.5 rounded-md ${isGerman ? 'bg-amber-50 text-amber-800 border border-amber-200' : 'bg-blue-50 text-blue-800 border border-blue-200'} font-semibold">
-              ${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${item.Level || ''}
+            <span class="px-2 py-0.5 rounded-md ${isGerman ? 'bg-amber-50 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800' : 'bg-blue-50 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800'} font-semibold">
+              ${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${escapeHtml(item.Level || '')}
             </span>
             <div class="flex items-center space-x-2">
-              <span class="text-slate-400 text-xs font-mono">${item.Date || ''}</span>
-              <button title="문장 듣기" onclick="speakText('${sentenceText.replace(/'/g, "\\'")}', '${item.Language}', event)" class="p-1 rounded-full text-slate-400 hover:text-indigo-600 hover:bg-slate-100 transition">
+              <span class="text-slate-400 dark:text-slate-500 text-xs font-mono">${escapeHtml(item.Date || '')}</span>
+              <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">
+                ✓
+              </button>
+              <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">
+                ★
+              </button>
+              <button title="문장 듣기" onclick="speakText('${escapeJsParam(sentenceText)}', '${escapeJsParam(item.Language)}', event)" class="p-1 rounded-full text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
                 🔊
               </button>
             </div>
           </div>
 
-          <p class="text-base font-bold text-slate-900 leading-relaxed mb-3">"${sentenceText}"</p>
+          <p class="text-base font-bold text-slate-900 dark:text-white leading-relaxed mb-3">"${escapeHtml(sentenceText)}"</p>
 
           <!-- 3초 인출 아코디언 토글 -->
-          <details class="group border-t border-slate-100 pt-2">
-            <summary class="text-xs text-indigo-600 font-medium cursor-pointer select-none group-open:text-slate-400 hover:underline">
+          <details class="group border-t border-slate-100 dark:border-slate-700 pt-2">
+            <summary class="text-xs text-indigo-600 dark:text-indigo-400 font-medium cursor-pointer select-none group-open:text-slate-400 hover:underline">
               👉 한국어 해석 및 Key Point 보기
             </summary>
             <div class="mt-2.5 space-y-1.5">
-              <p class="text-sm font-medium text-slate-700">${item.Translation || ''}</p>
+              <p class="text-sm font-medium text-slate-700 dark:text-slate-300">${escapeHtml(item.Translation || '')}</p>
               ${item['Key Points'] ? `
-                <div class="text-xs bg-slate-50 border border-slate-200/60 p-2.5 rounded-lg text-slate-600">
-                  <span class="font-bold text-slate-800">📌 Key Point:</span> ${item['Key Points']}
+                <div class="text-xs bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-700 p-2.5 rounded-lg text-slate-600 dark:text-slate-400">
+                  <span class="font-bold text-slate-800 dark:text-slate-200">📌 Key Point:</span> ${escapeHtml(item['Key Points'])}
                 </div>
               ` : ''}
             </div>
@@ -441,15 +729,136 @@
       });
     }
 
+    // 3. 퀴즈 모드
+    let quizQuestions = [];
+    let currentQuizIndex = 0;
+    let quizScore = 0;
+
+    function startQuiz() {
+      const available = vocabData.filter(d => currentLang === 'All' || d.Language === currentLang);
+      if (available.length < 4) {
+        document.getElementById('quizContainer').innerHTML = `
+          <div class="text-center py-8 text-slate-500 dark:text-slate-400">
+            <p class="text-base">퀴즈를 진행하기 위한 단어가 부족합니다 (최소 4개 필요).</p>
+          </div>`;
+        return;
+      }
+
+      // 10문제 무작위 추출
+      const shuffled = [...available].sort(() => Math.random() - 0.5);
+      quizQuestions = shuffled.slice(0, 10).map(item => {
+        // 보기 4개 생성 (정답 1개 + 오답 3개)
+        const wrongOptions = available
+          .filter(d => d.Meaning !== item.Meaning)
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3)
+          .map(d => d.Meaning);
+
+        const options = [item.Meaning, ...wrongOptions].sort(() => Math.random() - 0.5);
+        return {
+          item: item,
+          options: options,
+          correctMeaning: item.Meaning
+        };
+      });
+
+      currentQuizIndex = 0;
+      quizScore = 0;
+      renderQuizQuestion();
+    }
+
+    function renderQuizQuestion() {
+      const quizContainer = document.getElementById('quizContainer');
+      if (currentQuizIndex >= quizQuestions.length) {
+        // 결과 화면
+        quizContainer.innerHTML = `
+          <div class="text-center py-6">
+            <div class="text-4xl mb-3">🎉</div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">퀴즈 완료!</h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">
+              총 ${quizQuestions.length}문항 중 <span class="font-bold text-indigo-600 dark:text-indigo-400 text-lg">${quizScore}</span>개 정답!
+            </p>
+            <button onclick="startQuiz()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-md transition">
+              다시 도전하기
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      const q = quizQuestions[currentQuizIndex];
+      const isGerman = q.item.Language === 'German';
+
+      quizContainer.innerHTML = `
+        <div class="flex justify-between items-center text-xs mb-4">
+          <span class="text-slate-400 font-semibold">문제 ${currentQuizIndex + 1} / ${quizQuestions.length}</span>
+          <span class="text-slate-400 font-mono">현재 점수: ${quizScore}</span>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 text-center mb-6">
+          <div class="flex justify-center items-center gap-2 mb-1">
+            <span class="text-xl font-bold text-slate-900 dark:text-white">${escapeHtml(q.item['Word/Phrase'])}</span>
+            <button onclick="speakText('${escapeJsParam(q.item['Word/Phrase'])}', '${escapeJsParam(q.item.Language)}', event)" class="text-slate-400 hover:text-indigo-600 transition">🔊</button>
+          </div>
+          <span class="text-xs text-slate-400">${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} ${escapeHtml(q.item['Part of Speech / Gender'] || '')}</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6" id="quizOptions">
+          ${q.options.map((opt, idx) => `
+            <button onclick="checkQuizAnswer(this, '${escapeJsParam(opt)}', '${escapeJsParam(q.correctMeaning)}')"
+              class="quiz-opt-btn p-3 text-left text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition">
+              <span class="inline-block w-5 text-slate-400 font-mono">${idx + 1}.</span> ${escapeHtml(opt)}
+            </button>
+          `).join('')}
+        </div>
+
+        <div id="quizNextArea" class="hidden text-right">
+          <button onclick="nextQuizQuestion()" class="px-4 py-2 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold rounded-lg hover:opacity-90 transition">
+            다음 문제 👉
+          </button>
+        </div>
+      `;
+    }
+
+    function checkQuizAnswer(btn, selected, correct) {
+      const allBtns = document.querySelectorAll('.quiz-opt-btn');
+      allBtns.forEach(b => b.disabled = true);
+
+      if (selected === correct) {
+        btn.classList.remove('bg-white', 'dark:bg-slate-800', 'border-slate-200');
+        btn.classList.add('bg-emerald-500', 'text-white', 'border-emerald-600');
+        quizScore++;
+      } else {
+        btn.classList.remove('bg-white', 'dark:bg-slate-800', 'border-slate-200');
+        btn.classList.add('bg-rose-500', 'text-white', 'border-rose-600');
+
+        // 정답 버튼을 녹색으로 표시
+        allBtns.forEach(b => {
+          if (b.innerText.includes(correct)) {
+            b.classList.remove('bg-white', 'dark:bg-slate-800');
+            b.classList.add('bg-emerald-500', 'text-white');
+          }
+        });
+      }
+
+      document.getElementById('quizNextArea').classList.remove('hidden');
+    }
+
+    function nextQuizQuestion() {
+      currentQuizIndex++;
+      renderQuizQuestion();
+    }
+
     function toggleEmpty(isEmpty) {
       document.getElementById('emptyMessage').classList.toggle('hidden', !isEmpty);
     }
 
     function updateStats(totalCount, type, startIndex, endIndex, page, totalPages) {
+      const syncStr = lastSyncTime ? ` (최근 동기화: ${lastSyncTime})` : '';
       if (totalCount === 0) {
-        document.getElementById('stats').innerText = `0개 ${type}`;
+        document.getElementById('stats').innerText = `0개 ${type}${syncStr}`;
       } else {
-        document.getElementById('stats').innerText = `총 ${totalCount}개 ${type} 중 ${startIndex + 1}-${endIndex}개 (${page}/${totalPages} 페이지)`;
+        document.getElementById('stats').innerText = `총 ${totalCount}개 ${type} 중 ${startIndex + 1}-${endIndex}개 (${page}/${totalPages} 페이지)${syncStr}`;
       }
     }
 
@@ -478,7 +887,7 @@
       const prevBtn = document.createElement('button');
       prevBtn.innerText = '이전';
       prevBtn.disabled = currentPage === 1;
-      prevBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition';
+      prevBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition';
       prevBtn.onclick = () => goToPage(currentPage - 1);
       paginationContainer.appendChild(prevBtn);
 
@@ -487,16 +896,16 @@
       pageNumbers.forEach(p => {
         if (p === '...') {
           const dots = document.createElement('span');
-          dots.className = 'px-2 py-1 text-xs text-slate-400 select-none';
+          dots.className = 'px-2 py-1 text-xs text-slate-400 dark:text-slate-500 select-none';
           dots.innerText = '...';
           paginationContainer.appendChild(dots);
         } else {
           const btn = document.createElement('button');
           btn.innerText = p;
           if (p === currentPage) {
-            btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-900 text-white transition';
+            btn.className = 'px-3 py-1.5 text-xs font-bold rounded-lg bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 transition';
           } else {
-            btn.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 transition';
+            btn.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition';
             btn.onclick = () => goToPage(p);
           }
           paginationContainer.appendChild(btn);
@@ -507,7 +916,7 @@
       const nextBtn = document.createElement('button');
       nextBtn.innerText = '다음';
       nextBtn.disabled = currentPage === totalPages;
-      nextBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 disabled:opacity-40 disabled:cursor-not-allowed transition';
+      nextBtn.className = 'px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-40 disabled:cursor-not-allowed transition';
       nextBtn.onclick = () => goToPage(currentPage + 1);
       paginationContainer.appendChild(nextBtn);
     }
