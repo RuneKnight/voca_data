@@ -63,6 +63,82 @@
     .dark ::-webkit-scrollbar-thumb {
       background: #475569;
     }
+
+    /* 🖋️ 전자잉크(E-Ink) 디바이스 가독성 최적화 모드 */
+    html.e-ink, html.e-ink body {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+
+    html.e-ink * {
+      animation: none !important;
+      transition: none !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    html.e-ink .card-inner {
+      transition: none !important;
+    }
+    html.e-ink .card-inner.flipped {
+      transform: none !important;
+    }
+    html.e-ink .card-inner:not(.flipped) .card-back {
+      display: none !important;
+    }
+    html.e-ink .card-inner.flipped .card-front {
+      display: none !important;
+    }
+    html.e-ink .card-inner.flipped .card-back {
+      display: flex !important;
+      transform: none !important;
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      border: 2px solid #000000 !important;
+    }
+
+    html.e-ink .border,
+    html.e-ink [class*="border"] {
+      border-color: #000000 !important;
+    }
+
+    html.e-ink .bg-white,
+    html.e-ink .bg-slate-50,
+    html.e-ink .bg-slate-100,
+    html.e-ink .bg-slate-800,
+    html.e-ink .bg-slate-900,
+    html.e-ink .card-front {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+      border: 2px solid #000000 !important;
+    }
+
+    html.e-ink p, html.e-ink span, html.e-ink div, html.e-ink h1, html.e-ink summary, html.e-ink input, html.e-ink select {
+      color: #000000 !important;
+      font-weight: 700 !important;
+    }
+
+    html.e-ink .bg-slate-900,
+    html.e-ink .bg-indigo-600,
+    html.e-ink .bg-amber-500,
+    html.e-ink .bg-emerald-600,
+    html.e-ink .bg-purple-600,
+    html.e-ink .bg-emerald-800,
+    html.e-ink .bg-rose-600 {
+      background-color: #000000 !important;
+      color: #ffffff !important;
+      border: 2px solid #000000 !important;
+    }
+
+    html.e-ink .bg-slate-900 *,
+    html.e-ink .bg-indigo-600 *,
+    html.e-ink .bg-amber-500 *,
+    html.e-ink .bg-emerald-600 *,
+    html.e-ink .bg-purple-600 *,
+    html.e-ink .bg-emerald-800 *,
+    html.e-ink .bg-rose-600 * {
+      color: #ffffff !important;
+    }
   </style>
 </head>
 
@@ -90,6 +166,12 @@
             class="px-2 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap">🎯 퀴즈</button>
         </div>
 
+        <!-- 전자잉크(E-Ink) 모드 토글 버튼 -->
+        <button onclick="toggleEInkMode()" id="btnEInkMode" title="전자잉크(E-Ink) 가독성 모드 전환"
+          class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0 text-xs font-bold">
+          🖋️ E-Ink
+        </button>
+
         <!-- 다크 모드 토글 버튼 -->
         <button onclick="toggleDarkMode()" id="btnDarkMode" title="다크 모드 전환"
           class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0">
@@ -108,6 +190,18 @@
           class="lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇬🇧 English</button>
         <button onclick="setLangFilter('German')" id="btn-German"
           class="lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇩🇪 Deutsch</button>
+
+        <!-- 품사(Part of Speech) 필터 Dropdown -->
+        <select id="posFilterSelect" onchange="handlePosFilterChange(this.value)"
+          class="shrink-0 px-2.5 py-1 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-slate-700 dark:text-slate-200 font-semibold focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
+          <option value="All">품사 전체</option>
+          <option value="noun">명사 (Noun)</option>
+          <option value="verb">동사 (Verb)</option>
+          <option value="adj">형용사 (Adjective)</option>
+          <option value="adv">부사 (Adverb)</option>
+          <option value="other">기타 품사</option>
+        </select>
+
         <button onclick="toggleNewOnly()" id="btn-NewOnly"
           class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✨ New만 보기</button>
         <button onclick="toggleBookmarkedOnly()" id="btn-BookmarkedOnly"
@@ -124,6 +218,14 @@
         </div>
 
         <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto shrink-0">
+          <!-- 단어장 레이아웃 선택 (카드 vs 리스트) -->
+          <div id="vocabLayoutGroup" class="flex bg-slate-100 dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0">
+            <button onclick="setVocabLayout('card')" id="btn-layout-card" title="카드형 레이아웃"
+              class="px-2 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition">🎴 카드</button>
+            <button onclick="setVocabLayout('list')" id="btn-layout-list" title="리스트형 레이아웃"
+              class="px-2 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">📋 리스트</button>
+          </div>
+
           <button id="btnShuffle" onclick="toggleShuffle()" title="카드 셔플"
             class="shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">🔀 셔플</button>
           <select id="pageSizeSelect" onchange="handlePageSizeChange(this.value)"
@@ -214,6 +316,8 @@
 
     let currentView = 'vocab';
     let currentLang = 'All';
+    let currentPos = 'All';
+    let vocabLayout = localStorage.getItem('vh_vocabLayout') || 'card'; // 'card' 또는 'list'
     let currentSearch = '';
     let isNewOnly = false;
     let isBookmarkedOnly = false;
@@ -221,6 +325,7 @@
     let isShuffled = false;
     let isAllFlipped = false;
     let isDarkMode = false;
+    let isEInkMode = localStorage.getItem('vh_eInkMode') === 'true';
 
     let itemsPerPage = 20;
     let currentPage = 1;
@@ -261,8 +366,10 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // 다크 모드 초기화
+      // 다크 모드 및 E-Ink 모드 초기화
       initDarkMode();
+      initEInkMode();
+      initVocabLayout();
 
       // 캐시 데이터 불러오기
       loadFromCache();
@@ -346,6 +453,54 @@
         document.getElementById('btnDarkMode').innerText = '🌙';
       }
       localStorage.setItem('vh_darkMode', isDarkMode);
+    }
+
+    // 🖋️ 전자잉크(E-Ink) 가독성 최적화 모드 제어
+    function initEInkMode() {
+      if (isEInkMode) {
+        document.documentElement.classList.add('e-ink');
+        document.getElementById('btnEInkMode').className = 'p-1.5 rounded-lg border border-slate-900 bg-black text-white shrink-0 text-xs font-bold';
+      } else {
+        document.documentElement.classList.remove('e-ink');
+        document.getElementById('btnEInkMode').className = 'p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0 text-xs font-bold';
+      }
+    }
+
+    function toggleEInkMode() {
+      isEInkMode = !isEInkMode;
+      localStorage.setItem('vh_eInkMode', isEInkMode);
+      initEInkMode();
+    }
+
+    // 단어장 레이아웃 (카드형 vs 리스트형) 제어
+    function initVocabLayout() {
+      updateVocabLayoutButtons();
+    }
+
+    function setVocabLayout(layout) {
+      vocabLayout = layout;
+      localStorage.setItem('vh_vocabLayout', vocabLayout);
+      updateVocabLayoutButtons();
+      if (currentView === 'vocab') {
+        renderVocab();
+      }
+    }
+
+    function updateVocabLayoutButtons() {
+      const activeClass = 'px-2 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition';
+      const inactiveClass = 'px-2 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+
+      const cardBtn = document.getElementById('btn-layout-card');
+      const listBtn = document.getElementById('btn-layout-list');
+      if (cardBtn && listBtn) {
+        cardBtn.className = vocabLayout === 'card' ? activeClass : inactiveClass;
+        listBtn.className = vocabLayout === 'list' ? activeClass : inactiveClass;
+      }
+
+      const flipAllBtn = document.getElementById('btnFlipAll');
+      if (flipAllBtn) {
+        flipAllBtn.classList.toggle('hidden', currentView !== 'vocab' || vocabLayout === 'list');
+      }
     }
 
     // 구글 시트 gviz JSONP 로더
@@ -443,6 +598,34 @@
       render();
     }
 
+    // 품사 분류 파싱 함수 (Noun, Verb, Adjective, Adverb, Other)
+    function getPosCategory(item) {
+      const posText = (item['Part of Speech / Gender'] || '').toLowerCase().trim();
+      const word = (item['Word/Phrase'] || '').toLowerCase().trim();
+
+      if (posText.includes('n.') || posText.includes('noun') || posText.includes('명사') ||
+          posText.includes('der') || posText.includes('die') || posText.includes('das') ||
+          word.startsWith('der ') || word.startsWith('die ') || word.startsWith('das ')) {
+        return 'noun';
+      }
+      if (posText.includes('adv') || posText.includes('부사')) {
+        return 'adv';
+      }
+      if (posText.includes('v.') || posText.includes('verb') || posText.includes('동사')) {
+        return 'verb';
+      }
+      if (posText.includes('adj') || posText.includes('형용사')) {
+        return 'adj';
+      }
+      return 'other';
+    }
+
+    function handlePosFilterChange(val) {
+      currentPos = val;
+      currentPage = 1;
+      render();
+    }
+
     function switchView(view) {
       currentView = view;
       currentPage = 1;
@@ -456,9 +639,12 @@
       document.getElementById('vocabSection').classList.toggle('hidden', view !== 'vocab');
       document.getElementById('sentenceSection').classList.toggle('hidden', view !== 'sentence');
       document.getElementById('quizSection').classList.toggle('hidden', view !== 'quiz');
-      document.getElementById('btnFlipAll').classList.toggle('hidden', view !== 'vocab');
       document.getElementById('controlBar').classList.toggle('hidden', view === 'quiz');
       document.getElementById('pagination').classList.toggle('hidden', view === 'quiz');
+      document.getElementById('vocabLayoutGroup').classList.toggle('hidden', view !== 'vocab');
+      document.getElementById('posFilterSelect').classList.toggle('hidden', view !== 'vocab');
+
+      updateVocabLayoutButtons();
 
       if (view === 'quiz') {
         startQuiz();
@@ -564,8 +750,15 @@
       const grid = document.getElementById('vocabGrid');
       grid.innerHTML = '';
 
+      if (vocabLayout === 'list') {
+        grid.className = 'space-y-2.5';
+      } else {
+        grid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4';
+      }
+
       let filtered = vocabData.filter(d => {
         const langMatch = currentLang === 'All' || d.Language === currentLang;
+        const posMatch = currentPos === 'All' || getPosCategory(d) === currentPos;
         const newMatch = !isNewOnly || (d['Review Status'] || '').toLowerCase() === 'new';
         const itemKey = getItemKey(d);
         const bookmarkMatch = !isBookmarkedOnly || bookmarks.has(itemKey);
@@ -575,7 +768,7 @@
         const meaning = (d.Meaning || '').toLowerCase();
         const colloc = (d['Collocation / Example'] || '').toLowerCase();
         const searchMatch = !currentSearch || word.includes(currentSearch) || meaning.includes(currentSearch) || colloc.includes(currentSearch);
-        return langMatch && newMatch && bookmarkMatch && masteredMatch && searchMatch;
+        return langMatch && posMatch && newMatch && bookmarkMatch && masteredMatch && searchMatch;
       });
 
       if (isShuffled) {
@@ -604,15 +797,14 @@
         const genderStyle = isGerman ? getGermanGenderStyle(wordText) : null;
         const borderClass = isGerman ? genderStyle.border : 'border-slate-200 dark:border-slate-700';
 
-        const card = document.createElement('div');
-        card.className = `perspective h-52 cursor-pointer select-none ${isMastered ? 'opacity-60 hover:opacity-100 transition-opacity' : ''}`;
-        card.onclick = () => card.querySelector('.card-inner').classList.toggle('flipped');
+        if (vocabLayout === 'list') {
+          // 리스트형 레이아웃 렌더링
+          const listCard = document.createElement('div');
+          listCard.className = `bg-white dark:bg-slate-800 border ${borderClass} rounded-xl p-3 shadow-sm hover:border-slate-400 dark:hover:border-slate-500 transition ${isMastered ? 'opacity-60 hover:opacity-100' : ''}`;
 
-        card.innerHTML = `
-          <div class="card-inner ${isAllFlipped ? 'flipped' : ''}">
-            <!-- 앞면 -->
-            <div class="card-front bg-white dark:bg-slate-800 border ${borderClass} hover:border-slate-400 dark:hover:border-slate-500 rounded-xl p-3.5 shadow-sm">
-              <div class="flex justify-between items-center text-xs gap-1">
+          listCard.innerHTML = `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div class="flex items-center gap-2 flex-wrap min-w-0">
                 ${isGerman ? `
                   <span class="px-2 py-0.5 rounded-md border text-[10px] sm:text-[11px] font-semibold shrink-0 ${genderStyle.badge}">
                     🇩🇪 ${genderStyle.text}
@@ -622,51 +814,102 @@
                     🇬🇧 ${escapeHtml(item.Level || 'A2')}
                   </span>
                 `}
+                <span class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">${escapeHtml(wordText)}</span>
+                <span class="text-xs text-slate-400 font-normal">(${escapeHtml(item['Part of Speech / Gender'] || '')})</span>
+                ${item['Review Status'] === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold shrink-0">NEW</span>' : ''}
+              </div>
+
+              <div class="flex items-center justify-between sm:justify-end gap-3 border-t sm:border-t-0 border-slate-100 dark:border-slate-700 pt-2 sm:pt-0">
+                <span class="text-sm font-bold text-indigo-600 dark:text-indigo-400 break-words">${escapeHtml(item.Meaning || '')}</span>
                 <div class="flex items-center space-x-1 shrink-0">
-                  ${item['Review Status'] === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold">NEW</span>' : ''}
                   <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">
                     ✓
                   </button>
                   <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">
                     ★
                   </button>
-                  <button title="발음 듣기" onclick="speakText('${escapeJsParam(wordText)}', '${escapeJsParam(item.Language)}', event)" class="p-1 rounded-full text-slate-400 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+                  <button title="발음 듣기" onclick="speakText('${escapeJsParam(wordText)}', '${escapeJsParam(item.Language)}', event)" class="p-1 rounded-full text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
                     🔊
                   </button>
                 </div>
               </div>
-
-              <div class="my-auto py-1.5 flex flex-col justify-center">
-                <div class="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight break-words leading-snug">${escapeHtml(wordText)}</div>
-                <div class="text-[11px] text-slate-400 dark:text-slate-400 mt-0.5">${escapeHtml(item['Part of Speech / Gender'] || '')}</div>
-              </div>
-
-              <div class="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 shrink-0">클릭하여 뜻 확인 👆</div>
             </div>
-
-            <!-- 뒷면 -->
-            <div class="card-back bg-slate-900 dark:bg-slate-950 border border-slate-900 dark:border-slate-800 rounded-xl p-3.5 text-white shadow-sm">
-              <div class="flex justify-between items-center text-xs text-slate-400 shrink-0">
-                <span>한국어 의미</span>
-                <span class="text-[10px] font-mono text-slate-500">${escapeHtml(item.Date || '')}</span>
+            ${item['Collocation / Example'] ? `
+              <div class="mt-2 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-700 px-2.5 py-1.5 rounded-lg flex items-center justify-between gap-2">
+                <span>💡 ${escapeHtml(item['Collocation / Example'])}</span>
+                <button title="예문 발음 듣기" onclick="speakText('${escapeJsParam(item['Collocation / Example'])}', '${escapeJsParam(item.Language)}', event)" class="text-slate-400 hover:text-indigo-600 transition shrink-0">
+                  🔊
+                </button>
               </div>
+            ` : ''}
+          `;
+          grid.appendChild(listCard);
+        } else {
+          // 카드형 레이아웃 렌더링
+          const card = document.createElement('div');
+          card.className = `perspective h-52 cursor-pointer select-none ${isMastered ? 'opacity-60 hover:opacity-100 transition-opacity' : ''}`;
+          card.onclick = () => card.querySelector('.card-inner').classList.toggle('flipped');
 
-              <div class="my-auto py-1.5 flex flex-col justify-center overflow-hidden">
-                <div class="text-sm sm:text-base font-bold text-amber-300 dark:text-amber-400 break-words leading-snug">${escapeHtml(item.Meaning || '')}</div>
-                ${item['Collocation / Example'] ? `
-                  <div class="mt-2 text-xs text-slate-200 dark:text-slate-300 bg-slate-800/90 dark:bg-slate-900 border border-slate-700 px-2.5 py-1.5 rounded-lg text-left flex items-start justify-between gap-1.5 max-w-full">
-                    <span class="break-words line-clamp-3 leading-relaxed">💡 ${escapeHtml(item['Collocation / Example'])}</span>
-                    <button title="예문 발음 듣기" onclick="speakText('${escapeJsParam(item['Collocation / Example'])}', '${escapeJsParam(item.Language)}', event)" class="text-slate-400 hover:text-amber-300 transition shrink-0 mt-0.5">
+          card.innerHTML = `
+            <div class="card-inner ${isAllFlipped ? 'flipped' : ''}">
+              <!-- 앞면 -->
+              <div class="card-front bg-white dark:bg-slate-800 border ${borderClass} hover:border-slate-400 dark:hover:border-slate-500 rounded-xl p-3.5 shadow-sm">
+                <div class="flex justify-between items-center text-xs gap-1">
+                  ${isGerman ? `
+                    <span class="px-2 py-0.5 rounded-md border text-[10px] sm:text-[11px] font-semibold shrink-0 ${genderStyle.badge}">
+                      🇩🇪 ${genderStyle.text}
+                    </span>
+                  ` : `
+                    <span class="px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-[10px] sm:text-[11px] font-semibold shrink-0">
+                      🇬🇧 ${escapeHtml(item.Level || 'A2')}
+                    </span>
+                  `}
+                  <div class="flex items-center space-x-1 shrink-0">
+                    ${item['Review Status'] === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold">NEW</span>' : ''}
+                    <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">
+                      ✓
+                    </button>
+                    <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">
+                      ★
+                    </button>
+                    <button title="발음 듣기" onclick="speakText('${escapeJsParam(wordText)}', '${escapeJsParam(item.Language)}', event)" class="p-1 rounded-full text-slate-400 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
                       🔊
                     </button>
                   </div>
-                ` : ''}
+                </div>
+
+                <div class="my-auto py-1.5 flex flex-col justify-center">
+                  <div class="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight break-words leading-snug">${escapeHtml(wordText)}</div>
+                  <div class="text-[11px] text-slate-400 dark:text-slate-400 mt-0.5">${escapeHtml(item['Part of Speech / Gender'] || '')}</div>
+                </div>
+
+                <div class="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 shrink-0">클릭하여 뜻 확인 👆</div>
               </div>
 
-              <div class="text-[10px] sm:text-[11px] text-slate-500 shrink-0">클릭하여 단어로 복귀</div>
-            </div>
-          </div>`;
-        grid.appendChild(card);
+              <!-- 뒷면 -->
+              <div class="card-back bg-slate-900 dark:bg-slate-950 border border-slate-900 dark:border-slate-800 rounded-xl p-3.5 text-white shadow-sm">
+                <div class="flex justify-between items-center text-xs text-slate-400 shrink-0">
+                  <span>한국어 의미</span>
+                  <span class="text-[10px] font-mono text-slate-500">${escapeHtml(item.Date || '')}</span>
+                </div>
+
+                <div class="my-auto py-1.5 flex flex-col justify-center overflow-hidden">
+                  <div class="text-sm sm:text-base font-bold text-amber-300 dark:text-amber-400 break-words leading-snug">${escapeHtml(item.Meaning || '')}</div>
+                  ${item['Collocation / Example'] ? `
+                    <div class="mt-2 text-xs text-slate-200 dark:text-slate-300 bg-slate-800/90 dark:bg-slate-900 border border-slate-700 px-2.5 py-1.5 rounded-lg text-left flex items-start justify-between gap-1.5 max-w-full">
+                      <span class="break-words line-clamp-3 leading-relaxed">💡 ${escapeHtml(item['Collocation / Example'])}</span>
+                      <button title="예문 발음 듣기" onclick="speakText('${escapeJsParam(item['Collocation / Example'])}', '${escapeJsParam(item.Language)}', event)" class="text-slate-400 hover:text-amber-300 transition shrink-0 mt-0.5">
+                        🔊
+                      </button>
+                    </div>
+                  ` : ''}
+                </div>
+
+                <div class="text-[10px] sm:text-[11px] text-slate-500 shrink-0">클릭하여 단어로 복귀</div>
+              </div>
+            </div>`;
+          grid.appendChild(card);
+        }
       });
     }
 
