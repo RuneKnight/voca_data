@@ -70,66 +70,73 @@
 
   <!-- 상단 네비게이션 -->
   <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30 shadow-sm transition-colors duration-200">
-    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center space-x-2">
-        <span class="text-2xl">⚡</span>
+    <div class="max-w-5xl mx-auto px-4 py-2.5 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2">
+      <div class="flex items-center space-x-2 shrink-0">
+        <span class="text-xl sm:text-2xl">⚡</span>
         <div>
-          <h1 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Language Hub Pro</h1>
-          <div id="stats" class="text-[11px] text-slate-400 dark:text-slate-400 font-medium">데이터 동기화 중...</div>
+          <h1 class="text-sm sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Language Hub Pro</h1>
+          <div id="stats" class="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium">데이터 동기화 중...</div>
         </div>
       </div>
 
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-2 shrink-0">
         <!-- 뷰 모드 전환 (단어 vs 문장 vs 퀴즈) -->
         <div class="flex bg-slate-100 dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
           <button onclick="switchView('vocab')" id="tab-vocab"
-            class="px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition">단어 카드</button>
+            class="px-2 sm:px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition whitespace-nowrap">단어 카드</button>
           <button onclick="switchView('sentence')" id="tab-sentence"
-            class="px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">학습 문장</button>
+            class="px-2 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap">학습 문장</button>
           <button onclick="switchView('quiz')" id="tab-quiz"
-            class="px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">🎯 퀴즈</button>
+            class="px-2 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap">🎯 퀴즈</button>
         </div>
 
         <!-- 다크 모드 토글 버튼 -->
         <button onclick="toggleDarkMode()" id="btnDarkMode" title="다크 모드 전환"
-          class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition">
+          class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0">
           🌙
         </button>
       </div>
     </div>
 
     <!-- 필터 및 컨트롤 바 -->
-    <div id="controlBar" class="max-w-5xl mx-auto px-4 pb-3 flex flex-wrap items-center justify-between gap-2">
-      <div class="flex items-center space-x-1.5 overflow-x-auto py-1 max-w-full">
+    <div id="controlBar" class="max-w-5xl mx-auto px-4 pb-3 flex flex-col gap-2">
+      <!-- 1행: 필터 버튼 스크롤 영역 -->
+      <div class="flex items-center gap-1.5 overflow-x-auto py-1 w-full scrollbar-none">
         <button onclick="setLangFilter('All')" id="btn-All"
-          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 transition">전체</button>
+          class="lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 transition">전체</button>
         <button onclick="setLangFilter('English')" id="btn-English"
-          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇬🇧 English</button>
+          class="lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇬🇧 English</button>
         <button onclick="setLangFilter('German')" id="btn-German"
-          class="lang-btn px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇩🇪 Deutsch</button>
+          class="lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇩🇪 Deutsch</button>
         <button onclick="toggleNewOnly()" id="btn-NewOnly"
-          class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✨ New만 보기</button>
+          class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✨ New만 보기</button>
         <button onclick="toggleBookmarkedOnly()" id="btn-BookmarkedOnly"
-          class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">⭐ 즐겨찾기</button>
+          class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">⭐ 즐겨찾기</button>
         <button onclick="toggleHideMastered()" id="btn-HideMastered"
-          class="px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✅ 완숙 숨기기</button>
+          class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✅ 완숙 숨기기</button>
       </div>
 
-      <div class="flex items-center space-x-2 w-full sm:w-auto">
-        <button id="btnShuffle" onclick="toggleShuffle()" title="카드 셔플"
-          class="whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">🔀 셔플</button>
-        <select id="pageSizeSelect" onchange="handlePageSizeChange(this.value)"
-          class="px-2.5 py-1 text-xs bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-200 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
-          <option value="10">10개씩</option>
-          <option value="20" selected>20개씩</option>
-          <option value="30">30개씩</option>
-          <option value="40">40개씩</option>
-          <option value="50">50개씩</option>
-        </select>
-        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="단어, 문장, 뜻 검색..."
-          class="w-full sm:w-48 px-3 py-1 text-xs bg-slate-100 dark:bg-slate-700 dark:text-white border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
-        <button id="btnFlipAll" onclick="toggleAllFlip()"
-          class="whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">전체 뒤집기</button>
+      <!-- 2행: 검색어 및 액션 버튼 영역 -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-2 w-full">
+        <div class="w-full sm:flex-1">
+          <input type="text" id="searchInput" oninput="handleSearch()" placeholder="단어, 문장, 뜻 검색..."
+            class="w-full px-3 py-1.5 text-xs bg-slate-100 dark:bg-slate-700 dark:text-white border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
+        </div>
+
+        <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto shrink-0">
+          <button id="btnShuffle" onclick="toggleShuffle()" title="카드 셔플"
+            class="shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">🔀 셔플</button>
+          <select id="pageSizeSelect" onchange="handlePageSizeChange(this.value)"
+            class="shrink-0 px-2.5 py-1.5 text-xs bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-200 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
+            <option value="10">10개씩</option>
+            <option value="20" selected>20개씩</option>
+            <option value="30">30개씩</option>
+            <option value="40">40개씩</option>
+            <option value="50">50개씩</option>
+          </select>
+          <button id="btnFlipAll" onclick="toggleAllFlip()"
+            class="shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">전체 뒤집기</button>
+        </div>
       </div>
     </div>
   </header>
@@ -138,17 +145,17 @@
   <main class="max-w-5xl mx-auto px-4 py-6 flex-1 w-full">
     <!-- 로딩 스켈레톤 -->
     <div id="skeletonLoader" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-      <div class="h-48 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
+      <div class="h-52 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
         <div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-1/3"></div>
         <div class="h-6 bg-slate-300 dark:bg-slate-700 rounded w-2/3 my-auto"></div>
         <div class="h-3 bg-slate-300 dark:bg-slate-700 rounded w-1/2"></div>
       </div>
-      <div class="h-48 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
+      <div class="h-52 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
         <div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-1/3"></div>
         <div class="h-6 bg-slate-300 dark:bg-slate-700 rounded w-2/3 my-auto"></div>
         <div class="h-3 bg-slate-300 dark:bg-slate-700 rounded w-1/2"></div>
       </div>
-      <div class="h-48 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
+      <div class="h-52 bg-slate-200 dark:bg-slate-800 rounded-xl animate-pulse p-4 flex flex-col justify-between">
         <div class="h-4 bg-slate-300 dark:bg-slate-700 rounded w-1/3"></div>
         <div class="h-6 bg-slate-300 dark:bg-slate-700 rounded w-2/3 my-auto"></div>
         <div class="h-3 bg-slate-300 dark:bg-slate-700 rounded w-1/2"></div>
@@ -581,24 +588,24 @@
         const borderClass = isGerman ? genderStyle.border : 'border-slate-200 dark:border-slate-700';
 
         const card = document.createElement('div');
-        card.className = `perspective h-48 cursor-pointer select-none ${isMastered ? 'opacity-60 hover:opacity-100 transition-opacity' : ''}`;
+        card.className = `perspective h-52 cursor-pointer select-none ${isMastered ? 'opacity-60 hover:opacity-100 transition-opacity' : ''}`;
         card.onclick = () => card.querySelector('.card-inner').classList.toggle('flipped');
 
         card.innerHTML = `
           <div class="card-inner ${isAllFlipped ? 'flipped' : ''}">
             <!-- 앞면 -->
-            <div class="card-front bg-white dark:bg-slate-800 border ${borderClass} hover:border-slate-400 dark:hover:border-slate-500 rounded-xl p-4 shadow-sm">
-              <div class="flex justify-between items-center text-xs">
+            <div class="card-front bg-white dark:bg-slate-800 border ${borderClass} hover:border-slate-400 dark:hover:border-slate-500 rounded-xl p-3.5 shadow-sm">
+              <div class="flex justify-between items-center text-xs gap-1">
                 ${isGerman ? `
-                  <span class="px-2 py-0.5 rounded-md border text-[11px] font-semibold ${genderStyle.badge}">
+                  <span class="px-2 py-0.5 rounded-md border text-[10px] sm:text-[11px] font-semibold shrink-0 ${genderStyle.badge}">
                     🇩🇪 ${genderStyle.text}
                   </span>
                 ` : `
-                  <span class="px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-[11px] font-semibold">
+                  <span class="px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-[10px] sm:text-[11px] font-semibold shrink-0">
                     🇬🇧 ${escapeHtml(item.Level || 'A2')}
                   </span>
                 `}
-                <div class="flex items-center space-x-1">
+                <div class="flex items-center space-x-1 shrink-0">
                   ${item['Review Status'] === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold">NEW</span>' : ''}
                   <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">
                     ✓
@@ -612,34 +619,34 @@
                 </div>
               </div>
 
-              <div class="my-auto py-2">
-                <div class="font-bold text-lg text-slate-900 dark:text-white tracking-tight">${escapeHtml(wordText)}</div>
+              <div class="my-auto py-1.5 flex flex-col justify-center">
+                <div class="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight break-words leading-snug">${escapeHtml(wordText)}</div>
                 <div class="text-[11px] text-slate-400 dark:text-slate-400 mt-0.5">${escapeHtml(item['Part of Speech / Gender'] || '')}</div>
               </div>
 
-              <div class="text-[11px] text-slate-400 dark:text-slate-500">클릭하여 뜻 확인 👆</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 shrink-0">클릭하여 뜻 확인 👆</div>
             </div>
 
             <!-- 뒷면 -->
-            <div class="card-back bg-slate-900 dark:bg-slate-950 border border-slate-900 dark:border-slate-800 rounded-xl p-4 text-white shadow-sm">
-              <div class="flex justify-between items-center text-xs text-slate-400">
+            <div class="card-back bg-slate-900 dark:bg-slate-950 border border-slate-900 dark:border-slate-800 rounded-xl p-3.5 text-white shadow-sm">
+              <div class="flex justify-between items-center text-xs text-slate-400 shrink-0">
                 <span>한국어 의미</span>
                 <span class="text-[10px] font-mono text-slate-500">${escapeHtml(item.Date || '')}</span>
               </div>
 
-              <div class="my-auto py-2">
-                <div class="text-base font-bold text-amber-300 dark:text-amber-400">${escapeHtml(item.Meaning || '')}</div>
+              <div class="my-auto py-1.5 flex flex-col justify-center overflow-hidden">
+                <div class="text-sm sm:text-base font-bold text-amber-300 dark:text-amber-400 break-words leading-snug">${escapeHtml(item.Meaning || '')}</div>
                 ${item['Collocation / Example'] ? `
-                  <div class="mt-2 text-xs text-slate-200 dark:text-slate-300 bg-slate-800/90 dark:bg-slate-900 border border-slate-700 px-2.5 py-1.5 rounded-lg text-left inline-flex items-center justify-between gap-2 max-w-full">
-                    <span>💡 ${escapeHtml(item['Collocation / Example'])}</span>
-                    <button title="예문 발음 듣기" onclick="speakText('${escapeJsParam(item['Collocation / Example'])}', '${escapeJsParam(item.Language)}', event)" class="text-slate-400 hover:text-amber-300 transition shrink-0">
+                  <div class="mt-2 text-xs text-slate-200 dark:text-slate-300 bg-slate-800/90 dark:bg-slate-900 border border-slate-700 px-2.5 py-1.5 rounded-lg text-left flex items-start justify-between gap-1.5 max-w-full">
+                    <span class="break-words line-clamp-3 leading-relaxed">💡 ${escapeHtml(item['Collocation / Example'])}</span>
+                    <button title="예문 발음 듣기" onclick="speakText('${escapeJsParam(item['Collocation / Example'])}', '${escapeJsParam(item.Language)}', event)" class="text-slate-400 hover:text-amber-300 transition shrink-0 mt-0.5">
                       🔊
                     </button>
                   </div>
                 ` : ''}
               </div>
 
-              <div class="text-[11px] text-slate-500">클릭하여 단어로 복귀</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-500 shrink-0">클릭하여 단어로 복귀</div>
             </div>
           </div>`;
         grid.appendChild(card);
@@ -688,27 +695,27 @@
         const isMastered = mastered.has(itemKey);
 
         const el = document.createElement('div');
-        el.className = `bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 shadow-sm hover:border-slate-300 dark:hover:border-slate-600 transition ${isMastered ? 'opacity-60' : ''}`;
+        el.className = `bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3.5 sm:p-4 shadow-sm hover:border-slate-300 dark:hover:border-slate-600 transition ${isMastered ? 'opacity-60' : ''}`;
         el.innerHTML = `
-          <div class="flex justify-between items-center text-xs mb-2">
-            <span class="px-2 py-0.5 rounded-md ${isGerman ? 'bg-amber-50 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800' : 'bg-blue-50 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800'} font-semibold">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs mb-2">
+            <span class="px-2 py-0.5 rounded-md ${isGerman ? 'bg-amber-50 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800' : 'bg-blue-50 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800'} font-semibold shrink-0">
               ${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${escapeHtml(item.Level || '')}
             </span>
-            <div class="flex items-center space-x-2">
-              <span class="text-slate-400 dark:text-slate-500 text-xs font-mono">${escapeHtml(item.Date || '')}</span>
-              <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">
+            <div class="flex items-center space-x-2 shrink-0">
+              <span class="text-slate-400 dark:text-slate-500 text-[11px] font-mono">${escapeHtml(item.Date || '')}</span>
+              <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1.5 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition min-w-[32px] min-h-[32px] flex items-center justify-center">
                 ✓
               </button>
-              <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">
+              <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1.5 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition min-w-[32px] min-h-[32px] flex items-center justify-center">
                 ★
               </button>
-              <button title="문장 듣기" onclick="speakText('${escapeJsParam(sentenceText)}', '${escapeJsParam(item.Language)}', event)" class="p-1 rounded-full text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
+              <button title="문장 듣기" onclick="speakText('${escapeJsParam(sentenceText)}', '${escapeJsParam(item.Language)}', event)" class="p-1.5 rounded-full text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition min-w-[32px] min-h-[32px] flex items-center justify-center">
                 🔊
               </button>
             </div>
           </div>
 
-          <p class="text-base font-bold text-slate-900 dark:text-white leading-relaxed mb-3">"${escapeHtml(sentenceText)}"</p>
+          <p class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-relaxed mb-3 break-words">"${escapeHtml(sentenceText)}"</p>
 
           <!-- 3초 인출 아코디언 토글 -->
           <details class="group border-t border-slate-100 dark:border-slate-700 pt-2">
@@ -806,8 +813,8 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6" id="quizOptions">
           ${q.options.map((opt, idx) => `
             <button onclick="checkQuizAnswer(this, '${escapeJsParam(opt)}', '${escapeJsParam(q.correctMeaning)}')"
-              class="quiz-opt-btn p-3 text-left text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition">
-              <span class="inline-block w-5 text-slate-400 font-mono">${idx + 1}.</span> ${escapeHtml(opt)}
+              class="quiz-opt-btn p-3.5 sm:p-3 text-left text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 transition min-h-[44px] break-words flex items-center">
+              <span class="inline-block w-5 text-slate-400 font-mono shrink-0">${idx + 1}.</span> <span>${escapeHtml(opt)}</span>
             </button>
           `).join('')}
         </div>
