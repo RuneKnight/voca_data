@@ -77,6 +77,7 @@
       text-shadow: none !important;
     }
 
+    /* 플립 카드 E-Ink 제어 */
     html.e-ink .card-inner {
       transition: none !important;
     }
@@ -97,20 +98,47 @@
       border: 2px solid #000000 !important;
     }
 
+    /* 카드 앞면 및 뒷면 배경 및 테두리 */
+    html.e-ink .card-front,
+    html.e-ink .card-back {
+      background-color: #ffffff !important;
+      border: 2px solid #000000 !important;
+      color: #000000 !important;
+    }
+
+    /* 카드 뒷면 내부 모든 요소 검정 텍스트 보장 및 예문 박스 명확한 대비 */
+    html.e-ink .card-back * {
+      color: #000000 !important;
+    }
+    html.e-ink .card-back .bg-slate-800\/90,
+    html.e-ink .card-back [class*="bg-slate-800"],
+    html.e-ink .card-back [class*="bg-slate-900"],
+    html.e-ink .card-back [class*="bg-slate-950"] {
+      background-color: #f1f5f9 !important;
+      border: 1.5px solid #000000 !important;
+      color: #000000 !important;
+    }
+    html.e-ink .card-back .bg-slate-800\/90 *,
+    html.e-ink .card-back [class*="bg-slate-800"] *,
+    html.e-ink .card-back [class*="bg-slate-900"] *,
+    html.e-ink .card-back [class*="bg-slate-950"] * {
+      color: #000000 !important;
+    }
+
+    /* 일반 테두리 고대비 */
     html.e-ink .border,
     html.e-ink [class*="border"] {
       border-color: #000000 !important;
     }
 
+    /* 배경 및 전경색 E-Ink 최적화 */
     html.e-ink .bg-white,
     html.e-ink .bg-slate-50,
     html.e-ink .bg-slate-100,
-    html.e-ink .bg-slate-800,
-    html.e-ink .bg-slate-900,
-    html.e-ink .card-front {
+    html.e-ink .bg-slate-800 {
       background-color: #ffffff !important;
       color: #000000 !important;
-      border: 2px solid #000000 !important;
+      border-color: #000000 !important;
     }
 
     html.e-ink p, html.e-ink span, html.e-ink div, html.e-ink h1, html.e-ink summary, html.e-ink input, html.e-ink select {
@@ -118,7 +146,8 @@
       font-weight: 700 !important;
     }
 
-    html.e-ink .bg-slate-900,
+    /* 활성화 버튼 및 강조 뱃지: 검은 배경 + 흰 글씨 (카드 제외) */
+    html.e-ink .bg-slate-900:not(.card-back):not(.card-front),
     html.e-ink .bg-indigo-600,
     html.e-ink .bg-amber-500,
     html.e-ink .bg-emerald-600,
@@ -130,7 +159,7 @@
       border: 2px solid #000000 !important;
     }
 
-    html.e-ink .bg-slate-900 *,
+    html.e-ink .bg-slate-900:not(.card-back):not(.card-front) *,
     html.e-ink .bg-indigo-600 *,
     html.e-ink .bg-amber-500 *,
     html.e-ink .bg-emerald-600 *,
@@ -138,6 +167,20 @@
     html.e-ink .bg-emerald-800 *,
     html.e-ink .bg-rose-600 * {
       color: #ffffff !important;
+    }
+
+    /* 버튼 및 아이콘 흑백 대비 보정 (흐릿한 회색 제거) */
+    html.e-ink button.text-slate-300,
+    html.e-ink button.text-slate-400,
+    html.e-ink .text-slate-300,
+    html.e-ink .text-slate-400,
+    html.e-ink .text-slate-500 {
+      color: #000000 !important;
+    }
+    html.e-ink button.text-emerald-500,
+    html.e-ink button.text-amber-400 {
+      color: #000000 !important;
+      font-weight: 900 !important;
     }
   </style>
 </head>
