@@ -1,5 +1,264 @@
 [
   {
+    "id": "s-en-20261120-01-we-checked-the-cryptogra",
+    "legacyKey": "English:We checked the cryptographic checksums of all mirrored libraries in our offline repository before compiling the upgraded Java module.",
+    "pairId": "20261120-01",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "dev",
+    "tags": [
+      "dev"
+    ],
+    "sentence": "We checked the cryptographic checksums of all mirrored libraries in our offline repository before compiling the upgraded Java module.",
+    "translation": "업그레이드된 자바 모듈을 컴파일하기 전에 오프라인 저장소에 미러링된 모든 라이브러리의 암호화 체크섬을 확인했습니다.",
+    "cloze": "cryptographic checksums",
+    "keyPoints": "before + 동명사(-ing) (~하기 전에), cryptographic checksum (암호화 무결성 검증값), mirrored library (미러링된 라이브러리)",
+    "vocabIds": [
+      "en-checksum"
+    ],
+    "date": "2026-11-20",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We checked the cryptographic checksums of all mirrored libraries in our offline repository before compiling the upgraded Java module.",
+    "Translation": "업그레이드된 자바 모듈을 컴파일하기 전에 오프라인 저장소에 미러링된 모든 라이브러리의 암호화 체크섬을 확인했습니다.",
+    "Key Points": "before + 동명사(-ing) (~하기 전에), cryptographic checksum (암호화 무결성 검증값), mirrored library (미러링된 라이브러리)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-01-wir-haben-die-kryptograf",
+    "legacyKey": "German:Wir haben die kryptografischen Prüfsummen aller gespiegelten Bibliotheken in unserem lokalen Paketspiegel geprüft, bevor wir das aktualisierte Java-Modul kompiliert haben.",
+    "pairId": "20261120-01",
+    "lang": "German",
+    "level": "B1-B2",
+    "topic": "dev",
+    "tags": [
+      "dev"
+    ],
+    "sentence": "Wir haben die kryptografischen Prüfsummen aller gespiegelten Bibliotheken in unserem lokalen Paketspiegel geprüft, bevor wir das aktualisierte Java-Modul kompiliert haben.",
+    "translation": "업데이트된 자바 모듈을 컴파일하기 전에 로컬 패키지 미러에 있는 모든 미러링된 라이브러리의 암호화 체크섬을 점검했습니다.",
+    "cloze": "kryptografischen Prüfsummen",
+    "keyPoints": "bevor + 완료시제 (시간 부사절 후치 동사), die Prüfsumme (체크섬), gespiegelte Bibliothek (미러링된 라이브러리)",
+    "vocabIds": [
+      "de-pruefsumme",
+      "de-bibliothek"
+    ],
+    "date": "2026-11-20",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir haben die kryptografischen Prüfsummen aller gespiegelten Bibliotheken in unserem lokalen Paketspiegel geprüft, bevor wir das aktualisierte Java-Modul kompiliert haben.",
+    "Translation": "업데이트된 자바 모듈을 컴파일하기 전에 로컬 패키지 미러에 있는 모든 미러링된 라이브러리의 암호화 체크섬을 점검했습니다.",
+    "Key Points": "bevor + 완료시제 (시간 부사절 후치 동사), die Prüfsumme (체크섬), gespiegelte Bibliothek (미러링된 라이브러리)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-en-20261120-02-i-updated-the-sequence-d",
+    "legacyKey": "English:I updated the sequence diagram today to illustrate how the gateway handles slow responses during peak hours.",
+    "pairId": "20261120-02",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "work",
+    "tags": [
+      "work"
+    ],
+    "sentence": "I updated the sequence diagram today to illustrate how the gateway handles slow responses during peak hours.",
+    "translation": "피크 시간대에 게이트웨이가 느린 응답을 어떻게 처리하는지 명확히 보여주기 위해 오늘 시퀀스 다이어그램을 업데이트했습니다.",
+    "cloze": "sequence diagram",
+    "keyPoints": "to illustrate how + 주어 + 동사 (~하는 방식을 설명하기 위해), sequence diagram (순차 도표), during peak hours (피크 시간대 동안)",
+    "vocabIds": [
+      "en-illustrate",
+      "en-diagram"
+    ],
+    "date": "2026-11-20",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I updated the sequence diagram today to illustrate how the gateway handles slow responses during peak hours.",
+    "Translation": "피크 시간대에 게이트웨이가 느린 응답을 어떻게 처리하는지 명확히 보여주기 위해 오늘 시퀀스 다이어그램을 업데이트했습니다.",
+    "Key Points": "to illustrate how + 주어 + 동사 (~하는 방식을 설명하기 위해), sequence diagram (순차 도표), during peak hours (피크 시간대 동안)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-02-ich-habe-heute-das-seque",
+    "legacyKey": "German:Ich habe heute das Sequenzdiagramm aktualisiert, um anschaulich darzustellen, wie das Gateway zu Spitzenzeiten auf langsame Antworten reagiert.",
+    "pairId": "20261120-02",
+    "lang": "German",
+    "level": "B1-B2",
+    "topic": "work",
+    "tags": [
+      "work"
+    ],
+    "sentence": "Ich habe heute das Sequenzdiagramm aktualisiert, um anschaulich darzustellen, wie das Gateway zu Spitzenzeiten auf langsame Antworten reagiert.",
+    "translation": "피크 시간대에 게이트웨이가 느린 응답에 어떻게 반응하는지 알기 쉽게 설명하기 위해 오늘 시퀀스 다이어그램을 업데이트했습니다.",
+    "cloze": "anschaulich darzustellen",
+    "keyPoints": "um ... zu + 부정사 (~하기 위해), reagieren auf + 4격 (~에 반응하다), zu Spitzenzeiten (피크 시간대에)",
+    "vocabIds": [
+      "de-darstellen",
+      "de-spitzenzeit"
+    ],
+    "date": "2026-11-20",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich habe heute das Sequenzdiagramm aktualisiert, um anschaulich darzustellen, wie das Gateway zu Spitzenzeiten auf langsame Antworten reagiert.",
+    "Translation": "피크 시간대에 게이트웨이가 느린 응답에 어떻게 반응하는지 알기 쉽게 설명하기 위해 오늘 시퀀스 다이어그램을 업데이트했습니다.",
+    "Key Points": "um ... zu + 부정사 (~하기 위해), reagieren auf + 4격 (~에 반응하다), zu Spitzenzeiten (피크 시간대에)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-en-20261120-03-after-dinner-i-wiped-th",
+    "legacyKey": "English:After dinner, I wiped the dining table and steeped a warm mug of barley tea for our family.",
+    "pairId": "20261120-03",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "After dinner, I wiped the dining table and steeped a warm mug of barley tea for our family.",
+    "translation": "저녁 식사 후에 식탁을 깨끗이 닦고 가족을 위해 따뜻한 보리차 한 머그잔을 우려냈습니다.",
+    "cloze": "steeped a warm mug",
+    "keyPoints": "wipe the dining table (식탁을 닦다), steep tea (차를 우리다), a mug of barley tea (보리차 한 머그잔)",
+    "vocabIds": [
+      "en-steep",
+      "en-barley"
+    ],
+    "date": "2026-11-20",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "After dinner, I wiped the dining table and steeped a warm mug of barley tea for our family.",
+    "Translation": "저녁 식사 후에 식탁을 깨끗이 닦고 가족을 위해 따뜻한 보리차 한 머그잔을 우려냈습니다.",
+    "Key Points": "wipe the dining table (식탁을 닦다), steep tea (차를 우리다), a mug of barley tea (보리차 한 머그잔)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-03-nach-dem-essen-habe-ich",
+    "legacyKey": "German:Nach dem Essen habe ich den Esstisch abgewischt und einen warmen Becher Gerstentee für unsere Familie aufgegossen.",
+    "pairId": "20261120-03",
+    "lang": "German",
+    "level": "B1-B2",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "Nach dem Essen habe ich den Esstisch abgewischt und einen warmen Becher Gerstentee für unsere Familie aufgegossen.",
+    "translation": "식사 후에 식탁을 닦아내고 가족을 위해 따뜻한 보리차 한 잔을 뜨거운 물로 우려냈습니다.",
+    "cloze": "den Esstisch abgewischt",
+    "keyPoints": "abwischen (닦아내다, 분리동사), aufgießen (뜨거운 물을 부어 차를 우리다, 분리동사), für + 4격 (~를 위해)",
+    "vocabIds": [
+      "de-abwischen",
+      "de-becher"
+    ],
+    "date": "2026-11-20",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Nach dem Essen habe ich den Esstisch abgewischt und einen warmen Becher Gerstentee für unsere Familie aufgegossen.",
+    "Translation": "식사 후에 식탁을 닦아내고 가족을 위해 따뜻한 보리차 한 잔을 뜨거운 물로 우려냈습니다.",
+    "Key Points": "abwischen (닦아내다, 분리동사), aufgießen (뜨거운 물을 부어 차를 우리다, 분리동사), für + 4격 (~를 위해)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-en-20261120-04-i-highlighted-three-thou",
+    "legacyKey": "English:I highlighted three thought-provoking passages in my philosophy book to share at our monthly reading group.",
+    "pairId": "20261120-04",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "I highlighted three thought-provoking passages in my philosophy book to share at our monthly reading group.",
+    "translation": "매월 열리는 독서 모임에서 함께 나누기 위해 철학 책에서 깊은 생각을 불러일으키는 세 구절에 표시를 해두었습니다.",
+    "cloze": "thought-provoking passages",
+    "keyPoints": "thought-provoking (생각할 거리를 주는), highlight passages (구절에 표시하다), to share at (~에서 공유하기 위해)",
+    "vocabIds": [
+      "en-passage",
+      "en-highlight"
+    ],
+    "date": "2026-11-20",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I highlighted three thought-provoking passages in my philosophy book to share at our monthly reading group.",
+    "Translation": "매월 열리는 독서 모임에서 함께 나누기 위해 철학 책에서 깊은 생각을 불러일으키는 세 구절에 표시를 해두었습니다.",
+    "Key Points": "thought-provoking (생각할 거리를 주는), highlight passages (구절에 표시하다), to share at (~에서 공유하기 위해)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-04-ich-habe-drei-nachdenkli",
+    "legacyKey": "German:Ich habe drei nachdenkliche Textstellen in meinem Philosophiebuch markiert, um sie in unserem monatlichen Lesekreis zu teilen.",
+    "pairId": "20261120-04",
+    "lang": "German",
+    "level": "B1-B2",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "Ich habe drei nachdenkliche Textstellen in meinem Philosophiebuch markiert, um sie in unserem monatlichen Lesekreis zu teilen.",
+    "translation": "매달 모이는 우리 독서 모임에서 함께 나누기 위해 철학 책 속 사색을 불러일으키는 세 구절에 표시를 해두었습니다.",
+    "cloze": "nachdenkliche Textstellen",
+    "keyPoints": "markieren (표시하다/체크하다), die Textstelle (책의 구절/대목), im monatlichen Lesekreis (월간 독서 모임에서)",
+    "vocabIds": [
+      "de-textstelle",
+      "de-lesekreis"
+    ],
+    "date": "2026-11-20",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich habe drei nachdenkliche Textstellen in meinem Philosophiebuch markiert, um sie in unserem monatlichen Lesekreis zu teilen.",
+    "Translation": "매달 모이는 우리 독서 모임에서 함께 나누기 위해 철학 책 속 사색을 불러일으키는 세 구절에 표시를 해두었습니다.",
+    "Key Points": "markieren (표시하다/체크하다), die Textstelle (책의 구절/대목), im monatlichen Lesekreis (월간 독서 모임에서)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-en-20261120-05-before-our-weekend-ride",
+    "legacyKey": "English:Before our weekend ride, I pumped up the tires and adjusted the brake cables on my folding bicycle.",
+    "pairId": "20261120-05",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "cycling",
+    "tags": [
+      "cycling"
+    ],
+    "sentence": "Before our weekend ride, I pumped up the tires and adjusted the brake cables on my folding bicycle.",
+    "translation": "주말 라이딩을 나서기 전에 접이식 자전거 타이어에 바람을 넣고 브레이크 케이블을 알맞게 조절했습니다.",
+    "cloze": "pumped up the tires",
+    "keyPoints": "pump up the tires (타이어에 바람을 넣다), adjust the brake cables (브레이크 케이블을 조절하다), folding bicycle (접이식 자전거)",
+    "vocabIds": [
+      "en-tire",
+      "en-adjust"
+    ],
+    "date": "2026-11-20",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Before our weekend ride, I pumped up the tires and adjusted the brake cables on my folding bicycle.",
+    "Translation": "주말 라이딩을 나서기 전에 접이식 자전거 타이어에 바람을 넣고 브레이크 케이블을 알맞게 조절했습니다.",
+    "Key Points": "pump up the tires (타이어에 바람을 넣다), adjust the brake cables (브레이크 케이블을 조절하다), folding bicycle (접이식 자전거)",
+    "Date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-05-vor-unserem-wochenendaus",
+    "legacyKey": "German:Vor unserem Wochenendausflug habe ich die Reifen aufgepumpt und die Bremszüge an meinem Faltrad neu eingestellt.",
+    "pairId": "20261120-05",
+    "lang": "German",
+    "level": "B1-B2",
+    "topic": "cycling",
+    "tags": [
+      "cycling"
+    ],
+    "sentence": "Vor unserem Wochenendausflug habe ich die Reifen aufgepumpt und die Bremszüge an meinem Faltrad neu eingestellt.",
+    "translation": "주말 나들이를 떠나기 전에 접이식 자전거의 타이어에 바람을 넣고 브레이크 케이블을 새로 조절했습니다.",
+    "cloze": "die Reifen aufgepumpt",
+    "keyPoints": "vor + 3격 (~전에), aufpumpen (공기를 주입하다, 분리동사), neu einstellen (새로 세팅/조절하다, 분리동사)",
+    "vocabIds": [
+      "de-reifen",
+      "de-faltrad"
+    ],
+    "date": "2026-11-20",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Vor unserem Wochenendausflug habe ich die Reifen aufgepumpt und die Bremszüge an meinem Faltrad neu eingestellt.",
+    "Translation": "주말 나들이를 떠나기 전에 접이식 자전거의 타이어에 바람을 넣고 브레이크 케이블을 새로 조절했습니다.",
+    "Key Points": "vor + 3격 (~전에), aufpumpen (공기를 주입하다, 분리동사), neu einstellen (새로 세팅/조절하다, 분리동사)",
+    "Date": "2026-11-20"
+  },
+  {
     "id": "s-en-20261029-01-we-are-monitoring-memory",
     "legacyKey": "English:We are monitoring memory utilization closely during the overnight batch settlement to catch potential memory leaks early.",
     "pairId": "20261029-01",
@@ -18,7 +277,13 @@
       "en-leak",
       "en-settlement"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We are monitoring memory utilization closely during the overnight batch settlement to catch potential memory leaks early.",
+    "Translation": "잠재적인 메모리 누수를 조기에 발견하기 위해 심야 배치 정산 작업 동안 메모리 사용률을 면밀히 모니터링하고 있습니다.",
+    "Key Points": "memory utilization (메모리 사용률), batch settlement (배치 정산), memory leak (메모리 누수)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-en-20261029-02-i-pushed-a-patch-for-the",
@@ -39,7 +304,13 @@
       "en-patch",
       "en-retry"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I pushed a patch for the transaction retry logic; could you review the error handling when you have a moment?",
+    "Translation": "트랜잭션 재시도 로직 패치를 푸시해 두었는데, 시간 되실 때 오류 처리 부분을 검토해 주실 수 있나요?",
+    "Key Points": "push a patch (패치 푸시), retry logic (재시도 로직), error handling (오류 처리)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-en-20261029-03-doing-fifteen-minutes-of",
@@ -59,7 +330,13 @@
       "en-ease",
       "en-core"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Doing fifteen minutes of gentle core exercises after work eases the lower back tension from sitting at my desk all day.",
+    "Translation": "퇴근 후 15분간 가벼운 코어 운동을 하면 하루 종일 책상에 앉아 있어 뭉친 허리 긴장을 푸는 데 큰 도움이 됩니다.",
+    "Key Points": "gentle core exercises (가벼운 코어 운동), ease tension (긴장 완화), lower back (허리)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-en-20261029-04-we-brewed-a-fresh-pot-of",
@@ -79,7 +356,13 @@
       "en-herbal",
       "en-pot"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We brewed a fresh pot of herbal tea after dinner and talked about our favorite weekend outdoor plans.",
+    "Translation": "저녁 식사 후 따뜻한 허브차 한 주전자를 우려내어 우리가 가장 좋아하는 주말 야외 나들이 계획에 대해 이야기를 나누었습니다.",
+    "Key Points": "brew herbal tea (허브차 우리기), fresh pot (새 주전자), outdoor plans (야외 나들이 계획)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-en-20261029-05-it-is-almost-three-in-th",
@@ -99,7 +382,13 @@
       "en-breather",
       "en-roasted"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "It is almost three in the afternoon; let's take a quick breather and grab a handful of roasted nuts.",
+    "Translation": "벌써 오후 3시가 다 되어 가네요. 5분간 잠깐 숨을 돌리며 구운 견과류 한 줌 챙겨 먹읍시다.",
+    "Key Points": "take a breather (숨 돌리기), handful of (한 줌의), roasted nuts (구운 견과류)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-de-20261029-01-waehrend-des-naechtlichen",
@@ -119,7 +408,13 @@
       "de-die-speicherauslastung",
       "de-das-speicherleck"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Während des nächtlichen Abrechnungslaufs überwachen wir die Speicherauslastung genau, um eventuelle Speicherlecks frühzeitig abzufangen.",
+    "Translation": "잠재적인 메모리 누수를 조기에 방어하기 위해 야간 정산 작업 동안 메모리 사용량을 면밀히 모니터링합니다.",
+    "Key Points": "Abrechnungslauf (정산 배치), Speicherauslastung (메모리 사용률), Speicherleck (메모리 누수)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-de-20261029-02-ich-habe-eine-korrektur",
@@ -139,7 +434,13 @@
       "de-die-wiederholungslogik",
       "de-die-fehlerbehandlung"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich habe eine Korrektur für die Wiederholungslogik hochgeladen; könnten Sie die Fehlerbehandlung kurz ansehen, sobald Sie Zeit haben?",
+    "Translation": "재시도 로직에 대한 수정 사항을 업로드했습니다. 시간 되실 때 오류 처리 부분을 잠깐 봐주실 수 있나요?",
+    "Key Points": "Korrektur hochladen (수정본 업로드), Wiederholungslogik (재시도 로직), Fehlerbehandlung (오류 처리)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-de-20261029-03-nach-einem-langen-arbeit",
@@ -159,7 +460,13 @@
       "de-die-gymnastik",
       "de-die-rueckenmuskulatur"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Nach einem langen Arbeitstag am Schreibtisch mache ich fünfzehn Minuten leichte Gymnastik, um die Rückenmuskulatur spürbar zu entlasten.",
+    "Translation": "책상 앞에서 보낸 긴 근무 일과를 마치고, 등과 허리 근육의 부담을 눈에 띄게 덜어주기 위해 15분간 가벼운 체조를 합니다.",
+    "Key Points": "leichte Gymnastik (가벼운 체조), Rückenmuskulatur (등/허리 근육), entlasten (부담을 덜다)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-de-20261029-04-nach-dem-abendessen-habe",
@@ -180,7 +487,13 @@
       "de-die-kanne",
       "de-das-abendessen"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Nach dem Abendessen haben wir eine Kanne Kräutertee aufgesetzt und entspannt über unsere Pläne fürs Wochenende gesprochen.",
+    "Translation": "저녁 식사 후에 허브차 한 주전자를 올리고, 주말 계획에 대해 편안하게 이야기를 나눴습니다.",
+    "Key Points": "Kanne aufsetzen (주전자 올리기), Kräutertee (허브차), entspannt sprechen (편안한 대화)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-de-20261029-05-gegen-drei-uhr-nachmitta",
@@ -201,7 +514,13 @@
       "de-die-handvoll",
       "de-tanken"
     ],
-    "date": "2026-10-29"
+    "date": "2026-10-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Gegen drei Uhr nachmittags tut eine kurze Verschnaufpause mit einer Handvoll Nüssen richtig gut, um neue Energie zu tanken.",
+    "Translation": "오후 3시 무렵에 한 줌의 견과류와 함께하는 짧은 휴식은 새로운 에너지를 충전하는 데 정말 좋습니다.",
+    "Key Points": "Verschnaufpause (숨돌리는 휴식), Handvoll Nüsse (견과류 한 줌), Energie tanken (에너지 충전)",
+    "Date": "2026-10-29"
   },
   {
     "id": "s-en-20261028-01-we-implemented-a-distrib",
@@ -221,7 +540,13 @@
       "en-distributed",
       "en-withdrawal"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We implemented a distributed lock mechanism using Redis to prevent concurrent withdrawals from the same account.",
+    "Translation": "동일 계좌에서의 동시 출금을 방지하기 위해 레디스를 활용한 분산 락 메커니즘을 구현했습니다.",
+    "Key Points": "distributed lock (분산 락), concurrent withdrawals (동시 출금), Redis (레디스)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-en-20261028-02-let-s-do-a-quick-ten-min",
@@ -241,7 +566,13 @@
       "en-mid-week",
       "en-timeline"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's do a quick ten-minute mid-week sync to make sure none of the release blockers are holding up our timeline.",
+    "Translation": "배포를 가로막는 장애 요인이 프로젝트 일정을 지연시키지 않도록 10분간 짧은 주중 중간 점검 회의를 진행합시다.",
+    "Key Points": "mid-week sync (주중 중간 점검), release blockers (배포 장애 요인), hold up (지연시키다)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-en-20261028-03-reading-a-few-pages-of-a",
@@ -260,7 +591,13 @@
     "vocabIds": [
       "en-perspective"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Reading a few pages of a classic philosophy book after dinner helps me put everyday workplace worries into perspective.",
+    "Translation": "저녁 식사 후 고전 철학 책 몇 쪽을 읽는 것은 일상의 직장 고민들을 한 걸음 물러나 넓은 시야로 바라보는 데 도움이 됩니다.",
+    "Key Points": "classic philosophy (고전 철학), put into perspective (넓은 시야로 보다)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-en-20261028-04-we-brewed-a-warm-pot-of",
@@ -280,7 +617,13 @@
       "en-peppermint",
       "en-pot"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We brewed a warm pot of peppermint tea tonight and chatted about our favorite moments from the school science fair.",
+    "Translation": "오늘 밤 따뜻한 페퍼민트 차 한 주전자를 우려내어 학교 과학 축제에서 가장 즐거웠던 순간들에 대해 가족과 대화를 나눴습니다.",
+    "Key Points": "brew tea (차 우려내기), peppermint tea (페퍼민트 차), science fair (과학 축제)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-en-20261028-05-the-autumn-air-is-cool-a",
@@ -301,7 +644,13 @@
       "en-refreshing",
       "en-refresh"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The autumn air is cool and refreshing today; would you like to take a brisk walk around the block before the afternoon meeting?",
+    "Translation": "오늘 가을 공기가 서늘하고 참 상쾌하네요. 오후 회의 시작 전에 블록 주변을 가볍게 산책하고 오실래요?",
+    "Key Points": "cool and refreshing (서늘하고 상쾌한), brisk walk (빠른 산책), around the block (블록 주위)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-de-20261028-01-zur-verhinderung-gleichz",
@@ -321,7 +670,13 @@
       "de-die-sperre",
       "de-die-abbuchung"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zur Verhinderung gleichzeitiger Abbuchungen vom selben Konto haben wir eine verteilte Sperre auf Basis von Redis eingerichtet.",
+    "Translation": "동일 계좌에서 동시에 출금되는 것을 방지하기 위해 레디스 기반의 분산 락을 설정했습니다.",
+    "Key Points": "Verhinderung (방지), gleichzeitige Abbuchungen (동시 출금), verteilte Sperre (분산 락)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-de-20261028-02-lassen-sie-uns-heute-ein",
@@ -341,7 +696,13 @@
       "de-die-zwischenabstimmung",
       "de-gefaehrden"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Lassen Sie uns heute eine kurze Zwischenabstimmung machen, um sicherzustellen, dass keine offenen Hindernisse den Zeitplan gefährden.",
+    "Translation": "미결 장애 요소가 일정에 지장을 주지 않도록 오늘 짧은 중간 조율 미팅을 진행합시다.",
+    "Key Points": "Zwischenabstimmung (중간 조율), Hindernisse (장애물), Zeitplan gefährden (일정에 지장 주다)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-de-20261028-03-ein-paar-seiten-in-einem",
@@ -361,7 +722,13 @@
       "de-der-trubel",
       "de-der-abstand"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ein paar Seiten in einem philosophischen Werk nach dem Abendessen helfen mir dabei, den beruflichen Trubel mit etwas Abstand zu betrachten.",
+    "Translation": "저녁 식사 후 철학 책을 몇 쪽 읽는 것은 직장에서의 번잡함을 한 걸음 물러나 바라보는 데 큰 도움이 됩니다.",
+    "Key Points": "beruflicher Trubel (직장 번잡함), Abstand betrachten (거리 두고 바라보다)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-de-20261028-04-heute-abend-haben-wir-ei",
@@ -381,7 +748,13 @@
       "de-die-kanne",
       "de-der-pfefferminztee"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Heute Abend haben wir eine Kanne Pfefferminztee gekocht und gemütlich über die Erlebnisse beim Schulfest gesprochen.",
+    "Translation": "오늘 저녁에는 페퍼민트 차 한 주전자를 끓여서 학교 축제에서 있었던 일들에 대해 가족과 편안하게 대화를 나눴습니다.",
+    "Key Points": "Kanne (주전자), Pfefferminztee (페퍼민트 차), Schulfest (학교 축제)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-de-20261028-05-die-herbstluft-ist-heute",
@@ -401,7 +774,13 @@
       "de-die-runde",
       "de-herrlich"
     ],
-    "date": "2026-10-28"
+    "date": "2026-10-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die Herbstluft ist heute herrlich frisch; wollen wir vor den Nachmittagsterminen eine kleine Runde um den Block drehen?",
+    "Translation": "오늘 가을 공기가 참 상쾌하네요. 오후 미팅 일정 전에 블록 주변을 가볍게 한 바퀴 산책할까요?",
+    "Key Points": "herrlich frisch (아주 상쾌한), Runde drehen (한 바퀴 돌다), um den Block (블록 주위)",
+    "Date": "2026-10-28"
   },
   {
     "id": "s-en-20261027-01-we-enforce-unique-idempo",
@@ -421,7 +800,13 @@
       "en-enforce",
       "en-duplicate"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We enforce unique idempotency keys in payment headers to prevent duplicate ledger postings during network retries.",
+    "Translation": "네트워크 재시도 중 중복 원장 기장이 발생하는 것을 방지하기 위해 결제 헤더에 고유한 멱등성 키를 강제합니다.",
+    "Key Points": "enforce (강제하다), idempotency keys (멱등성 키), duplicate postings (중복 기장)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-en-20261027-02-i-left-a-few-suggestions",
@@ -438,7 +823,13 @@
     "cloze": "pull request",
     "keyPoints": "pull request (PR), transaction boundaries (트랜잭션 경계), error logging (오류 로깅)",
     "vocabIds": [],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I left a few suggestions on your pull request regarding database transaction boundaries and error logging.",
+    "Translation": "데이터베이스 트랜잭션 경계 설정과 오류 로깅에 대해 귀하의 풀 리퀘스트(PR)에 몇 가지 제안 사항을 남겼습니다.",
+    "Key Points": "pull request (PR), transaction boundaries (트랜잭션 경계), error logging (오류 로깅)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-en-20261027-03-doing-ten-minutes-of-gen",
@@ -458,7 +849,13 @@
       "en-ease",
       "en-stretch"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Doing ten minutes of gentle lower back stretches before dinner helps ease the muscle tension built up from desk work.",
+    "Translation": "저녁 식사 전 10분 동안 가벼운 허리 스트레칭을 하면 책상 업무로 뭉친 근육 긴장을 푸는 데 큰 도움이 됩니다.",
+    "Key Points": "gentle stretches (가벼운 스트레칭), ease tension (긴장 완화), lower back (허리)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-en-20261027-04-i-stopped-by-the-local-m",
@@ -478,7 +875,13 @@
       "en-zucchini",
       "en-stew"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I stopped by the local market on my way home to pick up fresh zucchini, mushrooms, and tofu for a light stew.",
+    "Translation": "가벼운 찌개 요리를 만들기 위해 퇴근길에 동네 시장에 들러 신선한 애호박, 버섯, 두부를 샀습니다.",
+    "Key Points": "stop by (잠깐 들르다), on my way home (퇴근길에), light stew (가벼운 찌개)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-en-20261027-05-it-is-almost-noon-would",
@@ -497,7 +900,13 @@
     "vocabIds": [
       "en-sunshine"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "It is almost noon; would you like to grab a quick bite and take a short walk in the autumn sunshine?",
+    "Translation": "벌써 정오가 다 되었네요. 간단히 점심 요기를 하고 가을 햇살 속에서 짧게 산책하고 오실래요?",
+    "Key Points": "grab a quick bite (간단히 요기하다), autumn sunshine (가을 햇살), short walk (짧은 산책)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-de-20261027-01-durch-die-ueberpruefung-ei",
@@ -517,7 +926,13 @@
       "de-der-idempotenz-schluessel",
       "de-die-buchung"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Durch die Überprüfung eindeutiger Idempotenz-Schlüssel im Nachrichten-Header verhindern wir doppelte Buchungen bei Verbindungsabbrüchen.",
+    "Translation": "메시지 헤더 내 고유한 멱등성 키 검증을 통해 네트워크 단절 시 이중 기장이 발생하는 것을 방지합니다.",
+    "Key Points": "Überprüfung (검증), Idempotenz-Schlüssel (멱등성 키), doppelte Buchungen (이중 기장)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-de-20261027-02-ich-habe-im-pull-request",
@@ -537,7 +952,13 @@
       "de-die-abgrenzung",
       "de-hinterlassen"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich habe im Pull-Request ein paar Hinweise zur Abgrenzung der Datenbanktransaktion und zum Fehler-Logging hinterlassen.",
+    "Translation": "풀 리퀘스트(PR)에 데이터베이스 트랜잭션 범위 설정과 오류 로깅에 관한 몇 가지 피드백을 남겨두었습니다.",
+    "Key Points": "Abgrenzung (경계 설정), Hinweise (조언/피드백), hinterlassen (남기다)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-de-20261027-03-zehn-minuten-sanftes-ruec",
@@ -559,7 +980,13 @@
       "de-sanft",
       "de-gezielt"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zehn Minuten sanftes Rückendehnen vor dem Abendessen helfen dabei, Verspannungen vom langen Sitzen am Bildschirm gezielt abzubauen.",
+    "Translation": "저녁 식사 전 10분간의 부드러운 허리 스트레칭은 모니터 앞에 오래 앉아 있어 뭉친 근육을 집중적으로 풀어주는 데 도움이 됩니다.",
+    "Key Points": "Rückendehnen (허리 스트레칭), Verspannungen abbauen (근육 뭉침 해소), gezielt (집중적으로)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-de-20261027-04-auf-dem-heimweg-kaufe-ic",
@@ -580,7 +1007,13 @@
       "de-die-frische",
       "de-kochen"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Auf dem Heimweg kaufe ich auf dem Wochenmarkt frische Zucchini und Pilze ein, um eine leichte Gemüsesuppe zu kochen.",
+    "Translation": "가벼운 채소 수프를 끓이기 위해 퇴근길에 주간 장터에 들러 신선한 애호박과 버섯을 살 예정입니다.",
+    "Key Points": "auf dem Heimweg (퇴근길에), Zucchini (애호박), einkaufen (장보다)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-de-20261027-05-es-ist-fast-mittag-woll",
@@ -601,7 +1034,13 @@
       "de-die-kleinigkeit",
       "de-geniessen"
     ],
-    "date": "2026-10-27"
+    "date": "2026-10-27",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es ist fast Mittag; wollen wir eine Kleinigkeit essen gehen und kurz die milde Herbstsonne genießen?",
+    "Translation": "벌써 정오가 다 되었네요. 가볍게 점심 식사를 하고 따사로운 가을 햇살을 잠시 즐기러 나갈까요?",
+    "Key Points": "Kleinigkeit essen (가볍게 먹다), milde Herbstsonne (따사로운 가을 햇살), genießen (즐기다)",
+    "Date": "2026-10-27"
   },
   {
     "id": "s-en-20261015-01-we-are-tracking-memory-u",
@@ -621,7 +1060,13 @@
       "en-leak",
       "en-settlement"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We are tracking memory usage closely during the batch settlement run to prevent unexpected memory leaks.",
+    "Translation": "예기치 못한 메모리 누수를 방지하기 위해 배치 정산 작업이 실행되는 동안 메모리 사용량을 면밀히 추적하고 있습니다.",
+    "Key Points": "track closely (면밀히 추적하다), batch settlement (배치 정산), memory leak (메모리 누수)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-en-20261015-02-i-pushed-my-changes-to-t",
@@ -642,7 +1087,13 @@
       "en-branch",
       "en-retry"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I pushed my changes to the remote branch; could you review the transaction retry logic when you get a chance?",
+    "Translation": "원격 브랜치에 변경 사항을 푸시해 두었는데, 시간 되실 때 트랜잭션 재시도 로직을 검토해 주실 수 있나요?",
+    "Key Points": "push changes (변경 푸시), remote branch (원격 브랜치), retry logic (재시도 로직)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-en-20261015-03-after-sitting-in-front-o",
@@ -662,7 +1113,13 @@
       "en-core",
       "en-relieve"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "After sitting in front of monitors all day, doing fifteen minutes of core exercises at home helps relieve my lower back tension.",
+    "Translation": "하루 종일 모니터 앞에 앉아 있던 후, 집에서 15분간 코어 운동을 하는 것은 허리의 긴장을 푸는 데 큰 도움이 됩니다.",
+    "Key Points": "core exercises (코어 운동), relieve tension (긴장 완화), lower back (허리)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-en-20261015-04-we-boiled-some-hot-water",
@@ -681,7 +1138,13 @@
     "vocabIds": [
       "en-herbal"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We boiled some hot water for herbal tea after dinner and talked about our upcoming weekend plans.",
+    "Translation": "저녁 식사 후 허브차를 마시기 위해 물을 끓이고 다가오는 주말 계획에 대해 이야기를 나누었습니다.",
+    "Key Points": "boil water (물 끓이기), herbal tea (허브차), weekend plans (주말 계획)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-en-20261015-05-it-is-almost-three-in-th",
@@ -700,7 +1163,13 @@
     "vocabIds": [
       "en-handful"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "It is almost three in the afternoon; let's take a quick five-minute break and grab a handful of mixed nuts.",
+    "Translation": "벌써 오후 3시가 다 되어 가네요. 5분간 짧게 머리를 식히며 견과류 한 줌 챙겨 먹읍시다.",
+    "Key Points": "quick break (짧은 휴식), handful of (한 줌의), mixed nuts (견과류)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-de-20261015-01-waehrend-des-naechtlichen",
@@ -720,7 +1189,13 @@
       "de-der-abrechnungslauf",
       "de-die-speicherauslastung"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Während des nächtlichen Abrechnungslaufs überwachen wir die Speicherauslastung genau, um Engpässe rechtzeitig abzufangen.",
+    "Translation": "병목 현상을 적시에 방어하기 위해 야간 정산 작업 중 메모리 사용량을 면밀히 모니터링합니다.",
+    "Key Points": "Abrechnungslauf (정산 배치), Speicherauslastung (메모리 사용률), abfangen (방어/완충하다)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-de-20261015-02-ich-habe-die-aktualisier",
@@ -739,7 +1214,13 @@
     "vocabIds": [
       "de-das-repository"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich habe die Aktualisierung ins Repository hochgeladen; könnten Sie die Fehlerbehandlungslogik prüfen, sobald Sie Zeit finden?",
+    "Translation": "저장소에 업데이트를 올려두었습니다. 시간 나실 때 오류 처리 로직을 한번 검토해 주실 수 있나요?",
+    "Key Points": "Repository (저장소), Fehlerbehandlung (오류 처리), Zeit finden (시간이 나다)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-de-20261015-03-nach-einem-langen-tag-vo",
@@ -760,7 +1241,13 @@
       "de-die-gymnastik",
       "de-gezielt"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Nach einem langen Tag vor den Bildschirmen mache ich zu Hause eine Viertelstunde Gymnastik, um den Rücken gezielt zu entlasten.",
+    "Translation": "모니터 앞에서 보낸 긴 하루를 마치고, 허리의 부담을 집중적으로 덜어주기 위해 집에서 15분간 체조를 합니다.",
+    "Key Points": "Gymnastik (체조), Rücken entlasten (허리 부담 덜기), gezielt (집중적으로)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-de-20261015-04-nach-dem-abendessen-habe",
@@ -781,7 +1268,13 @@
       "de-das-abendessen",
       "de-gemuetlich"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Nach dem Abendessen haben wir warmes Wasser für einen Kräutertee aufgesetzt und gemütlich über das Wochenende gesprochen.",
+    "Translation": "저녁 식사 후에 허브차를 마시려고 따뜻한 물을 올리고, 주말에 대해 편안하게 이야기를 나눴습니다.",
+    "Key Points": "Wasser aufsetzen (물 올리기), Kräutertee (허브차), gemütlich sprechen (편안한 대화)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-de-20261015-05-gegen-drei-uhr-nachmitta",
@@ -801,7 +1294,13 @@
       "de-die-handvoll",
       "de-tanken"
     ],
-    "date": "2026-10-15"
+    "date": "2026-10-15",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Gegen drei Uhr nachmittags tut eine kurze Pause mit einer Handvoll Nüssen richtig gut, um wieder Energie zu tanken.",
+    "Translation": "오후 3시 무렵에 한 줌의 견과류와 함께하는 짧은 휴식은 다시 에너지를 충전하는 데 정말 좋습니다.",
+    "Key Points": "gut tun (도움이 되다), Handvoll Nüsse (견과류 한 줌), Energie tanken (에너지 충전)",
+    "Date": "2026-10-15"
   },
   {
     "id": "s-en-20261014-01-we-publish-ledger-update",
@@ -821,7 +1320,13 @@
       "en-decouple",
       "en-publish"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We publish ledger update events to an asynchronous message broker to decouple account balances from external notification services.",
+    "Translation": "계좌 잔액과 외부 알림 서비스 간의 결합도를 낮추기 위해 원장 변경 이벤트를 비동기 메시지 브로커로 발행합니다.",
+    "Key Points": "publish events (이벤트 발행), message broker (메시지 브로커), decouple (결합 분리)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-en-20261014-02-let-s-do-a-quick-ten-min",
@@ -841,7 +1346,13 @@
       "en-mid-week",
       "en-blocked"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's do a quick ten-minute mid-week check-in to make sure none of the critical sprint tasks are blocked.",
+    "Translation": "스프린트 핵심 과제 중 어느 것도 지연되거나 막힌 것이 없는지 확인하기 위해 10분간 짧은 주중 중간 점검 회의를 진행합시다.",
+    "Key Points": "mid-week check-in (중간 점검), critical tasks (핵심 과제), blocked (막힌)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-en-20261014-03-reading-a-chapter-of-cla",
@@ -860,7 +1371,13 @@
     "vocabIds": [
       "en-perspective"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Reading a chapter of classical philosophy after dinner helps me put everyday workplace challenges into perspective.",
+    "Translation": "저녁 식사 후 고전 철학 책을 한 장 읽는 것은 일상의 업무 고민들을 더 넓은 시야에서 바라보는 데 도움이 됩니다.",
+    "Key Points": "classical philosophy (고전 철학), put into perspective (넓은 시각에서 보다)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-en-20261014-04-i-ground-some-fresh-coff",
@@ -879,7 +1396,13 @@
     "vocabIds": [
       "en-aroma"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I ground some fresh coffee beans this morning, and the rich aroma filled the entire kitchen while we chatted.",
+    "Translation": "오늘 아침에 신선한 원두를 갈았는데, 대화를 나누는 동안 그윽한 커피 향이 주방 가득 퍼졌습니다.",
+    "Key Points": "ground coffee beans (원두를 갈았다), rich aroma (그윽한 향)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-en-20261014-05-since-the-weather-is-cle",
@@ -898,7 +1421,13 @@
     "vocabIds": [
       "en-stroll"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Since the weather is clear this Wednesday noon, do you want to take a short stroll around the block?",
+    "Translation": "이번 수요일 정오는 날씨가 맑으니, 블록 주변을 가볍게 한 바퀴 산책하고 오실래요?",
+    "Key Points": "clear weather (맑은 날씨), take a stroll (산책하다), around the block (블록 주변)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-de-20261014-01-zur-entkopplung-von-kern",
@@ -918,7 +1447,13 @@
       "de-die-entkopplung",
       "de-die-saldenaenderung"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zur Entkopplung von Kernbank und Benachrichtigungsdiensten werden Saldenänderungen als asynchrone Ereignisse im Cluster veröffentlicht.",
+    "Translation": "계정계와 알림 서비스 간의 결합도를 낮추기 위해 잔액 변동 내역이 클러스터 내 비동기 이벤트로 발행됩니다.",
+    "Key Points": "Entkopplung (탈결합), Saldenänderung (잔액 변동), veröffentlicht werden (발행되다)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-de-20261014-02-lassen-sie-uns-heute-ein",
@@ -938,7 +1473,13 @@
       "de-die-zwischenbilanz",
       "de-verlaufen"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Lassen Sie uns heute eine kurze Zwischenbilanz ziehen, um zu prüfen, ob alle Sprint-Aufgaben nach Plan verlaufen.",
+    "Translation": "모든 스프린트 과제가 계획대로 진행되고 있는지 확인하기 위해 오늘 짧은 중간 점검을 진행합시다.",
+    "Key Points": "Zwischenbilanz ziehen (중간 점검하다), nach Plan verlaufen (계획대로 진행되다)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-de-20261014-03-ein-kapitel-in-einem-phi",
@@ -958,7 +1499,13 @@
       "de-die-hektik",
       "de-gelassen"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ein Kapitel in einem philosophischen Werk am Abend hilft mir dabei, die Hektik des Arbeitstages gelassen zu betrachten.",
+    "Translation": "저녁에 읽는 철학 책 한 장은 업무 시간의 분주함을 차분하고 의연하게 바라보는 데 큰 도움이 됩니다.",
+    "Key Points": "die Hektik (분주함), gelassen betrachten (차분히 바라보다)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-de-20261014-04-ich-habe-heute-frueh-fris",
@@ -978,7 +1525,13 @@
       "de-die-kaffeebohne",
       "de-der-duft"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich habe heute früh frische Kaffeebohnen gemahlen, und der herrliche Duft zog durch die ganze Wohnung.",
+    "Translation": "오늘 아침에 신선한 커피 원두를 갈았는데, 멋진 향이 온 집안으로 은은하게 퍼졌습니다.",
+    "Key Points": "Kaffeebohnen mahlen (원두를 갈다), herrlicher Duft (멋진 향기)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-de-20261014-05-da-die-sonne-heute-so-sc",
@@ -997,7 +1550,13 @@
     "vocabIds": [
       "de-die-runde"
     ],
-    "date": "2026-10-14"
+    "date": "2026-10-14",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Da die Sonne heute so schön scheint, könnten wir in der Mittagspause eine kleine Runde um den Block drehen.",
+    "Translation": "오늘 햇살이 참 좋으니, 점심시간에 블록 주변을 가볍게 한 바퀴 산책할 수 있겠어요.",
+    "Key Points": "Sonne scheint (햇살이 비치다), eine Runde drehen (한 바퀴 돌다), Mittagspause (점심시간)",
+    "Date": "2026-10-14"
   },
   {
     "id": "s-en-20261013-01-we-configured-a-circuit",
@@ -1016,7 +1575,13 @@
     "vocabIds": [
       "en-unresponsive"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We configured a circuit breaker on the payment gateway to fail fast when downstream banking APIs are unresponsive.",
+    "Translation": "하위 은행 API가 응답하지 않을 때 빠른 실패를 유도하도록 결제 게이트웨이에 서킷 브레이커를 설정했습니다.",
+    "Key Points": "circuit breaker (서킷 브레이커), fail fast (빠른 실패), unresponsive (무응답)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-en-20261013-02-could-we-push-the-stagin",
@@ -1036,7 +1601,13 @@
       "en-regression",
       "en-deployment"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Could we push the staging deployment to tomorrow morning so QA has enough time for regression testing?",
+    "Translation": "QA 팀이 회귀 테스트를 진행할 충분한 시간을 가질 수 있도록 스테이징 배포를 내일 아침으로 미룰 수 있을까요?",
+    "Key Points": "push to (미루다), regression testing (회귀 테스트)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-en-20261013-03-i-plan-to-stop-by-the-gr",
@@ -1055,7 +1626,13 @@
     "vocabIds": [
       "en-ingredient"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I plan to stop by the grocery store on my way home to pick up some ingredients for a warm family dinner.",
+    "Translation": "따뜻한 가족 저녁 식사를 위한 식재료를 사기 위해 퇴근길에 식료품점에 들를 계획입니다.",
+    "Key Points": "stop by (잠깐 들르다), on my way home (퇴근길에), ingredients (식재료)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-en-20261013-04-doing-light-neck-and-sho",
@@ -1075,7 +1652,13 @@
       "en-stretch",
       "en-relieve"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Doing light neck and shoulder stretches for ten minutes before bed really helps relieve tension from desk work.",
+    "Translation": "자기 전 10분 동안 가벼운 목과 어깨 스트레칭을 하는 것은 책상 업무로 뭉친 긴장을 푸는 데 큰 도움이 됩니다.",
+    "Key Points": "light stretches (가벼운 스트레칭), relieve tension (긴장 해소)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-en-20261013-05-i-am-going-to-step-out-f",
@@ -1094,7 +1677,13 @@
     "vocabIds": [
       "en-step-out"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I am going to step out for some fresh air; would anyone like a green tea or an iced latte?",
+    "Translation": "바람 좀 쐬러 잠깐 나갔다 올 생각인데, 녹차나 아이스 라테 드실 분 계신가요?",
+    "Key Points": "step out (잠시 나가다), fresh air (상쾌한 공기)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-de-20261013-01-wir-haben-einen-circuit",
@@ -1113,7 +1702,13 @@
     "vocabIds": [
       "de-die-wartezeit"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir haben einen Circuit-Breaker im Zahlungssystem integriert, um bei Störungen der Partnerschnittstellen lange Wartezeiten zu vermeiden.",
+    "Translation": "파트너 인터페이스 장애 발생 시 긴 대기 시간을 방지하기 위해 결제 시스템에 서킷 브레이커를 적용했습니다.",
+    "Key Points": "Circuit-Breaker (서킷 브레이커), Partnerschnittstelle (파트너 인터페이스), Wartezeit (대기 시간)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-de-20261013-02-waere-es-moeglich-den-rol",
@@ -1134,7 +1729,13 @@
       "de-der-rollout",
       "de-verschieben"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wäre es möglich, den Rollout auf morgen früh zu verschieben, damit das QA-Team die Regressionstests sorgfältig durchführen kann?",
+    "Translation": "QA 팀이 회귀 테스트를 꼼꼼하게 수행할 수 있도록 배포를 내일 아침으로 연기하는 것이 가능할까요?",
+    "Key Points": "verschieben auf (미루다), Regressionstest (회귀 테스트), sorgfältig (꼼꼼히)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-de-20261013-03-auf-dem-heimweg-moechte-i",
@@ -1156,7 +1757,13 @@
       "de-vorbeischauen",
       "de-besorgen"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Auf dem Heimweg möchte ich kurz im Supermarkt vorbeischauen, um frische Zutaten für ein gemeinsames Abendessen zu besorgen.",
+    "Translation": "가족과 함께할 저녁 식사를 위한 신선한 재료를 사기 위해 퇴근길에 슈퍼마켓에 잠시 들르고 싶습니다.",
+    "Key Points": "auf dem Heimweg (퇴근길에), vorbeischauen (들르다), Zutaten besorgen (재료를 구하다)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-de-20261013-04-ein-paar-dehnuebungen-fuer",
@@ -1176,7 +1783,13 @@
       "de-die-dehnuebung",
       "de-die-anspannung"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ein paar Dehnübungen für Nacken und Schultern vor dem Schlafen helfen mir dabei, die Anspannung des Büroalltags abzubauen.",
+    "Translation": "잠들기 전 목과 어깨를 위한 가벼운 스트레칭 운동은 사무실 일과로 쌓인 긴장을 푸는 데 큰 도움이 됩니다.",
+    "Key Points": "Dehnübung (스트레칭), Anspannung abbauen (긴장 완화)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-de-20261013-05-ich-gehe-kurz-an-die-fri",
@@ -1196,7 +1809,13 @@
       "de-mitbringen",
       "de-die-frische"
     ],
-    "date": "2026-10-13"
+    "date": "2026-10-13",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich gehe kurz an die frische Luft; soll ich jemandem einen grünen Tee oder einen Cappuccino mitbringen?",
+    "Translation": "바람 좀 쐬러 잠시 나갔다 올 텐데, 녹차나 카푸치노 한잔 사다 드릴까요?",
+    "Key Points": "frische Luft (바깥바람), mitbringen (사다 주다)",
+    "Date": "2026-10-13"
   },
   {
     "id": "s-en-20261012-01-we-are-validating-data-p",
@@ -1216,7 +1835,13 @@
       "en-pipeline",
       "en-update"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We are validating data pipelines this morning to make sure exchange rate updates stream without delays.",
+    "Translation": "환율 업데이트가 지연 없이 스트리밍되도록 오늘 아침 데이터 파이프라인을 검증하고 있습니다.",
+    "Key Points": "validate (검증하다), data pipeline (데이터 파이프라인), exchange rate (환율)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-en-20261012-02-let-s-align-our-sprint-b",
@@ -1237,7 +1862,13 @@
       "en-align",
       "en-kickoff"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's align our sprint backlog items before the kickoff meeting so everyone knows their priority.",
+    "Translation": "모두가 자신의 우선순위를 명확히 알 수 있도록 킥오프 미팅 전에 스프린트 백로그 항목들을 맞춰봅시다.",
+    "Key Points": "align (조율하다), sprint backlog (스프린트 백로그), priority (우선순위)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-en-20261012-03-the-morning-subway-was-p",
@@ -1257,7 +1888,13 @@
       "en-packed",
       "en-pleasant"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The morning subway was packed today, but the cool autumn breeze made the walk from the station very pleasant.",
+    "Translation": "오늘 아침 지하철은 붐볐지만, 시원한 가을바람 덕분에 역에서 걸어오는 길이 매우 상쾌했습니다.",
+    "Key Points": "packed subway (붐비는 지하철), autumn breeze (가을바람), pleasant (쾌적한)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-en-20261012-04-i-helped-my-son-pack-his",
@@ -1276,7 +1913,13 @@
     "vocabIds": [
       "en-backpack"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I helped my son pack his backpack before breakfast, and we practiced riding his bike for ten minutes.",
+    "Translation": "아침 식사 전에 아들이 책가방 싸는 것을 도와주고, 10분 동안 자전거 타는 연습도 함께했습니다.",
+    "Key Points": "pack backpack (책가방을 싸다), practice riding bike (자전거 타기 연습)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-en-20261012-05-good-morning-i-just-bre",
@@ -1293,7 +1936,13 @@
     "cloze": "how was your weekend",
     "keyPoints": "brew coffee (커피를 내리다), how was your weekend (주말 잘 보냈나요)",
     "vocabIds": [],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Good morning! I just brewed a fresh mug of black coffee; how was your weekend?",
+    "Translation": "좋은 아침입니다! 방금 따뜻한 블랙커피 한 잔을 내렸는데, 주말은 어떻게 보내셨나요?",
+    "Key Points": "brew coffee (커피를 내리다), how was your weekend (주말 잘 보냈나요)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-de-20261012-01-zu-wochenbeginn-pruefen-w",
@@ -1314,7 +1963,13 @@
       "de-der-wechselkurs",
       "de-der-wochenbeginn"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zu Wochenbeginn prüfen wir die Datenpipelines, um sicherzustellen, dass Wechselkursänderungen verzögerungsfrei eingespielt werden.",
+    "Translation": "한 주를 시작하며 환율 변동 내역이 지연 없이 반영되도록 데이터 파이프라인을 점검합니다.",
+    "Key Points": "Wochenbeginn (주초), Datenpipeline (데이터 파이프라인), verzögerungsfrei (지연 없이)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-de-20261012-02-vor-dem-kick-off-meeting",
@@ -1335,7 +1990,13 @@
       "de-die-prioritaet",
       "de-abstimmen"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Vor dem Kick-off-Meeting sollten wir die Aufgaben im Sprint-Backlog abstimmen, damit die Prioritäten für alle klar sind.",
+    "Translation": "모두에게 우선순위가 명확해지도록 킥오프 회의 전에 스프린트 백로그의 과제들을 조율해야 합니다.",
+    "Key Points": "abstimmen (조율하다), Sprint-Backlog (스프린트 백로그), Priorität (우선순위)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-de-20261012-03-die-u-bahn-war-heute-mor",
@@ -1356,7 +2017,13 @@
       "de-die-u-bahn",
       "de-angenehm"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die U-Bahn war heute Morgen ziemlich voll, aber der kühle Herbstwind auf dem Weg zum Büro war sehr angenehm.",
+    "Translation": "오늘 아침 지하철은 꽤 붐볐지만, 사무실로 걸어가는 길의 선선한 가을바람은 참 기분 좋았습니다.",
+    "Key Points": "U-Bahn voll (지하철 혼잡), Herbstwind (가을바람), angenehm (쾌적한)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-de-20261012-04-vor-dem-fruehstueck-habe-i",
@@ -1375,7 +2042,13 @@
     "vocabIds": [
       "de-der-schulranzen"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Vor dem Frühstück habe ich meinem Sohn beim Packen des Schulranzens geholfen und mit ihm das Fahrradfahren geübt.",
+    "Translation": "아침 식사 전에 아들이 책가방 싸는 것을 도와주고, 함께 자전거 타기 연습을 했습니다.",
+    "Key Points": "Schulranzen packen (책가방 싸기), Fahrradfahren üben (자전거 연습)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-de-20261012-05-guten-morgen-ich-habe-m",
@@ -1394,7 +2067,13 @@
     "vocabIds": [
       "de-die-frische"
     ],
-    "date": "2026-10-12"
+    "date": "2026-10-12",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Guten Morgen! Ich habe mir gerade einen frischen Kaffee gekocht; wie haben Sie das Wochenende verbracht?",
+    "Translation": "좋은 아침입니다! 방금 신선한 커피를 한잔 내렸는데, 주말은 어떻게 보내셨나요?",
+    "Key Points": "Kaffee kochen (커피 내리기), Wochenende verbringen (주말 보내기)",
+    "Date": "2026-10-12"
   },
   {
     "id": "s-en-20261009-01-we-must-confirm-that-the",
@@ -1415,7 +2094,13 @@
       "en-ledger",
       "en-confirm"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We must confirm that the ledger reconciliation batch completed without discrepancies before the holiday weekend.",
+    "Translation": "연휴 주말 전에 원장 대사 배치 작업이 불일치 없이 완료되었는지 반드시 확인해야 합니다.",
+    "Key Points": "ledger reconciliation (원장 대사), discrepancies (불일치)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-en-20261009-02-i-updated-the-on-call-ru",
@@ -1435,7 +2120,13 @@
       "en-runbook",
       "en-shift"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I updated the on-call runbook and handed over all open deployment issues to the evening shift.",
+    "Translation": "당직 대응 매뉴얼을 최신화하고 미결 배포 이슈들을 모두 야간 교대조에 인계했습니다.",
+    "Key Points": "runbook (운영 매뉴얼), hand over (인계하다)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-en-20261009-03-we-are-planning-a-relaxi",
@@ -1455,7 +2146,13 @@
       "en-kick-off",
       "en-relaxing"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We are planning a relaxing board game night with friends this evening to kick off the weekend.",
+    "Translation": "주말의 시작을 알리는 의미로 오늘 저녁에는 친구들과 가볍게 보드게임을 즐기는 밤을 계획하고 있습니다.",
+    "Key Points": "board game night (보드게임 밤), kick off (시작하다)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-en-20261009-04-the-crisp-autumn-breeze",
@@ -1475,7 +2172,13 @@
       "en-crisp",
       "en-breeze"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The crisp autumn breeze makes it a perfect afternoon to go for a bike ride with my son along the river path.",
+    "Translation": "선선한 가을바람 덕분에 아들과 함께 강변 자전거 도로를 따라 라이딩하기에 딱 좋은 오후입니다.",
+    "Key Points": "crisp autumn breeze (상쾌한 가을바람), bike ride (자전거 타기)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-en-20261009-05-i-am-just-packing-up-my",
@@ -1494,7 +2197,13 @@
     "vocabIds": [
       "en-restful"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I am just packing up my laptop; have a wonderful and restful weekend, everyone!",
+    "Translation": "이제 막 노트북을 챙기는 중입니다. 모두 편안하고 재충전되는 주말 보내세요!",
+    "Key Points": "pack up (정리하다/챙기다), restful weekend (편안한 주말)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-de-20261009-01-wir-muessen-sicherstellen",
@@ -1514,7 +2223,13 @@
       "de-die-saldenabstimmung",
       "de-die-differenz"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir müssen sicherstellen, dass die Saldenabstimmung vor dem Feiertag ohne rechnerische Differenzen abgeschlossen wurde.",
+    "Translation": "연휴 전에 잔액 대사 작업이 계산상 오차 없이 완료되었는지 확인해야 합니다.",
+    "Key Points": "Saldenabstimmung (잔액 대사), rechnerische Differenzen (계산상 불일치)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-de-20261009-02-ich-habe-das-notfallhand",
@@ -1534,7 +2249,13 @@
       "de-das-notfallhandbuch",
       "de-der-wochenenddienst"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich habe das Notfallhandbuch aktualisiert und die offenen Punkte ordnungsgemäß an den Wochenenddienst übergeben.",
+    "Translation": "비상 대응 매뉴얼을 최신화하고 미결 항목들을 주말 당직자에게 규정에 맞게 인계했습니다.",
+    "Key Points": "Notfallhandbuch (비상 매뉴얼), ordnungsgemäß übergeben (적법하게 인계하다)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-de-20261009-03-heute-abend-treffen-wir",
@@ -1554,7 +2275,13 @@
       "de-der-brettspielabend",
       "de-gemuetlich"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Heute Abend treffen wir uns mit Freunden zu einem gemütlichen Brettspielabend, um die Arbeitswoche entspannt ausklingen zu lassen.",
+    "Translation": "한 주간의 근무를 편안하게 마무리하기 위해 오늘 저녁에는 친구들과 아늑한 보드게임 모임을 갖습니다.",
+    "Key Points": "Brettspielabend (보드게임 모임), ausklingen lassen (차분히 마무리하다)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-de-20261009-04-die-kuehle-herbstluft-laed",
@@ -1575,7 +2302,13 @@
       "de-die-radtour",
       "de-die-herbstluft"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die kühle Herbstluft lädt dazu ein, am Nachmittag eine kleine Radtour mit meinem Sohn am Flussufer zu machen.",
+    "Translation": "선선한 가을 공기 덕분에 오후에 아들과 강변을 따라 가벼운 자전거 라이딩을 하기에 참 좋습니다.",
+    "Key Points": "Herbstluft (가을 공기), Radtour (자전거 라이딩), Flussufer (강변)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-de-20261009-05-ich-klappe-jetzt-den-lap",
@@ -1595,7 +2328,13 @@
       "de-der-feierabend",
       "de-erholsam"
     ],
-    "date": "2026-10-09"
+    "date": "2026-10-09",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich klappe jetzt den Laptop zu und wünsche allen Kolleginnen und Kollegen einen erholsamen Feierabend.",
+    "Translation": "이제 노트북을 덮고 퇴근합니다. 동료 여러분 모두 편안하고 재충전되는 퇴근길 보내세요.",
+    "Key Points": "Laptop zuklappen (노트북을 덮다), erholsamer Feierabend (편안한 퇴근 여가)",
+    "Date": "2026-10-09"
   },
   {
     "id": "s-en-20261008-01-we-need-to-configure-aut",
@@ -1615,7 +2354,13 @@
       "en-timeout",
       "en-retry"
     ],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We need to configure automatic retry policies to handle temporary payment gateway timeouts.",
+    "Translation": "일시적인 결제 게이트웨이 타임아웃을 처리하기 위해 자동 재시도 정책을 설정해야 합니다.",
+    "Key Points": "retry policies (재시도 정책), temporary timeouts (일시적 타임아웃)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-en-20261008-02-could-you-share-your-scr",
@@ -1632,7 +2377,13 @@
     "cloze": null,
     "keyPoints": "share screen (화면 공유), walk through (차근차근 설명하다)",
     "vocabIds": [],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Could you share your screen and walk us through the updated architecture diagram?",
+    "Translation": "화면을 공유해서 업데이트된 아키텍처 다이어그램을 하나씩 차근차근 설명해 주실 수 있나요?",
+    "Key Points": "share screen (화면 공유), walk through (차근차근 설명하다)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-en-20261008-03-i-try-to-go-for-a-brisk",
@@ -1651,7 +2402,13 @@
     "vocabIds": [
       "en-brisk"
     ],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I try to go for a brisk thirty-minute walk every evening to clear my head after staring at code all day.",
+    "Translation": "하루 종일 코드만 쳐다본 뒤 머리를 식히기 위해 매일 저녁 30분씩 빠르게 걷기를 하려고 노력합니다.",
+    "Key Points": "brisk walk (빠른 산책), clear head (머리를 식히다)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-en-20261008-04-we-are-checking-out-fami",
@@ -1670,7 +2427,13 @@
     "vocabIds": [
       "en-family-friendly"
     ],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We are checking out family-friendly camping spots near the lake for our upcoming weekend trip.",
+    "Translation": "다가오는 주말 여행을 위해 호수 근처에 아이와 함께 가기 좋은 가족 친화적 캠핑 장소들을 알아보고 있습니다.",
+    "Key Points": "family-friendly (가족 친화적인), check out (알아보다)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-en-20261008-05-do-you-want-to-grab-a-qu",
@@ -1687,7 +2450,13 @@
     "cloze": "grab a quick bite",
     "keyPoints": "grab a quick bite (간단히 요기하다), around noon (정오 무렵에)",
     "vocabIds": [],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Do you want to grab a quick bite together at the sandwich shop downstairs around noon?",
+    "Translation": "12시쯤에 아래층 샌드위치 가게에서 간단하게 점심 같이 드실래요?",
+    "Key Points": "grab a quick bite (간단히 요기하다), around noon (정오 무렵에)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-de-20261008-01-wir-muessen-automatische",
@@ -1707,7 +2476,13 @@
       "de-der-wiederholungsversuch",
       "de-kurzzeitig"
     ],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir müssen automatische Wiederholungsversuche einrichten, falls die Verbindung zum Zahlungsgateway kurzzeitig abbricht.",
+    "Translation": "결제 게이트웨이와의 연결이 일시적으로 끊길 경우에 대비해 자동 재시도 기능을 설정해야 합니다.",
+    "Key Points": "Wiederholungsversuche (재시도), kurzzeitig abbrechen (일시적 중단)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-de-20261008-02-koennten-sie-ihren-bildsc",
@@ -1727,7 +2502,13 @@
       "de-der-schnittstellenentwurf",
       "de-erlaeutern"
     ],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Könnten Sie Ihren Bildschirm freigeben und uns die wichtigsten Änderungen am Schnittstellenentwurf kurz erläutern?",
+    "Translation": "화면을 공유해 주시고 인터페이스 초안의 주요 변경 사항들을 간단히 설명해 주실 수 있나요?",
+    "Key Points": "Bildschirm freigeben (화면 공유), kurz erläutern (간단히 설명하다)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-de-20261008-03-nach-einem-langen-arbeit",
@@ -1747,7 +2528,13 @@
       "de-der-schreibtisch",
       "de-die-frische"
     ],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Nach einem langen Arbeitstag am Schreibtisch gehe ich gerne eine halbe Stunde an die frische Luft, um den Kopf freizubekommen.",
+    "Translation": "책상 앞에서 긴 근무 시간을 보낸 뒤에는 머리를 식히기 위해 30분 정도 바깥바람을 쐬러 나가는 것을 좋아합니다.",
+    "Key Points": "an die frische Luft (바깥바람 쐬다), den Kopf freibekommen (머리를 식히다)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-de-20261008-04-fuer-das-kommende-wochene",
@@ -1767,7 +2554,13 @@
       "de-das-ausflugsziel",
       "de-geeignet"
     ],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Für das kommende Wochenende suchen wir nach einem schönen Ausflugsziel in der Natur, das auch für Kinder gut geeignet ist.",
+    "Translation": "다가오는 주말을 위해 아이들에게도 잘 맞는, 자연 속의 멋진 나들이 장소를 찾고 있습니다.",
+    "Key Points": "Ausflugsziel (나들이 장소), geeignet sein für (적합하다)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-de-20261008-05-wollen-wir-heute-mittag",
@@ -1786,7 +2579,13 @@
     "vocabIds": [
       "de-das-broetchen"
     ],
-    "date": "2026-10-08"
+    "date": "2026-10-08",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wollen wir heute Mittag zusammen in die neue Bäckerei um die Ecke gehen und ein belegtes Brötchen holen?",
+    "Translation": "오늘 점심에 모퉁이에 새로 생긴 빵집에 같이 가서 샌드위치 하나 사 올까요?",
+    "Key Points": "um die Ecke (모퉁이에/근처에), belegtes Brötchen (샌드위치 빵)",
+    "Date": "2026-10-08"
   },
   {
     "id": "s-en-20261007-01-we-rely-on-a-two-phase-c",
@@ -1806,7 +2605,13 @@
       "en-heterogeneous",
       "en-coordinate"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We rely on a two-phase commit protocol to coordinate atomic transactions across heterogeneous financial ledgers.",
+    "Translation": "이기종 금융 원장 간의 원자적 트랜잭션을 조율하기 위해 2단계 커밋 프로토콜에 의존합니다.",
+    "Key Points": "two-phase commit (2단계 커밋), coordinate atomic transactions (원자적 트랜잭션 조율)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-02-the-payment-gateway-reje",
@@ -1826,7 +2631,13 @@
       "en-validation",
       "en-settlement"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The payment gateway rejects any settlement request if the cryptographic signature fails validation.",
+    "Translation": "암호화 서명 검증에 실패할 경우 결제 게이트웨이는 해당 정산 요청을 즉시 거부합니다.",
+    "Key Points": "payment gateway (결제 게이트웨이), fail validation (검증 실패)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-03-committing-message-offse",
@@ -1846,7 +2657,13 @@
       "en-offset",
       "en-duplicate"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Committing message offsets manually prevents duplicate transaction processing when consumer nodes restart.",
+    "Translation": "메시지 오프셋을 수동으로 커밋하면 컨슈머 노드가 재기동될 때 중복 트랜잭션 처리가 발생하는 것을 방지할 수 있습니다.",
+    "Key Points": "commit offsets (오프셋 커밋), duplicate processing (중복 처리)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-04-let-s-assess-the-blast-r",
@@ -1865,7 +2682,13 @@
     "vocabIds": [
       "en-blast-radius"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's assess the blast radius of this database schema change before deploying it to production.",
+    "Translation": "이 데이터베이스 스키마 변경 사항을 운영 환경에 배포하기 전에 영향 범위를 평가합시다.",
+    "Key Points": "blast radius (영향 범위), schema change (스키마 변경)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-05-i-am-wrapping-up-the-rel",
@@ -1885,7 +2708,13 @@
     "vocabIds": [
       "en-urgent"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I am wrapping up the release checklist now; please let me know if any pull request still needs an urgent review.",
+    "Translation": "지금 배포 체크리스트를 마무리 짓는 중인데, 아직 긴급 리뷰가 필요한 PR이 있다면 알려주세요.",
+    "Key Points": "wrap up (마무리하다), release checklist (배포 체크리스트)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-01-zur-sicherstellung-der-a",
@@ -1905,7 +2734,13 @@
       "de-die-sicherstellung",
       "de-das-verfahren"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zur Sicherstellung der Atomarität über verteilte Datenbestände setzen wir ein Zwei-Phasen-Commit-Verfahren ein.",
+    "Translation": "분산 데이터베이스 전반의 원자성을 보장하기 위해 우리는 2단계 커밋 방식을 적용합니다.",
+    "Key Points": "Sicherstellung (보장), Zwei-Phasen-Commit (2단계 커밋), einsetzen (도입하다)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-02-wird-die-digitale-signat",
@@ -1926,7 +2761,13 @@
       "de-die-signatur",
       "de-der-zahlungsauftrag"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wird die digitale Signatur einer Überweisung als ungültig eingestuft, verwirft das System den Zahlungsauftrag unverzüglich.",
+    "Translation": "계좌 이체의 전자 서명이 유효하지 않은 것으로 판정되면, 시스템은 해당 결제 주문을 지체 없이 기각합니다.",
+    "Key Points": "ungültig eingestuft (무효로 분류된), unverzüglich (지체 없이)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-03-die-manuelle-bestaetigung",
@@ -1946,7 +2787,13 @@
       "de-der-lesezeiger",
       "de-die-abbuchung"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die manuelle Bestätigung der Lesezeiger im Message-Broker schützt vor doppelten Abbuchungen bei Systemneustarts.",
+    "Translation": "메시지 브로커에서 읽기 포인터(오프셋)를 수동으로 확인 커밋함으로써 시스템 재기동 시 중복 출금을 방지합니다.",
+    "Key Points": "Lesezeiger (오프셋/포인터), doppelte Abbuchung (중복 출금)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-04-vor-dem-eingriff-in-die",
@@ -1968,7 +2815,13 @@
       "de-nachgelagert",
       "de-evaluieren"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Vor dem Eingriff in die Tabellenstruktur müssen wir die potenziellen Auswirkungen auf nachgelagerte Schnittstellen genau evaluieren.",
+    "Translation": "테이블 구조를 변경하기 전에 하위 연동 인터페이스에 미칠 수 있는 잠재적 영향을 정확히 평가해야 합니다.",
+    "Key Points": "Eingriff (변경 개입), nachgelagert (하위 연동의), evaluieren (평가하다)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-05-ich-gehe-kurz-in-die-kaf",
@@ -1985,7 +2838,13 @@
     "cloze": "Kaffeeküche",
     "keyPoints": "Kaffeeküche (탕비실), Bescheid sagen (알려주다), Unterstützung (지원/도움)",
     "vocabIds": [],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich gehe kurz in die Kaffeeküche; sagen Sie mir einfach Bescheid, wenn Sie Unterstützung beim Testen der API benötigen.",
+    "Translation": "탕비실에 잠깐 다녀올게요. API 테스트와 관련해 지원이 필요하시면 편하게 알려주세요.",
+    "Key Points": "Kaffeeküche (탕비실), Bescheid sagen (알려주다), Unterstützung (지원/도움)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-06-we-need-to-monitor-datab",
@@ -2004,7 +2863,13 @@
     "vocabIds": [
       "en-contention"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We need to monitor database lock contention before opening the transaction channel.",
+    "Translation": "거래 채널을 개방하기 전에 데이터베이스 락 경합 상태를 모니터링해야 합니다.",
+    "Key Points": "lock contention (락 경합), transaction channel (거래 채널)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-07-i-have-a-hard-stop-at-th",
@@ -2021,7 +2886,13 @@
     "cloze": "hard stop",
     "keyPoints": "hard stop (마지노선 시간), backlog items (백로그 항목)",
     "vocabIds": [],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I have a hard stop at three o'clock, so let's focus on the priority backlog items.",
+    "Translation": "제가 3시에 다른 일정이 있어 반드시 마쳐야 하니, 우선순위 백로그 항목에 집중합시다.",
+    "Key Points": "hard stop (마지노선 시간), backlog items (백로그 항목)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-08-the-weather-forecast-loo",
@@ -2038,7 +2909,13 @@
     "cloze": "bike ride",
     "keyPoints": "promising forecast (화창한 예보), bike ride (자전거 타기)",
     "vocabIds": [],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The weather forecast looks promising this weekend, so we are thinking of going for a family bike ride along the river.",
+    "Translation": "이번 주말 일기 예보가 맑다고 해서 강변을 따라 가족 자전거 라이딩을 다녀올까 생각 중입니다.",
+    "Key Points": "promising forecast (화창한 예보), bike ride (자전거 타기)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-09-i-stopped-by-the-local-b",
@@ -2055,7 +2932,13 @@
     "cloze": "on my way home",
     "keyPoints": "stop by (잠깐 들르다), on my way home (퇴근길에)",
     "vocabIds": [],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I stopped by the local bakery to pick up some fresh sourdough bread on my way home.",
+    "Translation": "퇴근하는 길에 갓 구운 사워도우 빵을 사려고 동네 빵집에 들렀습니다.",
+    "Key Points": "stop by (잠깐 들르다), on my way home (퇴근길에)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261007-10-i-am-going-to-stretch-my",
@@ -2074,7 +2957,13 @@
     "vocabIds": [
       "en-stretch"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I am going to stretch my legs and grab a coffee; let me know if you want anything.",
+    "Translation": "다리도 좀 풀 겸 커피 한잔 뽑아올 생각인데, 필요한 거 있으면 말씀하세요.",
+    "Key Points": "stretch legs (다리를 풀다/산책), grab a coffee (커피를 사다)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-06-vor-dem-start-des-batch",
@@ -2091,7 +2980,13 @@
     "cloze": "Batch",
     "keyPoints": "Batch-Lauf (배치 작업), ordnungsgemäß (적법하게), erfassen (입력하다)",
     "vocabIds": [],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Vor dem Start des Batch-Laufs müssen wir überprüfen, ob alle Kontobuchungen des Tages ordnungsgemäß erfasst wurden.",
+    "Translation": "배치 작업을 시작하기 전에 당일의 모든 계좌 기장이 적법하게 입력되었는지 확인해야 합니다.",
+    "Key Points": "Batch-Lauf (배치 작업), ordnungsgemäß (적법하게), erfassen (입력하다)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-07-koennten-wir-den-termin-u",
@@ -2110,7 +3005,13 @@
     "vocabIds": [
       "de-verschieben"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Könnten wir den Termin um eine halbe Stunde verschieben, da sich mein vorheriges Kundengespräch etwas verzögert?",
+    "Translation": "앞선 고객 미팅이 조금 지연되고 있어서, 회의를 30분만 늦출 수 있을까요?",
+    "Key Points": "verschieben um (미루다), sich verzögern (지연되다)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-08-am-samstag-wollen-wir-ei",
@@ -2127,7 +3028,13 @@
     "cloze": "Fahrradtour",
     "keyPoints": "Fahrradtour (자전거 라이딩), sofern (~하는 한)",
     "vocabIds": [],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Am Samstag wollen wir eine kleine Fahrradtour im Park machen, sofern das Wetter trocken und sonnig bleibt.",
+    "Translation": "날씨가 비 오지 않고 화창하기만 하다면, 토요일에 공원에서 가벼운 자전거 라이딩을 하려고 합니다.",
+    "Key Points": "Fahrradtour (자전거 라이딩), sofern (~하는 한)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-09-auf-dem-heimweg-gehe-ich",
@@ -2147,7 +3054,13 @@
       "de-das-abendessen",
       "de-die-frische"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Auf dem Heimweg gehe ich noch kurz in den Supermarkt, um frisches Gemüse für das Abendessen einzukaufen.",
+    "Translation": "퇴근길에 저녁 식사로 쓸 신선한 채소를 사기 위해 슈퍼마켓에 잠깐 들를 예정입니다.",
+    "Key Points": "auf dem Heimweg (퇴근길에), einkaufen (장보다)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-de-20261007-10-ich-mache-kurz-das-fenst",
@@ -2166,7 +3079,13 @@
     "vocabIds": [
       "de-die-frische"
     ],
-    "date": "2026-10-07"
+    "date": "2026-10-07",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich mache kurz das Fenster auf, um frische Luft hereinzulassen, bevor wir mit dem nächsten Thema weitermachen.",
+    "Translation": "다음 주제로 넘어가기 전에 환기 좀 시킬 겸 창문을 잠깐 열겠습니다.",
+    "Key Points": "Fenster aufmachen (창문 열다), frische Luft (신선한 공기/환기)",
+    "Date": "2026-10-07"
   },
   {
     "id": "s-en-20261006-01-we-directed-reporting-qu",
@@ -2186,7 +3105,13 @@
       "en-replica",
       "en-latency"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We directed reporting queries to read replicas to avoid transaction latency on the primary database.",
+    "Translation": "주 데이터베이스의 트랜잭션 지연을 방지하기 위해 조회용 쿼리는 읽기 전용 복제본으로 라우팅했습니다.",
+    "Key Points": "read replica (읽기 복제본), primary database (주 DB), latency (지연)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-en-20261006-02-payment-session-tokens-e",
@@ -2205,7 +3130,13 @@
     "vocabIds": [
       "en-vulnerability"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Payment session tokens expire after five minutes to reduce the window of vulnerability against replay attacks.",
+    "Translation": "재전송 공격에 노출되는 취약 시간대를 줄이기 위해 결제 세션 토큰은 5분 후 만료됩니다.",
+    "Key Points": "session token (세션 토큰), replay attack (재전송 공격)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-en-20261006-03-the-streaming-consumer-d",
@@ -2225,7 +3156,13 @@
       "en-backpressure",
       "en-critical"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The streaming consumer drops non-critical analytics events when backpressure reaches the critical memory limit.",
+    "Translation": "스트리밍 컨슈머는 역압이 임계 메모리 한도에 도달하면 중요하지 않은 분석 이벤트를 선별 드롭합니다.",
+    "Key Points": "backpressure (역압 제어), memory limit (메모리 한도)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-en-20261006-04-let-s-schedule-an-archit",
@@ -2247,7 +3184,13 @@
       "en-pipeline",
       "en-schedule"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's schedule an architectural review to validate whether the proposed data pipeline meets regulatory audit guidelines.",
+    "Translation": "제안된 데이터 파이프라인이 규제 감사 가이드라인을 충족하는지 검증하기 위해 아키텍처 리뷰 일정을 잡읍시다.",
+    "Key Points": "architectural review (아키텍처 리뷰), audit guidelines (감사 지침)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-en-20261006-05-i-will-step-away-from-my",
@@ -2267,7 +3210,13 @@
       "en-step-away",
       "en-discussion"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I will step away from my laptop for a quick stand-up discussion, but I can review your pull request right afterward.",
+    "Translation": "짧은 스탠드업 논의가 있어 노트북 앞을 잠시 비우겠지만, 끝나는 대로 바로 PR을 검토해 드릴게요.",
+    "Key Points": "step away (자리를 비우다), right afterward (직후에)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-de-20261006-01-zur-entlastung-der-primae",
@@ -2287,7 +3236,13 @@
       "de-die-entlastung",
       "de-die-leseabfrage"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zur Entlastung der primären Transaktionsdatenbank leiten wir reine Leseabfragen an synchrone Lesereplikate weiter.",
+    "Translation": "주 트랜잭션 데이터베이스의 부하를 덜기 위해 단순 조회 쿼리는 동기식 읽기 복제본으로 전달합니다.",
+    "Key Points": "Entlastung (부하 경감), Lesereplikat (읽기 복제본), weiterleiten (전달하다)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-de-20261006-02-die-gueltigkeitsdauer-der",
@@ -2307,7 +3262,13 @@
       "de-die-gueltigkeitsdauer",
       "de-das-missbrauchsrisiko"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die Gültigkeitsdauer der Autorisierungs-Tokens wurde auf fünf Minuten begrenzt, um das Missbrauchsrisiko bei Replay-Angriffen zu minimieren.",
+    "Translation": "재전송 공격 시 오남용 위험을 최소화하기 위해 인가 토큰의 유효 기간을 5분으로 제한했습니다.",
+    "Key Points": "Gültigkeitsdauer (유효 기간), Missbrauchsrisiko (오남용 위험)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-de-20261006-03-sobald-der-puffer-voll-i",
@@ -2327,7 +3288,13 @@
       "de-unterbrechungsfrei",
       "de-nachrangig"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Sobald der Puffer voll ist, verwirft das System nachrangige Protokollereignisse, um den unterbrechungsfreien Kernbankbetrieb zu sichern.",
+    "Translation": "버퍼가 가득 차면 계정계의 무중단 가동을 보장하기 위해 시스템이 우선순위가 낮은 로그 이벤트를 폐기합니다.",
+    "Key Points": "nachrangig (후순위의), verwerfen (폐기하다), unterbrechungsfrei (무중단의)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-de-20261006-04-wir-sollten-die-vorgesch",
@@ -2347,7 +3314,13 @@
       "de-die-pruefvorgabe",
       "de-die-einhaltung"
     ],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten die vorgeschlagene Datenarchitektur vorab prüfen, um die Einhaltung der aufsichtsrechtlichen Prüfvorgaben zu gewährleisten.",
+    "Translation": "금융감독 당국의 감사 지침 준수를 보장하기 위해 제안된 데이터 아키텍처를 사전에 검토해야 합니다.",
+    "Key Points": "Einhaltung gewährleisten (준수 보장), Prüfvorgaben (감사 지침)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-de-20261006-05-ich-hole-mir-kurz-einen",
@@ -2364,7 +3337,13 @@
     "cloze": "Entwurf",
     "keyPoints": "einen Blick werfen (살펴보다), Entwurf (초안/설계안)",
     "vocabIds": [],
-    "date": "2026-10-06"
+    "date": "2026-10-06",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich hole mir kurz einen Tee und werfe danach sofort einen Blick auf Ihren überarbeiteten Architektur-Entwurf.",
+    "Translation": "차 한잔 타 올 테니, 다녀와서 바로 수정된 아키텍처 설계 초안을 살펴보겠습니다.",
+    "Key Points": "einen Blick werfen (살펴보다), Entwurf (초안/설계안)",
+    "Date": "2026-10-06"
   },
   {
     "id": "s-en-20261005-01-we-configured-a-write-th",
@@ -2385,7 +3364,13 @@
       "en-distributed",
       "en-consistency"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We configured a write-through cache to maintain consistency between distributed account balances and the underlying database.",
+    "Translation": "분산 계좌 잔액과 기본 데이터베이스 간의 일관성을 유지하기 위해 라이트스루 캐시를 설정했습니다.",
+    "Key Points": "write-through cache (라이트스루 캐시), maintain consistency (일관성 유지)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-en-20261005-02-every-payment-dispatch-r",
@@ -2405,7 +3390,13 @@
       "en-alteration",
       "en-dispatch"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Every payment dispatch request must contain a digital signature to guarantee message integrity against unauthorized alteration.",
+    "Translation": "무단 변조에 대응하여 메시지 무결성을 보장하기 위해 모든 지급 발송 요청에는 전자 서명이 포함되어야 합니다.",
+    "Key Points": "payment dispatch (지급 발송), digital signature (전자 서명), unauthorized alteration (무단 변조)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-en-20261005-03-splitting-large-settleme",
@@ -2425,7 +3416,13 @@
       "en-contention",
       "en-settlement"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Splitting large settlement batches into smaller chunks substantially mitigated database lock contention during morning peaks.",
+    "Translation": "대규모 정산 배치를 더 작은 덩어리로 분할함으로써 아침 피크 시간대 동안 데이터베이스 락 경합을 대폭 완화했습니다.",
+    "Key Points": "lock contention (락 경합), settlement batch (정산 배치), mitigate (완화하다)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-en-20261005-04-let-s-break-down-the-epi",
@@ -2445,7 +3442,13 @@
       "en-actionable",
       "en-break-down"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's break down the epic into actionable user stories before the sprint planning session starts.",
+    "Translation": "스프린트 계획 세션이 시작되기 전에 에픽을 실행 가능한 사용자 스토리로 세분화합시다.",
+    "Key Points": "break down (세분화하다), epic (에픽), actionable user stories (실행 가능한 스토리)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-en-20261005-05-i-am-setting-up-my-local",
@@ -2464,7 +3467,13 @@
     "vocabIds": [
       "en-sprint"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I am setting up my local development environment for the new sprint; let me know if anyone needs the updated seed data.",
+    "Translation": "새 스프린트를 위해 로컬 개발 환경을 세팅하는 중인데, 최신 시드 데이터가 필요한 분은 알려주세요.",
+    "Key Points": "local development environment (로컬 개발 환경), seed data (시드 데이터)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-de-20261005-01-durch-den-einsatz-eines",
@@ -2481,7 +3490,13 @@
     "cloze": "Write",
     "keyPoints": "Write-Through-Cache (라이트스루 캐시), übereinstimmen mit (일치하다)",
     "vocabIds": [],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Durch den Einsatz eines Write-Through-Caches stellen wir sicher, dass Kontostände im Arbeitsspeicher stets mit den Datensätzen der Kernbank übereinstimmen.",
+    "Translation": "라이트스루 캐시를 도입하여 메모리상의 계좌 잔액이 항상 계정계 데이터 레코드와 일치하도록 보장합니다.",
+    "Key Points": "Write-Through-Cache (라이트스루 캐시), übereinstimmen mit (일치하다)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-de-20261005-02-jede-transaktionsanfrage",
@@ -2502,7 +3517,13 @@
       "de-die-signatur",
       "de-unbefugt"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Jede Transaktionsanfrage muss mit einer gültigen digitalen Signatur versehen sein, um eine unbefugte Manipulation zu verhindern.",
+    "Translation": "무단 변조를 방지하기 위해 모든 트랜잭션 요청에는 유효한 전자 서명이 첨부되어 있어야 합니다.",
+    "Key Points": "digitale Signatur (전자 서명), unbefugte Manipulation (무단 변조)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-de-20261005-03-die-aufteilung-des-buchu",
@@ -2522,7 +3543,13 @@
       "de-der-sperrkonflikt",
       "de-die-aufteilung"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die Aufteilung des Buchungslaufs in kleinere Einheiten verringerte Sperrkonflikte auf der Datenbank während der morgendlichen Lastspitzen erheblich.",
+    "Translation": "회계 기장 배치를 더 작은 단위로 분할함으로써 아침 부하 피크 동안 데이터베이스의 락 충돌을 대폭 줄였습니다.",
+    "Key Points": "Sperrkonflikt (락 충돌), Lastspitze (부하 피크), verringern (줄이다)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-de-20261005-04-wir-sollten-die-offenen",
@@ -2542,7 +3569,13 @@
       "de-das-arbeitspaket",
       "de-zerlegen"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten die offenen Anforderungen in kleinere Arbeitspakete zerlegen, bevor wir das Sprint-Ziel gemeinsam verabschieden.",
+    "Translation": "스프린트 목표를 다 함께 공식 확정하기 전에, 미결 요구사항들을 더 작은 작업 패키지로 분해해야 합니다.",
+    "Key Points": "Arbeitspakete (작업 패키지), zerlegen (분해하다/쪼개다), verabschieden (확정/의결하다)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-de-20261005-05-ich-richte-gerade-die-lo",
@@ -2561,7 +3594,13 @@
     "vocabIds": [
       "de-die-umgebungsvariable"
     ],
-    "date": "2026-10-05"
+    "date": "2026-10-05",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich richte gerade die lokale Konfiguration für das neue Release ein; geben Sie mir Bescheid, falls Umgebungsvariablen fehlen.",
+    "Translation": "새 릴리스를 위한 로컬 설정을 세팅하고 있습니다. 환경 변수가 누락된 경우 제게 알려주세요.",
+    "Key Points": "lokale Konfiguration (로컬 설정), einrichten (세팅하다), Umgebungsvariable (환경 변수)",
+    "Date": "2026-10-05"
   },
   {
     "id": "s-en-20261002-01-we-scheduled-a-simulated",
@@ -2581,7 +3620,13 @@
       "en-drill",
       "en-failover"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We scheduled a simulated disaster recovery drill to verify automated failover before the market opens on Monday.",
+    "Translation": "월요일 개장 전에 자동 장애 복구를 검증하기 위해 모의 재해 복구 훈련을 계획했습니다.",
+    "Key Points": "disaster recovery drill (재해 복구 훈련), failover (장애 복구)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-en-20261002-02-all-administrative-remot",
@@ -2601,7 +3646,13 @@
       "en-inactivity",
       "en-core"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "All administrative remote sessions to the core banking cluster will automatically disconnect after fifteen minutes of inactivity.",
+    "Translation": "계정계 클러스터에 대한 모든 관리자 원격 세션은 15분간 유휴 상태가 지속되면 자동으로 연결이 종료됩니다.",
+    "Key Points": "administrative session (관리자 세션), inactivity (유휴 상태)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-en-20261002-03-the-payment-ingestion-pi",
@@ -2621,7 +3672,13 @@
       "en-ingestion",
       "en-pipeline"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The payment ingestion pipeline writes raw transaction records to persistent disks to prevent data loss during power outages.",
+    "Translation": "결제 인입 파이프라인은 정전 시 데이터 유실을 방지하기 위해 원시 트랜잭션 기록을 영구 디스크에 직접 기록합니다.",
+    "Key Points": "ingestion pipeline (인입 파이프라인), power outage (정전)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-en-20261002-04-we-are-entering-a-releas",
@@ -2642,7 +3699,13 @@
       "en-patch",
       "en-critical"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We are entering a release freeze this afternoon, so only critical security patches can be deployed until next week.",
+    "Translation": "오늘 오후부터 릴리즈 동결에 들어가므로, 다음 주까지는 긴급 보안 패치만 배포될 수 있습니다.",
+    "Key Points": "release freeze (배포 동결), critical security patches (긴급 보안 패치)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-en-20261002-05-let-s-double-check-the-m",
@@ -2662,7 +3725,13 @@
       "en-hand-over",
       "en-pending"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's double-check the monitoring dashboards and hand over all pending tickets before heading out for the weekend.",
+    "Translation": "주말 퇴근 전에 모니터링 대시보드를 재확인하고 미결 티켓들을 모두 인계합시다.",
+    "Key Points": "double-check (재확인하다), hand over (인계하다)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-de-20261002-01-um-die-ausfallsicherheit",
@@ -2685,7 +3754,13 @@
       "de-das-kernbankensystem",
       "de-gewaehrleisten"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um die Ausfallsicherheit zu gewährleisten, führen wir heute Abend eine Notfallübung für das Kernbankensystem durch.",
+    "Translation": "고가용성을 보장하기 위해, 우리는 오늘 저녁 계정계 시스템에 대한 재해 복구 모의 훈련을 실시합니다.",
+    "Key Points": "Ausfallsicherheit (고가용성), Notfallübung (재해 복구 훈련), durchführen (실시하다)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-de-20261002-02-nach-zehn-minuten-ohne-a",
@@ -2702,7 +3777,13 @@
     "cloze": "aus Sicherheitsgründen",
     "keyPoints": "aus Sicherheitsgründen (보안상의 이유로), getrennt werden (종료되다)",
     "vocabIds": [],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Nach zehn Minuten ohne Aktivität wird die Verbindung zur Datenbankkonsole aus Sicherheitsgründen automatisch getrennt.",
+    "Translation": "보안상의 이유로 데이터베이스 콘솔에 대한 연결은 10분 동안 활동이 없으면 자동으로 종료됩니다.",
+    "Key Points": "aus Sicherheitsgründen (보안상의 이유로), getrennt werden (종료되다)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-de-20261002-03-zur-vermeidung-von-daten",
@@ -2722,7 +3803,13 @@
       "de-der-datenverlust",
       "de-unmittelbar"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zur Vermeidung von Datenverlusten werden alle Zahlungsnachrichten unmittelbar auf redundanten Speichermedien persistiert.",
+    "Translation": "데이터 유실을 방지하기 위해 모든 결제 메시지는 이중화된 저장 매체에 즉시 영구 저장됩니다.",
+    "Key Points": "Datenverlust (데이터 유실), persistieren (영구 저장하다)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-de-20261002-04-ab-vierzehn-uhr-gilt-ein",
@@ -2742,7 +3829,13 @@
       "de-der-release-stopp",
       "de-der-bereitschaftsdienst"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ab vierzehn Uhr gilt ein strikter Release-Stopp, damit der Wochenend-Bereitschaftsdienst nicht durch unvorhergesehene Fehler belastet wird.",
+    "Translation": "주말 당직 대기조가 예기치 못한 오류로 부담을 겪지 않도록 14시부터 엄격한 배포 동결이 적용됩니다.",
+    "Key Points": "Release-Stopp (배포 동결), Bereitschaftsdienst (당직 대기조)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-de-20261002-05-ich-schliesse-jetzt-die-l",
@@ -2762,7 +3855,13 @@
       "de-stoerungsfrei",
       "de-erholsam"
     ],
-    "date": "2026-10-02"
+    "date": "2026-10-02",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich schließe jetzt die letzten Kontrollen ab und wünsche Ihnen allen ein erholsames, störungsfreies Wochenende.",
+    "Translation": "이제 마지막 점검들을 마무리하고 퇴근합니다. 모두 장애 없이 평온하고 재충전되는 주말 보내세요.",
+    "Key Points": "abschließen (마무리하다), störungsfrei (장애 없는), erholsam (휴식이 되는)",
+    "Date": "2026-10-02"
   },
   {
     "id": "s-en-20261001-01-we-added-distributed-tra",
@@ -2783,7 +3882,13 @@
       "en-distributed",
       "en-settlement"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We added distributed tracing headers to follow transaction paths across all settlement microservices.",
+    "Translation": "모든 정산 마이크로서비스에 걸친 트랜잭션 경로를 추적하기 위해 분산 추적 헤더를 추가했습니다.",
+    "Key Points": "distributed tracing (분산 추적), tracing headers (추적 헤더)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-en-20261001-02-under-the-principle-of-l",
@@ -2803,7 +3908,13 @@
       "en-privilege",
       "en-ledger"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Under the principle of least privilege, service accounts can only read the ledgers assigned to them.",
+    "Translation": "최소 권한의 원칙에 따라, 서비스 계정은 자신에게 할당된 원장만 읽을 수 있습니다.",
+    "Key Points": "least privilege (최소 권한), ledger (원장)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-en-20261001-03-increasing-the-partition",
@@ -2823,7 +3934,13 @@
       "en-clearing",
       "en-partition"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Increasing the partition count allowed the consumer group to process clearing events in parallel without delay.",
+    "Translation": "파티션 수를 늘림으로써 컨슈머 그룹이 지연 없이 청산 이벤트를 병렬로 처리할 수 있게 되었습니다.",
+    "Key Points": "partition count (파티션 수), in parallel (병렬로)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-en-20261001-04-let-s-review-the-depende",
@@ -2844,7 +3961,13 @@
       "en-coordinate",
       "en-dependency"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's review the dependency graph this afternoon so we can coordinate the cutover window smoothly.",
+    "Translation": "시스템 전환 작업 시간대를 원활하게 조율할 수 있도록 오늘 오후에 의존성 그래프를 검토합시다.",
+    "Key Points": "dependency graph (의존성 그래프), cutover window (전환 시간대)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-en-20261001-05-i-am-about-to-wrap-up-th",
@@ -2864,7 +3987,13 @@
       "en-wrap-up",
       "en-ping"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I am about to wrap up this technical report; feel free to ping me if you need help with testing.",
+    "Translation": "이 기술 보고서를 막 마무리하려는 참이니, 테스트 관련 도움이 필요하시면 편하게 메시지 남겨주세요.",
+    "Key Points": "wrap up (마무리하다), ping me (연락하다)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-de-20261001-01-zur-lueckenlosen-nachverf",
@@ -2884,7 +4013,13 @@
       "de-die-nachverfolgung",
       "de-lueckenlos"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zur lückenlosen Nachverfolgung komplexer Buchungswege setzen wir auf verteilte Tracing-Mechanismen über alle beteiligten Dienste.",
+    "Translation": "복잡한 회계 분개 경로를 누락 없이 추적하기 위해 우리는 모든 관련 서비스에 분산 추적 메커니즘을 적용합니다.",
+    "Key Points": "Nachverfolgung (추적), Buchungsweg (기장 경로), Tracing (추적)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-de-20261001-02-nach-dem-prinzip-der-min",
@@ -2904,7 +4039,13 @@
       "de-die-rechtevergabe",
       "de-ausschliesslich"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Nach dem Prinzip der minimalen Rechtevergabe dürfen Service-Konten ausschließlich auf die ihnen zugewiesenen Saldenkonten zugreifen.",
+    "Translation": "최소 권한 부여 원칙에 따라 서비스 계정은 오직 자신에게 할당된 잔액 계좌에만 접근할 수 있습니다.",
+    "Key Points": "minimale Rechtevergabe (최소 권한), ausschließlich (오로지)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-de-20261001-03-die-erhoehung-der-partiti",
@@ -2923,7 +4064,13 @@
     "vocabIds": [
       "de-die-verzoegerung"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die Erhöhung der Partitionen ermöglichte es, die Verrechnungsaufträge ohne Verzögerung parallel abzuarbeiten.",
+    "Translation": "파티션 확장을 통해 정산 처리 주문을 지연 없이 병렬로 처리하는 것이 가능해졌습니다.",
+    "Key Points": "Erhöhung (확장), Verrechnungsauftrag (정산 주문), parallel (병렬로)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-de-20261001-04-wir-muessen-das-zeitfenst",
@@ -2943,7 +4090,13 @@
       "de-das-zeitfenster",
       "de-die-systemumstellung"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir müssen das Zeitfenster für die Systemumstellung im Vorfeld mit dem Betriebsteam verbindlich abstimmen.",
+    "Translation": "시스템 전환 작업 시간대를 운영팀과 사전에 확정적으로 조율해야 합니다.",
+    "Key Points": "Zeitfenster (작업 시간대), Systemumstellung (시스템 전환), abstimmen (조율하다)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-de-20261001-05-ich-stelle-die-spezifika",
@@ -2963,7 +4116,13 @@
       "de-die-spezifikation",
       "de-die-schnittstelle"
     ],
-    "date": "2026-10-01"
+    "date": "2026-10-01",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich stelle die Spezifikation der neuen Schnittstelle gleich ins Confluence; geben Sie mir Bescheid, falls Sie Fragen dazu haben.",
+    "Translation": "새 인터페이스 명세서를 곧 컨플루언스에 올려둘 테니, 관련해서 질문이 있으시면 알려주세요.",
+    "Key Points": "Spezifikation (명세서), Bescheid geben (알려주다)",
+    "Date": "2026-10-01"
   },
   {
     "id": "s-en-20260930-01-we-implemented-optimisti",
@@ -2983,7 +4142,13 @@
       "en-locking",
       "en-update"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We implemented optimistic locking with version checks to handle concurrent updates to user balance records.",
+    "Translation": "사용자 잔액 레코드에 대한 동시 업데이트를 처리하기 위해 버전 검증 방식의 낙관적 락을 구현했습니다.",
+    "Key Points": "optimistic locking (낙관적 락), concurrent updates (동시 업데이트)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-en-20260930-02-api-signing-keys-must-be",
@@ -3002,7 +4167,13 @@
     "vocabIds": [
       "en-credential"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "API signing keys must be rotated every ninety days to reduce the risk of credential exposure.",
+    "Translation": "자격 증명 노출 위험을 줄이기 위해 API 서명 키는 90일마다 교체되어야 합니다.",
+    "Key Points": "rotate keys (키 주기적 교체), credential exposure (자격 증명 노출)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-en-20260930-03-we-configured-reactive-b",
@@ -3022,7 +4193,13 @@
       "en-volatility",
       "en-backpressure"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We configured reactive backpressure to protect downstream trading engines during sudden market volatility.",
+    "Translation": "급격한 시장 변동성 동안 하위 거래 엔진을 보호하기 위해 리액티브 역압 제어를 설정했습니다.",
+    "Key Points": "backpressure (역압 제어), market volatility (시장 변동성)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-en-20260930-04-we-should-address-the-te",
@@ -3043,7 +4220,13 @@
       "en-settlement",
       "en-feature"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We should address the technical debt in our settlement module before committing to new feature requests.",
+    "Translation": "새로운 기능 요청 일정을 확정하기 전에 정산 모듈의 기술 부채를 먼저 해결해야 합니다.",
+    "Key Points": "technical debt (기술 부채), settlement module (정산 모듈)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-en-20260930-05-i-will-step-out-for-lunc",
@@ -3062,7 +4245,13 @@
     "vocabIds": [
       "en-step-out"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I will step out for lunch shortly, but I will review your pull request as soon as I get back.",
+    "Translation": "곧 점심 먹으러 잠시 나갈 텐데, 돌아오는 대로 바로 PR을 검토하겠습니다.",
+    "Key Points": "step out (잠시 자리를 비우다), review PR (PR 검토)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-de-20260930-01-zur-vermeidung-von-daten",
@@ -3082,7 +4271,13 @@
       "de-das-sperrverfahren",
       "de-der-datenkonflikt"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zur Vermeidung von Datenkonflikten bei gleichzeitigen Kontozugriffen verwenden wir ein optimistisches Sperrverfahren mit Versionsprüfung.",
+    "Translation": "동시 계좌 접근 시 데이터 충돌을 방지하기 위해, 우리는 버전 검증을 통한 낙관적 락 방식을 사용합니다.",
+    "Key Points": "Sperrverfahren (락 방식), Datenkonflikt (데이터 충돌), Versionsprüfung (버전 검증)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-de-20260930-02-alle-kryptografischen-sc",
@@ -3102,7 +4297,13 @@
       "de-der-schluessel",
       "de-turnusmaessig"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Alle kryptografischen Schlüssel für Zahlungsschnittstellen müssen turnusmäßig erneuert werden, um regulatorischen Sicherheitsstandards zu genügen.",
+    "Translation": "규제 보안 표준을 충족하기 위해 결제 인터페이스용 모든 암호화 키는 정기적으로 갱신되어야 합니다.",
+    "Key Points": "kryptografische Schlüssel (암호화 키), turnusmäßig (정기적인), genügen (충족하다)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-de-20260930-03-um-eine-ueberlastung-der",
@@ -3121,7 +4322,13 @@
     "vocabIds": [
       "de-die-handelsplattform"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um eine Überlastung der Handelsplattform zu verhindern, drosselt das System eingehende Aufträge bei extremer Marktvolatilität.",
+    "Translation": "거래 플랫폼의 과부하를 방지하기 위해, 시스템은 극심한 시장 변동성 발생 시 인입 주문을 스로틀링합니다.",
+    "Key Points": "Handelsplattform (거래 플랫폼), drosseln (제한하다/스로틀링하다), Marktvolatilität (시장 변동성)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-de-20260930-04-wir-sollten-die-technisc",
@@ -3141,7 +4348,13 @@
       "de-die-schuld",
       "de-abbauen"
     ],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten die technische Schuld im Verrechnungsmodul schrittweise abbauen, bevor wir den nächsten Release-Zyklus eröffnen.",
+    "Translation": "다음 배포 주기를 개시하기 전에 정산 모듈의 기술 부채를 단계적으로 해소해야 합니다.",
+    "Key Points": "technische Schuld abbauen (기술 부채 해소), Verrechnungsmodul (정산 모듈)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-de-20260930-05-ich-gehe-kurz-in-die-mit",
@@ -3159,7 +4372,13 @@
     "cloze": "Mittagspause",
     "keyPoints": "Mittagspause (점심시간), sich anschauen (살펴보다), Rückkehr (복귀)",
     "vocabIds": [],
-    "date": "2026-09-30"
+    "date": "2026-09-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich gehe kurz in die Mittagspause und schaue mir Ihren Code-Entwurf gleich nach meiner Rückkehr an.",
+    "Translation": "잠깐 점심 식사하러 다녀올 테니, 복귀하는 대로 바로 보내주신 코드 초안을 확인하겠습니다.",
+    "Key Points": "Mittagspause (점심시간), sich anschauen (살펴보다), Rückkehr (복귀)",
+    "Date": "2026-09-30"
   },
   {
     "id": "s-en-20260929-01-we-adopted-the-saga-patt",
@@ -3179,7 +4398,13 @@
       "en-distributed",
       "en-consistency"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We adopted the Saga pattern with compensating transactions to ensure eventual consistency across distributed payment services.",
+    "Translation": "분산 결제 서비스 전반의 최종 일관성을 보장하기 위해 보상 트랜잭션을 포함한 사가(Saga) 패턴을 채택했습니다.",
+    "Key Points": "compensating transaction (보상 트랜잭션), eventual consistency (최종 일관성)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-en-20260929-02-customer-bank-account-nu",
@@ -3198,7 +4423,13 @@
     "vocabIds": [
       "en-irreversible"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Customer bank account numbers must be replaced with irreversible tokens before being passed to external analytics platforms.",
+    "Translation": "외부 분석 플랫폼으로 전달되기 전에 고객 은행 계좌 번호는 비가역적 토큰으로 대체되어야 합니다.",
+    "Key Points": "irreversible tokens (비가역적 토큰), tokenization (토큰화)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-en-20260929-03-partitioning-the-message",
@@ -3217,7 +4448,13 @@
     "vocabIds": [
       "en-partition"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Partitioning the message topic by account ID prevents race conditions during high-volume fund transfers.",
+    "Translation": "계좌 ID별로 메시지 토픽을 파티셔닝(분할)하면 대용량 자금 이체 시 레이스 컨디션이 발생하는 것을 방지할 수 있습니다.",
+    "Key Points": "partitioning (파티셔닝), race conditions (경쟁 상태)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-en-20260929-04-any-emergency-hotfix-dep",
@@ -3237,7 +4474,13 @@
       "en-hotfix",
       "en-explicit"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Any emergency hotfix deployed outside the regular release cycle requires an explicit approval from the tech lead.",
+    "Translation": "정기 배포 주기 외에 적용되는 모든 긴급 핫픽스는 테크 리드의 명시적인 승인을 필요로 합니다.",
+    "Key Points": "emergency hotfix (긴급 핫픽스), explicit approval (명시적 승인)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-en-20260929-05-could-you-ping-me-on-sla",
@@ -3257,7 +4500,13 @@
       "en-ping",
       "en-deployment"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Could you ping me on Slack once the staging deployment is finished so I can run the smoke tests?",
+    "Translation": "스모크 테스트를 실행할 수 있도록 스테이징 환경 배포가 완료되면 슬랙으로 핑(메시지) 한번 주시겠어요?",
+    "Key Points": "ping someone (메시지를 보내다), smoke tests (스모크 테스트)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-de-20260929-01-beim-scheitern-eines-tei",
@@ -3276,7 +4525,13 @@
     "vocabIds": [
       "de-die-datenkonsistenz"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Beim Scheitern eines Teilschritts im Buchungsprozess muss eine Kompensationstransaktion ausgelöst werden, um die Datenkonsistenz wiederherzustellen.",
+    "Translation": "회계 기장 단계의 하위 단계가 실패할 경우, 데이터 정합성을 복구하기 위해 보상 트랜잭션이 실행되어야 합니다.",
+    "Key Points": "Kompensationstransaktion (보상 트랜잭션), Datenkonsistenz (데이터 정합성)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-de-20260929-02-um-den-datenschutzrichtl",
@@ -3295,7 +4550,13 @@
     "vocabIds": [
       "de-entsprechen"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um den Datenschutzrichtlinien zu entsprechen, werden IBAN-Nummern vor der Übermittlung an externe Dienstleister pseudonymisiert.",
+    "Translation": "데이터 보호 지침을 준수하기 위해 외부 서비스 제공업체로 전송하기 전에 IBAN은 가명화 처리됩니다.",
+    "Key Points": "Datenschutzrichtlinien (데이터 보호 지침), pseudonymisieren (가명화하다)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-de-20260929-03-die-gezielte-partitionie",
@@ -3316,7 +4577,13 @@
       "de-die-buchung",
       "de-gezielt"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die gezielte Partitionierung von Kafka-Topics nach Kundengruppen minimiert das Auftreten von Race-Conditions bei parallelen Buchungen.",
+    "Translation": "고객 그룹별로 카프카 토픽을 타겟 분할하면 동시 기장 처리 시 레이스 컨디션의 발생을 최소화할 수 있습니다.",
+    "Key Points": "Partitionierung (파티셔닝), Race-Conditions (경쟁 상태)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-de-20260929-04-jede-ausserplanmaessige-feh",
@@ -3338,7 +4605,13 @@
       "de-ausserplanmaessig",
       "de-ausdruecklich"
     ],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Jede außerplanmäßige Fehlerbehebung auf dem Produktivsystem bedarf der ausdrücklichen Genehmigung des Change-Advisory-Boards.",
+    "Translation": "운영 시스템에서의 모든 비정기 긴급 오류 수정은 변경 자문 위원회의 명시적 승인을 필요로 합니다.",
+    "Key Points": "außerplanmäßig (비정기의), ausdrückliche Genehmigung (명시적 승인)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-de-20260929-05-schreiben-sie-mir-kurz-i",
@@ -3355,7 +4628,13 @@
     "cloze": null,
     "keyPoints": "kurz im Chat schreiben (채팅으로 연락하다), einspielen (반영하다/적재하다)",
     "vocabIds": [],
-    "date": "2026-09-29"
+    "date": "2026-09-29",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Schreiben Sie mir kurz im Chat, sobald die Testdaten eingespielt sind, damit wir die Lasttests starten können.",
+    "Translation": "부하 테스트를 시작할 수 있도록 테스트 데이터 반영이 완료되는 대로 채팅창에 짧게 메시지 남겨주세요.",
+    "Key Points": "kurz im Chat schreiben (채팅으로 연락하다), einspielen (반영하다/적재하다)",
+    "Date": "2026-09-29"
   },
   {
     "id": "s-en-20260928-01-we-decided-to-implement",
@@ -3372,7 +4651,13 @@
     "cloze": "event sourcing",
     "keyPoints": "event sourcing (이벤트 소싱), chronological (시간 순서의)",
     "vocabIds": [],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We decided to implement event sourcing so that every account balance change can be audited chronologically.",
+    "Translation": "모든 계좌 잔액 변경 이력을 시간 순서대로 감사할 수 있도록 이벤트 소싱을 도입하기로 결정했습니다.",
+    "Key Points": "event sourcing (이벤트 소싱), chronological (시간 순서의)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-en-20260928-02-mutual-tls-authenticatio",
@@ -3391,7 +4676,13 @@
     "vocabIds": [
       "en-authentication"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Mutual TLS authentication is required for all microservices exchanging sensitive credit transaction requests.",
+    "Translation": "민감한 신용 거래 요청을 주고받는 모든 마이크로서비스 간에는 상호 TLS(mTLS) 인증이 필수적입니다.",
+    "Key Points": "mutual TLS (상호 TLS), transaction requests (거래 요청)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-en-20260928-03-applying-the-bulkhead-pa",
@@ -3411,7 +4702,13 @@
       "en-bulkhead",
       "en-core"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Applying the bulkhead pattern isolates thread pools and prevents foreign exchange trading failures from freezing core deposits.",
+    "Translation": "벌크헤드 패턴을 적용하면 스레드 풀이 격리되어 외환 거래 장애가 원화 예금 업무까지 마비시키는 것을 방지할 수 있습니다.",
+    "Key Points": "bulkhead pattern (격벽 패턴), isolate thread pools (스레드 풀 격리)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-en-20260928-04-let-s-review-our-velocit",
@@ -3432,7 +4729,13 @@
       "en-velocity",
       "en-deliverable"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's review our velocity from the previous quarter before we commit to the upcoming sprint deliverables.",
+    "Translation": "다가오는 스프린트의 산출물 일정을 확정하기 전에 지난 분기의 개발 속도를 먼저 검토합시다.",
+    "Key Points": "sprint velocity (스프린트 속도), commit to deliverables (산출물 확정)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-en-20260928-05-i-will-grab-a-fresh-cup",
@@ -3451,7 +4754,13 @@
     "vocabIds": [
       "en-draft"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I will grab a fresh cup of coffee and jump straight into drafting the technical design document.",
+    "Translation": "커피 한잔 새로 타 와서 곧바로 기술 설계 문서 초안 작성에 착수하겠습니다.",
+    "Key Points": "jump straight into (곧바로 착수하다), technical design (기술 설계)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-de-20260928-01-durch-die-einfuehrung-ein",
@@ -3472,7 +4781,13 @@
       "de-manipulationssicher",
       "de-lueckenlos"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Durch die Einführung eines Event-Sourcing-Musters können sämtliche Kontostandänderungen lückenlos und manipulationssicher nachvollzogen werden.",
+    "Translation": "이벤트 소싱 패턴을 도입함으로써 모든 계좌 잔액 변경 이력을 누락 없이 위변조 방지 형태로 추적할 수 있습니다.",
+    "Key Points": "Event-Sourcing (이벤트 소싱), manipulationssicher (위변조 방지의), nachvollziehen (추적하다)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-de-20260928-02-fuer-die-uebertragung-von",
@@ -3492,7 +4807,13 @@
       "de-die-zertifikatspruefung",
       "de-verbindlich"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Für die Übertragung von Zahlungsaufträgen ist eine beidseitige Zertifikatsprüfung auf Transportebene verbindlich vorgeschrieben.",
+    "Translation": "지급 결제 주문 전송 시에는 전송 계층에서의 상호 인증서 검증이 의무적으로 규정되어 있습니다.",
+    "Key Points": "Zahlungsauftrag (지급 주문), Zertifikatsprüfung (인증서 검증), verbindlich (의무적인)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-de-20260928-03-die-trennung-kritischer",
@@ -3512,7 +4833,13 @@
       "de-der-wertpapierhandel",
       "de-die-trennung"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die Trennung kritischer Thread-Pools verhindert, dass Störungen im Wertpapierhandel auf das Zahlungsverkehrsmodul übergreifen.",
+    "Translation": "핵심 스레드 풀의 격리는 유가증권 거래의 장애가 결제 트랜잭션 모듈로 전파되는 것을 방지합니다.",
+    "Key Points": "Wertpapierhandel (증권 거래), übergreifen auf (확산되다/번지다)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-de-20260928-04-wir-sollten-die-offenen",
@@ -3531,7 +4858,13 @@
     "vocabIds": [
       "de-verbindlich"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten die offenen Punkte aus der Architekturbewertung priorisieren, bevor wir den nächsten Sprint verbindlich planen.",
+    "Translation": "다음 스프린트를 확정적으로 계획하기 전에, 아키텍처 평가에서 나온 미결 항목들의 우선순위를 정해야 합니다.",
+    "Key Points": "Architekturbewertung (아키텍처 평가), priorisieren (우선순위를 매기다)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-de-20260928-05-ich-bereite-kurz-die-dis",
@@ -3550,7 +4883,13 @@
     "vocabIds": [
       "de-die-diskussionsgrundlage"
     ],
-    "date": "2026-09-28"
+    "date": "2026-09-28",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich bereite kurz die Diskussionsgrundlage für das wöchentliche Alignment vor und teile gleich den Einwahllink.",
+    "Translation": "주간 조율 미팅을 위한 논의 자료를 간단히 준비하고 곧 회의 접속 링크를 공유하겠습니다.",
+    "Key Points": "Diskussionsgrundlage (논의 자료), Alignment (조율), Einwahllink (접속 링크)",
+    "Date": "2026-09-28"
   },
   {
     "id": "s-en-20260925-01-we-must-verify-that-zero",
@@ -3570,7 +4909,13 @@
       "en-downtime",
       "en-verify"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We must verify that zero-downtime deployment pipelines function properly before scheduling major weekend maintenance.",
+    "Translation": "주말 주요 유지보수 작업을 계획하기 전에 무중단 배포 파이프라인이 정상적으로 동작하는지 반드시 검증해야 합니다.",
+    "Key Points": "zero-downtime deployment (무중단 배포), verify (검증하다)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-en-20260925-02-all-remote-administrativ",
@@ -3590,7 +4935,13 @@
       "en-immutable",
       "en-tampering"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "All remote administrative actions must be logged in an immutable storage to prevent tampering by unauthorized users.",
+    "Translation": "권한이 없는 사용자에 의한 위변조를 방지하기 위해 모든 원격 관리자 작업은 불변 저장소에 기록되어야 합니다.",
+    "Key Points": "immutable storage (불변 저장소), tampering (위변조 방지)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-en-20260925-03-the-alert-triggered-beca",
@@ -3610,7 +4961,13 @@
       "en-threshold",
       "en-settlement"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The alert triggered because the message queue lag exceeded our internal threshold during the evening settlement.",
+    "Translation": "저녁 정산 시간 동안 메시지 큐의 지연이 내부 임계값을 초과하여 경고 알림이 발생했습니다.",
+    "Key Points": "queue lag (큐 지연), threshold (임계값), settlement (정산)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-en-20260925-04-please-update-the-on-cal",
@@ -3631,7 +4988,13 @@
       "en-rotation",
       "en-update"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Please update the on-call rotation roster and test emergency contact numbers before leaving the office.",
+    "Translation": "퇴근하기 전에 당직 교대 근무 명부를 최신화하고 비상 연락망 번호를 테스트해 주세요.",
+    "Key Points": "on-call rotation (온콜 당직 순번), roster (명부)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-en-20260925-05-let-s-wrap-up-our-remain",
@@ -3650,7 +5013,13 @@
     "vocabIds": [
       "en-wrap-up"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's wrap up our remaining PR reviews by four o'clock so we can all enjoy a peaceful weekend.",
+    "Translation": "우리 모두 평온한 주말을 보낼 수 있도록 4시까지 남은 PR 리뷰들을 마무리합시다.",
+    "Key Points": "wrap up (마무리 짓다), remaining PR (남은 PR)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-de-20260925-01-vor-dem-wochenende-muesse",
@@ -3671,7 +5040,13 @@
       "de-der-notfall",
       "de-das-rechenzentrum"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Vor dem Wochenende müssen wir sicherstellen, dass die automatische Umschaltung auf das Backup-Rechenzentrum im Notfall reibungslos greift.",
+    "Translation": "주말 전에 비상 시 백업 데이터센터로의 자동 전환(페일오버)이 순조롭게 작동하는지 확인해야 합니다.",
+    "Key Points": "Umschaltung (자동 전환/페일오버), reibungslos greifen (원활히 작동하다)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-de-20260925-02-saemtliche-autorisierungs",
@@ -3691,7 +5066,13 @@
       "de-die-auflage",
       "de-unveraenderbar"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Sämtliche Autorisierungsdaten müssen unveränderbar abgelegt werden, um den strengen Auflagen der Finanzprüfer gerecht zu werden.",
+    "Translation": "금융 감사관들의 엄격한 요구조건을 충족하기 위해 모든 권한 부여 데이터는 위변조 불가능하게 저장되어야 합니다.",
+    "Key Points": "unveränderbar ablegen (불변 저장하다), Auflagen (규제 지침/조건)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-de-20260925-03-sollte-die-transaktionsf",
@@ -3708,7 +5089,13 @@
     "cloze": "fehlerrate",
     "keyPoints": "Fehlerrate (오류율), in Gang setzen (가동하다)",
     "vocabIds": [],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Sollte die Transaktionsfehlerrate über zwei Prozent steigen, wird der Eskalationsprozess automatisch in Gang gesetzt.",
+    "Translation": "거래 오류율이 2%를 초과할 경우, 에스컬레이션 프로세스가 자동으로 개시됩니다.",
+    "Key Points": "Fehlerrate (오류율), in Gang setzen (가동하다)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-de-20260925-04-die-uebergabe-an-den-woch",
@@ -3728,7 +5115,13 @@
       "de-die-informationsluecke",
       "de-der-bereitschaftsdienst"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die Übergabe an den Wochenend-Bereitschaftsdienst sollte sorgfältig dokumentiert werden, um Informationslücken zu vermeiden.",
+    "Translation": "정보 공백을 방지하기 위해 주말 당직 대기조로의 업무 인계는 꼼꼼히 문서화되어야 합니다.",
+    "Key Points": "die Übergabe (인수인계), Bereitschaftsdienst (당직 근무), Informationslücke (정보 공백)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-de-20260925-05-ich-schliesse-jetzt-meine",
@@ -3747,7 +5140,13 @@
     "vocabIds": [
       "de-erholsam"
     ],
-    "date": "2026-09-25"
+    "date": "2026-09-25",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich schließe jetzt meine letzten Aufgaben ab und wünsche Ihnen allen ein erholsames Wochenende.",
+    "Translation": "이제 남은 마지막 업무들을 정리하고 퇴근하려 합니다. 모두 편안하고 재충전되는 주말 보내세요.",
+    "Key Points": "abschließen (완료하다), erholsam (휴식이 되는/편안한)",
+    "Date": "2026-09-25"
   },
   {
     "id": "s-en-20260924-01-our-fraud-detection-pipe",
@@ -3766,7 +5165,13 @@
     "vocabIds": [
       "en-pipeline"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Our fraud detection pipeline flags anomalous wire transfers in real time to minimize potential financial loss.",
+    "Translation": "우리의 이상 거래 탐지 파이프라인은 잠재적인 금융 손실을 최소화하기 위해 비정상적인 전신 송금을 실시간으로 감지합니다.",
+    "Key Points": "fraud detection (이상 거래 탐지), flag (감지하다), wire transfer (전신 송금)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-en-20260924-02-to-comply-with-financial",
@@ -3783,7 +5188,13 @@
     "cloze": "comply with",
     "keyPoints": "comply with (준수하다), regulatory framework (규제 체계), segregate (격리하다)",
     "vocabIds": [],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "To comply with financial regulatory frameworks, sensitive customer records must be securely segregated within designated regions.",
+    "Translation": "금융 규제 체계를 준수하기 위해 민감한 고객 기록은 지정된 리전 내에 안전하게 격리 보관되어야 합니다.",
+    "Key Points": "comply with (준수하다), regulatory framework (규제 체계), segregate (격리하다)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-en-20260924-03-we-integrated-a-circuit",
@@ -3802,7 +5213,13 @@
     "vocabIds": [
       "en-core"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We integrated a circuit breaker pattern to prevent downstream service outages from cascading across the core banking ecosystem.",
+    "Translation": "하위 서비스 장애가 계정계 에코시스템 전반으로 연쇄 확산되는 것을 방지하기 위해 서킷 브레이커 패턴을 적용했습니다.",
+    "Key Points": "circuit breaker (서킷 브레이커), cascading failure (연쇄 장애)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-en-20260924-04-we-should-allocate-at-le",
@@ -3822,7 +5239,13 @@
       "en-allocate",
       "en-sprint"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We should allocate at least ten percent of the upcoming sprint capacity to refactoring legacy payment modules.",
+    "Translation": "레거시 결제 모듈을 리팩토링하기 위해 다가오는 스프린트 가용 리소스의 최소 10%를 할당해야 합니다.",
+    "Key Points": "allocate capacity (공수 할당), refactoring (리팩토링), legacy module (레거시 모듈)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-en-20260924-05-i-am-wrapping-up-the-rel",
@@ -3841,7 +5264,13 @@
     "vocabIds": [
       "en-publish"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I am wrapping up the release notes right now; could you take a quick look before I publish them to the portal?",
+    "Translation": "릴리스 노트를 지금 막 마무리 짓는 중인데, 포털에 게시하기 전에 한번 가볍게 확인해 주실 수 있나요?",
+    "Key Points": "wrap up (마무리하다), release notes (배포 안내서), take a quick look (훑어보다)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-de-20260924-01-durch-den-einsatz-einer",
@@ -3862,7 +5291,13 @@
       "de-die-lastspitze",
       "de-abfedern"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Durch den Einsatz einer nachrichtenorientierten Middleware können wir Lastspitzen im Zahlungsverkehr zuverlässig abfedern.",
+    "Translation": "메시지 지향 미들웨어를 도입함으로써 결제 트랜잭션의 부하 피크를 안정적으로 완충할 수 있습니다.",
+    "Key Points": "Lastspitze (부하 피크), Zahlungsverkehr (지급 결제), abfedern (완충하다)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-de-20260924-02-das-vier-augen-prinzip-i",
@@ -3883,7 +5318,13 @@
       "de-die-produktivumgebung",
       "de-zwingend"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Das Vier-Augen-Prinzip ist zwingend vorgeschrieben, wenn sensible Konfigurationsparameter auf Produktivumgebungen geändert werden.",
+    "Translation": "운영 환경에서 민감한 설정 파라미터를 변경할 때는 4-Eyes 원칙 준수가 법적으로 필수 규정되어 있습니다.",
+    "Key Points": "Vier-Augen-Prinzip (교차 검증 원칙), zwingend (필수적인), Produktivumgebung (운영 환경)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-de-20260924-03-die-schrittweise-abloesun",
@@ -3902,7 +5343,13 @@
     "vocabIds": [
       "de-das-altsystem"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die schrittweise Ablösung des Altsystems erfordert eine präzise Überwachung der parallelen Verbuchungsläufe.",
+    "Translation": "레거시 시스템을 단계적으로 전환하기 위해서는 병행 기장 배치 작업에 대한 정밀한 모니터링이 요구됩니다.",
+    "Key Points": "Ablösung (교체/전환), Altsystem (레거시 시스템), Verbuchung (기장/전기)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-de-20260924-04-wir-sollten-vor-dem-naech",
@@ -3922,7 +5369,13 @@
       "de-die-risikoanalyse",
       "de-durchfuehren"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten vor dem nächsten Meilenstein eine Risikoanalyse durchführen, um potenzielle Engpässe frühzeitig zu identifizieren.",
+    "Translation": "잠재적인 병목 현상을 조기에 식별할 수 있도록 다음 마일스톤 전에 위험 분석을 수행해야 합니다.",
+    "Key Points": "Risikoanalyse (위험 분석), Engpass (병목), frühzeitig (조기에)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-de-20260924-05-ich-gehe-kurz-an-die-fri",
@@ -3941,7 +5394,13 @@
     "vocabIds": [
       "de-die-frische"
     ],
-    "date": "2026-09-24"
+    "date": "2026-09-24",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich gehe kurz an die frische Luft; lassen Sie uns danach direkt über den Entwurf der Schnittstellenspezifikation sprechen.",
+    "Translation": "바람 좀 쐬고 올 테니, 다녀와서 바로 인터페이스 명세서 초안에 대해 이야기 나누시죠.",
+    "Key Points": "an die frische Luft gehen (바람 쐬다), Schnittstellenspezifikation (인터페이스 명세서), Entwurf (초안)",
+    "Date": "2026-09-24"
   },
   {
     "id": "s-en-20260923-01-we-configured-a-stricter",
@@ -3961,7 +5420,13 @@
       "en-isolation",
       "en-settlement"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We configured a stricter transaction isolation level to avoid dirty reads during simultaneous settlements.",
+    "Translation": "동시 정산 작업 중 더티 리드를 방지하기 위해 더 엄격한 트랜잭션 격리 수준을 설정했습니다.",
+    "Key Points": "isolation level (격리 수준), dirty reads (오염 읽기), settlements (정산)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-02-only-authorized-operator",
@@ -3980,7 +5445,13 @@
     "vocabIds": [
       "en-credential"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Only authorized operators can access the production database containing customer financial credentials.",
+    "Translation": "고객의 금융 인증 정보를 포함하는 운영 데이터베이스에는 권한을 부여받은 운영자만 접근할 수 있습니다.",
+    "Key Points": "authorized operators (인가된 운영자), financial credentials (금융 인증 정보)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-03-if-the-primary-payment-g",
@@ -3999,7 +5470,13 @@
     "vocabIds": [
       "en-failover"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "If the primary payment gateway fails, the system will instantly trigger an automated failover.",
+    "Translation": "기본 결제 게이트웨이에 장애가 발생하면, 시스템이 즉각 자동 장애 조치(페일오버)를 실행합니다.",
+    "Key Points": "payment gateway (결제 게이트웨이), automated failover (자동 장애 조치)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-04-we-should-document-this",
@@ -4018,7 +5495,13 @@
     "vocabIds": [
       "en-mitigate"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We should document this architectural decision to mitigate maintenance risks down the road.",
+    "Translation": "향후 유지보수 리스크를 완화하기 위해 이번 아키텍처 결정 사항을 문서화해야 합니다.",
+    "Key Points": "architectural decision (아키텍처 결정), mitigate risks (리스크 완화)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-05-i-will-step-away-from-my",
@@ -4037,7 +5520,13 @@
     "vocabIds": [
       "en-step-away"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I will step away from my desk for lunch, but I will be back in time for our three o'clock retro.",
+    "Translation": "점심 식사차 자리를 비우겠지만, 3시 회고 미팅 전에는 제시간에 복귀하겠습니다.",
+    "Key Points": "step away (자리를 비우다), retro (회고 미팅)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-01-bei-verteilten-systemen",
@@ -4057,7 +5546,13 @@
       "de-inkonsistent",
       "de-die-buchung"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Bei verteilten Systemen müssen wir durch das Zwei-Phasen-Commit-Protokoll sicherstellen, dass Buchungen nicht inkonsistent werden.",
+    "Translation": "분산 시스템 환경에서는 장부 분개가 불일치하지 않도록 2단계 커밋 프로토콜을 통해 보장해야 합니다.",
+    "Key Points": "verteilte Systeme (분산 시스템), sicherstellen (보장하다), Buchungen (회계 분개)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-02-um-den-aufsichtsrechtlic",
@@ -4077,7 +5572,13 @@
       "de-aufsichtsrechtlich",
       "de-entsprechen"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um den aufsichtsrechtlichen Anforderungen zu entsprechen, müssen personenbezogene Finanzdaten im Ruhezustand verschlüsselt sein.",
+    "Translation": "감독 당국의 규제 요구사항을 준수하기 위해, 개인 금융 데이터는 유휴 상태(저장 상태)에서 암호화되어 있어야 합니다.",
+    "Key Points": "aufsichtsrechtlich (감독 규제의), entsprechen (준수하다), verschlüsselt sein (암호화되다)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-03-die-naechtliche-zinsberec",
@@ -4097,7 +5598,13 @@
       "de-das-kernbankensystem",
       "de-die-zinsberechnung"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die nächtliche Zinsberechnung sollte optimiert werden, um die Belastung der Kernbankensysteme zu reduzieren.",
+    "Translation": "계정계 시스템의 부하를 줄이기 위해 야간 이자 계산 로직을 최적화해야 합니다.",
+    "Key Points": "Zinsberechnung (이자 계산), Kernbankensystem (코어뱅킹/계정계)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-04-bevor-wir-den-pull-reque",
@@ -4117,7 +5624,13 @@
       "de-erforderlich",
       "de-zusammenfuehren"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Bevor wir den Pull Request in den Hauptzweig zusammenführen, ist die Freigabe durch zwei Senior-Entwickler erforderlich.",
+    "Translation": "풀 리퀘스트를 메인 브랜치에 병합하기 전에, 두 명의 시니어 개발자에 의한 승인이 필요합니다.",
+    "Key Points": "zusammenführen (병합하다), die Freigabe (승인), erforderlich (필수적인)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-05-ich-hole-mir-kurz-einen",
@@ -4134,7 +5647,13 @@
     "cloze": "Rückfragen",
     "keyPoints": "ansprechen (말을 걸다), Rückfragen (추가 질문), der Entwurf (설계안)",
     "vocabIds": [],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich hole mir kurz einen Kaffee in der Teeküche; sprechen Sie mich einfach an, wenn Sie Rückfragen zum Entwurf haben.",
+    "Translation": "탕비실에서 커피 한잔 뽑아올게요. 설계안에 대해 궁금한 점이 있으시면 편하게 말씀해 주세요.",
+    "Key Points": "ansprechen (말을 걸다), Rückfragen (추가 질문), der Entwurf (설계안)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-06-if-any-step-in-the-fund",
@@ -4153,7 +5672,13 @@
     "vocabIds": [
       "en-atomicity"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "If any step in the fund transfer workflow fails, the entire transaction must roll back to maintain atomicity.",
+    "Translation": "자금 이체 워크플로의 어느 한 단계라도 실패하면, 원자성을 유지하기 위해 전체 트랜잭션이 롤백되어야 합니다.",
+    "Key Points": "fund transfer (자금 이체), roll back (롤백하다), atomicity (원자성)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-07-all-sensitive-payment-pa",
@@ -4172,7 +5697,13 @@
     "vocabIds": [
       "en-payload"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "All sensitive payment payloads transmitted between microservices must use end-to-end TLS encryption.",
+    "Translation": "마이크로서비스 간에 전송되는 모든 민감 결제 페이로드는 종단 간(E2E) TLS 암호화를 사용해야 합니다.",
+    "Key Points": "payload (페이로드), transmit (전송하다), end-to-end encryption (종단 간 암호화)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-08-we-configured-request-th",
@@ -4193,7 +5724,13 @@
       "en-bulk",
       "en-overwhelm"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We configured request throttling to protect the settlement database from being overwhelmed by bulk transactions.",
+    "Translation": "대량 거래로 인해 정산 데이터베이스에 과부하가 걸리는 것을 방지하기 위해 요청 스로틀링(속도 제한)을 설정했습니다.",
+    "Key Points": "request throttling (요청 스로틀링), settlement database (정산 DB)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-09-we-should-finalize-the-a",
@@ -4214,7 +5751,13 @@
       "en-acceptance",
       "en-finalize"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We should finalize the acceptance criteria before the QA team begins smoke testing the new build.",
+    "Translation": "QA 팀이 새 빌드에 대한 스모크 테스트를 시작하기 전에 인수 기준(검수 조건)을 확정해야 합니다.",
+    "Key Points": "acceptance criteria (인수 기준), smoke testing (스모크 테스트)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260923-10-i-am-just-finishing-up-t",
@@ -4234,7 +5777,13 @@
     "vocabIds": [
       "en-sync-up"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I am just finishing up the morning code review; let's sync up right after the standup meeting.",
+    "Translation": "오전 코드 리뷰를 막 마무리하는 중입니다. 스탠드업 회의가 끝난 직후에 바로 이야기 나누시죠.",
+    "Key Points": "finish up (마무리하다), sync up (상황을 맞추다)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-06-um-inkonsistenzen-bei-pa",
@@ -4254,7 +5803,13 @@
       "de-die-kontobewegung",
       "de-die-sperre"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um Inkonsistenzen bei parallelen Kontobewegungen zu verhindern, setzen wir verteilte Sperren im Cluster ein.",
+    "Translation": "동시 계좌 입출금 시의 불일치를 방지하기 위해, 우리는 클러스터 내에 분산 락을 적용합니다.",
+    "Key Points": "Kontobewegung (계좌 거래), verteilte Sperre (분산 락), einsetzen (도입하다)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-07-die-buchungsbelege-muesse",
@@ -4274,7 +5829,13 @@
       "de-der-buchungsbeleg",
       "de-die-aufbewahrungsfrist"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Die Buchungsbelege müssen gemäß den gesetzlichen Aufbewahrungsfristen mindestens zehn Jahre unveränderbar gespeichert werden.",
+    "Translation": "회계 전표는 법적 보관 기한 규정에 따라 최소 10년간 위변조가 불가능한 형태로 보관되어야 합니다.",
+    "Key Points": "Buchungsbeleg (회계 전표), Aufbewahrungsfrist (보관 기한), unveränderbar (위변조 불가의)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-08-durch-die-parallelisieru",
@@ -4293,7 +5854,13 @@
     "vocabIds": [
       "de-die-parallelisierung"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Durch die Parallelisierung der Zinsberechnungsläufe konnten wir den nächtlichen Verarbeitungsaufwand um die Hälfte reduzieren.",
+    "Translation": "이자 계산 배치의 병렬 처리를 통해, 우리는 야간 데이터 처리 작업량을 절반으로 줄일 수 있었습니다.",
+    "Key Points": "Parallelisierung (병렬화), Verarbeitungsaufwand (처리 부하), reduzieren um (~만큼 줄이다)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-09-es-empfiehlt-sich-vor-d",
@@ -4313,7 +5880,13 @@
       "de-die-abnahme",
       "de-das-lastprofil"
     ],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es empfiehlt sich, vor der endgültigen Abnahme eine zusätzliche Testrunde mit realistischen Lastprofilen durchzuführen.",
+    "Translation": "최종 인수 검수 전에 현실적인 부하 프로파일을 적용한 추가 테스트 라운드를 수행하는 것이 바람직합니다.",
+    "Key Points": "die Abnahme (인수/검수), Lastprofil (부하 프로파일), durchführen (수행하다)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-de-20260923-10-ich-fasse-die-wichtigste",
@@ -4331,7 +5904,13 @@
     "cloze": null,
     "keyPoints": "zusammenfassen (요약하다), der Beschluss (결정사항), ins Wiki stellen (위키에 게시하다)",
     "vocabIds": [],
-    "date": "2026-09-23"
+    "date": "2026-09-23",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich fasse die wichtigsten Beschlüsse aus unserem heutigen Architektur-Meeting zusammen und stelle sie ins Wiki.",
+    "Translation": "오늘 아키텍처 회의에서 나온 핵심 결정사항들을 요약하여 위키에 올려두겠습니다.",
+    "Key Points": "zusammenfassen (요약하다), der Beschluss (결정사항), ins Wiki stellen (위키에 게시하다)",
+    "Date": "2026-09-23"
   },
   {
     "id": "s-en-20260922-01-we-must-guarantee-databa",
@@ -4351,7 +5930,13 @@
       "en-consistency",
       "en-core"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We must guarantee database transaction consistency before initiating the core banking migration.",
+    "Translation": "계정계 마이그레이션을 시작하기 전에 데이터베이스 트랜잭션 정합성을 반드시 보장해야 합니다.",
+    "Key Points": "guarantee consistency (정합성 보장), core banking (계정계)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-en-20260922-02-the-financial-compliance",
@@ -4370,7 +5955,13 @@
     "vocabIds": [
       "en-compliance"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "The financial compliance team requested detailed audit logs for all cross-border transactions.",
+    "Translation": "금융 컴플라이언스(준법감시) 팀에서 모든 해외 송금 거래에 대한 상세 감사 로그를 요청했습니다.",
+    "Key Points": "compliance team (준법감시팀), cross-border transaction (해외 거래)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-en-20260922-03-our-batch-processing-job",
@@ -4389,7 +5980,13 @@
     "vocabIds": [
       "en-latency"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Our batch processing job should finish before peak trading hours to prevent latency.",
+    "Translation": "지연 현상을 방지하기 위해 배치 처리 작업은 거래량이 몰리는 피크 시간대 전에 완료되어야 합니다.",
+    "Key Points": "batch processing (배치 처리), prevent latency (지연 방지)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-en-20260922-04-let-s-conduct-a-post-mor",
@@ -4408,7 +6005,13 @@
     "vocabIds": [
       "en-downtime"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Let's conduct a post-mortem meeting to identify what caused the unexpected service downtime.",
+    "Translation": "예기치 못한 서비스 다운타임의 원인을 파악하기 위해 사후 검토(포스트모텀) 회의를 진행합시다.",
+    "Key Points": "post-mortem meeting (사후 분석 회의), service downtime (서비스 다운타임)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-en-20260922-05-i-will-step-out-for-a-qu",
@@ -4428,7 +6031,13 @@
       "en-step-out",
       "en-urgent"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I will step out for a quick coffee break, but feel free to message me if something urgent comes up.",
+    "Translation": "잠깐 커피 한잔 마시고 올 테지만, 급한 일이 생기면 편하게 메시지 남겨주세요.",
+    "Key Points": "step out (잠시 자리를 비우다), feel free to (편하게 ~하다)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-de-20260922-01-bei-der-abwicklung-von-f",
@@ -4448,7 +6057,13 @@
       "de-die-datenintegritaet",
       "de-die-abwicklung"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Bei der Abwicklung von Finanztransaktionen muss die Datenintegrität unter allen Umständen gewahrt bleiben.",
+    "Translation": "금융 거래를 처리할 때 데이터 무결성은 어떠한 상황에서도 반드시 유지되어야 합니다.",
+    "Key Points": "die Abwicklung (결제 처리), gewahrt bleiben (유지되다)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-de-20260922-02-wir-sind-gesetzlich-verp",
@@ -4467,7 +6082,13 @@
     "vocabIds": [
       "de-revisionssicher"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sind gesetzlich verpflichtet, sämtliche Änderungen an den Buchungssätzen revisionssicher zu archivieren.",
+    "Translation": "우리는 회계 전표에 대한 모든 변경 이력을 감사 추적 가능하도록(위변조 방지) 보관할 법적 의무가 있습니다.",
+    "Key Points": "Buchungssatz (회계 전표), revisionssicher (감사 기준 준수)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-de-20260922-03-um-das-ausfallrisiko-zu",
@@ -4487,7 +6108,13 @@
       "de-das-ausfallrisiko",
       "de-redundant"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um das Ausfallrisiko zu minimieren, wurde das Zahlungsgateway redundant auf zwei getrennten Rechenzentren aufgesetzt.",
+    "Translation": "장애 위험을 최소화하기 위해, 결제 게이트웨이는 두 개의 독립된 데이터센터에 이중화되어 구축되었습니다.",
+    "Key Points": "Ausfallrisiko (장애 위험), redundant (이중화된)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-de-20260922-04-es-empfiehlt-sich-die-o",
@@ -4507,7 +6134,13 @@
     "vocabIds": [
       "de-der-meilenstein"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es empfiehlt sich, die offenen Punkte aus dem letzten Sprint-Review vor dem nächsten Meilenstein abzuarbeiten.",
+    "Translation": "다음 마일스톤에 도달하기 전에 지난 스프린트 리뷰에서 나온 미결 항목들을 처리하는 것이 권장됩니다.",
+    "Key Points": "es empfiehlt sich (권장된다), abarbeiten (처리하다)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-de-20260922-05-ich-mache-kurz-eine-kaff",
@@ -4526,7 +6159,13 @@
     "vocabIds": [
       "de-erreichbar"
     ],
-    "date": "2026-09-22"
+    "date": "2026-09-22",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich mache kurz eine Kaffeepause, bin aber in einer Viertelstunde wieder am Platz erreichbar.",
+    "Translation": "잠깐 커피 한잔하고 올게요. 15분 뒤면 다시 자리에 있어 연락 가능합니다.",
+    "Key Points": "Kaffeepause (커피 휴식), am Platz erreichbar sein (자리에서 연락 닿다)",
+    "Date": "2026-09-22"
   },
   {
     "id": "s-en-20260921-01-we-should-align-our-quar",
@@ -4547,7 +6186,13 @@
       "en-align",
       "en-sprint"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We should align our quarterly objectives before breaking down the specific sprint backlog.",
+    "Translation": "구체적인 스프린트 백로그를 세분화하기 전에 우리의 분기별 목표를 일치시켜야 합니다.",
+    "Key Points": "align objectives (목표 정렬), break down (세분화하다)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-en-20260921-02-could-you-look-through-t",
@@ -4567,7 +6212,13 @@
       "en-workload",
       "en-estimate"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Could you look through the client's revision requests and estimate the required workload?",
+    "Translation": "고객의 수정 요청 사항을 검토하고 필요한 작업 공수를 산정해 주실 수 있나요?",
+    "Key Points": "look through (검토하다), estimate workload (공수를 산정하다)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-en-20260921-03-although-the-timeline-is",
@@ -4587,7 +6238,13 @@
       "en-timeline",
       "en-schedule"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Although the timeline is tight, we can deliver the MVP on schedule if we minimize scope creep.",
+    "Translation": "일정이 빠듯하지만, 범위 확장을 최소화한다면 제때에 MVP를 납품할 수 있습니다.",
+    "Key Points": "tight timeline (빠듯한 일정), scope creep (범위 확장)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-en-20260921-04-i-will-arrange-a-sync-me",
@@ -4606,7 +6263,13 @@
     "vocabIds": [
       "en-arrange"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I will arrange a sync meeting tomorrow to ensure everyone understands their dependencies.",
+    "Translation": "모두가 자신의 업무 의존성을 명확히 이해할 수 있도록 내일 싱크 회의를 잡겠습니다.",
+    "Key Points": "arrange a meeting (회의를 주선하다), dependencies (업무 의존성)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-en-20260921-05-please-keep-me-updated-o",
@@ -4626,7 +6289,13 @@
       "en-benchmark",
       "en-patch"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "Please keep me updated on the performance benchmarks after you deploy the patch.",
+    "Translation": "패치를 배포한 후 성능 벤치마크 결과에 대해 계속 상황을 공유해 주세요.",
+    "Key Points": "keep updated (지속 공유하다), deploy a patch (패치를 배포하다)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-de-20260921-01-zu-beginn-des-neuen-quar",
@@ -4646,7 +6315,13 @@
       "de-die-verantwortlichkeit",
       "de-praezisieren"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zu Beginn des neuen Quartals müssen wir die strategischen Ziele präzisieren und Verantwortlichkeiten verbindlich festlegen.",
+    "Translation": "새 분기를 시작하며, 우리는 전략적 목표를 구체화하고 책임 소재를 구속력 있게 확정해야 합니다.",
+    "Key Points": "zu Beginn (~의 시작에), präzisieren (구체화하다), festlegen (확정하다)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-de-20260921-02-es-waere-ratsam-den-aktu",
@@ -4666,7 +6341,13 @@
       "de-der-entwicklungsstand",
       "de-das-vorfeld"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es wäre ratsam, den aktuellen Entwicklungsstand im Vorfeld mit den Stakeholdern abzustimmen, um Fehlinvestitionen zu vermeiden.",
+    "Translation": "잘못된 자원 투입을 방지하기 위해, 사전에 이해관계자들과 현재 개발 현황을 조율하는 것이 바람직합니다.",
+    "Key Points": "im Vorfeld (사전에), abstimmen mit (조율하다)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-de-20260921-03-da-einige-schnittstellen",
@@ -4687,7 +6368,13 @@
       "de-die-schnittstelle",
       "de-verschieben"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Da einige Schnittstellen noch instabil sind, sollten wir den Integrationstest um wenige Tage verschieben.",
+    "Translation": "몇몇 인터페이스가 여전히 불안정하므로, 통합 테스트를 며칠 연기해야 합니다.",
+    "Key Points": "Schnittstelle (인터페이스), verschieben um (~만큼 연기하다)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-de-20260921-04-um-eine-hohe-ausfallsich",
@@ -4707,7 +6394,13 @@
       "de-gewaehrleisten",
       "de-die-ausfallsicherheit"
     ],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um eine hohe Ausfallsicherheit zu gewährleisten, wird die Datenbankmigration schrittweise in der Nacht durchgeführt.",
+    "Translation": "높은 무중단 안정성을 보장하기 위해, 데이터베이스 마이그레이션은 야간에 단계적으로 진행됩니다.",
+    "Key Points": "Ausfallsicherheit (무중단 안정성), gewährleisten (보장하다)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-de-20260921-05-ich-schlage-vor-dass-wi",
@@ -4724,7 +6417,13 @@
     "cloze": "ansprechen",
     "keyPoints": "ansprechen (다루다/거론하다), priorisieren (우선순위를 매기다)",
     "vocabIds": [],
-    "date": "2026-09-21"
+    "date": "2026-09-21",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich schlage vor, dass wir die offenen Feedback-Punkte im heutigen Stand-up direkt ansprechen und priorisieren.",
+    "Translation": "오늘 스탠드업 미팅에서 미결 피드백 항목들을 직접 거론하고 우선순위를 정할 것을 제안합니다.",
+    "Key Points": "ansprechen (다루다/거론하다), priorisieren (우선순위를 매기다)",
+    "Date": "2026-09-21"
   },
   {
     "id": "s-en-20260918-01-let-s-wrap-up-the-meetin",
@@ -4743,7 +6442,13 @@
     "vocabIds": [
       "en-wrap-up"
     ],
-    "date": "2026-09-18"
+    "date": "2026-09-18",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Let's wrap up the meeting early so everyone can organize their notes.",
+    "Translation": "모두가 메모를 정리할 수 있도록 회의를 일찍 마무리합시다.",
+    "Key Points": "wrap up (마무리 짓다), organize notes (메모를 정리하다)",
+    "Date": "2026-09-18"
   },
   {
     "id": "s-en-20260918-02-i-will-send-a-summary-of",
@@ -4763,7 +6468,13 @@
       "en-summary",
       "en-discussion"
     ],
-    "date": "2026-09-18"
+    "date": "2026-09-18",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I will send a summary of our discussion before logging off today.",
+    "Translation": "오늘 업무를 종료하기 전에 논의 내용 요약본을 보내드리겠습니다.",
+    "Key Points": "summary of discussion (논의 요약), log off (업무를 마치다)",
+    "Date": "2026-09-18"
   },
   {
     "id": "s-en-20260918-03-please-make-sure-all-urg",
@@ -4782,7 +6493,13 @@
     "vocabIds": [
       "en-urgent"
     ],
-    "date": "2026-09-18"
+    "date": "2026-09-18",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Please make sure all urgent inquiries are answered before the weekend.",
+    "Translation": "주말 전에 모든 긴급 문의사항에 답변이 완료되었는지 확인해 주세요.",
+    "Key Points": "make sure (반드시 확인하다), urgent inquiry (긴급 문의)",
+    "Date": "2026-09-18"
   },
   {
     "id": "s-de-20260918-01-wir-sollten-die-offenen",
@@ -4802,7 +6519,13 @@
       "de-abschliessen",
       "de-reibungslos"
     ],
-    "date": "2026-09-18"
+    "date": "2026-09-18",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten die offenen Vorgänge systematisch abschließen, um einen reibungslosen Start in die nächste Woche zu sichern.",
+    "Translation": "다음 주를 순조롭게 시작할 수 있도록, 우리는 미결 사안들을 체계적으로 마무리해야 합니다.",
+    "Key Points": "der Vorgang (사안/프로세스), abschließen (완료하다)",
+    "Date": "2026-09-18"
   },
   {
     "id": "s-de-20260918-02-ich-bedanke-mich-herzlic",
@@ -4819,7 +6542,13 @@
     "cloze": null,
     "keyPoints": "sich bedanken bei ... für (감사하다), der Einsatz (헌신/투입)",
     "vocabIds": [],
-    "date": "2026-09-18"
+    "date": "2026-09-18",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich bedanke mich herzlich bei allen Beteiligten für den engagierten Einsatz bei diesem Release.",
+    "Translation": "이번 배포 과정에서 적극적으로 헌신해 주신 모든 관계자분께 진심으로 감사드립니다.",
+    "Key Points": "sich bedanken bei ... für (감사하다), der Einsatz (헌신/투입)",
+    "Date": "2026-09-18"
   },
   {
     "id": "s-de-20260918-03-sollten-am-wochenende-un",
@@ -4839,7 +6568,13 @@
       "de-erreichbar",
       "de-der-bereitschaftsdienst"
     ],
-    "date": "2026-09-18"
+    "date": "2026-09-18",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Sollten am Wochenende unvorhergesehene Serverprobleme auftreten, ist der Bereitschaftsdienst telefonisch erreichbar.",
+    "Translation": "주말 동안 예상치 못한 서버 문제가 발생할 경우, 당직 근무자에게 전화로 연락할 수 있습니다.",
+    "Key Points": "Sollten... auftreten (발생할 경우), erreichbar sein (연락이 닿다)",
+    "Date": "2026-09-18"
   },
   {
     "id": "s-en-20260917-01-could-you-look-over-the",
@@ -4856,7 +6591,13 @@
     "cloze": "look over",
     "keyPoints": "look over (훑어보다), let me know (알려주다)",
     "vocabIds": [],
-    "date": "2026-09-17"
+    "date": "2026-09-17",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Could you look over the test report and let me know what you think?",
+    "Translation": "테스트 보고서를 한번 훑어보시고 어떻게 생각하시는지 알려주실 수 있나요?",
+    "Key Points": "look over (훑어보다), let me know (알려주다)",
+    "Date": "2026-09-17"
   },
   {
     "id": "s-en-20260917-02-we-should-hold-off-on-th",
@@ -4877,7 +6618,13 @@
       "en-critical",
       "en-hold-off"
     ],
-    "date": "2026-09-17"
+    "date": "2026-09-17",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "We should hold off on the deployment until all critical bugs are fixed.",
+    "Translation": "모든 치명적인 버그가 수정될 때까지 배포를 보류해야 합니다.",
+    "Key Points": "hold off on (보류하다), critical (치명적인)",
+    "Date": "2026-09-17"
   },
   {
     "id": "s-en-20260917-03-i-will-write-down-the-ac",
@@ -4894,7 +6641,13 @@
     "cloze": "write down",
     "keyPoints": "write down (적어두다), on the same page (이해를 같이하는)",
     "vocabIds": [],
-    "date": "2026-09-17"
+    "date": "2026-09-17",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I will write down the action items so everyone stays on the same page.",
+    "Translation": "모두가 동일한 이해를 유지할 수 있도록 실행 항목들을 기록해 두겠습니다.",
+    "Key Points": "write down (적어두다), on the same page (이해를 같이하는)",
+    "Date": "2026-09-17"
   },
   {
     "id": "s-de-20260917-01-wir-muessen-sicherstellen",
@@ -4914,7 +6667,13 @@
       "de-einwandfrei",
       "de-die-schnittstelle"
     ],
-    "date": "2026-09-17"
+    "date": "2026-09-17",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir müssen sicherstellen, dass alle Schnittstellen einwandfrei funktionieren, bevor wir das Update aufspielen.",
+    "Translation": "업데이트를 적용하기 전에, 모든 인터페이스가 문제없이 작동하는지 확인해야 합니다.",
+    "Key Points": "sicherstellen (보장하다), die Schnittstelle (인터페이스)",
+    "Date": "2026-09-17"
   },
   {
     "id": "s-de-20260917-02-es-empfiehlt-sich-die-p",
@@ -4933,7 +6692,13 @@
     "vocabIds": [
       "de-gewaehrleisten"
     ],
-    "date": "2026-09-17"
+    "date": "2026-09-17",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es empfiehlt sich, die Performance-Engpässe systematisch zu analysieren, um langfristige Stabilität zu gewährleisten.",
+    "Translation": "장기적인 안정성을 보장하기 위해, 성능 병목 현상을 체계적으로 분석하는 것이 권장됩니다.",
+    "Key Points": "der Engpass (병목), gewährleisten (보장하다)",
+    "Date": "2026-09-17"
   },
   {
     "id": "s-de-20260917-03-trotz-des-unerwarteten-m",
@@ -4952,7 +6717,13 @@
     "vocabIds": [
       "de-der-mehraufwand"
     ],
-    "date": "2026-09-17"
+    "date": "2026-09-17",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Trotz des unerwarteten Mehraufwands konnte das Team die Sicherheitslücke innerhalb kürzester Zeit schließen.",
+    "Translation": "예상치 못한 추가 공수에도 불구하고, 팀은 최단 시간 내에 보안 취약점을 해결할 수 있었습니다.",
+    "Key Points": "der Mehraufwand (추가 공수), Sicherheitslücke schließen (보안 취약점을 해결하다)",
+    "Date": "2026-09-17"
   },
   {
     "id": "s-en-20260916-01-the-client-asked-us-to-a",
@@ -4971,7 +6742,13 @@
     "vocabIds": [
       "en-feature"
     ],
-    "date": "2026-09-16"
+    "date": "2026-09-16",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "The client asked us to add an export feature to the current dashboard.",
+    "Translation": "고객 측에서 현재 대시보드에 내보내기 기능을 추가해 달라고 요청했습니다.",
+    "Key Points": "ask someone to (요청하다), export feature (내보내기 기능)",
+    "Date": "2026-09-16"
   },
   {
     "id": "s-en-20260916-02-if-we-include-this-chang",
@@ -4990,7 +6767,13 @@
     "vocabIds": [
       "en-timeline"
     ],
-    "date": "2026-09-16"
+    "date": "2026-09-16",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "If we include this change now, it might affect our planned testing timeline.",
+    "Translation": "If we include this change now, it might affect our planned testing timeline.",
+    "Key Points": "might affect (영향을 줄지 모른다), timeline (일정 계획)",
+    "Date": "2026-09-16"
   },
   {
     "id": "s-en-20260916-03-let-s-schedule-a-quick-c",
@@ -5012,7 +6795,13 @@
       "en-discuss",
       "en-schedule"
     ],
-    "date": "2026-09-16"
+    "date": "2026-09-16",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Let's schedule a quick call to discuss whether to postpone it to the next release.",
+    "Translation": "이 기능을 다음 배포로 연기할지 논의하기 위해 짧은 통화 일정을 잡읍시다.",
+    "Key Points": "schedule a call (통화 일정을 잡다), postpone (연기하다)",
+    "Date": "2026-09-16"
   },
   {
     "id": "s-de-20260916-01-der-kunde-hat-zusaetzlich",
@@ -5032,7 +6821,13 @@
       "de-die-sicherheitsanforderung",
       "de-die-anpassung"
     ],
-    "date": "2026-09-16"
+    "date": "2026-09-16",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Der Kunde hat zusätzliche Sicherheitsanforderungen eingereicht, die eine Anpassung der bestehenden Architektur erfordern.",
+    "Translation": "고객 측에서 기존 아키텍처의 수정을 요하는 추가 보안 요구사항을 제출했습니다.",
+    "Key Points": "einreichen (제출하다), Sicherheitsanforderungen (보안 요구사항)",
+    "Date": "2026-09-16"
   },
   {
     "id": "s-de-20260916-02-um-verzoegerungen-im-gesa",
@@ -5051,7 +6846,13 @@
     "vocabIds": [
       "de-die-verzoegerung"
     ],
-    "date": "2026-09-16"
+    "date": "2026-09-16",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um Verzögerungen im Gesamtprojekt zu vermeiden, sollten wir prüfen, ob diese Punkte in einer späteren Phase umgesetzt werden können.",
+    "Translation": "전체 프로젝트의 지연을 방지하기 위해, 이 항목들이 추후 단계에서 구현될 수 있는지 검토해야 합니다.",
+    "Key Points": "die Verzögerung (지연), umsetzen (구현하다)",
+    "Date": "2026-09-16"
   },
   {
     "id": "s-de-20260916-03-ich-schlage-vor-dass-wi",
@@ -5070,7 +6871,13 @@
     "vocabIds": [
       "de-durchfuehren"
     ],
-    "date": "2026-09-16"
+    "date": "2026-09-16",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich schlage vor, dass wir dazu eine kurze Abstimmung mit dem Projektleiter durchführen.",
+    "Translation": "이와 관련하여 프로젝트 책임자와 짧은 조율 미팅을 진행할 것을 제안합니다.",
+    "Key Points": "vorschlagen (제안하다), eine Abstimmung durchführen (조율을 진행하다)",
+    "Date": "2026-09-16"
   },
   {
     "id": "s-en-20260915-01-we-should-set-clear-mile",
@@ -5090,7 +6897,13 @@
       "en-milestone",
       "en-progress"
     ],
-    "date": "2026-09-15"
+    "date": "2026-09-15",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "We should set clear milestones to track our progress effectively.",
+    "Translation": "진행 상황을 효과적으로 추적하기 위해 명확한 마일스톤(중간 목표)을 설정해야 합니다.",
+    "Key Points": "set milestones (마일스톤을 설정하다), track progress (진행 상황을 추적하다)",
+    "Date": "2026-09-15"
   },
   {
     "id": "s-en-20260915-02-i-will-follow-up-with-th",
@@ -5110,7 +6923,13 @@
       "en-vendor",
       "en-delivery"
     ],
-    "date": "2026-09-15"
+    "date": "2026-09-15",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I will follow up with the vendor to confirm the delivery date.",
+    "Translation": "납품 날짜를 확인하기 위해 공급업체에 후속 연락을 취하겠습니다.",
+    "Key Points": "follow up with (~에게 후속 연락하다), vendor (공급업체)",
+    "Date": "2026-09-15"
   },
   {
     "id": "s-en-20260915-03-could-you-share-your-scr",
@@ -5127,7 +6946,13 @@
     "cloze": null,
     "keyPoints": "share one's screen (화면을 공유하다), walk someone through (~에게 설명하다)",
     "vocabIds": [],
-    "date": "2026-09-15"
+    "date": "2026-09-15",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Could you share your screen and walk us through the test cases?",
+    "Translation": "화면을 공유해 주시고 테스트 케이스를 하나씩 설명해 주실 수 있나요?",
+    "Key Points": "share one's screen (화면을 공유하다), walk someone through (~에게 설명하다)",
+    "Date": "2026-09-15"
   },
   {
     "id": "s-de-20260915-01-wir-muessen-klare-meilens",
@@ -5147,7 +6972,13 @@
       "de-der-meilenstein",
       "de-lueckenlos"
     ],
-    "date": "2026-09-15"
+    "date": "2026-09-15",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir müssen klare Meilensteine definieren, um den Fortschritt der Implementierung lückenlos nachzuverfolgen.",
+    "Translation": "구현 진행 상황을 빈틈없이 추적하기 위해, 우리는 명확한 마일스톤을 정의해야 합니다.",
+    "Key Points": "Meilensteine definieren (마일스톤을 정의하다), lückenlos nachverfolgen (빈틈없이 추적하다)",
+    "Date": "2026-09-15"
   },
   {
     "id": "s-de-20260915-02-es-waere-ratsam-vorab-ei",
@@ -5167,7 +6998,13 @@
       "de-die-bereitstellung",
       "de-die-vereinbarung"
     ],
-    "date": "2026-09-15"
+    "date": "2026-09-15",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es wäre ratsam, vorab eine Vereinbarung über die Bereitstellung der Testdaten zu treffen.",
+    "Translation": "테스트 데이터 제공과 관련해 사전에 합의를 도출하는 것이 바람직합니다.",
+    "Key Points": "eine Vereinbarung treffen (합의에 도달하다), die Bereitstellung (제공/조달)",
+    "Date": "2026-09-15"
   },
   {
     "id": "s-de-20260915-03-koennten-sie-die-vorgesch",
@@ -5187,7 +7024,13 @@
       "de-die-anpassung",
       "de-abstimmen"
     ],
-    "date": "2026-09-15"
+    "date": "2026-09-15",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Könnten Sie die vorgeschlagenen Anpassungen kurz präsentieren, damit wir gemeinsam darüber abstimmen können?",
+    "Translation": "우리가 함께 표결/조율할 수 있도록, 제안된 수정 사항들을 간단히 발표해 주실 수 있나요?",
+    "Key Points": "abstimmen über (~에 대해 조율하다), die Anpassung (수정/조정)",
+    "Date": "2026-09-15"
   },
   {
     "id": "s-en-20260914-01-we-need-to-review-the-pr",
@@ -5207,7 +7050,13 @@
     "vocabIds": [
       "en-sprint"
     ],
-    "date": "2026-09-14"
+    "date": "2026-09-14",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "We need to review the project goals before we begin the new sprint.",
+    "Translation": "새로운 스프린트를 시작하기 전에 프로젝트 목표를 검토해야 합니다.",
+    "Key Points": "review (검토하다), project goals (프로젝트 목표)",
+    "Date": "2026-09-14"
   },
   {
     "id": "s-en-20260914-02-could-you-share-the-upda",
@@ -5226,7 +7075,13 @@
     "vocabIds": [
       "en-agenda"
     ],
-    "date": "2026-09-14"
+    "date": "2026-09-14",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Could you share the updated agenda for this morning's team sync?",
+    "Translation": "오늘 아침 팀 미팅을 위한 수정된 회의 안건을 공유해 주실 수 있나요?",
+    "Key Points": "updated agenda (수정된 안건), team sync (팀 회의)",
+    "Date": "2026-09-14"
   },
   {
     "id": "s-en-20260914-03-i-will-prioritize-respon",
@@ -5245,7 +7100,13 @@
     "vocabIds": [
       "en-prioritize"
     ],
-    "date": "2026-09-14"
+    "date": "2026-09-14",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I will prioritize responding to user feedback in the upcoming release.",
+    "Translation": "다가오는 배포 버전에서는 사용자 피드백에 대응하는 것을 우선순위로 두겠습니다.",
+    "Key Points": "prioritize (우선시하다), upcoming release (다가오는 배포)",
+    "Date": "2026-09-14"
   },
   {
     "id": "s-de-20260914-01-zu-beginn-der-neuen-arbe",
@@ -5264,7 +7125,13 @@
     "vocabIds": [
       "de-die-dringlichkeit"
     ],
-    "date": "2026-09-14"
+    "date": "2026-09-14",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Zu Beginn der neuen Arbeitswoche sollten wir die offenen Aufgaben nach ihrer Dringlichkeit ordnen.",
+    "Translation": "새로운 업무 주를 시작하며, 우리는 미결 과제들을 시급성에 따라 정리해야 합니다.",
+    "Key Points": "zu Beginn + Genitiv (~의 시작에), ordnen nach (정리하다)",
+    "Date": "2026-09-14"
   },
   {
     "id": "s-de-20260914-02-es-ist-unerlaesslich-das",
@@ -5283,7 +7150,13 @@
     "vocabIds": [
       "de-unerlaesslich"
     ],
-    "date": "2026-09-14"
+    "date": "2026-09-14",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es ist unerlässlich, dass alle Teammitglieder rechtzeitig über die Änderungen im Zeitplan informiert werden.",
+    "Translation": "모든 팀원이 일정 변경 사항에 대해 제때 정보를 전달받는 것은 필수적입니다.",
+    "Key Points": "unerlässlich (필수적인), rechtzeitig (제때에)",
+    "Date": "2026-09-14"
   },
   {
     "id": "s-de-20260914-03-wir-haben-beschlossen-d",
@@ -5301,7 +7174,13 @@
     "cloze": null,
     "keyPoints": "beschließen (결정하다), vorverlegen um (~만큼 앞당기다)",
     "vocabIds": [],
-    "date": "2026-09-14"
+    "date": "2026-09-14",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir haben beschlossen, den Release-Termin um eine Woche vorzuverlegen, um den Marktbedürfnissen gerecht zu werden.",
+    "Translation": "시장 요구를 충족하기 위해, 우리는 출시 일정을 일주일 앞당기기로 결정했습니다.",
+    "Key Points": "beschließen (결정하다), vorverlegen um (~만큼 앞당기다)",
+    "Date": "2026-09-14"
   },
   {
     "id": "s-en-20260911-01-we-should-wrap-up-the-pe",
@@ -5321,7 +7200,13 @@
       "en-pending",
       "en-wrap-up"
     ],
-    "date": "2026-09-11"
+    "date": "2026-09-11",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "We should wrap up the pending tasks before leaving for the weekend.",
+    "Translation": "주말을 맞이하기 전에 보류 중인 업무들을 마무리해야 합니다.",
+    "Key Points": "wrap up (마무리 짓다), pending tasks (미결 업무)",
+    "Date": "2026-09-11"
   },
   {
     "id": "s-en-20260911-02-i-have-attached-the-upda",
@@ -5341,7 +7226,13 @@
       "en-invoice",
       "en-reference"
     ],
-    "date": "2026-09-11"
+    "date": "2026-09-11",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I have attached the updated invoice for your reference.",
+    "Translation": "참고하시도록 수정된 인보이스를 첨부해 두었습니다.",
+    "Key Points": "attach (첨부하다), for your reference (참고용으로)",
+    "Date": "2026-09-11"
   },
   {
     "id": "s-en-20260911-03-do-you-have-some-time-th",
@@ -5360,7 +7251,13 @@
     "vocabIds": [
       "en-discuss"
     ],
-    "date": "2026-09-11"
+    "date": "2026-09-11",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Do you have some time this afternoon to discuss the client's requirements?",
+    "Translation": "고객의 요구사항을 논의하기 위해 오늘 오후에 시간 좀 있으신가요?",
+    "Key Points": "have some time (시간이 있다), requirement (요구사항)",
+    "Date": "2026-09-11"
   },
   {
     "id": "s-de-20260911-01-es-waere-sinnvoll-die-of",
@@ -5377,7 +7274,13 @@
     "cloze": null,
     "keyPoints": "sinnvoll sein (합리적이다), abarbeiten (차례로 처리하다)",
     "vocabIds": [],
-    "date": "2026-09-11"
+    "date": "2026-09-11",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es wäre sinnvoll, die offenen Punkte noch heute abzuarbeiten, um beruhigt ins Wochenende starten zu können.",
+    "Translation": "Es wäre sinnvoll, die offenen Punkte noch heute abzuarbeiten, um beruhigt ins Wochenende starten zu können.",
+    "Key Points": "sinnvoll sein (합리적이다), abarbeiten (차례로 처리하다)",
+    "Date": "2026-09-11"
   },
   {
     "id": "s-de-20260911-02-ich-moechte-mich-herzlich",
@@ -5396,7 +7299,13 @@
     "vocabIds": [
       "de-reibungslos"
     ],
-    "date": "2026-09-11"
+    "date": "2026-09-11",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich möchte mich herzlich für die reibungslose Zusammenarbeit in den vergangenen Wochen bedanken.",
+    "Translation": "지난 몇 주 동안의 원활한 협업에 대해 진심으로 감사의 말씀을 전하고 싶습니다.",
+    "Key Points": "sich bedanken für (~에 감사하다), reibungslos (순조로운)",
+    "Date": "2026-09-11"
   },
   {
     "id": "s-de-20260911-03-sobald-der-pruefbericht-v",
@@ -5416,7 +7325,13 @@
       "de-die-geschaeftsleitung",
       "de-der-pruefbericht"
     ],
-    "date": "2026-09-11"
+    "date": "2026-09-11",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Sobald der Prüfbericht vorliegt, werde ich die wichtigsten Ergebnisse für die Geschäftsleitung zusammenfassen.",
+    "Translation": "검토 보고서가 나오는 대로, 경영진을 위해 핵심 결과들을 요약 정리하겠습니다.",
+    "Key Points": "sobald (~하자마자), vorliegen (제출되다), zusammenfassen (요약하다)",
+    "Date": "2026-09-11"
   },
   {
     "id": "s-en-20260910-01-could-you-check-in-with",
@@ -5436,7 +7351,13 @@
       "en-layout",
       "en-finalize"
     ],
-    "date": "2026-09-10"
+    "date": "2026-09-10",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Could you check in with the design team before we finalize the layout?",
+    "Translation": "레이아웃을 최종 확정하기 전에 디자인 팀에 한번 확인해 주실 수 있나요?",
+    "Key Points": "check in with (~에게 확인하다), finalize (확정하다)",
+    "Date": "2026-09-10"
   },
   {
     "id": "s-en-20260910-02-i-will-set-up-a-brief-ca",
@@ -5453,7 +7374,13 @@
     "cloze": "go through",
     "keyPoints": "set up a call (통화 일정을 잡다), go through (검토하다)",
     "vocabIds": [],
-    "date": "2026-09-10"
+    "date": "2026-09-10",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I will set up a brief call so we can go through the feedback together.",
+    "Translation": "피드백을 함께 훑어볼 수 있도록 짧은 통화 일정을 잡겠습니다.",
+    "Key Points": "set up a call (통화 일정을 잡다), go through (검토하다)",
+    "Date": "2026-09-10"
   },
   {
     "id": "s-en-20260910-03-i-prefer-taking-notes-du",
@@ -5472,7 +7399,13 @@
     "vocabIds": [
       "en-discussion"
     ],
-    "date": "2026-09-10"
+    "date": "2026-09-10",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I prefer taking notes during discussions to keep track of key details.",
+    "Translation": "저는 주요 세부사항을 놓치지 않기 위해 논의 중에 메모하는 것을 선호합니다.",
+    "Key Points": "take notes (메모하다), keep track of (~을 놓치지 않다)",
+    "Date": "2026-09-10"
   },
   {
     "id": "s-de-20260910-01-wir-sollten-die-einzelne",
@@ -5491,7 +7424,13 @@
     "vocabIds": [
       "de-nachvollziehen"
     ],
-    "date": "2026-09-10"
+    "date": "2026-09-10",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten die einzelnen Entwicklungsschritte genau dokumentieren, um eventuelle Fehler rasch nachvollziehen zu können.",
+    "Translation": "혹시 모를 오류를 신속하게 추적할 수 있도록, 우리는 개별 개발 단계를 정확히 문서화해야 합니다.",
+    "Key Points": "nachvollziehen (추적하다), dokumentieren (문서화하다)",
+    "Date": "2026-09-10"
   },
   {
     "id": "s-de-20260910-02-es-empfiehlt-sich-die-w",
@@ -5510,7 +7449,13 @@
     "vocabIds": [
       "de-die-vereinbarung"
     ],
-    "date": "2026-09-10"
+    "date": "2026-09-10",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es empfiehlt sich, die wesentlichen Punkte des Vertrags nochmals gemeinsam durchzugehen, bevor wir die Vereinbarung unterzeichnen.",
+    "Translation": "계약서에 서명하기 전에, 계약의 핵심 조항들을 다시 한번 함께 검토하는 것이 권장됩니다.",
+    "Key Points": "es empfiehlt sich (~이 권장되다), unterzeichnen (서명하다)",
+    "Date": "2026-09-10"
   },
   {
     "id": "s-de-20260910-03-trotz-des-engen-zeitrahm",
@@ -5529,7 +7474,13 @@
     "vocabIds": [
       "de-der-zeitrahmen"
     ],
-    "date": "2026-09-10"
+    "date": "2026-09-10",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Trotz des engen Zeitrahmens ist das gesamte Team äußerst engagiert vorgegangen, um die Lösung rechtzeitig bereitzustellen.",
+    "Translation": "빠듯한 일정에도 불구하고, 전체 팀은 솔루션을 제때 제공하기 위해 대단히 헌신적으로 진행했습니다.",
+    "Key Points": "engagiert vorgehen (헌신적으로 임하다), bereitstellen (제공하다)",
+    "Date": "2026-09-10"
   },
   {
     "id": "s-en-20260906-01-i-will-follow-up-with-th",
@@ -5549,7 +7500,13 @@
       "en-finalize",
       "en-follow-up"
     ],
-    "date": "2026-09-06"
+    "date": "2026-09-06",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I will follow up with the customer next Monday to finalize the plan.",
+    "Translation": "계획을 마무리 짓기 위해 다음 주 월요일에 고객에게 후속 연락을 취하겠습니다.",
+    "Key Points": "finalize (마무리 짓다), customer (고객)",
+    "Date": "2026-09-06"
   },
   {
     "id": "s-de-20260906-01-ich-waere-ihnen-sehr-verb",
@@ -5568,7 +7525,13 @@
     "vocabIds": [
       "de-weiterleiten"
     ],
-    "date": "2026-09-06"
+    "date": "2026-09-06",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich wäre Ihnen sehr verbunden, wenn Sie mir die neuen Unterlagen bezüglich des Projekts weiterleiten könnten.",
+    "Translation": "프로젝트와 관련된 새로운 서류들을 제게 전달해 주실 수 있다면 정말 감사하겠습니다.",
+    "Key Points": "verbunden sein (감사하다), weiterleiten (전달하다)",
+    "Date": "2026-09-06"
   },
   {
     "id": "s-de-2026-09-06-wir-sollten-vor-dem-naech",
@@ -5588,7 +7551,13 @@
       "de-die-ruecksprache",
       "de-die-entscheidung"
     ],
-    "date": "2026-09-06"
+    "date": "2026-09-06",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten vor dem nächsten Termin Rücksprache halten, um eine endgültige Entscheidung zu treffen.",
+    "Translation": "최종 결정을 내리기 위해, 우리는 다음 일정 전에 사전 협의를 거쳐야 합니다.",
+    "Key Points": "Rücksprache halten (상의하다), eine Entscheidung treffen (결정을 내리다)",
+    "Date": "2026-09-06"
   },
   {
     "id": "s-de-2026-09-06-obwohl-es-einige-verzoege",
@@ -5608,7 +7577,13 @@
       "de-reibungslos",
       "de-die-verzoegerung"
     ],
-    "date": "2026-09-06"
+    "date": "2026-09-06",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Obwohl es einige Verzögerungen gab, verlief die Abstimmung mit dem Kunden letztlich reibungslos.",
+    "Translation": "몇 차례 지연이 있었음에도 불구하고, 고객과의 조율은 궁극적으로 원활하게 진행되었습니다.",
+    "Key Points": "die Abstimmung (조율), reibungslos (순조로운)",
+    "Date": "2026-09-06"
   },
   {
     "id": "s-en-20260904-01-i-will-follow-up-with-th",
@@ -5628,7 +7603,13 @@
       "en-follow-up",
       "en-contract"
     ],
-    "date": "2026-09-04"
+    "date": "2026-09-04",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I will follow up with the client regarding the contract details tomorrow morning.",
+    "Translation": "내일 아침 계약 세부사항과 관련해 고객에게 후속 연락을 취하겠습니다.",
+    "Key Points": "follow up with (~에게 후속 연락을 취하다), regarding (~에 관하여)",
+    "Date": "2026-09-04"
   },
   {
     "id": "s-en-20260904-02-could-you-give-me-a-hand",
@@ -5645,7 +7626,13 @@
     "cloze": null,
     "keyPoints": "give someone a hand (~를 돕다), prepare (준비하다)",
     "vocabIds": [],
-    "date": "2026-09-04"
+    "date": "2026-09-04",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Could you give me a hand with preparing the slides for the presentation?",
+    "Translation": "발표 슬라이드 준비하는 것 좀 도와주실 수 있나요?",
+    "Key Points": "give someone a hand (~를 돕다), prepare (준비하다)",
+    "Date": "2026-09-04"
   },
   {
     "id": "s-en-20260904-03-i-usually-take-a-quick-w",
@@ -5662,7 +7649,13 @@
     "cloze": "lunch break",
     "keyPoints": "lunch break (점심시간), clear one's head (머리를 식히다)",
     "vocabIds": [],
-    "date": "2026-09-04"
+    "date": "2026-09-04",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I usually take a quick walk during my lunch break to clear my head.",
+    "Translation": "저는 보통 머리를 식히기 위해 점심시간 동안 가볍게 산책을 해요.",
+    "Key Points": "lunch break (점심시간), clear one's head (머리를 식히다)",
+    "Date": "2026-09-04"
   },
   {
     "id": "s-de-20260904-01-es-waere-ratsam-vor-der",
@@ -5679,7 +7672,13 @@
     "cloze": null,
     "keyPoints": "ratsam sein (바람직하다), eingehend prüfen (면밀히 검토하다)",
     "vocabIds": [],
-    "date": "2026-09-04"
+    "date": "2026-09-04",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Es wäre ratsam, vor der Unterzeichnung des Vertrags alle Bedingungen noch einmal eingehend zu prüfen.",
+    "Translation": "계약서에 서명하기 전에 모든 조건을 다시 한번 면밀히 검토하는 것이 바람직합니다.",
+    "Key Points": "ratsam sein (바람직하다), eingehend prüfen (면밀히 검토하다)",
+    "Date": "2026-09-04"
   },
   {
     "id": "s-de-20260904-02-obwohl-die-frist-sehr-kn",
@@ -5699,7 +7698,13 @@
       "de-die-frist",
       "de-abschliessen"
     ],
-    "date": "2026-09-04"
+    "date": "2026-09-04",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Obwohl die Frist sehr knapp bemessen ist, bin ich zuversichtlich, dass wir das Projekt rechtzeitig abschließen können.",
+    "Translation": "기한이 매우 빠듯하게 잡혀 있음에도 불구하고, 저는 우리가 프로젝트를 제시간에 완료할 수 있을 것이라 확신합니다.",
+    "Key Points": "knapp bemessen sein (빠듯하다), zuversichtlich sein (확신하다)",
+    "Date": "2026-09-04"
   },
   {
     "id": "s-de-20260904-03-wir-sollten-die-zustaendi",
@@ -5718,7 +7723,13 @@
     "vocabIds": [
       "de-die-zustaendigkeit"
     ],
-    "date": "2026-09-04"
+    "date": "2026-09-04",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Wir sollten die Zuständigkeiten innerhalb des Teams klarer verteilen, um Missverständnisse in Zukunft zu vermeiden.",
+    "Translation": "앞으로 오해를 방지하기 위해, 우리는 팀 내 업무 책임을 보다 명확하게 분배해야 합니다.",
+    "Key Points": "die Zuständigkeit (소관 업무), verteilen (분배하다)",
+    "Date": "2026-09-04"
   },
   {
     "id": "s-en-20260903-01-could-we-reschedule-our",
@@ -5735,7 +7746,13 @@
     "cloze": "reschedule",
     "keyPoints": "reschedule (일정을 변경하다), Could we + 동사원형? (공손한 제안)",
     "vocabIds": [],
-    "date": "2026-09-03"
+    "date": "2026-09-03",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Could we reschedule our meeting to tomorrow morning at ten?",
+    "Translation": "저희 회의 일정을 내일 오전 10시로 변경할 수 있을까요?",
+    "Key Points": "reschedule (일정을 변경하다), Could we + 동사원형? (공손한 제안)",
+    "Date": "2026-09-03"
   },
   {
     "id": "s-en-20260903-02-i-will-send-the-project",
@@ -5752,7 +7769,13 @@
     "cloze": "by the end of the day",
     "keyPoints": "by the end of the day (오늘 중으로/퇴근 전까지), send (보내다)",
     "vocabIds": [],
-    "date": "2026-09-03"
+    "date": "2026-09-03",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "I will send the project report by the end of the day.",
+    "Translation": "오늘 일과가 끝나기 전까지 프로젝트 보고서를 보내드릴게요.",
+    "Key Points": "by the end of the day (오늘 중으로/퇴근 전까지), send (보내다)",
+    "Date": "2026-09-03"
   },
   {
     "id": "s-en-20260903-03-let-me-check-my-calendar",
@@ -5769,7 +7792,13 @@
     "cloze": null,
     "keyPoints": "check one's calendar (일정을 확인하다), get back to someone (~에게 회신하다)",
     "vocabIds": [],
-    "date": "2026-09-03"
+    "date": "2026-09-03",
+    "Language": "English",
+    "Level": "A2",
+    "Sentence": "Let me check my calendar and get back to you soon.",
+    "Translation": "일정을 확인한 뒤 곧 다시 연락드리겠습니다.",
+    "Key Points": "check one's calendar (일정을 확인하다), get back to someone (~에게 회신하다)",
+    "Date": "2026-09-03"
   },
   {
     "id": "s-de-20260903-01-ich-waere-ihnen-sehr-dank",
@@ -5786,7 +7815,13 @@
     "cloze": "zukommen lassen",
     "keyPoints": "Konjunktiv II (wäre, könnten) 공손한 요청, zukommen lassen (전달하다)",
     "vocabIds": [],
-    "date": "2026-09-03"
+    "date": "2026-09-03",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich wäre Ihnen sehr dankbar, wenn Sie mir die überarbeiteten Unterlagen bis heute Nachmittag zukommen lassen könnten.",
+    "Translation": "수정된 서류들을 오늘 오후까지 전달해 주실 수 있다면 대단히 감사하겠습니다.",
+    "Key Points": "Konjunktiv II (wäre, könnten) 공손한 요청, zukommen lassen (전달하다)",
+    "Date": "2026-09-03"
   },
   {
     "id": "s-de-20260903-02-da-es-bezueglich-des-neue",
@@ -5803,7 +7838,13 @@
     "cloze": null,
     "keyPoints": "bezüglich + Genitiv (~에 관하여), ansprechen (다루다, 거론하다)",
     "vocabIds": [],
-    "date": "2026-09-03"
+    "date": "2026-09-03",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Da es bezüglich des neuen Zeitplans noch Unklarheiten gibt, sollten wir diesen Punkt in der Teambesprechung ausführlich ansprechen.",
+    "Translation": "새 일정과 관련해 아직 불확실한 점들이 있으므로, 팀 회의에서 이 항목을 상세히 다루어야 합니다.",
+    "Key Points": "bezüglich + Genitiv (~에 관하여), ansprechen (다루다, 거론하다)",
+    "Date": "2026-09-03"
   },
   {
     "id": "s-de-20260903-03-um-den-projekterfolg-zu",
@@ -5823,7 +7864,13 @@
       "de-abstimmen",
       "de-gewaehrleisten"
     ],
-    "date": "2026-09-03"
+    "date": "2026-09-03",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um den Projekterfolg zu gewährleisten, müssen wir die einzelnen Arbeitsschritte sorgfältig miteinander abstimmen.",
+    "Translation": "프로젝트의 성공을 보장하기 위해, 우리는 세부 작업 단계들을 상호 간에 꼼꼼히 조율해야 합니다.",
+    "Key Points": "um ... zu + Infinitiv (목적 구문), abstimmen mit (조율하다), gewährleisten (보장하다)",
+    "Date": "2026-09-03"
   },
   {
     "id": "s-en-20261030-01-we-initiated-a-deploymen",
@@ -5844,7 +7891,13 @@
       "en-freeze",
       "en-deployment"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We initiated a deployment freeze at noon to protect database integrity ahead of the busy weekend traffic.",
+    "Translation": "주말 트래픽 급증을 앞두고 데이터베이스 무결성을 보호하기 위해 정오에 배포 동결을 시작했습니다.",
+    "Key Points": "initiate freeze (동결 시작), database integrity (DB 무결성), weekend traffic (주말 트래픽)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-en-20261030-02-i-reviewed-the-on-call-e",
@@ -5863,7 +7916,13 @@
     "vocabIds": [
       "en-escalation"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I reviewed the on-call escalation procedures and transferred the emergency phone to the weekend engineer.",
+    "Translation": "비상 호출 대응 절차를 점검하고 주말 당직 엔지니어에게 비상 전화를 인계했습니다.",
+    "Key Points": "escalation procedures (비상 대응 절차), emergency phone (비상 연락 전화), transfer (인계하다)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-en-20261030-03-i-plan-to-pump-up-the-bi",
@@ -5883,7 +7942,13 @@
       "en-pump-up",
       "en-grease"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "I plan to pump up the bicycle tires and grease the chain tonight so we can head out early tomorrow morning.",
+    "Translation": "내일 아침 일찍 출발할 수 있도록 오늘 저녁 자전거 타이어에 바람을 넣고 체인에 오일을 칠할 계획입니다.",
+    "Key Points": "pump up tires (타이어 바람 넣기), grease the chain (체인 윤활), head out early (일찍 출발하다)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-en-20261030-04-we-stopped-by-the-bakery",
@@ -5902,7 +7967,13 @@
     "vocabIds": [
       "en-cozy"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "We stopped by the bakery on the way home to pick up fresh bread and pastries for a cozy Friday evening.",
+    "Translation": "아늑한 금요일 저녁을 위해 퇴근길에 빵집에 들러 갓 구운 빵과 페이스트리를 샀습니다.",
+    "Key Points": "stop by bakery (빵집 들르기), on the way home (퇴근길에), cozy Friday (아늑한 금요일)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-en-20261030-05-all-production-servers-a",
@@ -5921,7 +7992,13 @@
     "vocabIds": [
       "en-relaxing"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "English",
+    "Level": "A2-B1",
+    "Sentence": "All production servers are running smoothly; have a relaxing and safe weekend with your family!",
+    "Translation": "모든 운영 서버가 원활하게 실행 중입니다. 가족과 함께 편안하고 안전한 주말 보내세요!",
+    "Key Points": "running smoothly (원활히 실행 중), production servers (운영 서버), relaxing weekend (편안한 주말)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-de-20261030-01-um-die-datenbankintegrit",
@@ -5941,7 +8018,13 @@
       "de-der-wochenendverkehr",
       "de-der-release-stopp"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Um die Datenbankintegrität vor dem hohen Wochenendverkehr zu schützen, gilt ab heute Mittag ein strikter Release-Stopp.",
+    "Translation": "높은 주말 트래픽에 앞서 데이터베이스 무결성을 보호하기 위해 오늘 정오부터 엄격한 배포 동결이 적용됩니다.",
+    "Key Points": "Datenbankintegrität (DB 무결성), Release-Stopp (배포 동결), Wochenendverkehr (주말 트래픽)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-de-20261030-02-ich-habe-den-eskalations",
@@ -5961,7 +8044,13 @@
       "de-der-eskalationspfad",
       "de-das-bereitschaftstelefon"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Ich habe den Eskalationspfad für Störfälle überprüft und das Bereitschaftstelefon an das Wochenendteam übergeben.",
+    "Translation": "장애 발생 시의 비상 대응 절차를 점검하고 비상 연락 전화를 주말 당직팀에 인계했습니다.",
+    "Key Points": "Eskalationspfad (비상 대응 절차), Bereitschaftstelefon (당직/온콜 전화), übergeben (인계하다)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-de-20261030-03-heute-abend-pumpe-ich-di",
@@ -5981,7 +8070,13 @@
       "de-die-kette",
       "de-losfahren"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Heute Abend pumpe ich die Fahrradreifen auf und öle die Kette, damit wir morgen früh direkt losfahren können.",
+    "Translation": "내일 아침 바로 출발할 수 있도록 오늘 저녁에 자전거 타이어 바람을 넣고 체인에 기름칠을 해둘 것입니다.",
+    "Key Points": "Reifen aufpumpen (타이어 바람 넣기), Kette ölen (체인 오일칠), losfahren (출발하다)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-de-20261030-04-auf-dem-heimweg-hole-ich",
@@ -6002,7 +8097,13 @@
       "de-die-frische",
       "de-gemuetlich"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Auf dem Heimweg hole ich noch frisches Gebäck beim Bäcker, um das Wochenende gemütlich einzuläuten.",
+    "Translation": "퇴근길에 빵집에서 갓 구운 빵을 사서 주말을 아늑하게 맞이하려 합니다.",
+    "Key Points": "frisches Gebäck (신선한 빵/과자), einläuten (맞이하다), auf dem Heimweg (퇴근길에)",
+    "Date": "2026-10-30"
   },
   {
     "id": "s-de-20261030-05-auf-den-produktionsserve",
@@ -6021,6 +8122,12 @@
     "vocabIds": [
       "de-erholsam"
     ],
-    "date": "2026-10-30"
+    "date": "2026-10-30",
+    "Language": "German",
+    "Level": "B1-B2",
+    "Sentence": "Auf den Produktionsservern läuft alles ruhig und stabil; ich wünsche Ihnen allen ein erholsames Wochenende!",
+    "Translation": "운영 서버의 모든 것이 조용하고 안정적으로 실행되고 있네요. 모두 편안한 주말 보내시길 바랍니다!",
+    "Key Points": "ruhig und stabil (조용하고 안정적인), Produktionsserver (운영 서버), erholsames Wochenende (휴식 주말)",
+    "Date": "2026-10-30"
   }
 ]
