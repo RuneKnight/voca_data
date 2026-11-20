@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-20T01:45:31.518Z",
+  "counts": {
+    "vocab": 492,
+    "sentences": 308,
+    "pairs": 153
+  },
+  "languages": [
+    "English",
+    "German"
+  ],
+  "levels": [
+    "A2",
+    "A2-B1",
+    "B1-B2"
+  ],
+  "tags": [
+    "cycling",
+    "daily",
+    "dev",
+    "health",
+    "work"
+  ],
+  "latestDate": "2026-10-30"
+}
