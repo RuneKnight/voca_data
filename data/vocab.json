@@ -1,5 +1,161 @@
 [
   {
+    "id": "en-memory-consumption",
+    "legacyKey": "English:memory consumption",
+    "lang": "English",
+    "level": "B1",
+    "word": "memory consumption",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "메모리 사용량",
+    "example": "High memory consumption can cause crashes.",
+    "tags": [
+      "dev",
+      "performance"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "20261120-01"
+  },
+  {
+    "id": "en-status-report",
+    "legacyKey": "English:status report",
+    "lang": "English",
+    "level": "B1",
+    "word": "status report",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "상태 보고서",
+    "example": "I am writing my status report now.",
+    "tags": [
+      "work",
+      "admin"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "20261120-02"
+  },
+  {
+    "id": "de-statusbericht",
+    "legacyKey": "German:der Statusbericht",
+    "lang": "German",
+    "level": "B1",
+    "word": "der Statusbericht",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Statusberichte)",
+    "gender": "der",
+    "plural": "die Statusberichte",
+    "meaning": "상태 보고서",
+    "example": "Der Statusbericht wurde per E-Mail verschickt.",
+    "tags": [
+      "work",
+      "admin"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "20261120-02"
+  },
+  {
+    "id": "en-stop-by",
+    "legacyKey": "English:stop by",
+    "lang": "English",
+    "level": "A2",
+    "word": "stop by",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "잠깐 들르다",
+    "example": "Can you stop by the store?",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "20261120-03"
+  },
+  {
+    "id": "de-vorbeigehen",
+    "legacyKey": "German:vorbeigehen",
+    "lang": "German",
+    "level": "B1",
+    "word": "vorbeigehen",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "들르다, 지나가다",
+    "example": "Ich werde später noch bei dir vorbeigehen.",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "20261120-03"
+  },
+  {
+    "id": "en-tidy-up",
+    "legacyKey": "English:tidy up",
+    "lang": "English",
+    "level": "B1",
+    "word": "tidy up",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "정돈하다",
+    "example": "Let us tidy up the desk.",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "20261120-04"
+  },
+  {
+    "id": "de-aufraeumen",
+    "legacyKey": "German:aufräumen",
+    "lang": "German",
+    "level": "A2",
+    "word": "aufräumen",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "치우다, 정돈하다",
+    "example": "Er muss sein Zimmer aufräumen.",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "20261120-04"
+  },
+  {
+    "id": "en-heading-out",
+    "legacyKey": "English:heading out",
+    "lang": "English",
+    "level": "B1",
+    "word": "heading out",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "출발하다, 외출하다",
+    "example": "We are heading out in ten minutes.",
+    "tags": [
+      "cycling",
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "20261120-05"
+  },
+  {
     "id": "en-checksum",
     "legacyKey": "English:checksum",
     "lang": "English",

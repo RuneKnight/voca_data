@@ -1,5 +1,195 @@
 [
   {
+    "id": "s-en-20261120-01-we-need-to-monitor-the-m",
+    "legacyKey": "English:We need to monitor the memory consumption of the new service closely.",
+    "pairId": "20261120-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "dev",
+    "tags": [
+      "dev"
+    ],
+    "sentence": "We need to monitor the memory consumption of the new service closely.",
+    "translation": "새로운 서비스의 메모리 사용량을 면밀히 모니터링해야 합니다.",
+    "cloze": "memory consumption",
+    "keyPoints": "memory consumption: 메모리 사용량/소모량",
+    "vocabIds": [
+      "en-memory-consumption"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-01-wir-muessen-die-speichera",
+    "legacyKey": "German:Wir müssen die Speicherauslastung des neuen Dienstes genau überwachen.",
+    "pairId": "20261120-01",
+    "lang": "German",
+    "level": "B2",
+    "topic": "dev",
+    "tags": [
+      "dev"
+    ],
+    "sentence": "Wir müssen die Speicherauslastung des neuen Dienstes genau überwachen.",
+    "translation": "새로운 서비스의 메모리 사용량을 면밀히 모니터링해야 합니다.",
+    "cloze": "Speicherauslastung",
+    "keyPoints": "die Speicherauslastung: 메모리 사용량",
+    "vocabIds": [
+      "de-die-speicherauslastung"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-20261120-02-please-submit-your-weekl",
+    "legacyKey": "English:Please submit your weekly status report by Friday afternoon.",
+    "pairId": "20261120-02",
+    "lang": "English",
+    "level": "B1",
+    "topic": "work",
+    "tags": [
+      "work"
+    ],
+    "sentence": "Please submit your weekly status report by Friday afternoon.",
+    "translation": "금요일 오후까지 주간 상태 보고서를 제출해 주세요.",
+    "cloze": "status report",
+    "keyPoints": "status report: 상태 보고서, 진행 상황 보고",
+    "vocabIds": [
+      "en-status-report"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-02-bitte-reichen-sie-ihren",
+    "legacyKey": "German:Bitte reichen Sie Ihren wöchentlichen Statusbericht bis Freitagmittag ein.",
+    "pairId": "20261120-02",
+    "lang": "German",
+    "level": "B1",
+    "topic": "work",
+    "tags": [
+      "work"
+    ],
+    "sentence": "Bitte reichen Sie Ihren wöchentlichen Statusbericht bis Freitagmittag ein.",
+    "translation": "금요일 정오까지 주간 상태 보고서를 제출해 주세요.",
+    "cloze": "Statusbericht",
+    "keyPoints": "der Statusbericht: 상태 보고서",
+    "vocabIds": [
+      "de-statusbericht"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-20261120-03-i-usually-stop-by-the-lo",
+    "legacyKey": "English:I usually stop by the local bakery on my way home.",
+    "pairId": "20261120-03",
+    "lang": "English",
+    "level": "A2",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "I usually stop by the local bakery on my way home.",
+    "translation": "나는 보통 집에 가는 길에 동네 빵집에 들릅니다.",
+    "cloze": "stop by",
+    "keyPoints": "stop by: 잠깐 들르다",
+    "vocabIds": [
+      "en-stop-by"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-03-ich-gehe-auf-dem-heimweg",
+    "legacyKey": "German:Ich gehe auf dem Heimweg meistens kurz in der Bäckerei vorbei.",
+    "pairId": "20261120-03",
+    "lang": "German",
+    "level": "B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "Ich gehe auf dem Heimweg meistens kurz in der Bäckerei vorbei.",
+    "translation": "나는 보통 귀가길에 빵집에 잠깐 들릅니다.",
+    "cloze": "vorbei",
+    "keyPoints": "vorbeigehen: 지나쳐 가다, 들르다",
+    "vocabIds": [
+      "de-vorbeigehen"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-20261120-04-could-you-please-help-me",
+    "legacyKey": "English:Could you please help me tidy up the living room before guests arrive?",
+    "pairId": "20261120-04",
+    "lang": "English",
+    "level": "B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "Could you please help me tidy up the living room before guests arrive?",
+    "translation": "손님들이 오시기 전에 거실 정리를 좀 도와주시겠어요?",
+    "cloze": "tidy up",
+    "keyPoints": "tidy up: 정돈하다, 치우다",
+    "vocabIds": [
+      "en-tidy-up"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-04-koenntest-du-bitte-das-wo",
+    "legacyKey": "German:Könntest du bitte das Wohnzimmer aufräumen, bevor die Gäste kommen?",
+    "pairId": "20261120-04",
+    "lang": "German",
+    "level": "B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "Könntest du bitte das Wohnzimmer aufräumen, bevor die Gäste kommen?",
+    "translation": "손님들이 오시기 전에 거실을 치워 줄래요?",
+    "cloze": "aufräumen",
+    "keyPoints": "aufräumen: 정돈하다, 치우다",
+    "vocabIds": [
+      "de-aufraeumen"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-20261120-05-make-sure-to-check-your",
+    "legacyKey": "English:Make sure to check your bicycle tires and brakes before heading out for a long ride.",
+    "pairId": "20261120-05",
+    "lang": "English",
+    "level": "B1",
+    "topic": "cycling",
+    "tags": [
+      "cycling"
+    ],
+    "sentence": "Make sure to check your bicycle tires and brakes before heading out for a long ride.",
+    "translation": "장거리 라이딩을 떠나기 전에 자전거 타이어와 브레이크를 반드시 확인하세요.",
+    "cloze": "heading out",
+    "keyPoints": "heading out: 출발하다, 나서다",
+    "vocabIds": [
+      "en-heading-out"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-de-20261120-05-vergewissern-sie-sich-vo",
+    "legacyKey": "German:Vergewissern Sie sich vor einer langen Radtour, dass Reifen und Bremsen in Ordnung sind.",
+    "pairId": "20261120-05",
+    "lang": "German",
+    "level": "B2",
+    "topic": "cycling",
+    "tags": [
+      "cycling"
+    ],
+    "sentence": "Vergewissern Sie sich vor einer langen Radtour, dass Reifen und Bremsen in Ordnung sind.",
+    "translation": "긴 자전거 여행을 떠나기 전에 타이어와 브레이크에 이상이 없는지 확인하세요.",
+    "cloze": "Radtour",
+    "keyPoints": "die Radtour: 자전거 여행, 라이딩",
+    "vocabIds": [
+      "de-die-radtour"
+    ],
+    "date": "2026-11-20"
+  },
+  {
     "id": "s-en-20261120-01-we-checked-the-cryptogra",
     "legacyKey": "English:We checked the cryptographic checksums of all mirrored libraries in our offline repository before compiling the upgraded Java module.",
     "pairId": "20261120-01",

@@ -1,14 +1,28 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T01:45:31.517Z",
+  "updatedAt": "2026-11-20T04:28:35.593Z",
   "counts": {
-    "vocab": 492,
-    "sentences": 308,
-    "englishVocab": 212,
-    "germanVocab": 280
+    "vocab": 519,
+    "sentences": 328,
+    "englishVocab": 226,
+    "germanVocab": 293
   },
   "words": {
     "English": [
+      "memory consumption",
+      "status report",
+      "stop by",
+      "tidy up",
+      "heading out",
+      "checksum",
+      "illustrate",
+      "diagram",
+      "steep",
+      "barley",
+      "passage",
+      "highlight",
+      "tire",
+      "adjust",
       "utilization",
       "patch",
       "retry",
@@ -223,6 +237,19 @@
       "relaxing"
     ],
     "German": [
+      "der Statusbericht",
+      "vorbeigehen",
+      "aufräumen",
+      "die Prüfsumme",
+      "die Bibliothek",
+      "darstellen",
+      "die Spitzenzeit",
+      "abwischen",
+      "der Becher",
+      "die Textstelle",
+      "der Lesekreis",
+      "der Reifen",
+      "das Faltrad",
       "die Speicherauslastung",
       "das Speicherleck",
       "die Wiederholungslogik",
@@ -507,6 +534,106 @@
   },
   "recentSentences": [
     {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "We need to monitor the memory consumption of the new service closely."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Wir müssen die Speicherauslastung des neuen Dienstes genau überwachen."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Please submit your weekly status report by Friday afternoon."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Bitte reichen Sie Ihren wöchentlichen Statusbericht bis Freitagmittag ein."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "I usually stop by the local bakery on my way home."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Ich gehe auf dem Heimweg meistens kurz in der Bäckerei vorbei."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Could you please help me tidy up the living room before guests arrive?"
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Könntest du bitte das Wohnzimmer aufräumen, bevor die Gäste kommen?"
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Make sure to check your bicycle tires and brakes before heading out for a long ride."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Vergewissern Sie sich vor einer langen Radtour, dass Reifen und Bremsen in Ordnung sind."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "We checked the cryptographic checksums of all mirrored libraries in our offline repository before compiling the upgraded Java module."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Wir haben die kryptografischen Prüfsummen aller gespiegelten Bibliotheken in unserem lokalen Paketspiegel geprüft, bevor wir das aktualisierte Java-Modul kompiliert haben."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "I updated the sequence diagram today to illustrate how the gateway handles slow responses during peak hours."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Ich habe heute das Sequenzdiagramm aktualisiert, um anschaulich darzustellen, wie das Gateway zu Spitzenzeiten auf langsame Antworten reagiert."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "After dinner, I wiped the dining table and steeped a warm mug of barley tea for our family."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Nach dem Essen habe ich den Esstisch abgewischt und einen warmen Becher Gerstentee für unsere Familie aufgegossen."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "I highlighted three thought-provoking passages in my philosophy book to share at our monthly reading group."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Ich habe drei nachdenkliche Textstellen in meinem Philosophiebuch markiert, um sie in unserem monatlichen Lesekreis zu teilen."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Before our weekend ride, I pumped up the tires and adjusted the brake cables on my folding bicycle."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "German",
+      "sentence": "Vor unserem Wochenendausflug habe ich die Reifen aufgepumpt und die Bremszüge an meinem Faltrad neu eingestellt."
+    },
+    {
       "date": "2026-10-29",
       "lang": "English",
       "sentence": "We are monitoring memory utilization closely during the overnight batch settlement to catch potential memory leaks early."
@@ -555,106 +682,6 @@
       "date": "2026-10-29",
       "lang": "German",
       "sentence": "Gegen drei Uhr nachmittags tut eine kurze Verschnaufpause mit einer Handvoll Nüssen richtig gut, um neue Energie zu tanken."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "English",
-      "sentence": "We implemented a distributed lock mechanism using Redis to prevent concurrent withdrawals from the same account."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "English",
-      "sentence": "Let's do a quick ten-minute mid-week sync to make sure none of the release blockers are holding up our timeline."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "English",
-      "sentence": "Reading a few pages of a classic philosophy book after dinner helps me put everyday workplace worries into perspective."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "English",
-      "sentence": "We brewed a warm pot of peppermint tea tonight and chatted about our favorite moments from the school science fair."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "English",
-      "sentence": "The autumn air is cool and refreshing today; would you like to take a brisk walk around the block before the afternoon meeting?"
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "German",
-      "sentence": "Zur Verhinderung gleichzeitiger Abbuchungen vom selben Konto haben wir eine verteilte Sperre auf Basis von Redis eingerichtet."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "German",
-      "sentence": "Lassen Sie uns heute eine kurze Zwischenabstimmung machen, um sicherzustellen, dass keine offenen Hindernisse den Zeitplan gefährden."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "German",
-      "sentence": "Ein paar Seiten in einem philosophischen Werk nach dem Abendessen helfen mir dabei, den beruflichen Trubel mit etwas Abstand zu betrachten."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "German",
-      "sentence": "Heute Abend haben wir eine Kanne Pfefferminztee gekocht und gemütlich über die Erlebnisse beim Schulfest gesprochen."
-    },
-    {
-      "date": "2026-10-28",
-      "lang": "German",
-      "sentence": "Die Herbstluft ist heute herrlich frisch; wollen wir vor den Nachmittagsterminen eine kleine Runde um den Block drehen?"
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "English",
-      "sentence": "We enforce unique idempotency keys in payment headers to prevent duplicate ledger postings during network retries."
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "English",
-      "sentence": "I left a few suggestions on your pull request regarding database transaction boundaries and error logging."
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "English",
-      "sentence": "Doing ten minutes of gentle lower back stretches before dinner helps ease the muscle tension built up from desk work."
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "English",
-      "sentence": "I stopped by the local market on my way home to pick up fresh zucchini, mushrooms, and tofu for a light stew."
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "English",
-      "sentence": "It is almost noon; would you like to grab a quick bite and take a short walk in the autumn sunshine?"
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "German",
-      "sentence": "Durch die Überprüfung eindeutiger Idempotenz-Schlüssel im Nachrichten-Header verhindern wir doppelte Buchungen bei Verbindungsabbrüchen."
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "German",
-      "sentence": "Ich habe im Pull-Request ein paar Hinweise zur Abgrenzung der Datenbanktransaktion und zum Fehler-Logging hinterlassen."
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "German",
-      "sentence": "Zehn Minuten sanftes Rückendehnen vor dem Abendessen helfen dabei, Verspannungen vom langen Sitzen am Bildschirm gezielt abzubauen."
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "German",
-      "sentence": "Auf dem Heimweg kaufe ich auf dem Wochenmarkt frische Zucchini und Pilze ein, um eine leichte Gemüsesuppe zu kochen."
-    },
-    {
-      "date": "2026-10-27",
-      "lang": "German",
-      "sentence": "Es ist fast Mittag; wollen wir eine Kleinigkeit essen gehen und kurz die milde Herbstsonne genießen?"
     }
   ]
 }

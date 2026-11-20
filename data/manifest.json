@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T01:45:31.518Z",
+  "updatedAt": "2026-11-20T04:28:35.594Z",
   "counts": {
-    "vocab": 492,
-    "sentences": 308,
-    "pairs": 153
+    "vocab": 519,
+    "sentences": 328,
+    "pairs": 158
   },
   "languages": [
     "English",
@@ -13,14 +13,18 @@
   "levels": [
     "A2",
     "A2-B1",
-    "B1-B2"
+    "B1",
+    "B1-B2",
+    "B2"
   ],
   "tags": [
+    "admin",
     "cycling",
     "daily",
     "dev",
     "health",
+    "performance",
     "work"
   ],
-  "latestDate": "2026-10-30"
+  "latestDate": "2026-11-20"
 }
