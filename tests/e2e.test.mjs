@@ -741,10 +741,81 @@ async function runTests() {
     assert.ok(gistCheck.statusText.includes('동기화 완료'));
     console.log('✅ Test 17 — Private GitHub Gist cross-device merge & API sync verified');
 
+    // 18. Zero-Build ES Modules, SM-2 4-Grade Rating, and In-App Profile Editor + Workflow Dispatch
+    const step3Check = await client.eval(`
+      (async () => {
+        const modulesLoaded = Boolean(
+          AppModules.srs?.computeSm2Review &&
+          AppModules.sync?.syncPrivateGistProgress &&
+          AppModules.archive?.loadDatasetSmart &&
+          AppModules.githubOps?.triggerDailyGenerateWorkflow
+        );
+
+        // Verify 4-grade SM-2 buttons on card back & hard/good ease computation
+        const hardBtns = document.querySelectorAll('[data-action="srs-rate"][data-quality="hard"]').length;
+        const firstVocab = vocabData[0];
+        const sm2Rec = SrsService.recordReview(firstVocab, 'hard');
+        const payload = buildCurrentProgressPayload();
+
+        // Mock GitHub API for Profile Editor commit + Actions workflow_dispatch
+        const origFetch = window.fetch;
+        let committedProfilesPath = null;
+        let dispatchedWorkflowUrl = null;
+        window.fetch = async (url, opts) => {
+          const u = String(url);
+          if (u.includes('/contents/data/profiles.json') && (!opts?.method || opts.method === 'GET')) {
+            return new Response(JSON.stringify({ sha: 'mock_sha_1' }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+          }
+          if (u.includes('/contents/data/profiles.json') && opts?.method === 'PUT') {
+            committedProfilesPath = u;
+            return new Response(JSON.stringify({ content: { sha: 'mock_sha_2' } }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+          }
+          if (u.includes('/actions/workflows/daily-generate.yml/dispatches') && opts?.method === 'POST') {
+            dispatchedWorkflowUrl = u;
+            return new Response(null, { status: 204 });
+          }
+          return origFetch(url, opts);
+        };
+
+        localStorage.setItem('vh_ghConfig', JSON.stringify({ owner: 'RuneKnight', repo: 'voca_data', branch: 'main', token: 'pat_mock' }));
+        openModal('settingsModal');
+        document.getElementById('profTopicsInput').value = '업무/개발 3, 일상 2';
+        await saveProfileEditsToGitHub();
+        const saveStatus = document.getElementById('profileEditorStatus').innerText;
+        await triggerTodayGenerationNow();
+        const triggerStatus = document.getElementById('profileEditorStatus').innerText;
+        closeModal('settingsModal');
+        window.fetch = origFetch;
+        localStorage.removeItem('vh_ghConfig');
+
+        return {
+          modulesLoaded,
+          hardBtns,
+          sm2Ease: sm2Rec?.ease,
+          sm2Interval: sm2Rec?.interval,
+          hasReviewTargetsArray: Array.isArray(payload.reviewTargets),
+          committedProfiles: Boolean(committedProfilesPath),
+          dispatchedWorkflow: Boolean(dispatchedWorkflowUrl),
+          saveStatus,
+          triggerStatus,
+        };
+      })()
+    `);
+    assert.equal(step3Check.modulesLoaded, true, 'All 4 Zero-Build ES Modules must load in browser');
+    assert.ok(step3Check.hardBtns > 0, 'Card backs must render 4th SM-2 Hard (어려움) button');
+    assert.ok(typeof step3Check.sm2Ease === 'number' && step3Check.sm2Ease < 2.5, 'SM-2 hard rating must lower easeFactor');
+    assert.ok(step3Check.sm2Interval >= 1);
+    assert.equal(step3Check.hasReviewTargetsArray, true, 'Progress payload must include adaptive reviewTargets array');
+    assert.equal(step3Check.committedProfiles, true, 'Profile editor must commit updated data/profiles.json');
+    assert.equal(step3Check.dispatchedWorkflow, true, 'Generate Now button must dispatch daily-generate.yml');
+    assert.ok(step3Check.saveStatus.includes('커밋 완료'));
+    assert.ok(step3Check.triggerStatus.includes('생성 요청 완료'));
+    console.log('✅ Test 18 — Zero-Build ES Modules, SM-2 4-grade rating, Profile Editor & Workflow Dispatch verified');
+
     const finalExceptions = client.events.filter((e) => e.method === 'Runtime.exceptionThrown');
     assert.equal(finalExceptions.length, 0, 'Expected 0 runtime JS exceptions across all E2E tests');
 
-    console.log('\n🎉 ALL 17 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
+    console.log('\n🎉 ALL 18 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
   } finally {
     client.close();
     proc.kill('SIGTERM');

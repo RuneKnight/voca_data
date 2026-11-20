@@ -60,12 +60,18 @@ jobs:
       - name: Generate daily vocabulary & sentences via Gemini API
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          REVIEW_GIST_ID: ${{ secrets.REVIEW_GIST_ID }}
+          REVIEW_GIST_TOKEN: ${{ secrets.REVIEW_GIST_TOKEN }}
           TARGET_PROFILE: ${{ github.event.inputs.profile || 'all' }}
           GEMINI_MODEL: ${{ github.event.inputs.model || '' }}
           PAIR_COUNT: ${{ github.event.inputs.pair_count || '' }}
           DAILY_TOPICS: ${{ github.event.inputs.topics || '' }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
         run: node scripts/generate-daily.mjs
+
+      - name: Refresh monthly archive indexes
+        if: ${{ (github.event.inputs.dry_run || 'false') != 'true' }}
+        run: node scripts/archive-data.mjs
 
       - name: Validate all profile datasets & integrity
         run: node scripts/validate-data.mjs

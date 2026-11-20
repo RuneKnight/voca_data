@@ -301,6 +301,120 @@ test('resolveDailyTopicPlan selects KST weekday topics, series themes, and honor
   assert.equal(overridden.topics, '커스텀 주제 5');
 });
 
+test('js/srs.js computes SM-2 4-grade intervals and extracts adaptive review targets', async () => {
+  const { computeSm2Review, extractAdaptiveReviewTargets } = await import('../js/srs.js');
+
+  const r1 = computeSm2Review(null, 'good', '2026-11-20');
+  assert.equal(r1.reps, 1);
+  assert.equal(r1.interval, 1);
+  assert.equal(r1.nextReview, '2026-11-21');
+
+  const r2 = computeSm2Review(r1, 'good', '2026-11-21');
+  assert.equal(r2.reps, 2);
+  assert.equal(r2.interval, 6);
+  assert.equal(r2.nextReview, '2026-11-27');
+
+  const rHard = computeSm2Review(r2, 'hard', '2026-11-27');
+  assert.equal(rHard.interval, 7);
+  assert.ok(rHard.ease < r2.ease);
+
+  const rAgain = computeSm2Review(r2, 'again', '2026-11-27');
+  assert.equal(rAgain.reps, 0);
+  assert.equal(rAgain.interval, 1);
+  assert.equal(rAgain.lapses, 1);
+
+  const vocab = [
+    { id: 'en-a', lang: 'English', word: 'resilient', meaning: '회복력 있는' },
+    { id: 'en-b', lang: 'English', word: 'masteredWord', meaning: '이미 암기' },
+    { id: 'en-c', lang: 'English', word: 'savedWord', meaning: '북마크 단어' },
+  ];
+  const targets = extractAdaptiveReviewTargets(
+    {
+      bookmarks: ['en-c'],
+      mastered: ['en-b'],
+      srs: { 'en-a': { box: 1, lapses: 3, ease: 1.9 } },
+    },
+    vocab,
+    2
+  );
+  assert.equal(targets.length, 2);
+  assert.equal(targets[0].word, 'resilient');
+  assert.equal(targets[1].word, 'savedWord');
+
+  // Prompt builder must include adaptive review targets section
+  const { buildPromptForProfile } = await import('../scripts/generate-daily.mjs');
+  const prompt = buildPromptForProfile(
+    { id: 'wife', languages: ['English'], levels: { English: 'A2-B1' }, daily: {} },
+    '2026-11-20',
+    { words: { English: [] } },
+    3,
+    { topics: '카페 1', seriesTheme: '' },
+    targets
+  );
+  assert.ok(prompt.includes('맞춤 복습 단어 자연스럽게 재등장'));
+  assert.ok(prompt.includes('resilient'));
+});
+
+test('js/archive.js splits old items by month and progressively merges recent + archive chunks', async () => {
+  const { splitDatasetByMonth, loadDatasetSmart } = await import('../js/archive.js');
+  const vocab = [
+    { id: 'v-new', date: '2026-11-20', word: 'fresh' },
+    { id: 'v-old', date: '2026-06-15', word: 'vintage' },
+  ];
+  const sentences = [
+    { id: 's-new', date: '2026-11-20', sentence: 'Fresh start.' },
+    { id: 's-old', date: '2026-06-15', sentence: 'Vintage note.' },
+  ];
+  const split = splitDatasetByMonth(vocab, sentences, { recentDays: 90 });
+  assert.equal(split.recent.vocab.length, 1);
+  assert.equal(split.olderMonths.length, 1);
+  assert.equal(split.olderMonths[0].month, '2026-06');
+
+  const files = {
+    './data/manifest.json': { chunks: { recent: 'recent.json', archiveMonths: [{ month: '2026-06' }] } },
+    './data/recent.json': { vocab: [vocab[0]], sentences: [sentences[0]] },
+    './data/archive/2026-06.json': { vocab: [vocab[1]], sentences: [sentences[1]] },
+  };
+  let partialVocabLen = 0;
+  const loaded = await loadDatasetSmart('data', async (u) => files[u], {
+    onPartial: (p) => { partialVocabLen = p.vocab.length; },
+  });
+  assert.equal(partialVocabLen, 1, 'onPartial should deliver fast recent chunk first');
+  assert.equal(loaded.usedArchiveChunks, true);
+  assert.equal(loaded.vocab.length, 2, 'Full merged dataset must contain recent + archived vocab');
+  assert.equal(loaded.sentences.length, 2);
+});
+
+test('js/github-ops.js updates profile config and dispatches daily-generate workflow', async () => {
+  const { applyProfileDailyEdits, triggerDailyGenerateWorkflow } = await import('../js/github-ops.js');
+  const cfg = JSON.parse(await readFile(resolve(process.cwd(), 'data/profiles.json'), 'utf8'));
+  const next = applyProfileDailyEdits(cfg, 'wife', {
+    topics: '브런치 1, 일상 2',
+    weekdayKey: 'mon',
+    weekdayTopic: '월요일 새 테마',
+    pairCount: 4,
+    goal: 4,
+    model: 'gemini-3.5-flash-lite',
+  });
+  const wife = next.profiles.find((p) => p.id === 'wife');
+  assert.equal(wife.daily.topics, '브런치 1, 일상 2');
+  assert.equal(wife.daily.weekdayTopics.mon, '월요일 새 테마');
+  assert.equal(wife.daily.pairCount, 4);
+  assert.equal(wife.daily.goal, 4);
+
+  let dispatched = null;
+  await triggerDailyGenerateWorkflow(
+    { owner: 'RuneKnight', repo: 'voca_data', branch: 'main', token: 'pat_123' },
+    { profile: 'wife', dryRun: false },
+    async (url, opts) => {
+      dispatched = { url, body: JSON.parse(opts.body) };
+      return new Response(null, { status: 204 });
+    }
+  );
+  assert.ok(dispatched.url.includes('/actions/workflows/daily-generate.yml/dispatches'));
+  assert.equal(dispatched.body.inputs.profile, 'wife');
+});
+
 test('data/profiles.json defines me, wife, and kid profiles with distinct dataDirs and storagePrefixes', async () => {
   const cfg = JSON.parse(await readFile(resolve(process.cwd(), 'data/profiles.json'), 'utf8'));
   assert.equal(cfg.defaultProfile, 'me');

@@ -1,8 +1,12 @@
-const CACHE_NAME = 'langhub-pro-v3';
+const CACHE_NAME = 'langhub-pro-v4';
 const SHELL_ASSETS = [
   './',
   './index.html',
   './assets/app.css',
+  './js/srs.js',
+  './js/sync.js',
+  './js/archive.js',
+  './js/github-ops.js',
   './manifest.json',
   './icon.svg',
   './data/profiles.json',

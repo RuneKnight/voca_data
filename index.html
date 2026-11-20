@@ -952,6 +952,59 @@
         </div>
       </section>
 
+      <section class="space-y-2.5 border-t pt-4" style="border-color: var(--border-hairline);">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="font-semibold text-pri">프로필별 AI 주제·생성량 편집 & 즉시 생성</h3>
+          <span id="profEditorBadge" class="text-[11px] font-mono text-mut"></span>
+        </div>
+        <p class="text-mut">현재 선택된 프로필의 주제·요일별 테마·생성량을 수정해 <code>data/profiles.json</code>에 바로 커밋하거나 오늘 단어를 즉시 생성할 수 있습니다.</p>
+        <div class="space-y-2">
+          <div class="space-y-1">
+            <label for="profTopicsInput" class="text-mut block">기본 주제</label>
+            <input id="profTopicsInput" type="text" placeholder="예: 여행/카페 1, 일상 회화 2" class="input-field h-8 w-full px-2.5 text-xs" />
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <select id="profWeekdaySelect" onchange="handleProfileWeekdaySelect(this.value)" aria-label="요일 선택" class="input-field h-8 px-2 text-xs font-medium cursor-pointer">
+              <option value="mon">월요일</option>
+              <option value="tue">화요일</option>
+              <option value="wed">수요일</option>
+              <option value="thu">목요일</option>
+              <option value="fri">금요일</option>
+              <option value="sat">토요일</option>
+              <option value="sun">일요일</option>
+            </select>
+            <input id="profWeekdayTopicInput" type="text" placeholder="선택한 요일의 주제" class="col-span-2 input-field h-8 px-2.5 text-xs" />
+          </div>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="space-y-1">
+              <label for="profPairCountInput" class="text-mut block">일일 세트 수</label>
+              <input id="profPairCountInput" type="number" min="1" max="10" class="input-field h-8 w-full px-2.5 text-xs font-mono" />
+            </div>
+            <div class="space-y-1">
+              <label for="profGoalInput" class="text-mut block">일일 목표</label>
+              <input id="profGoalInput" type="number" min="1" max="30" class="input-field h-8 w-full px-2.5 text-xs font-mono" />
+            </div>
+            <div class="space-y-1">
+              <label for="profModelSelect" class="text-mut block">AI 모델</label>
+              <select id="profModelSelect" class="input-field h-8 w-full px-2 text-xs font-mono cursor-pointer">
+                <option value="gemini-3.8-flash">3.8-flash</option>
+                <option value="gemini-3.5-flash-lite">3.5-flash-lite</option>
+                <option value="gemini-3.6-flash">3.6-flash</option>
+              </select>
+            </div>
+          </div>
+          <div class="space-y-1">
+            <label for="profSeriesInput" class="text-mut block">시리즈 맥락 (선택)</label>
+            <input id="profSeriesInput" type="text" placeholder="예: 평일 5일 해외여행 시나리오" class="input-field h-8 w-full px-2.5 text-xs" />
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <button id="btnSaveProfileEdits" onclick="saveProfileEditsToGitHub()" class="btn-primary px-3 py-1.5 text-xs font-medium">프로필 설정 GitHub 커밋</button>
+          <button id="btnTriggerDailyNow" onclick="triggerTodayGenerationNow()" class="btn-accent px-3 py-1.5 text-xs font-medium">지금 오늘 단어 생성 실행</button>
+        </div>
+        <div id="profileEditorStatus" class="text-xs font-medium text-sec"></div>
+      </section>
+
       <section class="space-y-2 border-t pt-4" style="border-color: var(--border-hairline);">
         <h3 class="font-semibold text-pri">기기 간 학습 동기화 (비공개 GitHub Gist)</h3>
         <p class="text-mut">메인 저장소 커밋 로그를 건드리지 않고 비공개 Gist 1개에 가족 프로필별 학습 기록(북마크·완료·SRS·스탬프)을 안전하게 병합 동기화합니다. <code>gist</code> 권한이 있는 토큰을 입력하세요.</p>
@@ -1451,6 +1504,26 @@
       };
     }
 
+    // Zero-Build ES Modules bridge (loaded dynamically at startup so offline SW + classic script stay 100% compatible)
+    const AppModules = {
+      srs: null,
+      sync: null,
+      archive: null,
+      githubOps: null,
+      async init() {
+        const [srs, sync, archive, githubOps] = await Promise.allSettled([
+          import('./js/srs.js'),
+          import('./js/sync.js'),
+          import('./js/archive.js'),
+          import('./js/github-ops.js'),
+        ]);
+        if (srs.status === 'fulfilled') this.srs = srs.value;
+        if (sync.status === 'fulfilled') this.sync = sync.value;
+        if (archive.status === 'fulfilled') this.archive = archive.value;
+        if (githubOps.status === 'fulfilled') this.githubOps = githubOps.value;
+      },
+    };
+
     const DataAdapter = {
       async fetchJsonWithTimeout(url) {
         const controller = new AbortController();
@@ -1466,6 +1539,31 @@
 
       async loadFromGitHubJson() {
         const dir = (activeProfile?.dataDir || 'data').replace(/\/+$/, '');
+        if (AppModules.archive?.loadDatasetSmart) {
+          const loaded = await AppModules.archive.loadDatasetSmart(
+            dir,
+            (url) => this.fetchJsonWithTimeout(url),
+            {
+              onPartial: (partial) => {
+                if (Array.isArray(partial.vocab) && partial.vocab.length > 0 && vocabData.length === 0) {
+                  vocabData = partial.vocab.map(normalizeVocabItem);
+                  sentenceData = (partial.sentences || []).map(normalizeSentenceItem);
+                  rebuildVocabIndex();
+                  populateDynamicFilters();
+                  document.getElementById('skeletonLoader')?.classList.add('hidden');
+                  render();
+                }
+              },
+            }
+          );
+          return {
+            vocab: Array.isArray(loaded.vocab) ? loaded.vocab.map(normalizeVocabItem) : null,
+            sentences: Array.isArray(loaded.sentences) ? loaded.sentences.map(normalizeSentenceItem) : null,
+            partialError: Boolean(loaded.partialError),
+            source: 'github',
+          };
+        }
+
         const [vRes, sRes] = await Promise.allSettled([
           this.fetchJsonWithTimeout(`./${dir}/vocab.json`),
           this.fetchJsonWithTimeout(`./${dir}/sentences.json`),
@@ -1572,7 +1670,7 @@
     };
 
     // =========================================================================
-    // 5. SRS & Study Log Service
+    // 5. SRS (SM-2) & Study Log Service
     // =========================================================================
     const SrsService = {
       getRecord(item) {
@@ -1591,22 +1689,30 @@
       },
 
       recordReview(item, quality) {
-        if (!item) return;
+        if (!item) return null;
         const today = getTodayDateStr();
         const key = item.id || getItemKey(item);
-        const prev = this.getRecord(item) || { box: 1, nextReview: today, lapses: 0 };
-        let nextBox = prev.box || 1;
-        let lapses = prev.lapses || 0;
+        const prev = this.getRecord(item);
 
-        if (quality === 'again') { nextBox = 1; lapses += 1; }
-        else if (quality === 'good') { nextBox = Math.min(5, nextBox + 1); }
-        else if (quality === 'easy') { nextBox = Math.min(5, nextBox + 2); }
+        let nextRec;
+        if (AppModules.srs?.computeSm2Review) {
+          nextRec = AppModules.srs.computeSm2Review(prev, quality, today);
+        } else {
+          let nextBox = prev?.box || 1;
+          let lapses = prev?.lapses || 0;
+          if (quality === 'again') { nextBox = 1; lapses += 1; }
+          else if (quality === 'hard') { nextBox = Math.max(1, nextBox); }
+          else if (quality === 'good') { nextBox = Math.min(5, nextBox + 1); }
+          else if (quality === 'easy') { nextBox = Math.min(5, nextBox + 2); }
+          const interval = Config.SRS_INTERVALS_DAYS[nextBox - 1] || 1;
+          nextRec = { box: nextBox, reps: nextBox, interval, ease: 2.5, nextReview: addDays(today, interval), lastReview: today, lapses };
+        }
 
-        const intervalDays = Config.SRS_INTERVALS_DAYS[nextBox - 1] || 1;
-        srsData[key] = { box: nextBox, nextReview: addDays(today, intervalDays), lastReview: today, lapses };
+        srsData[key] = nextRec;
         localStorage.setItem(storageKey('srs'), JSON.stringify(srsData));
         this.logActivity('review');
         updateSrsDueBadge();
+        return nextRec;
       },
 
       getDailyGoal() {
@@ -1948,6 +2054,7 @@
       initKeyboardShortcuts();
       registerServiceWorker();
 
+      await AppModules.init();
       await initProfiles();
       loadProfileLocalState();
       applyProfileCapabilities();
@@ -2587,9 +2694,9 @@
           else if (action === 'speak-word') speakText(item.word, item.lang, e);
           else if (action === 'speak-example') speakText(item.example, item.lang, e);
           else if (action === 'srs-rate') {
-            SrsService.recordReview(item, actionBtn.dataset.quality);
-            actionBtn.innerText = '저장됨';
-            setTimeout(() => render(), 240);
+            const rec = SrsService.recordReview(item, actionBtn.dataset.quality);
+            actionBtn.innerText = rec?.interval ? `+${rec.interval}일` : '저장됨';
+            setTimeout(() => render(), 320);
           }
           return;
         }
@@ -2863,10 +2970,11 @@
                 </div>
 
                 <div class="flex items-center justify-between gap-1 pt-1">
-                  <div class="flex items-center gap-1.5">
-                    <button data-action="srs-rate" data-quality="again" data-id="${escapeHtml(item.id)}" title="1일 뒤 다시 복습" class="srs-btn">다시</button>
-                    <button data-action="srs-rate" data-quality="good" data-id="${escapeHtml(item.id)}" title="다음 복습 단계" class="srs-btn">보통</button>
-                    <button data-action="srs-rate" data-quality="easy" data-id="${escapeHtml(item.id)}" title="2단계 건너뛰기" class="srs-btn">쉬움</button>
+                  <div class="flex items-center gap-1">
+                    <button data-action="srs-rate" data-quality="again" data-id="${escapeHtml(item.id)}" title="1일 뒤 다시 복습 (SM-2 Again)" class="srs-btn">다시</button>
+                    <button data-action="srs-rate" data-quality="hard" data-id="${escapeHtml(item.id)}" title="짧은 간격으로 복습 (SM-2 Hard)" class="srs-btn">어려움</button>
+                    <button data-action="srs-rate" data-quality="good" data-id="${escapeHtml(item.id)}" title="표준 SM-2 간격 복습 (Good)" class="srs-btn">보통</button>
+                    <button data-action="srs-rate" data-quality="easy" data-id="${escapeHtml(item.id)}" title="긴 간격으로 복습 (SM-2 Easy)" class="srs-btn">쉬움</button>
                   </div>
                   <span class="text-xs" style="color: var(--text-on-dark-muted);" aria-hidden="true">${Icons.flip}</span>
                 </div>
@@ -3735,6 +3843,125 @@
       document.getElementById('ghBranchInput').value = gh.branch || Config.DEFAULT_GH_BRANCH;
       document.getElementById('ghTokenInput').value = gh.token || '';
       document.getElementById('ghConfigStatus').innerText = gh.token ? '토큰 저장됨' : '';
+
+      renderProfileEditor();
+    }
+
+    function getTodayWeekdayKey() {
+      const keys = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+      return keys[new Date().getDay()] || 'mon';
+    }
+
+    function renderProfileEditor() {
+      const prof = activeProfile || DEFAULT_PROFILES[0];
+      const badge = document.getElementById('profEditorBadge');
+      const topicsEl = document.getElementById('profTopicsInput');
+      const daySel = document.getElementById('profWeekdaySelect');
+      const dayInput = document.getElementById('profWeekdayTopicInput');
+      const pairEl = document.getElementById('profPairCountInput');
+      const goalEl = document.getElementById('profGoalInput');
+      const modelEl = document.getElementById('profModelSelect');
+      const seriesEl = document.getElementById('profSeriesInput');
+      const statEl = document.getElementById('profileEditorStatus');
+
+      if (badge) badge.innerText = `[${prof.name}] (${prof.id})`;
+      if (topicsEl) topicsEl.value = prof.daily?.topics || '';
+      if (pairEl) pairEl.value = String(prof.daily?.pairCount || 3);
+      if (goalEl) goalEl.value = String(prof.daily?.goal || (prof.id === 'me' ? 5 : 3));
+      if (modelEl) modelEl.value = prof.daily?.model || 'gemini-3.5-flash-lite';
+      if (seriesEl) seriesEl.value = prof.daily?.seriesTheme || '';
+      if (daySel) {
+        const wk = getTodayWeekdayKey();
+        daySel.value = wk;
+        if (dayInput) dayInput.value = prof.daily?.weekdayTopics?.[wk] || '';
+      }
+      if (statEl) statEl.innerText = '';
+    }
+
+    function handleProfileWeekdaySelect(dayKey) {
+      const dayInput = document.getElementById('profWeekdayTopicInput');
+      if (!dayInput) return;
+      dayInput.value = activeProfile?.daily?.weekdayTopics?.[dayKey] || '';
+    }
+
+    async function saveProfileEditsToGitHub() {
+      const cfg = safeJsonParse(localStorage.getItem('vh_ghConfig'), {});
+      const statEl = document.getElementById('profileEditorStatus');
+      const btn = document.getElementById('btnSaveProfileEdits');
+      if (!cfg.token) {
+        if (statEl) statEl.innerText = '먼저 아래 GitHub API 연동에서 PAT를 저장하세요.';
+        return;
+      }
+
+      const edits = {
+        topics: document.getElementById('profTopicsInput')?.value || '',
+        weekdayKey: document.getElementById('profWeekdaySelect')?.value || '',
+        weekdayTopic: document.getElementById('profWeekdayTopicInput')?.value || '',
+        pairCount: document.getElementById('profPairCountInput')?.value || '',
+        goal: document.getElementById('profGoalInput')?.value || '',
+        model: document.getElementById('profModelSelect')?.value || '',
+        seriesTheme: document.getElementById('profSeriesInput')?.value || '',
+      };
+
+      if (btn) btn.disabled = true;
+      if (statEl) statEl.innerText = 'data/profiles.json 커밋 중...';
+
+      try {
+        const currentCfg = {
+          schemaVersion: 1,
+          defaultProfile: 'me',
+          profiles: profilesList,
+        };
+        const updatedCfg = AppModules.githubOps?.applyProfileDailyEdits
+          ? AppModules.githubOps.applyProfileDailyEdits(currentCfg, activeProfile.id, edits)
+          : currentCfg;
+
+        const commitFn = AppModules.githubOps?.commitJsonToGitHub || commitFileToGitHub;
+        await commitFn(
+          cfg,
+          'data/profiles.json',
+          updatedCfg,
+          `chore(profiles): update ${activeProfile.id} daily topics/config from app`
+        );
+
+        profilesList = updatedCfg.profiles;
+        activeProfile = profilesList.find((p) => p.id === activeProfile.id) || activeProfile;
+        renderKidGoalBar();
+        if (statEl) statEl.innerText = `[${activeProfile.name}] 프로필 설정 커밋 완료! 다음 자동 생성부터 적용됩니다.`;
+      } catch (err) {
+        if (statEl) statEl.innerText = `커밋 실패: ${err.message}`;
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    async function triggerTodayGenerationNow() {
+      const cfg = safeJsonParse(localStorage.getItem('vh_ghConfig'), {});
+      const statEl = document.getElementById('profileEditorStatus');
+      const btn = document.getElementById('btnTriggerDailyNow');
+      if (!cfg.token) {
+        if (statEl) statEl.innerText = '먼저 아래 GitHub API 연동에서 PAT(Actions: write 포함)를 저장하세요.';
+        return;
+      }
+      if (!AppModules.githubOps?.triggerDailyGenerateWorkflow) {
+        if (statEl) statEl.innerText = 'GitHub 작업 모듈을 불러오지 못했습니다. 새로고침 후 다시 시도하세요.';
+        return;
+      }
+
+      if (btn) btn.disabled = true;
+      if (statEl) statEl.innerText = `[${activeProfile.name}] GitHub Actions 일일 생성 워크플로우 요청 중...`;
+
+      try {
+        await AppModules.githubOps.triggerDailyGenerateWorkflow(cfg, {
+          profile: activeProfile.id,
+          dryRun: false,
+        });
+        if (statEl) statEl.innerText = `[${activeProfile.name}] 생성 요청 완료! 약 10~60초 후 새 단어 배너가 도착합니다.`;
+      } catch (err) {
+        if (statEl) statEl.innerText = `생성 요청 실패: ${err.message}`;
+      } finally {
+        if (btn) btn.disabled = false;
+      }
     }
 
     function handleTtsRateChange(val) {
@@ -4045,7 +4272,7 @@ ${existingBlock}
 
     function buildCurrentProgressPayload() {
       const pid = activeProfile?.id || 'me';
-      return {
+      const base = {
         schemaVersion: 1,
         profileId: pid,
         updatedAt: new Date().toISOString(),
@@ -4057,51 +4284,27 @@ ${existingBlock}
         kidStamps: Array.from(kidStamps),
         preferences: { darkMode: isDarkMode, eInkMode: isEInkMode, vocabLayout, sentenceLayout, ttsRate, pageSize: itemsPerPage },
       };
+      if (AppModules.srs?.extractAdaptiveReviewTargets) {
+        base.reviewTargets = AppModules.srs.extractAdaptiveReviewTargets(base, vocabData, 10);
+      }
+      return base;
     }
 
     function mergeProgressPayloads(localData, remoteData) {
+      if (AppModules.sync?.mergeProgressPayloads) {
+        return AppModules.sync.mergeProgressPayloads(localData, remoteData, activeProfile?.id || 'me');
+      }
       const a = localData || {};
       const b = remoteData || {};
-
-      const mergedBookmarks = Array.from(new Set([...(a.bookmarks || []), ...(b.bookmarks || [])]));
-      const mergedMastered = Array.from(new Set([...(a.mastered || []), ...(b.mastered || [])]));
-      const mergedStamps = Array.from(new Set([...(a.kidStamps || []), ...(b.kidStamps || [])])).sort();
-
-      const mergedSrs = { ...(a.srs || {}) };
-      for (const [key, rVal] of Object.entries(b.srs || {})) {
-        const lVal = mergedSrs[key];
-        if (!lVal) {
-          mergedSrs[key] = rVal;
-        } else {
-          const lDate = String(lVal.lastReview || lVal.nextReview || '');
-          const rDate = String(rVal.lastReview || rVal.nextReview || '');
-          if (rDate > lDate || (rDate === lDate && (rVal.box || 0) > (lVal.box || 0))) {
-            mergedSrs[key] = rVal;
-          }
-        }
-      }
-
-      const mergedLog = {};
-      const allDates = new Set([...Object.keys(a.studyLog || {}), ...Object.keys(b.studyLog || {})]);
-      for (const d of allDates) {
-        const la = (a.studyLog && a.studyLog[d]) || {};
-        const rb = (b.studyLog && b.studyLog[d]) || {};
-        mergedLog[d] = {
-          review: Math.max(la.review || 0, rb.review || 0),
-          quiz: Math.max(la.quiz || 0, rb.quiz || 0),
-          mastered: Math.max(la.mastered || 0, rb.mastered || 0),
-        };
-      }
-
       return {
         schemaVersion: 1,
         profileId: a.profileId || b.profileId || activeProfile?.id || 'me',
         updatedAt: new Date().toISOString(),
-        bookmarks: mergedBookmarks,
-        mastered: mergedMastered,
-        srs: mergedSrs,
-        studyLog: mergedLog,
-        kidStamps: mergedStamps,
+        bookmarks: Array.from(new Set([...(a.bookmarks || []), ...(b.bookmarks || [])])),
+        mastered: Array.from(new Set([...(a.mastered || []), ...(b.mastered || [])])),
+        srs: { ...(a.srs || {}), ...(b.srs || {}) },
+        studyLog: { ...(a.studyLog || {}), ...(b.studyLog || {}) },
+        kidStamps: Array.from(new Set([...(a.kidStamps || []), ...(b.kidStamps || [])])).sort(),
       };
     }
 
@@ -4165,59 +4368,18 @@ ${existingBlock}
       if (btnPull) btnPull.disabled = true;
       if (st) st.innerText = '비공개 GitHub Gist와 동기화 중...';
 
-      const pid = activeProfile?.id || 'me';
-      const filename = `progress-${pid}.json`;
-      const headers = {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github+json',
-        'Content-Type': 'application/json',
-      };
-
       try {
-        let gistId = cfg.gistId;
-        let remotePayload = null;
-
-        if (gistId) {
-          const getRes = await fetch(`https://api.github.com/gists/${encodeURIComponent(gistId)}`, { headers });
-          if (!getRes.ok) throw new Error(`Gist 조회 실패 (HTTP ${getRes.status})`);
-          const gistData = await getRes.json();
-          const fileObj = gistData?.files?.[filename];
-          if (fileObj && fileObj.content) {
-            remotePayload = JSON.parse(fileObj.content);
-          }
+        if (!AppModules.sync?.syncPrivateGistProgress) {
+          throw new Error('동기화 모듈을 불러오지 못했습니다. 새로고침 후 다시 시도하세요.');
         }
-
-        const localPayload = buildCurrentProgressPayload();
-        const finalPayload =
-          mode === 'pull' && remotePayload
-            ? remotePayload
-            : remotePayload
-            ? mergeProgressPayloads(localPayload, remotePayload)
-            : localPayload;
-
-        if (!gistId) {
-          const createRes = await fetch('https://api.github.com/gists', {
-            method: 'POST',
-            headers,
-            body: JSON.stringify({
-              description: 'Language Hub Pro — Family Study Progress Sync (Private)',
-              public: false,
-              files: { [filename]: { content: JSON.stringify(finalPayload, null, 2) } },
-            }),
-          });
-          if (!createRes.ok) throw new Error(`비공개 Gist 생성 실패 (HTTP ${createRes.status})`);
-          const created = await createRes.json();
-          gistId = created.id;
-        } else if (mode !== 'pull') {
-          const patchRes = await fetch(`https://api.github.com/gists/${encodeURIComponent(gistId)}`, {
-            method: 'PATCH',
-            headers,
-            body: JSON.stringify({
-              files: { [filename]: { content: JSON.stringify(finalPayload, null, 2) } },
-            }),
-          });
-          if (!patchRes.ok) throw new Error(`Gist 업데이트 실패 (HTTP ${patchRes.status})`);
-        }
+        const { gistId, payload: finalPayload } = await AppModules.sync.syncPrivateGistProgress({
+          token,
+          gistId: cfg.gistId,
+          profileId: activeProfile?.id || 'me',
+          localPayload: buildCurrentProgressPayload(),
+          mode,
+          fetchImpl: window.fetch.bind(window),
+        });
 
         applyProgressPayloadToActiveProfile(finalPayload);
         const nextCfg = { ...cfg, token: cfg.token, gistId, lastSyncedAt: new Date().toISOString() };

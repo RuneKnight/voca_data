@@ -21,5 +21,18 @@
     "shopping",
     "travel"
   ],
-  "latestDate": "2026-11-20"
+  "latestDate": "2026-11-20",
+  "chunks": {
+    "recentDays": 90,
+    "cutoffIso": "2026-08-22",
+    "recent": null,
+    "archiveMonths": [],
+    "monthsSummary": [
+      {
+        "month": "2026-11",
+        "vocabCount": 12,
+        "sentenceCount": 6
+      }
+    ]
+  }
 }

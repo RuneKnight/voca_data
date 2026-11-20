@@ -23,8 +23,11 @@ import {
   validateBatchPayload,
   validateDataFiles,
 } from './schema.mjs';
+import { extractAdaptiveReviewTargets } from '../js/srs.js';
 
 const API_KEY = process.env.GEMINI_API_KEY;
+const REVIEW_GIST_ID = (process.env.REVIEW_GIST_ID || '').trim();
+const REVIEW_GIST_TOKEN = (process.env.REVIEW_GIST_TOKEN || '').trim();
 const TARGET_PROFILE = (process.env.TARGET_PROFILE || 'all').trim();
 const OVERRIDE_MODEL = (process.env.GEMINI_MODEL || '').trim();
 const OVERRIDE_PAIR_COUNT = process.env.PAIR_COUNT ? parseInt(process.env.PAIR_COUNT, 10) : null;
@@ -148,7 +151,7 @@ export function resolveDailyTopicPlan(profile, targetDate, overrideTopics = '') 
   };
 }
 
-function buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topicPlan) {
+export function buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topicPlan, reviewTargets = []) {
   const topics = typeof topicPlan === 'string' ? topicPlan : topicPlan.topics;
   const seriesTheme = typeof topicPlan === 'string' ? '' : (topicPlan.seriesTheme || '');
   const languages = profile.languages || ['English'];
@@ -179,6 +182,10 @@ function buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topicP
     ? `\n[시리즈 맥락]\n${seriesTheme}\n`
     : '';
 
+  const reviewSection = Array.isArray(reviewTargets) && reviewTargets.length > 0
+    ? `\n[맞춤 복습 단어 자연스럽게 재등장]\n아래 오답·즐겨찾기 단어 중 1~2개를 새 문맥의 sentence에 자연스럽게 녹여 복습 효과를 높이세요 (단, vocab 배열에는 가급적 신규 어휘를 채우세요):\n${reviewTargets.map((t) => `- (${t.lang}) ${t.word}${t.meaning ? `: ${t.meaning}` : ''}`).join('\n')}\n`
+    : '';
+
   const existingSection = [
     hasEn ? `[기존 영어 단어 일부]\n${enSample || '(없음)'}` : '',
     hasDe ? `[기존 독일어 단어 일부]\n${deSample || '(없음)'}` : '',
@@ -188,7 +195,7 @@ function buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topicP
 
   return `당신은 ${persona}를 위한 맞춤형 어학 콘텐츠 생성기입니다.
 오늘 날짜(${targetDate})의 새 학습 세트를 JSON으로 생성하세요.
-${seriesSection}
+${seriesSection}${reviewSection}
 [생성 규칙]
 1. 정확히 ${pairCount}개의 실용적 상황(${topics})을 선정해 pairs 배열에 담으세요.
 2. ${langRule}
@@ -293,6 +300,9 @@ export function formatStepSummaryMarkdown(results = [], { targetDate = '', dryRu
       if (r.resolvedTopics) {
         lines.push(`- **오늘의 주제** (\`${escapeMdCell(r.topicSource || 'default')}\`): ${escapeMdCell(r.resolvedTopics)}`, '');
       }
+      if (Array.isArray(r.reviewTargets) && r.reviewTargets.length > 0) {
+        lines.push(`- **맞춤 복습 반영 단어**: ${r.reviewTargets.map((t) => `\`${escapeMdCell(t.word)}\``).join(', ')}`, '');
+      }
       if (r.sampleWords && r.sampleWords.length > 0) {
         lines.push('**신규 단어 (최대 6개)**');
         for (const w of r.sampleWords.slice(0, 6)) {
@@ -336,6 +346,38 @@ async function writeStepSummary(markdown) {
   }
 }
 
+async function loadAdaptiveReviewTargets(profile, dataDir, vocab) {
+  // 1. Optional Private GitHub Gist progress sync source (REVIEW_GIST_ID + REVIEW_GIST_TOKEN)
+  if (REVIEW_GIST_ID && REVIEW_GIST_TOKEN) {
+    try {
+      const res = await fetch(`https://api.github.com/gists/${encodeURIComponent(REVIEW_GIST_ID)}`, {
+        headers: {
+          Authorization: `Bearer ${REVIEW_GIST_TOKEN}`,
+          Accept: 'application/vnd.github+json',
+        },
+      });
+      if (res.ok) {
+        const gist = await res.json();
+        const fileObj = gist?.files?.[`progress-${profile.id}.json`];
+        if (fileObj?.content) {
+          const progress = JSON.parse(fileObj.content);
+          const targets = extractAdaptiveReviewTargets(progress, vocab, 3);
+          if (targets.length > 0) return targets;
+        }
+      }
+    } catch (err) {
+      console.warn(`⚠️ [${profile.id}] Adaptive review Gist lookup skipped: ${err.message}`);
+    }
+  }
+
+  // 2. Optional local fallback file (<dataDir>/review-targets.json)
+  const localTargets = await readJsonSafe(resolve(dataDir, 'review-targets.json'), null);
+  if (Array.isArray(localTargets) && localTargets.length > 0) {
+    return localTargets.slice(0, 3);
+  }
+  return [];
+}
+
 async function generateForProfile(profile, targetDate) {
   const dataDir = resolve(process.cwd(), profile.dataDir || 'data');
   await mkdir(dataDir, { recursive: true });
@@ -350,10 +392,14 @@ async function generateForProfile(profile, targetDate) {
   );
   const topicPlan = resolveDailyTopicPlan(profile, targetDate, OVERRIDE_TOPICS);
   const model = OVERRIDE_MODEL || profile.daily?.model || 'gemini-3.5-flash-lite';
+  const reviewTargets = await loadAdaptiveReviewTargets(profile, dataDir, vocab);
   console.log(`🗓️ [${profile.id}] Topic plan (${topicPlan.source}): ${topicPlan.topics}`);
+  if (reviewTargets.length > 0) {
+    console.log(`🎯 [${profile.id}] Adaptive review targets: ${reviewTargets.map((t) => t.word).join(', ')}`);
+  }
 
   const schema = buildResponseSchema(profile.languages || ['English']);
-  const prompt = buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topicPlan);
+  const prompt = buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topicPlan, reviewTargets);
   const { rawText, usedModel, durationMs } = await callGeminiWithFallback(
     model,
     prompt,
@@ -398,6 +444,7 @@ async function generateForProfile(profile, targetDate) {
     languages: profile.languages || ['English'],
     resolvedTopics: topicPlan.topics,
     topicSource: topicPlan.source,
+    reviewTargets,
     usedModel,
     durationMs,
     addedVocabCount: merged.addedVocabCount,

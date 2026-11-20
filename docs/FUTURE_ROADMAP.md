@@ -167,4 +167,4 @@ flowchart LR
 
 1. **~~Step 1 (가벼운 마무리 & 즉시 체감)~~ — ✅ 완료 (2026-11-20)**: 오프라인 100% 정적 CSS(`assets/app.css`), Warm Paper PWA(`manifest.json`/`icon.svg`), Actions Job Summary 리포트, `sw.js` 새 단어 도착 알림 배너, 구 루트 PNG 정리 완료.
 2. **~~Step 2 (가족 학습력 점프)~~ — ✅ 완료 (2026-11-20)**: 비공개 GitHub Gist 기기 간 병합 동기화, 오디오 섀도잉 플레이어(속도·대기·반복·보이스·Wake Lock), 아이 전용 모드(블록 조립 퀴즈·일일 목표 스탬프·4자리 PIN 안전 잠금), 요일별 주제 로테이션 & 연속 스토리 생성 완료.
-3. **Step 3 (장기 유지보수 & 고도화)** — 앱 내 주제 편집·즉시 생성 + 오답 기반 맞춤 복습 AI + 코드 모듈화 및 대용량 아카이브.
+3. **~~Step 3 (장기 유지보수 & 고도화)~~ — ✅ 완료 (2026-11-20)**: Zero-Build ES Modules(`js/srs.js`, `js/sync.js`, `js/archive.js`, `js/github-ops.js`) 분리, SM-2 4단계 평가 + 오답·즐겨찾기 연동 맞춤 복습 AI 생성, 앱 내 프로필/주제 편집기 & Actions 즉시 생성 트리거, 월별 아카이브 분할·지연 로딩 완료.
