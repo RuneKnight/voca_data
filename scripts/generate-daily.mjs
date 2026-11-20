@@ -13,8 +13,9 @@
  *   TARGET_DATE     (optional) - YYYY-MM-DD (defaults to KST today)
  *   DRY_RUN         (optional) - 'true' to validate without writing files
  */
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { appendFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import {
   buildManifest,
   buildWordIndex,
@@ -162,6 +163,7 @@ async function callGeminiWithFallback(primaryModel, prompt, responseSchema, prof
   let lastError = null;
 
   for (const model of candidateModels) {
+    const startedAt = Date.now();
     console.log(`🤖 [${profileId}] Calling Gemini API (${model}) for ${targetDate} (${pairCount} items)...`);
     const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(API_KEY)}`;
 
@@ -179,7 +181,8 @@ async function callGeminiWithFallback(primaryModel, prompt, responseSchema, prof
 
     if (res.ok) {
       const apiResp = await res.json();
-      console.log(`✅ [${profileId}] Received response from ${model}`);
+      const durationMs = Date.now() - startedAt;
+      console.log(`✅ [${profileId}] Received response from ${model} (${(durationMs / 1000).toFixed(1)}s)`);
       const parts = apiResp?.candidates?.[0]?.content?.parts || [];
       const textPart =
         parts.find((p) => !p.thought && typeof p.text === 'string' && p.text.trim()) ||
@@ -187,7 +190,7 @@ async function callGeminiWithFallback(primaryModel, prompt, responseSchema, prof
       if (!textPart?.text) {
         throw new Error(`[${profileId}] Gemini API returned empty content.`);
       }
-      return textPart.text;
+      return { rawText: textPart.text, usedModel: model, durationMs };
     }
 
     const errText = await res.text();
@@ -210,6 +213,80 @@ async function readJsonSafe(filePath, fallback) {
   }
 }
 
+function escapeMdCell(value) {
+  return String(value ?? '').replace(/\|/g, '\\|').replace(/\r?\n/g, ' ').trim();
+}
+
+export function formatStepSummaryMarkdown(results = [], { targetDate = '', dryRun = false, error = null } = {}) {
+  const modeBadge = dryRun ? '🧪 Dry Run (검증 전용 · 커밋 안 함)' : '✅ Live (저장소 반영)';
+  const lines = [
+    `## 📚 Daily AI Vocabulary & Sentence Generation (${targetDate || 'N/A'})`,
+    '',
+    `- **모드**: ${modeBadge}`,
+    `- **대상 프로필**: ${results.length > 0 ? results.map((r) => `\`${r.id}\``).join(', ') : '없음'}`,
+    '',
+  ];
+
+  if (results.length > 0) {
+    lines.push(
+      '| 프로필 | 모델 | 소요 시간 | 신규 단어 (중복 제외) | 신규 문장 (중복 제외) | 누적 합계 |',
+      '|---|---|---:|---:|---:|---:|'
+    );
+    for (const r of results) {
+      const elapsed = typeof r.durationMs === 'number' ? `${(r.durationMs / 1000).toFixed(1)}s` : '-';
+      lines.push(
+        `| **${escapeMdCell(r.name)}** (\`${escapeMdCell(r.id)}\`) | \`${escapeMdCell(r.usedModel)}\` | ${elapsed} | +${r.addedVocabCount} (skip ${r.skippedVocabCount}) | +${r.addedSentenceCount} (skip ${r.skippedSentenceCount}) | 단어 ${r.totalVocab} · 문장 ${r.totalSentences} |`
+      );
+    }
+    lines.push('');
+
+    for (const r of results) {
+      const hasSamples = (r.sampleWords && r.sampleWords.length > 0) || (r.sampleSentences && r.sampleSentences.length > 0);
+      if (!hasSamples) continue;
+      lines.push(`<details>`, `<summary><strong>${escapeMdCell(r.name)} (${escapeMdCell(r.id)})</strong> 오늘 생성 미리보기</summary>`, '');
+      if (r.sampleWords && r.sampleWords.length > 0) {
+        lines.push('**신규 단어 (최대 6개)**');
+        for (const w of r.sampleWords.slice(0, 6)) {
+          lines.push(`- \`${escapeMdCell(w.lang === 'German' ? 'DE' : 'EN')}\` **${escapeMdCell(w.word)}** — ${escapeMdCell(w.meaning)}`);
+        }
+        lines.push('');
+      }
+      if (r.sampleSentences && r.sampleSentences.length > 0) {
+        lines.push('**신규 문장 (최대 5개)**');
+        for (const s of r.sampleSentences.slice(0, 5)) {
+          lines.push(`- \`${escapeMdCell(s.lang === 'German' ? 'DE' : 'EN')}\` ${escapeMdCell(s.sentence)}  `);
+          lines.push(`  _${escapeMdCell(s.translation)}_`);
+        }
+        lines.push('');
+      }
+      lines.push('</details>', '');
+    }
+  }
+
+  if (error) {
+    lines.push(
+      '### ❌ 실행 중 오류 발생',
+      '',
+      '```text',
+      String(error?.message || error).slice(0, 1000),
+      '```',
+      ''
+    );
+  }
+
+  return lines.join('\n');
+}
+
+async function writeStepSummary(markdown) {
+  const summaryPath = process.env.GITHUB_STEP_SUMMARY;
+  if (!summaryPath) return;
+  try {
+    await appendFile(summaryPath, markdown + '\n', 'utf8');
+  } catch (err) {
+    console.warn('⚠️ Failed to write GITHUB_STEP_SUMMARY:', err.message);
+  }
+}
+
 async function generateForProfile(profile, targetDate) {
   const dataDir = resolve(process.cwd(), profile.dataDir || 'data');
   await mkdir(dataDir, { recursive: true });
@@ -227,7 +304,14 @@ async function generateForProfile(profile, targetDate) {
 
   const schema = buildResponseSchema(profile.languages || ['English']);
   const prompt = buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topics);
-  const rawText = await callGeminiWithFallback(model, prompt, schema, profile.id, targetDate, pairCount);
+  const { rawText, usedModel, durationMs } = await callGeminiWithFallback(
+    model,
+    prompt,
+    schema,
+    profile.id,
+    targetDate,
+    pairCount
+  );
 
   let parsed;
   try {
@@ -255,18 +339,38 @@ async function generateForProfile(profile, targetDate) {
     throw new Error(`[${profile.id}] Merged dataset failed integrity check: ${fileCheck.errors.join('; ')}`);
   }
 
+  const addedVocabItems = merged.vocab.slice(0, merged.addedVocabCount);
+  const addedSentenceItems = merged.sentences.slice(0, merged.addedSentenceCount);
+  const summaryRecord = {
+    id: profile.id,
+    name: profile.name || profile.id,
+    dataDir: profile.dataDir || 'data',
+    languages: profile.languages || ['English'],
+    usedModel,
+    durationMs,
+    addedVocabCount: merged.addedVocabCount,
+    skippedVocabCount: merged.skippedVocabCount,
+    addedSentenceCount: merged.addedSentenceCount,
+    skippedSentenceCount: merged.skippedSentenceCount,
+    totalVocab: merged.vocab.length,
+    totalSentences: merged.sentences.length,
+    sampleWords: addedVocabItems.slice(0, 6).map((v) => ({ lang: v.lang, word: v.word, meaning: v.meaning })),
+    sampleSentences: addedSentenceItems.slice(0, 5).map((s) => ({ lang: s.lang, sentence: s.sentence, translation: s.translation })),
+    dryRun: DRY_RUN,
+  };
+
   console.log(
     `✨ [${profile.id}] Generated: +${merged.addedVocabCount} vocab (skipped ${merged.skippedVocabCount} dup), +${merged.addedSentenceCount} sentences (skipped ${merged.skippedSentenceCount} dup)`
   );
 
   if (DRY_RUN) {
     console.log(`🧪 [${profile.id}] DRY_RUN=true — skipping file writes.`);
-    return;
+    return summaryRecord;
   }
 
   if (merged.addedVocabCount === 0 && merged.addedSentenceCount === 0) {
     console.log(`ℹ️ [${profile.id}] No new unique entries added; skipping file writes.`);
-    return;
+    return summaryRecord;
   }
 
   await Promise.all([
@@ -276,6 +380,7 @@ async function generateForProfile(profile, targetDate) {
     writeFile(resolve(dataDir, 'manifest.json'), JSON.stringify(nextManifest, null, 2) + '\n', 'utf8'),
   ]);
   console.log(`✅ [${profile.id}] Updated ${profile.dataDir}/*.json`);
+  return summaryRecord;
 }
 
 async function main() {
@@ -299,15 +404,25 @@ async function main() {
 
   console.log(`📅 Running daily generation for ${targetDate} — profiles: ${selectedProfiles.map((p) => p.id).join(', ')}`);
 
-  for (let i = 0; i < selectedProfiles.length; i++) {
-    await generateForProfile(selectedProfiles[i], targetDate);
-    if (i < selectedProfiles.length - 1) {
-      await new Promise((r) => setTimeout(r, 3000));
+  const results = [];
+  try {
+    for (let i = 0; i < selectedProfiles.length; i++) {
+      const rec = await generateForProfile(selectedProfiles[i], targetDate);
+      results.push(rec);
+      if (i < selectedProfiles.length - 1) {
+        await new Promise((r) => setTimeout(r, 3000));
+      }
     }
+    await writeStepSummary(formatStepSummaryMarkdown(results, { targetDate, dryRun: DRY_RUN }));
+  } catch (err) {
+    await writeStepSummary(formatStepSummaryMarkdown(results, { targetDate, dryRun: DRY_RUN, error: err }));
+    throw err;
   }
 }
 
-main().catch((err) => {
-  console.error('❌ Daily generation failed:', err);
-  process.exit(1);
-});
+if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  main().catch((err) => {
+    console.error('❌ Daily generation failed:', err);
+    process.exit(1);
+  });
+}

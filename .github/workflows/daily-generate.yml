@@ -84,3 +84,5 @@ jobs:
           git add data/
           git commit -m "chore(data): add daily Gemini learning data [${PROFILE_LABEL}] (${DATE_KST})"
           git push
+          COMMIT_SHA=$(git rev-parse --short HEAD)
+          echo "- **커밋 반영**: \`${COMMIT_SHA}\` (\`chore(data): add daily Gemini learning data [${PROFILE_LABEL}] (${DATE_KST})\`)" >> "$GITHUB_STEP_SUMMARY"

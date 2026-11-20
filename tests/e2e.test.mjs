@@ -440,7 +440,7 @@ async function runTests() {
     assert.equal(modalCheck.statsRendered, true);
     console.log('✅ Test 10 — Quick Import validation/dedup & Stats dashboard verified');
 
-    // 11. Mobile Viewport (375x812) No Horizontal Overflow (PR #3/#4 safeguard)
+    // 11. Mobile Viewport (375x812) No Horizontal Overflow & Offline Static CSS (PR #3/#4 + Step 1 safeguard)
     await client.send('Emulation.setDeviceMetricsOverride', {
       width: 375,
       height: 812,
@@ -452,20 +452,21 @@ async function runTests() {
         scrollWidth: document.documentElement.scrollWidth,
         clientWidth: document.documentElement.clientWidth,
         headerHeight: document.querySelector('header').getBoundingClientRect().height,
-        tailwindLoaded: Boolean(window.tailwind),
+        staticCssLoaded: Array.from(document.styleSheets).some((s) => (s.href || '').includes('/assets/app.css')),
+        hasExternalTailwind: Boolean(window.tailwind),
       }))()
     `);
+    assert.equal(mobileOverflow.staticCssLoaded, true, 'Offline static stylesheet assets/app.css must be loaded');
+    assert.equal(mobileOverflow.hasExternalTailwind, false, 'External Tailwind Play CDN must not be loaded');
     assert.ok(
       mobileOverflow.scrollWidth <= mobileOverflow.clientWidth + 1,
       `Mobile horizontal overflow detected: scrollWidth=${mobileOverflow.scrollWidth} > clientWidth=${mobileOverflow.clientWidth}`
     );
-    if (mobileOverflow.tailwindLoaded) {
-      assert.ok(
-        mobileOverflow.headerHeight <= 165,
-        `Mobile header should stay compact (<=165px), got ${mobileOverflow.headerHeight}px`
-      );
-    }
-    console.log(`✅ Test 11 — Mobile (375px) layout has zero horizontal overflow (header ${Math.round(mobileOverflow.headerHeight)}px, tw=${mobileOverflow.tailwindLoaded})`);
+    assert.ok(
+      mobileOverflow.headerHeight <= 165,
+      `Mobile header should stay compact (<=165px) with offline static CSS, got ${mobileOverflow.headerHeight}px`
+    );
+    console.log(`✅ Test 11 — Mobile (375px) offline static CSS layout verified (header ${Math.round(mobileOverflow.headerHeight)}px, overflow=0)`);
 
     // 12. Dark Mode Verification (Warm Dark #161513)
     const darkCheck = await client.eval(`
@@ -527,10 +528,41 @@ async function runTests() {
     assert.equal(profileCheck.meBmIntact, true, 'Default me legacy bookmarks must stay intact');
     console.log('✅ Test 13 — Multi-profile switching, storage isolation & adaptive single-language UI verified');
 
+    // 14. Service Worker DATA_UPDATED Banner & Active-Profile Filtering
+    const swBannerCheck = await client.eval(`
+      (async () => {
+        hideStatusBanner();
+        // Should IGNORE updates belonging to another profile (kid) while on me
+        handleServiceWorkerMessage({ data: { type: 'DATA_UPDATED', pathname: '/voca_data/data/profiles/kid/vocab.json' } });
+        const ignoredOtherProfile = document.getElementById('statusBanner').classList.contains('hidden');
+
+        // Should SHOW banner with action button for active profile (me -> data/)
+        handleServiceWorkerMessage({ data: { type: 'DATA_UPDATED', pathname: '/voca_data/data/vocab.json' } });
+        const bannerVisible = !document.getElementById('statusBanner').classList.contains('hidden');
+        const bannerText = document.getElementById('statusBannerText').innerText;
+        const actionBtn = document.getElementById('statusBannerAction');
+        const actionVisible = !actionBtn.classList.contains('hidden');
+        const actionLabel = actionBtn.innerText;
+
+        // Clicking action button triggers sync & hides banner
+        await actionBtn.onclick();
+        const hiddenAfterClick = document.getElementById('statusBanner').classList.contains('hidden');
+
+        return { ignoredOtherProfile, bannerVisible, bannerText, actionVisible, actionLabel, hiddenAfterClick };
+      })()
+    `);
+    assert.equal(swBannerCheck.ignoredOtherProfile, true, 'Updates for another profile must not trigger banner');
+    assert.equal(swBannerCheck.bannerVisible, true, 'DATA_UPDATED for active profile must show status banner');
+    assert.ok(swBannerCheck.bannerText.includes('새 학습 데이터'));
+    assert.equal(swBannerCheck.actionVisible, true, 'Action button must be visible');
+    assert.equal(swBannerCheck.actionLabel, '지금 반영');
+    assert.equal(swBannerCheck.hiddenAfterClick, true, 'Banner must close after clicking 지금 반영');
+    console.log('✅ Test 14 — SW DATA_UPDATED active-profile banner & one-click refresh verified');
+
     const finalExceptions = client.events.filter((e) => e.method === 'Runtime.exceptionThrown');
     assert.equal(finalExceptions.length, 0, 'Expected 0 runtime JS exceptions across all E2E tests');
 
-    console.log('\n🎉 ALL 13 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
+    console.log('\n🎉 ALL 14 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
   } finally {
     client.close();
     proc.kill('SIGTERM');

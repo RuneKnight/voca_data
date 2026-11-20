@@ -12,23 +12,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    // Tailwind Play CDN은 로드 이후에 tailwind.config를 지정해야 darkMode:'class'가 정상 적용됨
-    if (window.tailwind) {
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['"IBM Plex Sans"', '"IBM Plex Sans KR"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-              mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
-            }
-          }
-        }
-      };
-    }
-  </script>
   <style>
     /* =========================================================================
        Warm Paper & Ink Design System Tokens (Unslop 9-Pass)
@@ -97,7 +80,6 @@
     }
 
     * { box-sizing: border-box; }
-    :where(.hidden) { display: none; }
 
     body {
       background-color: var(--bg-page);
@@ -445,6 +427,7 @@
     }
     html.e-ink .tts-speaking { outline: 3px solid #000000 !important; }
   </style>
+  <link rel="stylesheet" href="./assets/app.css" />
 </head>
 
 <body class="min-h-screen flex flex-col text-sm">
@@ -483,11 +466,11 @@
         <div class="flex flex-wrap items-center justify-between md:justify-end gap-1.5 sm:gap-2 w-full md:w-auto max-w-full">
           <div class="seg-track inline-flex items-center shrink-0" role="tablist" aria-label="학습 뷰 전환">
             <button onclick="switchView('vocab')" id="tab-vocab" role="tab" aria-selected="true"
-              class="seg-item is-active px-2 sm:px-3 py-1 text-xs whitespace-nowrap">단어 카드</button>
+              class="seg-item is-active px-1.5 sm:px-3 py-1 text-xs whitespace-nowrap">단어 카드</button>
             <button onclick="switchView('sentence')" id="tab-sentence" role="tab" aria-selected="false"
-              class="seg-item px-2 sm:px-3 py-1 text-xs whitespace-nowrap">학습 문장</button>
+              class="seg-item px-1.5 sm:px-3 py-1 text-xs whitespace-nowrap">학습 문장</button>
             <button onclick="switchView('quiz')" id="tab-quiz" role="tab" aria-selected="false"
-              class="seg-item px-2 sm:px-3 py-1 text-xs whitespace-nowrap">퀴즈</button>
+              class="seg-item px-1.5 sm:px-3 py-1 text-xs whitespace-nowrap">퀴즈</button>
           </div>
 
           <div class="flex items-center gap-0.5 sm:gap-1 shrink-0">
@@ -657,8 +640,11 @@
   <!-- 상태 알림 배너 -->
   <div id="statusBanner" class="hidden max-w-6xl mx-auto px-4 sm:px-6 pt-4 w-full">
     <div class="surface-raised px-4 py-2.5 rounded-lg text-xs font-medium flex items-center justify-between gap-3 text-sec">
-      <span id="statusBannerText"></span>
-      <button onclick="hideStatusBanner()" class="text-xs font-medium text-pri underline shrink-0">닫기</button>
+      <span id="statusBannerText" style="word-break: keep-all;"></span>
+      <div class="flex items-center gap-3 shrink-0">
+        <button id="statusBannerAction" type="button" class="hidden btn-accent px-2.5 py-1 text-xs font-medium"></button>
+        <button type="button" onclick="hideStatusBanner()" class="text-xs font-medium text-pri underline">닫기</button>
+      </div>
     </div>
   </div>
 
@@ -1133,16 +1119,40 @@
       render();
     }
 
-    function showStatusBanner(msg) {
+    let statusBannerActionHandler = null;
+
+    function showStatusBanner(msg, action = null) {
       const el = document.getElementById('statusBanner');
       const txt = document.getElementById('statusBannerText');
+      const actBtn = document.getElementById('statusBannerAction');
       if (el && txt) {
         txt.innerText = msg;
+        if (actBtn) {
+          if (action && action.label && typeof action.onClick === 'function') {
+            statusBannerActionHandler = action.onClick;
+            actBtn.innerText = action.label;
+            actBtn.onclick = async () => {
+              const fn = statusBannerActionHandler;
+              if (fn) await fn();
+            };
+            actBtn.classList.remove('hidden');
+          } else {
+            statusBannerActionHandler = null;
+            actBtn.onclick = null;
+            actBtn.classList.add('hidden');
+          }
+        }
         el.classList.remove('hidden');
       }
     }
 
     function hideStatusBanner() {
+      statusBannerActionHandler = null;
+      const actBtn = document.getElementById('statusBannerAction');
+      if (actBtn) {
+        actBtn.onclick = null;
+        actBtn.classList.add('hidden');
+      }
       document.getElementById('statusBanner')?.classList.add('hidden');
     }
 
@@ -1672,8 +1682,34 @@
       }
     }
 
+    function isPathnameForActiveProfile(pathname) {
+      if (!pathname) return false;
+      const dir = (activeProfile?.dataDir || 'data').replace(/^\/+|\/+$/g, '');
+      const normalized = String(pathname).replace(/\/+/g, '/');
+      return (
+        normalized.endsWith(`/${dir}/vocab.json`) ||
+        normalized.endsWith(`/${dir}/sentences.json`) ||
+        normalized.endsWith(`/${dir}/manifest.json`)
+      );
+    }
+
+    function handleServiceWorkerMessage(event) {
+      const msg = event?.data;
+      if (!msg || msg.type !== 'DATA_UPDATED') return;
+      if (activeDataSource !== 'github') return;
+      if (!isPathnameForActiveProfile(msg.pathname)) return;
+      showStatusBanner('오늘의 새 학습 데이터가 도착했습니다.', {
+        label: '지금 반영',
+        onClick: async () => {
+          hideStatusBanner();
+          await syncData('github');
+        },
+      });
+    }
+
     function registerServiceWorker() {
       if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+        navigator.serviceWorker.addEventListener('message', handleServiceWorkerMessage);
         navigator.serviceWorker.register('./sw.js').catch(() => {});
       }
     }

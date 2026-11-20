@@ -187,15 +187,96 @@ test('mergeBatchIntoDataset deduplicates existing entries and links vocabIds', (
   assert.equal(validateDataFiles({ vocab: merged.vocab, sentences: merged.sentences, wordIndex: wi, manifest: mf }).valid, true);
 });
 
-test('index.html has valid inline JS syntax and no unused PapaParse dependency', async () => {
+test('index.html has valid inline JS syntax, offline static CSS, and no external CDN dependencies', async () => {
   const html = await readFile(resolve(process.cwd(), 'index.html'), 'utf8');
   assert.equal(html.includes('papaparse'), false, 'Unused PapaParse CDN should be removed');
+  assert.equal(html.includes('cdn.tailwindcss.com'), false, 'External Tailwind Play CDN should be removed for offline PWA support');
+  assert.equal(html.includes('./assets/app.css'), true, 'Offline static stylesheet ./assets/app.css must be linked');
 
   const scripts = [...html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)];
-  assert.ok(scripts.length >= 2, 'Expected inline Tailwind config and main app script');
+  assert.ok(scripts.length >= 1, 'Expected inline main app script');
   for (const [, code] of scripts) {
     new vm.Script(code);
   }
+});
+
+test('assets/app.css and inline style cover 100% of CSS classes used in index.html', async () => {
+  const html = await readFile(resolve(process.cwd(), 'index.html'), 'utf8');
+  const appCss = await readFile(resolve(process.cwd(), 'assets/app.css'), 'utf8');
+  const styleBlock = html.match(/<style>([\s\S]*?)<\/style>/)?.[1] || '';
+  const combinedCss = `${appCss}\n${styleBlock}`;
+
+  // Collect all defined class selectors (unescaping CSS backslash escapes like md\:flex or max-w-\[190px\])
+  const definedClasses = new Set();
+  for (const m of combinedCss.matchAll(/\.((?:\\.|[a-zA-Z0-9_-])+)/g)) {
+    definedClasses.add(m[1].replace(/\\(.)/g, '$1'));
+  }
+
+  // Extract all static class tokens from HTML attributes and JS className assignments
+  const usedClasses = new Set();
+  for (const m of html.matchAll(/\bclass="([^"]+)"/g)) {
+    const raw = m[1];
+    raw.replace(/\$\{[^}]+\}/g, ' ').split(/\s+/).filter(Boolean).forEach((c) => usedClasses.add(c));
+    for (const q of raw.matchAll(/\$\{[^}]+\}/g)) {
+      for (const lit of q[0].matchAll(/['"]([^'"]+)['"]/g)) {
+        lit[1].split(/\s+/).filter(Boolean).forEach((c) => usedClasses.add(c));
+      }
+    }
+  }
+  for (const m of html.matchAll(/\bclassName\s*=\s*(?:'([^']*)'|"([^"]*)"|`([^`]*)`)/g)) {
+    const raw = m[1] ?? m[2] ?? m[3] ?? '';
+    raw.replace(/\$\{[^}]+\}/g, ' ').split(/\s+/).filter(Boolean).forEach((c) => usedClasses.add(c));
+    for (const q of raw.matchAll(/\$\{[^}]+\}/g)) {
+      for (const lit of q[0].matchAll(/['"]([^'"]+)['"]/g)) {
+        lit[1].split(/\s+/).filter(Boolean).forEach((c) => usedClasses.add(c));
+      }
+    }
+  }
+
+  // Pure JS/DOM hook classes that intentionally have no dedicated style rule
+  const jsHookAllowlist = new Set(['lang-btn', 'card-meaning', 'modal-panel', 'opt-badge', 'opt-text']);
+  const missing = [...usedClasses].filter((c) => !definedClasses.has(c) && !jsHookAllowlist.has(c));
+  assert.deepEqual(missing, [], `Missing CSS rules in assets/app.css for classes: ${missing.join(', ')}`);
+});
+
+test('manifest.json uses Warm Paper & Ink theme and exposes family profile shortcuts', async () => {
+  const mf = JSON.parse(await readFile(resolve(process.cwd(), 'manifest.json'), 'utf8'));
+  assert.equal(mf.background_color, '#F7F4EE');
+  assert.equal(mf.theme_color, '#161513');
+  assert.ok(Array.isArray(mf.shortcuts) && mf.shortcuts.length >= 3, 'Expected 3 family profile shortcuts');
+  const urls = mf.shortcuts.map((s) => s.url);
+  assert.ok(urls.includes('./'));
+  assert.ok(urls.includes('./?profile=wife'));
+  assert.ok(urls.includes('./?profile=kid'));
+});
+
+test('formatStepSummaryMarkdown produces GitHub Actions summary table and sample preview', async () => {
+  const { formatStepSummaryMarkdown } = await import('../scripts/generate-daily.mjs');
+  const md = formatStepSummaryMarkdown(
+    [
+      {
+        id: 'kid',
+        name: '아이',
+        usedModel: 'gemini-3.5-flash-lite',
+        durationMs: 2450,
+        addedVocabCount: 6,
+        skippedVocabCount: 0,
+        addedSentenceCount: 3,
+        skippedSentenceCount: 0,
+        totalVocab: 18,
+        totalSentences: 9,
+        sampleWords: [{ lang: 'English', word: 'puppy', meaning: '강아지' }],
+        sampleSentences: [{ lang: 'English', sentence: 'The puppy runs fast.', translation: '강아지가 빠르게 달려요.' }],
+      },
+    ],
+    { targetDate: '2026-11-20', dryRun: true }
+  );
+  assert.ok(md.includes('Daily AI Vocabulary & Sentence Generation (2026-11-20)'));
+  assert.ok(md.includes('Dry Run'));
+  assert.ok(md.includes('`gemini-3.5-flash-lite`'));
+  assert.ok(md.includes('+6 (skip 0)'));
+  assert.ok(md.includes('**puppy**'));
+  assert.ok(md.includes('The puppy runs fast.'));
 });
 
 test('data/profiles.json defines me, wife, and kid profiles with distinct dataDirs and storagePrefixes', async () => {
