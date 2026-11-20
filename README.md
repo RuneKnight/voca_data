@@ -33,14 +33,29 @@
 
 ---
 
+## 👨‍👩‍👧 가족 멀티 프로필 지원 (`data/profiles.json`)
+
+상단 프로필 스위처 또는 개인별 전용 링크로 각자 독립된 단어·문장·북마크·암기 기록·SRS 일정을 사용할 수 있습니다.
+
+| 프로필 | 전용 URL | 학습 언어 / 난이도 | 매일 자동 생성 주제 · 볼륨 |
+| :--- | :--- | :--- | :--- |
+| **나 (`me`)** | `./` (기본) | English(`A2-B1`) + German(`B1-B2`) | 영↔독 5쌍 · 개발/업무 2, 일상 2, 취미/자전거/건강 1 |
+| **와이프 (`wife`)** | `./?profile=wife` | English(`A2-B1`) | 영어 3문장 + 핵심 단어 · 여행/카페 1, 일상 회화 2 |
+| **아이 (`kid`)** | `./?profile=kid` | English(`Pre-A1-A1`) | 영어 3문장 + 기초 단어 · 동물/자연 1, 학교/친구 1, 놀이/음식 1 |
+
+- **적응형 UI**: 영어 전용 프로필(`wife`, `kid`)에서는 언어 필터·병렬 뷰·독일어 관사 퀴즈를 자동 숨겨 화면을 간결하게 유지합니다.
+- **커스터마이징**: [`data/profiles.json`](data/profiles.json)에서 프로필 추가·주제·난이도·일일 생성 개수를 자유롭게 조정할 수 있습니다.
+
+---
+
 ## 🤖 GitHub Repo JSON + 2-Track Gemini AI 자동화
 
 ### Track 1: 완전 무인 매일 자동 생성 (GitHub Actions + Gemini API)
 - 워크플로우: [`.github/workflows/daily-generate.yml`](.github/workflows/daily-generate.yml) + [`scripts/generate-daily.mjs`](scripts/generate-daily.mjs)
-- 매일 오전 8시(KST) 또는 GitHub Actions **Run workflow** 버튼으로 실행:
-  1. `data/word-index.json`에서 기존 단어 목록을 자동 읽어 중복 방지 프롬프트 구성
-  2. Gemini API(`responseMimeType: "application/json"`, `responseSchema` 강제)로 영↔독 병렬 문장 & 핵심 단어 생성
-  3. [`scripts/schema.mjs`](scripts/schema.mjs) 검증 및 중복 필터링 통과 시 `data/*.json` 자동 커밋·푸시 → GitHub Pages 자동 반영
+- 매일 오전 8시(KST) 또는 GitHub Actions **Run workflow** 버튼으로 실행 (`profile`: `all` | `me` | `wife` | `kid` 선택 가능):
+  1. 각 프로필의 `word-index.json`에서 기존 단어 목록을 자동 읽어 중복 방지 프롬프트 구성
+  2. Gemini API(`gemini-3.8-flash` / `gemini-3.5-flash-lite` 무료 티어 자동 폴백)로 프로필별 맞춤 문장 & 단어 생성
+  3. [`scripts/schema.mjs`](scripts/schema.mjs) 검증 및 중복 필터링 통과 시 각 프로필 폴더에 자동 커밋·푸시 → GitHub Pages 자동 반영
 - **설정 방법**: 저장소 **Settings → Secrets and variables → Actions → New repository secret**에 `GEMINI_API_KEY` (Google AI Studio 발급) 등록
 
 ### Track 2: 대화형 맞춤 생성 + 앱 내 1클릭 커밋 (`📥 Quick Import`)

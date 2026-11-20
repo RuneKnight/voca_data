@@ -1,0 +1,122 @@
+[
+  {
+    "id": "s-en-kid-20261120-01-the-little-puppy-likes-t",
+    "legacyKey": "English:The little puppy likes to chase the red ball in the park.",
+    "pairId": "kid-20261120-01",
+    "lang": "English",
+    "level": "Pre-A1-A1",
+    "topic": "animals",
+    "tags": [
+      "animals"
+    ],
+    "sentence": "The little puppy likes to chase the red ball in the park.",
+    "translation": "작은 강아지가 공원에서 빨간 공을 쫓아가는 것을 좋아해요.",
+    "cloze": "puppy",
+    "keyPoints": "puppy (강아지), chase (뒤쫓아가다)",
+    "vocabIds": [
+      "en-puppy",
+      "en-chase"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-kid-20261120-02-i-share-my-colored-penci",
+    "legacyKey": "English:I share my colored pencils with my best friend at school.",
+    "pairId": "kid-20261120-02",
+    "lang": "English",
+    "level": "Pre-A1-A1",
+    "topic": "school",
+    "tags": [
+      "school"
+    ],
+    "sentence": "I share my colored pencils with my best friend at school.",
+    "translation": "나는 학교에서 가장 친한 친구와 색연필을 나누어 써요.",
+    "cloze": "share",
+    "keyPoints": "share A with B (B와 A를 나누다), best friend (가장 친한 친구)",
+    "vocabIds": [
+      "en-share",
+      "en-pencil"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-kid-20261120-03-these-sweet-strawberries",
+    "legacyKey": "English:These sweet strawberries taste yummy after lunch.",
+    "pairId": "kid-20261120-03",
+    "lang": "English",
+    "level": "Pre-A1-A1",
+    "topic": "food",
+    "tags": [
+      "food"
+    ],
+    "sentence": "These sweet strawberries taste yummy after lunch.",
+    "translation": "이 달콤한 딸기들은 점심 뒤에 먹으니 정말 맛있어요.",
+    "cloze": "strawberries",
+    "keyPoints": "sweet (달콤한), yummy (맛있는)",
+    "vocabIds": [
+      "en-strawberry",
+      "en-yummy"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-kid-20261120-04-look-at-the-bright-rainb",
+    "legacyKey": "English:Look at the bright rainbow in the blue sky after the rain.",
+    "pairId": "kid-20261120-04",
+    "lang": "English",
+    "level": "Pre-A1-A1",
+    "topic": "nature",
+    "tags": [
+      "nature"
+    ],
+    "sentence": "Look at the bright rainbow in the blue sky after the rain.",
+    "translation": "비가 온 뒤 파란 하늘에 뜬 밝은 무지개를 보세요.",
+    "cloze": "rainbow",
+    "keyPoints": "bright (밝은), rainbow (무지개)",
+    "vocabIds": [
+      "en-rainbow",
+      "en-bright"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-kid-20261120-05-we-built-a-tall-tower-wi",
+    "legacyKey": "English:We built a tall tower with wooden blocks on the rug.",
+    "pairId": "kid-20261120-05",
+    "lang": "English",
+    "level": "Pre-A1-A1",
+    "topic": "play",
+    "tags": [
+      "play"
+    ],
+    "sentence": "We built a tall tower with wooden blocks on the rug.",
+    "translation": "우리는 러그 위에서 나무 블록으로 높은 탑을 쌓았어요.",
+    "cloze": "tower",
+    "keyPoints": "build a tower (탑을 쌓다), wooden blocks (나무 블록)",
+    "vocabIds": [
+      "en-tower",
+      "en-build"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-kid-20261120-06-a-friendly-turtle-walks",
+    "legacyKey": "English:A friendly turtle walks slowly near the quiet pond.",
+    "pairId": "kid-20261120-06",
+    "lang": "English",
+    "level": "Pre-A1-A1",
+    "topic": "animals",
+    "tags": [
+      "animals"
+    ],
+    "sentence": "A friendly turtle walks slowly near the quiet pond.",
+    "translation": "친절한 거북이가 조용한 연못 근처를 천천히 걸어가요.",
+    "cloze": "turtle",
+    "keyPoints": "turtle (거북이), slowly (천천히)",
+    "vocabIds": [
+      "en-turtle",
+      "en-slowly"
+    ],
+    "date": "2026-11-20"
+  }
+]

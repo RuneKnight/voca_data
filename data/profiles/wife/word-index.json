@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-20T04:36:00.325Z",
+  "counts": {
+    "vocab": 12,
+    "sentences": 6,
+    "englishVocab": 12,
+    "germanVocab": 0
+  },
+  "words": {
+    "English": [
+      "oat milk",
+      "less ice",
+      "luggage",
+      "check in",
+      "run late",
+      "go ahead",
+      "crisp",
+      "head out",
+      "slightly",
+      "try on",
+      "catch up",
+      "sometime"
+    ],
+    "German": []
+  },
+  "recentSentences": [
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Could I get an iced oat latte with less ice, please?"
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Is it possible to check in a little earlier or leave our luggage here?"
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "I am running a few minutes late, so please go ahead and order first."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "The weather feels crisp today, so I grabbed a light cardigan before heading out."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Do you happen to have this jacket in a slightly smaller size?"
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Let us catch up over dinner sometime next week when you are free."
+    }
+  ]
+}

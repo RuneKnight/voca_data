@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "defaultProfile": "me",
+  "profiles": [
+    {
+      "id": "me",
+      "name": "나",
+      "description": "영어(A2-B1) · 독일어(B1-B2) 병렬 학습",
+      "dataDir": "data",
+      "storagePrefix": "",
+      "languages": ["English", "German"],
+      "levels": {
+        "English": "A2-B1",
+        "German": "B1-B2"
+      },
+      "daily": {
+        "enabled": true,
+        "pairCount": 5,
+        "vocabPerPair": "2~4",
+        "topics": "개발/업무 2, 일상 2, 취미/자전거/건강 1",
+        "persona": "영어(A2-B1)와 독일어(B1-B2)를 함께 학습하는 한국인 개발자",
+        "model": "gemini-3.8-flash"
+      }
+    },
+    {
+      "id": "wife",
+      "name": "와이프",
+      "description": "실생활 영어 회화 (A2-B1)",
+      "dataDir": "data/profiles/wife",
+      "storagePrefix": "p_wife_",
+      "languages": ["English"],
+      "levels": {
+        "English": "A2-B1"
+      },
+      "daily": {
+        "enabled": true,
+        "pairCount": 3,
+        "vocabPerPair": "2~3",
+        "topics": "여행/카페 1, 일상 회화 2",
+        "persona": "실생활 영어 회화를 부담 없이 자연스럽게 익히는 한국인 성인 학습자",
+        "model": "gemini-3.5-flash-lite"
+      }
+    },
+    {
+      "id": "kid",
+      "name": "아이",
+      "description": "초등 기초 영어 (Pre-A1-A1)",
+      "dataDir": "data/profiles/kid",
+      "storagePrefix": "p_kid_",
+      "languages": ["English"],
+      "levels": {
+        "English": "Pre-A1-A1"
+      },
+      "daily": {
+        "enabled": true,
+        "pairCount": 3,
+        "vocabPerPair": "2",
+        "topics": "동물/자연 1, 학교/친구 1, 일상 놀이/음식 1",
+        "persona": "쉽고 재미있는 기초 영어를 배우는 한국 어린이 학습자 (짧고 친근한 문장, 쉬운 기초 단어, 이해하기 쉬운 한국어 설명)",
+        "model": "gemini-3.5-flash-lite"
+      }
+    }
+  ]
+}

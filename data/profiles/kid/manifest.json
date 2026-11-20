@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-20T04:36:00.331Z",
+  "counts": {
+    "vocab": 12,
+    "sentences": 6,
+    "pairs": 6
+  },
+  "languages": [
+    "English",
+    "German"
+  ],
+  "levels": [
+    "A1",
+    "Pre-A1",
+    "Pre-A1-A1"
+  ],
+  "tags": [
+    "animals",
+    "food",
+    "nature",
+    "play",
+    "school"
+  ],
+  "latestDate": "2026-11-20"
+}

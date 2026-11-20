@@ -197,3 +197,31 @@ test('index.html has valid inline JS syntax and no unused PapaParse dependency',
     new vm.Script(code);
   }
 });
+
+test('data/profiles.json defines me, wife, and kid profiles with distinct dataDirs and storagePrefixes', async () => {
+  const cfg = JSON.parse(await readFile(resolve(process.cwd(), 'data/profiles.json'), 'utf8'));
+  assert.equal(cfg.defaultProfile, 'me');
+  assert.equal(cfg.profiles.length, 3);
+  const byId = Object.fromEntries(cfg.profiles.map((p) => [p.id, p]));
+  assert.equal(byId.me.dataDir, 'data');
+  assert.equal(byId.me.storagePrefix, '');
+  assert.equal(byId.wife.dataDir, 'data/profiles/wife');
+  assert.equal(byId.kid.dataDir, 'data/profiles/kid');
+  assert.deepEqual(byId.wife.languages, ['English']);
+  assert.deepEqual(byId.kid.languages, ['English']);
+
+  // Single-language (EN-only) batch must validate cleanly without de side
+  const enOnlyRes = validateBatchPayload({
+    schemaVersion: 1,
+    date: '2026-11-20',
+    pairs: [
+      {
+        pairId: 'kid-20261120-01',
+        topic: 'animals',
+        en: { level: 'Pre-A1-A1', sentence: 'The cat sleeps on the bed.', translation: '고양이가 침대에서 자요.', cloze: 'sleeps', keyPoints: 'sleep: 자다' },
+        vocab: [{ lang: 'English', word: 'cat', pos: 'noun', meaning: '고양이' }],
+      },
+    ],
+  });
+  assert.equal(enOnlyRes.valid, true);
+});

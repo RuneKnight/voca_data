@@ -1,0 +1,122 @@
+[
+  {
+    "id": "s-en-wife-20261120-01-could-i-get-an-iced-oat",
+    "legacyKey": "English:Could I get an iced oat latte with less ice, please?",
+    "pairId": "wife-20261120-01",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "cafe",
+    "tags": [
+      "cafe"
+    ],
+    "sentence": "Could I get an iced oat latte with less ice, please?",
+    "translation": "얼음 적게 넣은 아이스 오트 라떼 한 잔 주시겠어요?",
+    "cloze": "with less ice",
+    "keyPoints": "Could I get ~? (정중하게 주문할 때), with less ice (얼음 적게)",
+    "vocabIds": [
+      "en-oat-milk",
+      "en-less-ice"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-wife-20261120-02-is-it-possible-to-check",
+    "legacyKey": "English:Is it possible to check in a little earlier or leave our luggage here?",
+    "pairId": "wife-20261120-02",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "travel",
+    "tags": [
+      "travel"
+    ],
+    "sentence": "Is it possible to check in a little earlier or leave our luggage here?",
+    "translation": "조금 일찍 체크인하거나 짐을 여기에 맡겨둘 수 있을까요?",
+    "cloze": "leave our luggage",
+    "keyPoints": "Is it possible to ~? (~할 수 있을까요?), leave luggage (짐을 맡기다)",
+    "vocabIds": [
+      "en-luggage",
+      "en-check-in"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-wife-20261120-03-i-am-running-a-few-minut",
+    "legacyKey": "English:I am running a few minutes late, so please go ahead and order first.",
+    "pairId": "wife-20261120-03",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "I am running a few minutes late, so please go ahead and order first.",
+    "translation": "제가 몇 분 정도 늦을 것 같으니 먼저 주문하고 계세요.",
+    "cloze": "running a few minutes late",
+    "keyPoints": "run late (늦다), go ahead and ~ (먼저 ~하다)",
+    "vocabIds": [
+      "en-run-late",
+      "en-go-ahead"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-wife-20261120-04-the-weather-feels-crisp",
+    "legacyKey": "English:The weather feels crisp today, so I grabbed a light cardigan before heading out.",
+    "pairId": "wife-20261120-04",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "The weather feels crisp today, so I grabbed a light cardigan before heading out.",
+    "translation": "오늘 날씨가 선선해서 나가기 전에 얇은 가디건을 챙겼어요.",
+    "cloze": "before heading out",
+    "keyPoints": "crisp weather (선선하고 상쾌한 날씨), head out (외출하다)",
+    "vocabIds": [
+      "en-crisp",
+      "en-head-out"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-wife-20261120-05-do-you-happen-to-have-th",
+    "legacyKey": "English:Do you happen to have this jacket in a slightly smaller size?",
+    "pairId": "wife-20261120-05",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "shopping",
+    "tags": [
+      "shopping"
+    ],
+    "sentence": "Do you happen to have this jacket in a slightly smaller size?",
+    "translation": "혹시 이 재킷 조금 더 작은 사이즈로 있을까요?",
+    "cloze": "Do you happen to have",
+    "keyPoints": "Do you happen to ~? (혹시 ~하시나요?), slightly smaller (조금 더 작은)",
+    "vocabIds": [
+      "en-slightly",
+      "en-try-on"
+    ],
+    "date": "2026-11-20"
+  },
+  {
+    "id": "s-en-wife-20261120-06-let-us-catch-up-over-din",
+    "legacyKey": "English:Let us catch up over dinner sometime next week when you are free.",
+    "pairId": "wife-20261120-06",
+    "lang": "English",
+    "level": "A2-B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "Let us catch up over dinner sometime next week when you are free.",
+    "translation": "다음 주 편한 날에 저녁 먹으면서 밀린 얘기 나눠요.",
+    "cloze": "catch up",
+    "keyPoints": "catch up (근황을 나누다), over dinner (저녁을 먹으며)",
+    "vocabIds": [
+      "en-catch-up",
+      "en-sometime"
+    ],
+    "date": "2026-11-20"
+  }
+]

@@ -1,0 +1,230 @@
+[
+  {
+    "id": "en-oat-milk",
+    "legacyKey": "English:oat milk",
+    "lang": "English",
+    "level": "A2",
+    "word": "oat milk",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "귀리 우유",
+    "example": "substitute regular milk with oat milk",
+    "tags": [
+      "cafe"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-01"
+  },
+  {
+    "id": "en-less-ice",
+    "legacyKey": "English:less ice",
+    "lang": "English",
+    "level": "A2",
+    "word": "less ice",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "얼음 적게",
+    "example": "an iced americano with less ice",
+    "tags": [
+      "cafe"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-01"
+  },
+  {
+    "id": "en-luggage",
+    "legacyKey": "English:luggage",
+    "lang": "English",
+    "level": "A2",
+    "word": "luggage",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "여행 가방, 수하물",
+    "example": "leave luggage at the front desk",
+    "tags": [
+      "travel"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-02"
+  },
+  {
+    "id": "en-check-in",
+    "legacyKey": "English:check in",
+    "lang": "English",
+    "level": "A2",
+    "word": "check in",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "체크인하다, 투숙 수속을 밟다",
+    "example": "check in early at the hotel",
+    "tags": [
+      "travel"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-02"
+  },
+  {
+    "id": "en-run-late",
+    "legacyKey": "English:run late",
+    "lang": "English",
+    "level": "B1",
+    "word": "run late",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "예정보다 늦다",
+    "example": "I am running five minutes late",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-03"
+  },
+  {
+    "id": "en-go-ahead",
+    "legacyKey": "English:go ahead",
+    "lang": "English",
+    "level": "A2-B1",
+    "word": "go ahead",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "먼저 하다, 진행하다",
+    "example": "please go ahead without me",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-03"
+  },
+  {
+    "id": "en-crisp",
+    "legacyKey": "English:crisp",
+    "lang": "English",
+    "level": "B1",
+    "word": "crisp",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "선선하고 상쾌한, 바삭한",
+    "example": "a crisp autumn morning",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-04"
+  },
+  {
+    "id": "en-head-out",
+    "legacyKey": "English:head out",
+    "lang": "English",
+    "level": "A2-B1",
+    "word": "head out",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "외출하다, 출발하다",
+    "example": "head out for a walk",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-04"
+  },
+  {
+    "id": "en-slightly",
+    "legacyKey": "English:slightly",
+    "lang": "English",
+    "level": "B1",
+    "word": "slightly",
+    "pos": "adv",
+    "posDetail": "Adverb",
+    "gender": null,
+    "plural": null,
+    "meaning": "약간, 조금",
+    "example": "a slightly different color",
+    "tags": [
+      "shopping"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-05"
+  },
+  {
+    "id": "en-try-on",
+    "legacyKey": "English:try on",
+    "lang": "English",
+    "level": "A2",
+    "word": "try on",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "입어보다, 신어보다",
+    "example": "try on a medium size",
+    "tags": [
+      "shopping"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-05"
+  },
+  {
+    "id": "en-catch-up",
+    "legacyKey": "English:catch up",
+    "lang": "English",
+    "level": "B1",
+    "word": "catch up",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "오랜만에 만나 근황을 나누다",
+    "example": "catch up over coffee",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-06"
+  },
+  {
+    "id": "en-sometime",
+    "legacyKey": "English:sometime",
+    "lang": "English",
+    "level": "A2",
+    "word": "sometime",
+    "pos": "adv",
+    "posDetail": "Adverb",
+    "gender": null,
+    "plural": null,
+    "meaning": "언젠가, 시간 될 때",
+    "example": "let us meet sometime next week",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "wife-20261120-06"
+  }
+]

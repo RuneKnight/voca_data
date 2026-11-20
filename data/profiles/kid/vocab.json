@@ -1,0 +1,230 @@
+[
+  {
+    "id": "en-puppy",
+    "legacyKey": "English:puppy",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "puppy",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "강아지",
+    "example": "a cute little puppy",
+    "tags": [
+      "animals"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-01"
+  },
+  {
+    "id": "en-chase",
+    "legacyKey": "English:chase",
+    "lang": "English",
+    "level": "A1",
+    "word": "chase",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "뒤쫓아가다",
+    "example": "chase the ball",
+    "tags": [
+      "animals"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-01"
+  },
+  {
+    "id": "en-share",
+    "legacyKey": "English:share",
+    "lang": "English",
+    "level": "A1",
+    "word": "share",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "나누다, 함께 쓰다",
+    "example": "share snacks with friends",
+    "tags": [
+      "school"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-02"
+  },
+  {
+    "id": "en-pencil",
+    "legacyKey": "English:pencil",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "pencil",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "연필",
+    "example": "a sharp colored pencil",
+    "tags": [
+      "school"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-02"
+  },
+  {
+    "id": "en-strawberry",
+    "legacyKey": "English:strawberry",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "strawberry",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "딸기",
+    "example": "sweet red strawberries",
+    "tags": [
+      "food"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-03"
+  },
+  {
+    "id": "en-yummy",
+    "legacyKey": "English:yummy",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "yummy",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "맛있는",
+    "example": "a yummy snack",
+    "tags": [
+      "food"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-03"
+  },
+  {
+    "id": "en-rainbow",
+    "legacyKey": "English:rainbow",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "rainbow",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "무지개",
+    "example": "a colorful rainbow",
+    "tags": [
+      "nature"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-04"
+  },
+  {
+    "id": "en-bright",
+    "legacyKey": "English:bright",
+    "lang": "English",
+    "level": "A1",
+    "word": "bright",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "밝은, 환한",
+    "example": "the bright sun",
+    "tags": [
+      "nature"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-04"
+  },
+  {
+    "id": "en-tower",
+    "legacyKey": "English:tower",
+    "lang": "English",
+    "level": "A1",
+    "word": "tower",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "탑",
+    "example": "build a tall tower",
+    "tags": [
+      "play"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-05"
+  },
+  {
+    "id": "en-build",
+    "legacyKey": "English:build",
+    "lang": "English",
+    "level": "A1",
+    "word": "build",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "만들다, 쌓다",
+    "example": "build with blocks",
+    "tags": [
+      "play"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-05"
+  },
+  {
+    "id": "en-turtle",
+    "legacyKey": "English:turtle",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "turtle",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "거북이",
+    "example": "a green baby turtle",
+    "tags": [
+      "animals"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-06"
+  },
+  {
+    "id": "en-slowly",
+    "legacyKey": "English:slowly",
+    "lang": "English",
+    "level": "A1",
+    "word": "slowly",
+    "pos": "adv",
+    "posDetail": "Adverb",
+    "gender": null,
+    "plural": null,
+    "meaning": "천천히",
+    "example": "walk slowly",
+    "tags": [
+      "animals"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-20",
+    "pairId": "kid-20261120-06"
+  }
+]

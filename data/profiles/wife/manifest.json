@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-20T04:36:00.326Z",
+  "counts": {
+    "vocab": 12,
+    "sentences": 6,
+    "pairs": 6
+  },
+  "languages": [
+    "English",
+    "German"
+  ],
+  "levels": [
+    "A2",
+    "A2-B1",
+    "B1"
+  ],
+  "tags": [
+    "cafe",
+    "daily",
+    "shopping",
+    "travel"
+  ],
+  "latestDate": "2026-11-20"
+}

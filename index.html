@@ -460,7 +460,15 @@
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
           </div>
           <div class="min-w-0">
-            <h1 class="text-[15px] font-semibold tracking-tight leading-tight text-pri truncate">Language Hub Pro</h1>
+            <div class="flex items-center gap-2">
+              <h1 class="text-[15px] font-semibold tracking-tight leading-tight text-pri truncate">Language Hub Pro</h1>
+              <select id="profileSelect" onchange="switchProfile(this.value)" aria-label="학습 프로필 선택"
+                class="input-field h-6 px-1.5 text-xs font-medium cursor-pointer shrink-0">
+                <option value="me">나</option>
+                <option value="wife">와이프</option>
+                <option value="kid">아이</option>
+              </select>
+            </div>
             <div class="flex items-center gap-1.5 mt-0.5">
               <div id="stats" class="text-xs text-mut font-mono tabular truncate max-w-[190px] sm:max-w-none">동기화 중</div>
               <button id="btnManualSync" onclick="manualSync()" title="최신 데이터 동기화" aria-label="최신 데이터 동기화"
@@ -590,7 +598,7 @@
         <div id="filterPanel" class="hidden md:flex flex-wrap items-center justify-between gap-2 pt-1 md:pt-0">
           <div class="flex flex-wrap items-center gap-1.5">
             <!-- 언어 세그먼트 -->
-            <div class="seg-track inline-flex items-center">
+            <div id="langFilterGroup" class="seg-track inline-flex items-center">
               <button onclick="setLangFilter('All')" id="btn-All" class="lang-btn seg-item is-active px-2.5 py-1 text-xs">전체</button>
               <button onclick="setLangFilter('English')" id="btn-English" class="lang-btn seg-item px-2.5 py-1 text-xs font-mono">EN</button>
               <button onclick="setLangFilter('German')" id="btn-German" class="lang-btn seg-item px-2.5 py-1 text-xs font-mono">DE</button>
@@ -835,11 +843,12 @@
       </section>
 
       <section class="space-y-2 border-t pt-4" style="border-color: var(--border-hairline);">
-        <h3 class="font-semibold text-pri">데이터 소스</h3>
+        <h3 class="font-semibold text-pri">프로필 및 데이터 소스</h3>
         <div id="dataSourceInfo" class="text-sec font-mono text-xs">확인 중</div>
         <div class="flex flex-wrap gap-2">
+          <button onclick="copyProfileUrl()" id="btnCopyProfileUrl" class="btn-primary px-3 py-1.5 text-xs font-medium">현재 프로필 전용 링크 복사</button>
           <button onclick="switchDataSource('github')" class="btn-control px-3 py-1.5 text-xs font-medium">GitHub JSON (기본)</button>
-          <button onclick="switchDataSource('sheets')" class="btn-control px-3 py-1.5 text-xs font-medium">Google Sheets 폴백</button>
+          <button id="btnFallbackSheets" onclick="switchDataSource('sheets')" class="btn-control px-3 py-1.5 text-xs font-medium">Google Sheets 폴백</button>
         </div>
       </section>
 
@@ -946,15 +955,84 @@
     let activeDataSource = 'github';
     let lastSyncTime = '';
 
+    // 멀티 프로필 상태 (기본 프로필 'me'는 storagePrefix === ''로 기존 vh_* 키 100% 유지)
+    const DEFAULT_PROFILES = [
+      {
+        id: 'me',
+        name: '나',
+        description: '영어(A2-B1) · 독일어(B1-B2) 병렬 학습',
+        dataDir: 'data',
+        storagePrefix: '',
+        languages: ['English', 'German'],
+        levels: { English: 'A2-B1', German: 'B1-B2' },
+        daily: {
+          enabled: true,
+          pairCount: 5,
+          vocabPerPair: '2~4',
+          topics: '개발/업무 2, 일상 2, 취미/자전거/건강 1',
+          persona: '영어(A2-B1)와 독일어(B1-B2)를 함께 학습하는 한국인 개발자',
+          model: 'gemini-3.8-flash',
+        },
+      },
+      {
+        id: 'wife',
+        name: '와이프',
+        description: '실생활 영어 회화 (A2-B1)',
+        dataDir: 'data/profiles/wife',
+        storagePrefix: 'p_wife_',
+        languages: ['English'],
+        levels: { English: 'A2-B1' },
+        daily: {
+          enabled: true,
+          pairCount: 3,
+          vocabPerPair: '2~3',
+          topics: '여행/카페 1, 일상 회화 2',
+          persona: '실생활 영어 회화를 부담 없이 자연스럽게 익히는 한국인 성인 학습자',
+          model: 'gemini-3.5-flash-lite',
+        },
+      },
+      {
+        id: 'kid',
+        name: '아이',
+        description: '초등 기초 영어 (Pre-A1-A1)',
+        dataDir: 'data/profiles/kid',
+        storagePrefix: 'p_kid_',
+        languages: ['English'],
+        levels: { English: 'Pre-A1-A1' },
+        daily: {
+          enabled: true,
+          pairCount: 3,
+          vocabPerPair: '2',
+          topics: '동물/자연 1, 학교/친구 1, 일상 놀이/음식 1',
+          persona: '쉽고 재미있는 기초 영어를 배우는 한국 어린이 학습자',
+          model: 'gemini-3.5-flash-lite',
+        },
+      },
+    ];
+    let profilesList = [...DEFAULT_PROFILES];
+    let activeProfile = DEFAULT_PROFILES[0];
+
+    function storageKey(suffix) {
+      const prefix = activeProfile?.storagePrefix || '';
+      return `vh_${prefix}${suffix}`;
+    }
+
     let shuffleOrderVocab = new Map();
     let shuffleOrderSentence = new Map();
     let searchDebounceTimer = null;
 
-    let bookmarks = new Set(safeJsonParse(localStorage.getItem('vh_bookmarks'), []));
-    let mastered = new Set(safeJsonParse(localStorage.getItem('vh_mastered'), []));
-    let srsData = safeJsonParse(localStorage.getItem('vh_srs'), {});
-    let studyLog = safeJsonParse(localStorage.getItem('vh_studyLog'), {});
+    let bookmarks = new Set();
+    let mastered = new Set();
+    let srsData = {};
+    let studyLog = {};
     let ttsRate = parseFloat(localStorage.getItem('vh_ttsRate') || '0.9') || 0.9;
+
+    function loadProfileLocalState() {
+      bookmarks = new Set(safeJsonParse(localStorage.getItem(storageKey('bookmarks')), []));
+      mastered = new Set(safeJsonParse(localStorage.getItem(storageKey('mastered')), []));
+      srsData = safeJsonParse(localStorage.getItem(storageKey('srs')), {});
+      studyLog = safeJsonParse(localStorage.getItem(storageKey('studyLog')), {});
+    }
 
     let currentRenderedVocab = [];
     let currentRenderedSentences = [];
@@ -1037,7 +1115,7 @@
       } else {
         bookmarks.add(item.id || legacy);
       }
-      localStorage.setItem('vh_bookmarks', JSON.stringify(Array.from(bookmarks)));
+      localStorage.setItem(storageKey('bookmarks'), JSON.stringify(Array.from(bookmarks)));
       render();
     }
 
@@ -1051,7 +1129,7 @@
         mastered.add(item.id || legacy);
         SrsService.logActivity('mastered');
       }
-      localStorage.setItem('vh_mastered', JSON.stringify(Array.from(mastered)));
+      localStorage.setItem(storageKey('mastered'), JSON.stringify(Array.from(mastered)));
       render();
     }
 
@@ -1178,13 +1256,14 @@
       },
 
       async loadFromGitHubJson() {
+        const dir = (activeProfile?.dataDir || 'data').replace(/\/+$/, '');
         const [vRes, sRes] = await Promise.allSettled([
-          this.fetchJsonWithTimeout('./data/vocab.json'),
-          this.fetchJsonWithTimeout('./data/sentences.json'),
+          this.fetchJsonWithTimeout(`./${dir}/vocab.json`),
+          this.fetchJsonWithTimeout(`./${dir}/sentences.json`),
         ]);
         const vOk = vRes.status === 'fulfilled' && Array.isArray(vRes.value) && vRes.value.length > 0;
         const sOk = sRes.status === 'fulfilled' && Array.isArray(sRes.value) && sRes.value.length > 0;
-        if (!vOk && !sOk) throw new Error('GitHub JSON data unavailable');
+        if (!vOk && !sOk) throw new Error(`GitHub JSON data unavailable (${dir})`);
         return {
           vocab: vOk ? vRes.value.map(normalizeVocabItem) : null,
           sentences: sOk ? sRes.value.map(normalizeSentenceItem) : null,
@@ -1267,14 +1346,18 @@
       },
 
       async load(preferredSource) {
+        const isDefaultProfile = !activeProfile || activeProfile.id === 'me';
         const urlSource = new URLSearchParams(window.location.search).get('source');
         const target = preferredSource || urlSource || localStorage.getItem('vh_dataSource') || 'github';
-        if (target === 'sheets') return this.loadFromGoogleSheets();
+        if (isDefaultProfile && target === 'sheets') return this.loadFromGoogleSheets();
         try {
           return await this.loadFromGitHubJson();
         } catch (err) {
-          console.warn('GitHub JSON 로드 실패 → Google Sheets 폴백 시도:', err.message);
-          return this.loadFromGoogleSheets();
+          if (isDefaultProfile) {
+            console.warn('GitHub JSON 로드 실패 → Google Sheets 폴백 시도:', err.message);
+            return this.loadFromGoogleSheets();
+          }
+          throw err;
         }
       },
     };
@@ -1312,7 +1395,7 @@
 
         const intervalDays = Config.SRS_INTERVALS_DAYS[nextBox - 1] || 1;
         srsData[key] = { box: nextBox, nextReview: addDays(today, intervalDays), lastReview: today, lapses };
-        localStorage.setItem('vh_srs', JSON.stringify(srsData));
+        localStorage.setItem(storageKey('srs'), JSON.stringify(srsData));
         this.logActivity('review');
         updateSrsDueBadge();
       },
@@ -1321,7 +1404,7 @@
         const today = getTodayDateStr();
         if (!studyLog[today]) studyLog[today] = { review: 0, quiz: 0, mastered: 0 };
         studyLog[today][type] = (studyLog[today][type] || 0) + 1;
-        localStorage.setItem('vh_studyLog', JSON.stringify(studyLog));
+        localStorage.setItem(storageKey('studyLog'), JSON.stringify(studyLog));
       },
 
       getStreak() {
@@ -1452,7 +1535,7 @@
     // =========================================================================
     // 7. Initialization & Sync
     // =========================================================================
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', async () => {
       initDarkMode();
       initEInkMode();
       initVocabLayout();
@@ -1462,9 +1545,132 @@
       initKeyboardShortcuts();
       registerServiceWorker();
 
+      await initProfiles();
+      loadProfileLocalState();
+      applyProfileCapabilities();
       loadFromCache();
       syncData();
     });
+
+    async function initProfiles() {
+      try {
+        const cfg = await DataAdapter.fetchJsonWithTimeout('./data/profiles.json');
+        if (cfg && Array.isArray(cfg.profiles) && cfg.profiles.length > 0) {
+          profilesList = cfg.profiles;
+        }
+      } catch (_) {
+        profilesList = [...DEFAULT_PROFILES];
+      }
+
+      const sel = document.getElementById('profileSelect');
+      if (sel) {
+        sel.innerHTML = profilesList
+          .map((p) => `<option value="${escapeHtml(p.id)}">${escapeHtml(p.name)}</option>`)
+          .join('');
+      }
+
+      const urlProfile = new URLSearchParams(window.location.search).get('profile');
+      const savedProfile = localStorage.getItem('vh_activeProfile');
+      const desiredId = urlProfile || savedProfile || 'me';
+      activeProfile = profilesList.find((p) => p.id === desiredId) || profilesList[0];
+
+      if (sel) sel.value = activeProfile.id;
+      localStorage.setItem('vh_activeProfile', activeProfile.id);
+    }
+
+    function applyProfileCapabilities() {
+      const langs = activeProfile?.languages || ['English'];
+      const isMultiLang = langs.length > 1;
+      const hasGerman = langs.includes('German');
+
+      // 단일 언어 프로필에서는 언어 필터 / 병렬 뷰 / 독일어 관사 퀴즈를 숨겨 화면을 단순화
+      document.getElementById('langFilterGroup')?.classList.toggle('hidden', !isMultiLang);
+      document.getElementById('quizLangSelect')?.classList.toggle('hidden', !isMultiLang);
+      document.getElementById('quiz-type-article')?.classList.toggle('hidden', !hasGerman);
+
+      if (!isMultiLang) {
+        currentLang = 'All';
+        if (sentenceLayout === 'parallel') {
+          sentenceLayout = 'list';
+          updateSentenceLayoutButtons();
+        }
+        if (quizType === 'article') {
+          quizType = 'vocab';
+          ['vocab', 'sentence', 'cloze', 'article'].forEach((t) => {
+            document.getElementById(`quiz-type-${t}`)?.classList.toggle('is-active', t === 'vocab');
+          });
+        }
+      }
+
+      const sentLayoutGroup = document.getElementById('sentenceLayoutGroup');
+      if (sentLayoutGroup) {
+        sentLayoutGroup.classList.toggle('hidden', currentView !== 'sentence' || !isMultiLang);
+      }
+      const mobSentBtn = document.getElementById('btnMobileSentLayout');
+      if (mobSentBtn) {
+        mobSentBtn.classList.toggle('hidden', currentView !== 'sentence' || !isMultiLang);
+      }
+      document.getElementById('btnFallbackSheets')?.classList.toggle('hidden', activeProfile?.id !== 'me');
+    }
+
+    async function switchProfile(profileId) {
+      const next = profilesList.find((p) => p.id === profileId);
+      if (!next || next.id === activeProfile.id) return;
+
+      TtsService.stopAutoplay();
+      activeProfile = next;
+      localStorage.setItem('vh_activeProfile', activeProfile.id);
+
+      const sel = document.getElementById('profileSelect');
+      if (sel) sel.value = activeProfile.id;
+
+      // URL 파라미터 동기화 (기본 'me'는 깔끔한 URL 유지)
+      try {
+        const url = new URL(window.location.href);
+        if (activeProfile.id === 'me') url.searchParams.delete('profile');
+        else url.searchParams.set('profile', activeProfile.id);
+        window.history.replaceState({}, '', url.toString());
+      } catch (_) {}
+
+      // 프로필 전환 시 데이터·상태·필터 초기화 후 새 프로필 로드
+      vocabData = [];
+      sentenceData = [];
+      vocabById = new Map();
+      currentPage = 1;
+      currentLang = 'All';
+      currentPos = 'All';
+      currentLevel = 'All';
+      currentTag = 'All';
+      currentSearch = '';
+      const searchInput = document.getElementById('searchInput');
+      if (searchInput) searchInput.value = '';
+      document.getElementById('btnClearSearch')?.classList.add('hidden');
+      document.getElementById('searchKeycap')?.classList.remove('hidden');
+
+      loadProfileLocalState();
+      applyProfileCapabilities();
+      loadFromCache();
+      await syncData('github');
+      if (currentView === 'quiz') startQuiz();
+    }
+
+    async function copyProfileUrl() {
+      const url = new URL(window.location.href);
+      if (activeProfile.id === 'me') url.searchParams.delete('profile');
+      else url.searchParams.set('profile', activeProfile.id);
+      const text = url.toString();
+      try {
+        await navigator.clipboard.writeText(text);
+        const btn = document.getElementById('btnCopyProfileUrl');
+        if (btn) {
+          const orig = btn.innerText;
+          btn.innerText = '링크 복사 완료';
+          setTimeout(() => (btn.innerText = orig), 2000);
+        }
+      } catch (_) {
+        prompt('현재 프로필 전용 링크:', text);
+      }
+    }
 
     function registerServiceWorker() {
       if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
@@ -1591,9 +1797,9 @@
 
     function saveToCache() {
       try {
-        localStorage.setItem('vh_vocabData', JSON.stringify(vocabData));
-        localStorage.setItem('vh_sentenceData', JSON.stringify(sentenceData));
-        localStorage.setItem('vh_lastSync', lastSyncTime);
+        localStorage.setItem(storageKey('vocabData'), JSON.stringify(vocabData));
+        localStorage.setItem(storageKey('sentenceData'), JSON.stringify(sentenceData));
+        localStorage.setItem(storageKey('lastSync'), lastSyncTime);
       } catch (e) {
         console.error('캐시 저장 실패:', e);
       }
@@ -1601,9 +1807,9 @@
 
     function loadFromCache() {
       try {
-        const cachedVocab = safeJsonParse(localStorage.getItem('vh_vocabData'), null);
-        const cachedSentence = safeJsonParse(localStorage.getItem('vh_sentenceData'), null);
-        const cachedSync = localStorage.getItem('vh_lastSync');
+        const cachedVocab = safeJsonParse(localStorage.getItem(storageKey('vocabData')), null);
+        const cachedSentence = safeJsonParse(localStorage.getItem(storageKey('sentenceData')), null);
+        const cachedSync = localStorage.getItem(storageKey('lastSync'));
 
         if (Array.isArray(cachedVocab) && Array.isArray(cachedSentence) && (cachedVocab.length > 0 || cachedSentence.length > 0)) {
           vocabData = cachedVocab.map(normalizeVocabItem);
@@ -1748,6 +1954,7 @@
 
       updateVocabLayoutButtons();
       updateSentenceLayoutButtons();
+      applyProfileCapabilities();
       updateSrsDueBadge();
       updateMobileFilterBadge();
 
@@ -2702,7 +2909,8 @@
       const masteredS = sentenceData.filter(isMasteredItem).length;
       const streak = SrsService.getStreak();
 
-      const langBars = ['English', 'German'].map((lang) => {
+      const profileLangs = activeProfile?.languages || ['English'];
+      const langBars = profileLangs.map((lang) => {
         const items = vocabData.filter((v) => v.lang === lang);
         const done = items.filter(isMasteredItem).length;
         const pct = items.length ? Math.round((done / items.length) * 100) : 0;
@@ -2720,6 +2928,7 @@
       }).join('');
 
       body.innerHTML = `
+        <div class="text-xs text-mut font-mono">프로필: <strong class="text-pri font-medium">${escapeHtml(activeProfile?.name || '나')}</strong> · ${escapeHtml(activeProfile?.description || '')}</div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
           <div class="p-3 rounded-lg surface-raised">
             <div class="text-lg font-semibold text-pri font-mono tabular">${streak}일</div>
@@ -2755,8 +2964,10 @@
 
       const srcInfo = document.getElementById('dataSourceInfo');
       if (srcInfo) {
-        srcInfo.innerText = `${activeDataSource === 'github' ? 'GitHub JSON (./data/*.json)' : 'Google Sheets (GViz)'} · 단어 ${vocabData.length} / 문장 ${sentenceData.length}`;
+        const dir = activeProfile?.dataDir || 'data';
+        srcInfo.innerText = `[${activeProfile?.name || '나'}] ${activeDataSource === 'github' ? `GitHub JSON (./${dir})` : 'Google Sheets (GViz)'} · 단어 ${vocabData.length} / 문장 ${sentenceData.length}`;
       }
+      document.getElementById('btnFallbackSheets')?.classList.toggle('hidden', activeProfile?.id !== 'me');
 
       const gh = safeJsonParse(localStorage.getItem('vh_ghConfig'), {});
       document.getElementById('ghOwnerInput').value = gh.owner || Config.DEFAULT_GH_OWNER;
@@ -2791,26 +3002,54 @@
     async function copyGeminiPrompt() {
       const today = getTodayDateStr();
       const compactDate = today.replace(/-/g, '');
+      const prof = activeProfile || DEFAULT_PROFILES[0];
+      const langs = prof.languages || ['English'];
+      const hasEn = langs.includes('English');
+      const hasDe = langs.includes('German');
+      const enLevel = prof.levels?.English || 'A2-B1';
+      const deLevel = prof.levels?.German || 'B1-B2';
+      const pairCount = prof.daily?.pairCount || 3;
+      const vocabPerPair = prof.daily?.vocabPerPair || '2~3';
+      const topics = prof.daily?.topics || '일상 회화';
+      const persona = prof.daily?.persona || '한국인 외국어 학습자';
+      const pairPrefix = prof.id === 'me' ? compactDate : `${prof.id}-${compactDate}`;
+
       const enWords = vocabData.filter((v) => v.lang === 'English').slice(0, 150).map((v) => v.word).join(', ');
       const deWords = vocabData.filter((v) => v.lang === 'German').slice(0, 150).map((v) => v.word).join(', ');
 
-      const prompt = `당신은 영어(A2-B1)와 독일어(B1-B2)를 함께 학습하는 한국인 개발자를 위한 어학 콘텐츠 생성기입니다.
+      const langInstruction = hasEn && hasDe
+        ? `각 pair는 동일한 상황/의미를 자연스러운 영어(${enLevel})와 독일어(${deLevel}) 문장으로 1:1 병렬 작성하세요.`
+        : `각 pair는 영어(${enLevel}) 문장(en 필드)만 자연스럽게 작성하세요.`;
+
+      const genderInstruction = hasDe
+        ? '독일어 명사는 관사 포함 원형(예: "die Prüfung"), gender("der"|"die"|"das"), 복수형(plural)을 기입하고 명사가 아니면 null로 두세요.'
+        : '영어 단어는 gender와 plural을 null로 두세요.';
+
+      const existingBlock = [
+        hasEn ? `- 영어: ${enWords || '(없음)'}` : '',
+        hasDe ? `- 독일어: ${deWords || '(없음)'}` : '',
+      ].filter(Boolean).join('\n');
+
+      const samplePair = hasDe
+        ? `{"pairId":"${pairPrefix}-01","topic":"daily","en":{"level":"${enLevel}","sentence":"...","translation":"...","cloze":"...","keyPoints":"..."},"de":{"level":"${deLevel}","sentence":"...","translation":"...","cloze":"...","keyPoints":"..."},"vocab":[{"id":"en-example","lang":"English","level":"${enLevel}","word":"...","pos":"verb","gender":null,"plural":null,"meaning":"...","example":"...","tags":["daily"]}]}`
+        : `{"pairId":"${pairPrefix}-01","topic":"daily","en":{"level":"${enLevel}","sentence":"...","translation":"...","cloze":"...","keyPoints":"..."},"vocab":[{"id":"en-example","lang":"English","level":"${enLevel}","word":"...","pos":"verb","gender":null,"plural":null,"meaning":"...","example":"...","tags":["daily"]}]}`;
+
+      const prompt = `당신은 ${persona}를 위한 맞춤형 어학 콘텐츠 생성기입니다.
 오늘 날짜(${today})의 새 학습 세트를 단일 JSON 코드 블록으로만 생성하세요.
 
 [생성 규칙]
-1. 5개의 실용적 상황(개발/업무 2, 일상 2, 취미/자전거/건강 1)을 선정해 pairs 배열에 담으세요.
-2. 각 pair는 동일한 상황/의미를 자연스러운 영어(A2-B1)와 독일어(B1-B2) 문장으로 1:1 병렬 작성하세요.
-3. pairId는 "${compactDate}-01" 형식, topic은 영문 소문자 태그(dev, work, daily, cycling, health 등)로 작성하세요.
-4. 각 pair마다 핵심 단어 2~4개를 vocab 배열로 추출하세요.
-5. 독일어 명사는 관사 포함 원형(예: "die Prüfung"), gender("der"|"die"|"das"), 복수형(plural)을 기입하고 명사가 아니면 null로 두세요.
+1. ${pairCount}개의 실용적 상황(${topics})을 선정해 pairs 배열에 담으세요.
+2. ${langInstruction}
+3. pairId는 "${pairPrefix}-01" 형식, topic은 영문 소문자 단일 태그로 작성하세요.
+4. 각 pair마다 핵심 단어 ${vocabPerPair}개를 vocab 배열로 추출하세요.
+5. ${genderInstruction}
 6. pos는 noun | verb | adj | adv | phrase | other 중 하나만 사용하세요.
 7. cloze는 해당 sentence 원문에 정확히 등장하는 핵심 표현 1개를 그대로 적으세요.
 8. 아래 기존 학습 단어와 중복되지 않도록 생성하세요:
-- 영어: ${enWords}
-- 독일어: ${deWords}
+${existingBlock}
 
 [JSON 출력 형식]
-{"schemaVersion":1,"date":"${today}","pairs":[{"pairId":"${compactDate}-01","topic":"dev","en":{"level":"A2-B1","sentence":"...","translation":"...","cloze":"...","keyPoints":"..."},"de":{"level":"B1-B2","sentence":"...","translation":"...","cloze":"...","keyPoints":"..."},"vocab":[{"id":"en-example","lang":"English","level":"B1","word":"...","pos":"verb","gender":null,"plural":null,"meaning":"...","example":"...","tags":["dev"]}]}]}`;
+{"schemaVersion":1,"date":"${today}","pairs":[${samplePair}]}`;
 
       try {
         await navigator.clipboard.writeText(prompt);
@@ -2979,9 +3218,10 @@
       try {
         const mergedVocab = [...pendingImportBatch.newVocab, ...vocabData];
         const mergedSentences = [...pendingImportBatch.newSentences, ...sentenceData];
-        const msg = `chore(data): import Gemini batch (${pendingImportBatch.date})`;
-        await commitFileToGitHub(cfg, 'data/vocab.json', mergedVocab, msg);
-        await commitFileToGitHub(cfg, 'data/sentences.json', mergedSentences, msg);
+        const dir = (activeProfile?.dataDir || 'data').replace(/\/+$/, '');
+        const msg = `chore(data): import Gemini batch [${activeProfile?.id || 'me'}] (${pendingImportBatch.date})`;
+        await commitFileToGitHub(cfg, `${dir}/vocab.json`, mergedVocab, msg);
+        await commitFileToGitHub(cfg, `${dir}/sentences.json`, mergedSentences, msg);
         vocabData = mergedVocab;
         sentenceData = mergedSentences;
         rebuildVocabIndex();
@@ -2989,7 +3229,7 @@
         lastSyncTime = new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
         saveToCache();
         render();
-        previewEl.innerHTML += `<div class="font-medium mt-1" style="color: var(--positive);">GitHub 저장소 커밋 완료</div>`;
+        previewEl.innerHTML += `<div class="font-medium mt-1" style="color: var(--positive);">GitHub 저장소 커밋 완료 (${escapeHtml(dir)})</div>`;
       } catch (err) {
         previewEl.innerHTML += `<div class="font-medium mt-1" style="color: var(--negative);">커밋 실패: ${escapeHtml(err.message)}</div>`;
       } finally {
@@ -3007,8 +3247,10 @@
     }
 
     function exportStudyProgress() {
-      downloadJsonFile(`langhub-progress-${getTodayDateStr()}.json`, {
+      const pid = activeProfile?.id || 'me';
+      downloadJsonFile(`langhub-progress-${pid}-${getTodayDateStr()}.json`, {
         schemaVersion: 1,
+        profileId: pid,
         exportedAt: new Date().toISOString(),
         bookmarks: Array.from(bookmarks),
         mastered: Array.from(mastered),
@@ -3016,7 +3258,7 @@
         studyLog,
         preferences: { darkMode: isDarkMode, eInkMode: isEInkMode, vocabLayout, sentenceLayout, ttsRate, pageSize: itemsPerPage },
       });
-      document.getElementById('backupStatus').innerText = '백업 파일을 다운로드했습니다';
+      document.getElementById('backupStatus').innerText = `[${activeProfile?.name || '나'}] 백업 파일을 다운로드했습니다`;
     }
 
     function importStudyProgressFile(event, mode) {
@@ -3040,12 +3282,12 @@
             srsData = { ...srsData, ...(data.srs || {}) };
             studyLog = { ...studyLog, ...(data.studyLog || {}) };
           }
-          localStorage.setItem('vh_bookmarks', JSON.stringify(Array.from(bookmarks)));
-          localStorage.setItem('vh_mastered', JSON.stringify(Array.from(mastered)));
-          localStorage.setItem('vh_srs', JSON.stringify(srsData));
-          localStorage.setItem('vh_studyLog', JSON.stringify(studyLog));
+          localStorage.setItem(storageKey('bookmarks'), JSON.stringify(Array.from(bookmarks)));
+          localStorage.setItem(storageKey('mastered'), JSON.stringify(Array.from(mastered)));
+          localStorage.setItem(storageKey('srs'), JSON.stringify(srsData));
+          localStorage.setItem(storageKey('studyLog'), JSON.stringify(studyLog));
           render();
-          document.getElementById('backupStatus').innerText = `복원 완료 (${mode === 'merge' ? '병합' : '덮어쓰기'})`;
+          document.getElementById('backupStatus').innerText = `[${activeProfile?.name || '나'}] 복원 완료 (${mode === 'merge' ? '병합' : '덮어쓰기'})`;
         } catch (err) {
           document.getElementById('backupStatus').innerText = `복원 실패: ${err.message}`;
         }

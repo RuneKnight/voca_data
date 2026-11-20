@@ -6,18 +6,28 @@ on:
     - cron: '0 23 * * *'
   workflow_dispatch:
     inputs:
+      profile:
+        description: '생성 대상 프로필 (all = 전체 가족 프로필, 또는 me / wife / kid)'
+        type: choice
+        required: false
+        default: 'all'
+        options:
+          - all
+          - me
+          - wife
+          - kid
       topics:
-        description: '생성할 주제 안내 (예: 개발/업무 2, 일상 2, 자전거 1)'
+        description: '(선택) 주제 덮어쓰기 — 비워두면 data/profiles.json의 프로필별 주제 사용'
         required: false
-        default: '개발/업무 2, 일상 2, 취미/자전거/건강 1'
+        default: ''
       pair_count:
-        description: '생성할 영↔독 병렬 문장 쌍 개수 (1~10)'
+        description: '(선택) 문장/세트 개수 덮어쓰기 — 비워두면 프로필별 기본 볼륨 사용'
         required: false
-        default: '5'
+        default: ''
       model:
-        description: 'Gemini 모델명 (무료 티어: gemini-3.8-flash, gemini-3.5-flash-lite, gemini-3.6-flash)'
+        description: '(선택) Gemini 모델명 덮어쓰기 — 비워두면 프로필별 기본 모델 사용'
         required: false
-        default: 'gemini-3.8-flash'
+        default: ''
       dry_run:
         description: 'Dry run (true면 검증만 수행하고 커밋하지 않음)'
         required: false
@@ -47,16 +57,17 @@ jobs:
             exit 1
           fi
 
-      - name: Generate daily vocabulary & parallel sentences via Gemini API
+      - name: Generate daily vocabulary & sentences via Gemini API
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ github.event.inputs.model || 'gemini-3.8-flash' }}
-          PAIR_COUNT: ${{ github.event.inputs.pair_count || '5' }}
-          DAILY_TOPICS: ${{ github.event.inputs.topics || '개발/업무 2, 일상 2, 취미/자전거/건강 1' }}
+          TARGET_PROFILE: ${{ github.event.inputs.profile || 'all' }}
+          GEMINI_MODEL: ${{ github.event.inputs.model || '' }}
+          PAIR_COUNT: ${{ github.event.inputs.pair_count || '' }}
+          DAILY_TOPICS: ${{ github.event.inputs.topics || '' }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
         run: node scripts/generate-daily.mjs
 
-      - name: Validate data schema & integrity
+      - name: Validate all profile datasets & integrity
         run: node scripts/validate-data.mjs
 
       - name: Commit and push updated data
@@ -64,11 +75,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet data/; then
+          if git diff --quiet data/ && [ -z "$(git ls-files --others --exclude-standard data/)" ]; then
             echo "No data changes to commit."
             exit 0
           fi
           DATE_KST=$(TZ=Asia/Seoul date +'%Y-%m-%d')
-          git add data/vocab.json data/sentences.json data/word-index.json data/manifest.json
-          git commit -m "chore(data): add daily Gemini vocabulary & sentences (${DATE_KST})"
+          PROFILE_LABEL="${{ github.event.inputs.profile || 'all' }}"
+          git add data/
+          git commit -m "chore(data): add daily Gemini learning data [${PROFILE_LABEL}] (${DATE_KST})"
           git push

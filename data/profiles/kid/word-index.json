@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": "2026-11-20T04:36:00.331Z",
+  "counts": {
+    "vocab": 12,
+    "sentences": 6,
+    "englishVocab": 12,
+    "germanVocab": 0
+  },
+  "words": {
+    "English": [
+      "puppy",
+      "chase",
+      "share",
+      "pencil",
+      "strawberry",
+      "yummy",
+      "rainbow",
+      "bright",
+      "tower",
+      "build",
+      "turtle",
+      "slowly"
+    ],
+    "German": []
+  },
+  "recentSentences": [
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "The little puppy likes to chase the red ball in the park."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "I share my colored pencils with my best friend at school."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "These sweet strawberries taste yummy after lunch."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "Look at the bright rainbow in the blue sky after the rain."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "We built a tall tower with wooden blocks on the rug."
+    },
+    {
+      "date": "2026-11-20",
+      "lang": "English",
+      "sentence": "A friendly turtle walks slowly near the quiet pond."
+    }
+  ]
+}

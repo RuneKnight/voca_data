@@ -3,36 +3,59 @@ import { readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { validateDataFiles } from './schema.mjs';
 
-const dataDir = resolve(process.cwd(), 'data');
+const ROOT = process.cwd();
 
-async function readJson(name) {
-  const raw = await readFile(resolve(dataDir, name), 'utf8');
+async function readJson(relPath) {
+  const raw = await readFile(resolve(ROOT, relPath), 'utf8');
   return JSON.parse(raw);
 }
 
-async function main() {
+async function validateProfileDir(profile) {
+  const dir = profile.dataDir || 'data';
   const [vocab, sentences, wordIndex, manifest] = await Promise.all([
-    readJson('vocab.json'),
-    readJson('sentences.json'),
-    readJson('word-index.json'),
-    readJson('manifest.json'),
+    readJson(`${dir}/vocab.json`),
+    readJson(`${dir}/sentences.json`),
+    readJson(`${dir}/word-index.json`),
+    readJson(`${dir}/manifest.json`),
   ]);
 
   const result = validateDataFiles({ vocab, sentences, wordIndex, manifest });
   if (!result.valid) {
-    console.error('❌ Data validation failed:');
-    for (const err of result.errors.slice(0, 30)) {
+    console.error(`❌ Profile "${profile.id}" (${dir}) validation failed:`);
+    for (const err of result.errors.slice(0, 20)) {
       console.error('  -', err);
     }
-    if (result.errors.length > 30) {
-      console.error(`  ... and ${result.errors.length - 30} more errors`);
-    }
-    process.exit(1);
+    return false;
   }
 
   console.log(
-    `✅ Data validation passed! (${vocab.length} vocab, ${sentences.length} sentences, ${manifest.counts.pairs} parallel pairs)`
+    `✅ [${profile.id}] ${profile.name} (${dir}): ${vocab.length} vocab, ${sentences.length} sentences, ${manifest.counts.pairs} pairs`
   );
+  return true;
+}
+
+async function main() {
+  const profilesCfg = await readJson('data/profiles.json');
+  if (!profilesCfg || !Array.isArray(profilesCfg.profiles) || profilesCfg.profiles.length === 0) {
+    console.error('❌ data/profiles.json must define a non-empty profiles array.');
+    process.exit(1);
+  }
+
+  const seenIds = new Set();
+  let allOk = true;
+  for (const profile of profilesCfg.profiles) {
+    if (!profile.id || seenIds.has(profile.id)) {
+      console.error(`❌ Invalid or duplicate profile id: "${profile.id}"`);
+      allOk = false;
+      continue;
+    }
+    seenIds.add(profile.id);
+    const ok = await validateProfileDir(profile);
+    if (!ok) allOk = false;
+  }
+
+  if (!allOk) process.exit(1);
+  console.log(`🎉 All ${profilesCfg.profiles.length} profile datasets validated successfully!`);
 }
 
 main().catch((err) => {

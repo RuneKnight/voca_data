@@ -484,10 +484,53 @@ async function runTests() {
     assert.equal(darkCheck.color, 'rgb(239, 233, 222)', 'Dark mode body text must be Warm Ink #EFE9DE');
     console.log('✅ Test 12 — Dark mode Warm Ink theme verified');
 
+    // 13. Multi-Profile Switching, Data/Storage Isolation & Adaptive Single-Language UI
+    const profileCheck = await client.eval(`
+      (async () => {
+        await switchProfile('wife');
+        const wifeCount = vocabData.length;
+        const wifeHasOat = vocabData.some(v => v.word === 'oat milk');
+        const wifeLangHidden = document.getElementById('langFilterGroup').classList.contains('hidden');
+        const wifeArticleHidden = document.getElementById('quiz-type-article').classList.contains('hidden');
+        toggleBookmarkItem(vocabData[0]);
+        const wifeBmSize = bookmarks.size;
+
+        await switchProfile('kid');
+        const kidCount = vocabData.length;
+        const kidHasPuppy = vocabData.some(v => v.word === 'puppy');
+        const kidBmIsolated = bookmarks.size === 0;
+
+        await switchProfile('me');
+        const meRestored = vocabData.length >= 400;
+        const meLangVisible = !document.getElementById('langFilterGroup').classList.contains('hidden');
+        const meArticleVisible = !document.getElementById('quiz-type-article').classList.contains('hidden');
+        const meBmIntact = bookmarks.has('German:die Speicherauslastung');
+
+        return {
+          wifeCount, wifeHasOat, wifeLangHidden, wifeArticleHidden, wifeBmSize,
+          kidCount, kidHasPuppy, kidBmIsolated,
+          meRestored, meLangVisible, meArticleVisible, meBmIntact,
+        };
+      })()
+    `);
+    assert.equal(profileCheck.wifeCount, 12);
+    assert.equal(profileCheck.wifeHasOat, true);
+    assert.equal(profileCheck.wifeLangHidden, true);
+    assert.equal(profileCheck.wifeArticleHidden, true);
+    assert.equal(profileCheck.wifeBmSize, 1);
+    assert.equal(profileCheck.kidCount, 12);
+    assert.equal(profileCheck.kidHasPuppy, true);
+    assert.equal(profileCheck.kidBmIsolated, true, 'Kid bookmarks must stay isolated from wife');
+    assert.equal(profileCheck.meRestored, true);
+    assert.equal(profileCheck.meLangVisible, true);
+    assert.equal(profileCheck.meArticleVisible, true);
+    assert.equal(profileCheck.meBmIntact, true, 'Default me legacy bookmarks must stay intact');
+    console.log('✅ Test 13 — Multi-profile switching, storage isolation & adaptive single-language UI verified');
+
     const finalExceptions = client.events.filter((e) => e.method === 'Runtime.exceptionThrown');
     assert.equal(finalExceptions.length, 0, 'Expected 0 runtime JS exceptions across all E2E tests');
 
-    console.log('\n🎉 ALL 12 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
+    console.log('\n🎉 ALL 13 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
   } finally {
     client.close();
     proc.kill('SIGTERM');
