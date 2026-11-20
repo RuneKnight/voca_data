@@ -1,0 +1,74 @@
+name: Daily AI Vocabulary & Sentence Generation
+
+on:
+  schedule:
+    # Runs daily at 08:00 KST (23:00 UTC previous day)
+    - cron: '0 23 * * *'
+  workflow_dispatch:
+    inputs:
+      topics:
+        description: '생성할 주제 안내 (예: 개발/업무 2, 일상 2, 자전거 1)'
+        required: false
+        default: '개발/업무 2, 일상 2, 취미/자전거/건강 1'
+      pair_count:
+        description: '생성할 영↔독 병렬 문장 쌍 개수 (1~10)'
+        required: false
+        default: '5'
+      model:
+        description: 'Gemini 모델명'
+        required: false
+        default: 'gemini-2.5-flash'
+      dry_run:
+        description: 'Dry run (true면 검증만 수행하고 커밋하지 않음)'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Verify GEMINI_API_KEY secret
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::GEMINI_API_KEY 시크릿이 설정되지 않았습니다. Settings > Secrets and variables > Actions에서 등록해주세요."
+            exit 1
+          fi
+
+      - name: Generate daily vocabulary & parallel sentences via Gemini API
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GEMINI_MODEL: ${{ github.event.inputs.model || 'gemini-2.5-flash' }}
+          PAIR_COUNT: ${{ github.event.inputs.pair_count || '5' }}
+          DAILY_TOPICS: ${{ github.event.inputs.topics || '개발/업무 2, 일상 2, 취미/자전거/건강 1' }}
+          DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}
+        run: node scripts/generate-daily.mjs
+
+      - name: Validate data schema & integrity
+        run: node scripts/validate-data.mjs
+
+      - name: Commit and push updated data
+        if: ${{ (github.event.inputs.dry_run || 'false') != 'true' }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet data/; then
+            echo "No data changes to commit."
+            exit 0
+          fi
+          DATE_KST=$(TZ=Asia/Seoul date +'%Y-%m-%d')
+          git add data/vocab.json data/sentences.json data/word-index.json data/manifest.json
+          git commit -m "chore(data): add daily Gemini vocabulary & sentences (${DATE_KST})"
+          git push

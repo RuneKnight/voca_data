@@ -1,0 +1,28 @@
+name: CI — Schema Validation & Regression Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate data JSON schema & referential integrity
+        run: node scripts/validate-data.mjs
+
+      - name: Run unit tests
+        run: node --test tests/unit.test.mjs
+
+      - name: Run headless Chromium E2E regression tests
+        run: node tests/e2e.test.mjs

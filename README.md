@@ -1,144 +1,111 @@
-# ⚡ Language Hub Pro (voca_data)
+# ⚡ Language Hub Pro (`voca_data`)
 
-> **Google Sheets를 헤드리스 CMS로 활용하는 반응형 다국어(영어·독일어) 플래시카드 & 문장 학습 웹 애플리케이션**
+> **GitHub Repo JSON + Gemini 2-Track AI 자동화 기반 반응형 다국어(영어·독일어) 플래시카드, 병렬 문장 & 퀴즈 학습 웹 애플리케이션**
 
-별도의 백엔드 서버나 데이터베이스 구축 없이, **Google 스프레드시트**에 단어와 문장을 입력하면 실시간 웹으로 동기화되어 학습할 수 있는 가볍고 직관적인 어학 학습 플랫폼입니다.
+별도의 백엔드 서버나 프론트엔드 빌드 없이, **GitHub 저장소의 구조화된 JSON(`data/*.json`)**과 **Gemini AI 자동 생성 파이프라인**으로 영어(`A2-B1`)와 독일어(`B1-B2`)를 함께 학습할 수 있는 경량 Zero-Build 어학 학습 플랫폼입니다. (기존 Google Sheets GViz 폴백도 100% 하위 호환으로 유지됩니다.)
 
 ---
 
 ## 📌 주요 특징 (Key Features)
 
-- 🔄 **서버리스 실시간 동기화 & 오프라인 캐싱**: Google Sheets 웹 게시(CSV) 링크를 통해 시트 수정 내용이 웹에 즉시 반영되며, 네트워크 단절 시에도 `localStorage` 오프라인 캐시로 중단 없는 학습 가능
-- 🗂️ **트리플 뷰 모드 지원**:
-  - **단어 카드(Flashcard)**: 3D 인터랙티브 카드 플립 애니메이션으로 단어 앞면 ↔ 뜻/예문 뒷면 토글
-  - **학습 문장(Sentences)**: 예문 원문, 번역, CEFR 레벨, 핵심 포인트(Key Point)를 직관적으로 확인
-  - **🎯 퀴즈 모드(Quiz)**: 학습한 단어 데이터를 바탕으로 생성되는 4지선다형 맞춤 퀴즈
-- 🇩🇪 **독일어 관사(성별) 컬러 코딩**: `der`(남성/파랑), `die`(여성/로즈), `das`(중성/에메랄드) 명사 성별을 카드 테두리 및 뱃지로 시각화
-- 🧠 **능동적 인출 학습(Active Recall) UI**: 문장 탭에서 정답(해석/Key Point)을 가려두고 스스로 인출해본 뒤 펼쳐보는 아코디언 토글 적용
-- ⭐ **즐겨찾기(북마크) & ✅ 학습 완료 숨기기**: 암기 여부를 체크하고 중요한 단어만 추려서 집중 복습
-- 🔀 **전체 뒤집기(Flip All) & 셔플(Shuffle) & ✨ New 단어 필터**: 무작위 순서 섞기, 한 번의 클릭으로 전체 카드 반전, 신규 단어 필터 제공
-- 🔊 **Web Speech API 네이티브 TTS**: 단어, 문장, 예문(Collocation) 발음 즉시 재생 (영어 `en-US` / 독일어 `de-DE` 음성 엔진 자동 분기)
-- 📊 **실시간 학습 통계 & 타임스탬프**: 필터 및 검색 조건에 맞는 항목 수와 구글 시트 최근 동기화 시각 실시간 표시
-- 🌙 **다크 모드 지원**: 사용자 선호 및 시스템 설정에 맞춰 눈이 편안한 테마 제공
-- 📱 **반응형 디자인**: Tailwind CSS 기반 모바일, 태블릿, 데스크톱 완벽 대응
-- ⚡ **경량성 & zero-build**: 번들러나 빌드 과정 없이 `index.html` 단일 파일로 즉시 실행 가능
+### 1. 학습 뷰 & 인지과학 기반 기능
+- 🗂️ **단어 카드 (`vocab`)**: 3D 인터랙티브 **카드형 / 리스트형** 레이아웃 전환, 독일어 관사(`der` 파랑 / `die` 로즈 / `das` 에메랄드) 컬러 코딩 및 **복수형(`Pl.`)** 표기
+- 🔄 **학습 문장 (`sentence`) & 영↔독 병렬 비교 뷰**:
+  - `<details>` 기반 3초 능동 인출(Active Recall) 해석/Key Point 토글
+  - `[📄 목록 | 🔄 병렬]` 전환으로 동일 주제의 영어(`A2-B1`)와 독일어(`B1-B2`) 문장을 나란히 비교 학습
+  - 문장 하단 **🔗 핵심 단어 칩** 클릭 시 뜻·품사·복수형·발음·북마크 팝오버 즉시 확인
+- 🎯 **4종 퀴즈 모드 & 오답 노트 (`quiz`)**:
+  - **📖 단어 퀴즈** / **💬 문장 퀴즈** (외국어→한국어 & 한국어→외국어 역방향 지원)
+  - **🧩 빈칸 채우기(Cloze) 퀴즈** / **🇩🇪 독일어 관사(`der`/`die`/`das`) 퀴즈**
+  - 출제 범위 필터(언어, 미암기, ⭐ 즐겨찾기, ✨ New, 📅 오늘 복습) + 진행률 바 + **📝 오답 노트 & 틀린 문제만 다시 풀기**
+- 📅 **옵트인 간격 반복(Leitner 5-Box SRS) & 📊 학습 통계 대시보드**:
+  - 카드 뒷면의 `다시 / 보통 / 쉬움` 피드백 및 퀴즈 결과에 따라 복습 주기(1→3→7→14→30일) 자동 계산
+  - 언어별 암기율 프로그레스 바 및 연속 학습일(Streak) 대시보드
+
+### 2. 탐색·음성·디바이스 최적화
+- 🔍 **다차원 필터 & Fisher-Yates 셔플**: 언어, 품사, 동적 CEFR 범위 레벨(`A2`, `A2-B1`, `B1-B2`), 주제 태그(`#dev`, `#daily`, `#cycling` 등), New, 즐겨찾기, 오늘 복습, 학습 완료 숨기기, 정렬(최신순/오래된순/알파벳순), 디바운스 검색, 페이지 이동 간 순서가 유지되는 Fisher-Yates 셔플(+ 다시 섞기)
+- 🔊 **강화된 Web Speech API TTS**: 발음 속도 선택(`0.75x` / `0.9x` / `1.0x` / `1.2x`), 언어별 고품질 음성 자동 매칭, 현재 페이지 **연속 듣기(쉐도잉 모드)**
+- 🖋️ **전자잉크(E-Ink) 최적화 & 키보드/리모컨 단축키**:
+  - 고대비 흑백(배경 `#fff`, 텍스트 `#000`), 무애니메이션, 즉시 스크롤(`behavior: 'instant'`)로 잔상(Ghosting) 방지
+  - `←`/`→` 페이지 이동(블루투스 페이지 터너 호환), `Space` 전체 뒤집기, `1~4` 퀴즈 선택, `Enter` 다음 문제, `S` 발음 듣기, `/` 검색 포커스
+- 🌙 **다크 모드 & 📱 PWA 오프라인 지원**: `manifest.json` + Service Worker(`sw.js`)로 모바일 홈 화면 설치 및 오프라인 학습 지원
+- 💾 **학습 기록 백업/복원**: 북마크·암기·SRS·학습 로그 JSON 내보내기 및 병합/덮어쓰기 복원 (기존 `localStorage` 키 `vh_*` 100% 하위 호환)
 
 ---
 
-## 💡 주요 개선 기능 분석 및 학습 효과 (Feature Highlights)
+## 🤖 GitHub Repo JSON + 2-Track Gemini AI 자동화
 
-최근 업데이트(`index.html`)를 통해 단순 단어장 형태에서 **인지언어학적 학습 원리**를 반영한 전문 학습 도구로 고도화되었습니다.
+### Track 1: 완전 무인 매일 자동 생성 (GitHub Actions + Gemini API)
+- 워크플로우: [`.github/workflows/daily-generate.yml`](.github/workflows/daily-generate.yml) + [`scripts/generate-daily.mjs`](scripts/generate-daily.mjs)
+- 매일 오전 8시(KST) 또는 GitHub Actions **Run workflow** 버튼으로 실행:
+  1. `data/word-index.json`에서 기존 단어 목록을 자동 읽어 중복 방지 프롬프트 구성
+  2. Gemini API(`responseMimeType: "application/json"`, `responseSchema` 강제)로 영↔독 병렬 문장 & 핵심 단어 생성
+  3. [`scripts/schema.mjs`](scripts/schema.mjs) 검증 및 중복 필터링 통과 시 `data/*.json` 자동 커밋·푸시 → GitHub Pages 자동 반영
+- **설정 방법**: 저장소 **Settings → Secrets and variables → Actions → New repository secret**에 `GEMINI_API_KEY` (Google AI Studio 발급) 등록
 
-### 1. 독일어 성별(관사) 시각화 시스템 (`getGermanGenderStyle`)
-- **기능**: 단어 앞머리의 관사를 분석하여 `der`(남성 🔵), `die`(여성 🔴), `das`(중성 🟢)를 고유한 테두리 및 뱃지 색상으로 렌더링합니다.
-- **학습 효과**: 독일어 학습의 최대 난제인 명사 성별을 텍스트 암기가 아닌 **색상 연상(Visual Anchoring)**을 통해 직관적으로 기억하도록 유도합니다.
-
-### 2. 액티브 리콜(Active Recall) 기반 3초 인출 문장 뷰
-- **기능**: 문장 뷰에서 한국어 해석과 문법 메모를 상시 노출하지 않고, `<details>` 태그 기반의 "👉 한국어 해석 및 Key Point 보기" 토글로 숨김 처리했습니다.
-- **학습 효과**: 정답을 바로 확인하는 수동적 학습(Passive Reading)을 차단하고, 뇌가 스스로 의미를 인출(Recall)하도록 유도하여 기억 보존율(Retention)을 극대화합니다.
-
-### 3. ✨ New만 보기, 즐겨찾기 & 카드 셔플 모드
-- **기능**: 
-  - `Review Status`가 'New'인 항목만 추려보는 원클릭 토글 버튼 제공
-  - 즐겨찾기(⭐) 및 완숙 단어 체크(✓) 기능으로 나만의 단어장 구성
-  - 🔀 셔플 버튼으로 순서 암기 타파
-- **학습 효과**: 누적된 데이터 중 오늘 새로 배운 표현이나 취약 단어만 빠르게 복습할 수 있습니다.
+### Track 2: 대화형 맞춤 생성 + 앱 내 1클릭 커밋 (`📥 Quick Import`)
+1. 상단 `📥` 버튼 클릭 → **📋 Gemini 프롬프트 복사** (현재 단어장 중복 방지 목록 자동 포함)
+2. Gemini 채팅에서 원하는 주제(예: 오늘 업무 이슈, 자전거 정비 등)로 생성된 JSON을 복사해 입력창에 붙여넣기
+3. **🔍 검증 및 미리보기**로 신규/중복 항목 확인 후 **🚀 GitHub 레포에 바로 커밋** 클릭
+   - `⚙️ 설정` 모달에서 Fine-grained PAT(`Contents: Read and write`, 본 레포 한정)를 등록하면 브라우저 `localStorage`에만 안전하게 보관되며 1클릭 커밋이 동작합니다.
 
 ---
 
-## 🛠 기술 스택 (Tech Stack)
+## 📁 저장소 구조
 
-| 구분 | 기술 | 설명 |
-| :--- | :--- | :--- |
-| **Frontend** | HTML5, Vanilla JavaScript (ES6+) | 가볍고 빠른 네이티브 돔 조작 |
-| **Voice Engine** | Web Speech API (`speechSynthesis`) | 브라우저 내장 네이티브 TTS 음성 합성 (무과금) |
-| **Styling** | [Tailwind CSS (CDN)](https://tailwindcss.com/) | 유틸리티 퍼스트 반응형 스타일링 & 다크모드 |
-| **Data Parser** | [PapaParse](https://www.papaparse.com/) | 브라우저 내 강력한 CSV 스트리밍 및 파싱 |
-| **Data Source** | Google Sheets (Published CSV / GViz API) | 무료 헤드리스 CMS 데이터 저장소 |
-
----
-
-## 📊 데이터 구조 및 스키마 (Google Sheets Schema)
-
-본 프로젝트는 2개의 구글 시트 탭(단어 탭 / 문장 탭)의 CSV/GViz 연동을 통해 동작합니다.
-
-### 1. 단어 시트 (`VOCAB_CSV_URL` / Gid: 0)
-
-| 컬럼명 | 타입 | 설명 | 예시 |
-| :--- | :--- | :--- | :--- |
-| `Language` | String | 학습 언어 (`English` 또는 `German`) | `German` |
-| `Level` | String | CEFR 난이도 레벨 | `B1` |
-| `Part of Speech / Gender` | String | 품사 또는 성별(독일어 der/die/das 등) | `n. (das)` |
-| `Word/Phrase` | String | 단어 또는 숙어 표현 (카드 앞면) | `die Entscheidung` |
-| `Meaning` | String | 한글 의미 (카드 뒷면) | `결정, 결단` |
-| `Collocation / Example` | String | 연어 또는 짧은 예문 (카드 뒷면) | `eine Entscheidung treffen` |
-| `Review Status` | String | 복습 상태 (`New` 지정 시 NEW 뱃지 표시 및 필터링) | `New` |
-| `Date` | String | 학습/등록 일자 | `2026-03-10` |
-
-### 2. 문장 시트 (`SENTENCE_CSV_URL` / Gid: 765046051)
-
-| 컬럼명 | 타입 | 설명 | 예시 |
-| :--- | :--- | :--- | :--- |
-| `Language` | String | 학습 언어 (`English` 또는 `German`) | `English` |
-| `Level` | String | CEFR 난이도 레벨 | `B2` |
-| `Date` | String | 학습 일자 | `2026-03-10` |
-| `Sentence` | String | 원문 문장 | `I have butterflies in my stomach.` |
-| `Translation` | String | 한국어 번역 (아코디언 토글) | `가슴이 두근거리고 긴장돼.` |
-| `Key Points` | String | 문법 포인트, 숙어 해설 등 핵심 메모 | `butterflies in one's stomach: 긴장되다` |
+```text
+voca_data/
+├── index.html                          # Zero-Build 정적 학습 앱
+├── manifest.json / sw.js / icon.svg    # PWA 지원 파일
+├── data/
+│   ├── manifest.json                   # 스키마 버전, 통계, 레벨/태그 메타데이터
+│   ├── vocab.json                      # 단어 마스터 데이터 (고유 id + legacyKey)
+│   ├── sentences.json                  # 문장 마스터 데이터 (pairId 병렬 연결 + vocabIds)
+│   └── word-index.json                 # Gemini 중복 방지용 경량 인덱스
+├── scripts/
+│   ├── schema.mjs                      # 공통 스키마 검증·정규화·중복 제거 모듈
+│   ├── migrate-from-sheets.mjs         # 기존 Google Sheets → data/*.json 무손실 이관
+│   ├── generate-daily.mjs              # Track 1 Gemini API 자동 생성 스크립트
+│   └── validate-data.mjs               # CI/로컬 데이터 무결성 검증 CLI
+├── tests/
+│   ├── unit.test.mjs                   # Node 내장 단위 테스트 (무의존성)
+│   └── e2e.test.mjs                    # Headless Chromium E2E 회귀 테스트 (무의존성)
+├── docs/
+│   └── ENHANCEMENT_PLAN.md             # 프로젝트 분석 및 비파괴 고도화 계획서
+└── .github/workflows/
+    ├── daily-generate.yml              # 매일 Gemini 자동 생성 워크플로우
+    └── ci.yml                          # PR/Push 스키마 검증 + 단위/E2E 회귀 CI
+```
 
 ---
 
-## 🚀 빠른 시작 (Getting Started)
+## 🚀 로컬 실행 및 테스트
 
-### 1. 로컬에서 실행
-별도의 `npm install`이나 빌드가 필요 없습니다. 브라우저에서 바로 열거나 로컬 웹 서버로 엽니다.
+별도의 `npm install`이나 빌드 과정이 필요 없습니다 (Node.js 20+ 표준 내장 모듈만 사용).
 
 ```bash
-# 저장소 클론
-git clone https://github.com/<your-username>/voca_data.git
-cd voca_data
-
-# Python 간이 서버 실행 (옵션)
+# 로컬 정적 서버 실행
 python3 -m http.server 8080
+# → 브라우저에서 http://localhost:8080 접속
+# (기존 Google Sheets 폴백 확인 시: http://localhost:8080/?source=sheets)
+
+# 데이터 스키마 및 무결성 검증
+node scripts/validate-data.mjs
+
+# 단위 테스트 실행
+node --test tests/unit.test.mjs
+
+# Headless Chromium E2E 회귀 테스트 실행
+node tests/e2e.test.mjs
+
+# (선택) Google Sheets 데이터 재이관
+node scripts/migrate-from-sheets.mjs
 ```
-브라우저에서 `http://localhost:8080` 접속
-
-### 2. 본인의 구글 시트로 변경하는 법
-1. Google Sheets에서 단어/문장 시트 생성 (위 컬럼 구조 준수)
-2. **[파일] → [공유] → [웹에 게시]** 선택
-3. `index.html` 스크립트 상단의 상수를 본인 시트 ID로 교체:
-   ```javascript
-   const SPREADSHEET_ID = 'your-google-sheet-id';
-   const VOCAB_GID = '0';
-   const SENTENCE_GID = '765046051';
-   ```
 
 ---
 
-## 🌐 무료 배포 가이드 (GitHub Pages)
+## 🌐 무료 배포 (GitHub Pages)
 
-1. GitHub 저장소의 **Settings**로 이동
-2. 좌측 메뉴 **Pages** 클릭
-3. **Build and deployment** > **Source**를 `Deploy from a branch`로 설정
-4. **Branch**를 `main` (또는 `master`), 폴더를 `/ (root)`로 선택하고 **Save**
-5. 1~2분 후 생성되는 `https://<username>.github.io/voca_data/` 링크로 접속
-
----
-
-## 🗺️ 향후 개선 로드맵 (Roadmap)
-
-- [x] **Web Speech API (TTS)**: 단어 및 문장 네이티브 발음 음성 지원
-- [x] **독일어 관사별 컬러 코딩**: der/die/das 시각적 성별 구분
-- [x] **인출 학습(Active Recall) 문장 뷰**: 해석/Key Point 접기/펼치기 아코디언
-- [x] **카드 일괄 뒤집기(Flip All) & New 단어 필터링**
-- [x] **실시간 학습 카운트 통계 표시**
-- [x] **오프라인 캐싱 (IndexedDB / LocalStorage)**: 네트워크 단절 시에도 기존 데이터로 학습 유지
-- [x] **학습 모드 강화**:
-  - 오답 노트 및 즐겨찾기(북마크)
-  - 암기 완료 단어 숨기기 체크박스
-  - 단어 셔플(랜덤 섞기) 및 퀴즈 모드
-- [x] **UI/UX 고도화**:
-  - 다크 모드 지원
-  - 예문(Collocation) TTS 발음 버튼 복원
-  - 로딩 스켈레톤 및 데이터 갱신 타임스탬프 표시
-- [x] **보안 및 예외처리**: 데이터 내 따옴표/특수문자 이스케이프 견고성 강화
+1. GitHub 저장소 **Settings → Pages** 이동
+2. **Source**: `Deploy from a branch`, **Branch**: `main`, 폴더 `/ (root)` 저장
+3. `https://<username>.github.io/voca_data/` 접속 (Track 1 자동화 커밋 시 자동 재배포)
