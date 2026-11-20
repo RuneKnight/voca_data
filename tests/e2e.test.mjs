@@ -130,6 +130,7 @@ async function waitFor(fn, timeoutMs = 8000, intervalMs = 100) {
 
 async function launchChromium() {
   const bin = findChromeBinary();
+  const tmpProfile = `/tmp/langhub-e2e-${Date.now()}-${Math.floor(Math.random() * 10000)}`;
   const proc = spawn(
     bin,
     [
@@ -137,6 +138,11 @@ async function launchChromium() {
       '--no-sandbox',
       '--disable-gpu',
       '--disable-dev-shm-usage',
+      '--disable-extensions',
+      '--disable-background-networking',
+      '--no-first-run',
+      '--no-default-browser-check',
+      `--user-data-dir=${tmpProfile}`,
       '--remote-debugging-port=0',
       'about:blank',
     ],
@@ -145,7 +151,7 @@ async function launchChromium() {
 
   const wsBrowserUrl = await new Promise((resolveUrl, rejectUrl) => {
     let stderr = '';
-    const timer = setTimeout(() => rejectUrl(new Error('Timed out waiting for Chromium DevTools URL: ' + stderr)), 10000);
+    const timer = setTimeout(() => rejectUrl(new Error('Timed out waiting for Chromium DevTools URL: ' + stderr)), 30000);
     proc.stderr.on('data', (chunk) => {
       stderr += chunk.toString();
       const match = stderr.match(/DevTools listening on (ws:\/\/[^\s]+)/);
