@@ -323,9 +323,9 @@ async function runTests() {
     const sentenceCheck = await client.eval(`
       (() => {
         switchView('sentence');
-        const listCount = document.querySelectorAll('#sentenceList > div').length;
+        const listCount = document.getElementById('sentenceList').children.length;
         setSentenceLayout('parallel');
-        const parallelCards = document.querySelectorAll('#sentenceList > div').length;
+        const parallelCards = document.getElementById('sentenceList').children.length;
         const firstChip = document.querySelector('[data-action="open-vocab-chip"]');
         let popoverOpened = false;
         let popoverTitle = '';
@@ -389,7 +389,7 @@ async function runTests() {
         const inner = firstCard.querySelector('.card-inner');
         if (!inner.classList.contains('flipped')) firstCard.click();
         const back = firstCard.querySelector('.card-back');
-        const meaningEl = back.querySelector('.text-amber-300');
+        const meaningEl = back.querySelector('.card-meaning');
         const backStyle = getComputedStyle(back);
         const meaningStyle = getComputedStyle(meaningEl);
         const snapshot = {
@@ -451,18 +451,43 @@ async function runTests() {
       (() => ({
         scrollWidth: document.documentElement.scrollWidth,
         clientWidth: document.documentElement.clientWidth,
+        headerHeight: document.querySelector('header').getBoundingClientRect().height,
+        tailwindLoaded: Boolean(window.tailwind),
       }))()
     `);
     assert.ok(
       mobileOverflow.scrollWidth <= mobileOverflow.clientWidth + 1,
       `Mobile horizontal overflow detected: scrollWidth=${mobileOverflow.scrollWidth} > clientWidth=${mobileOverflow.clientWidth}`
     );
-    console.log('✅ Test 11 — Mobile (375px) layout has zero horizontal overflow');
+    if (mobileOverflow.tailwindLoaded) {
+      assert.ok(
+        mobileOverflow.headerHeight <= 165,
+        `Mobile header should stay compact (<=165px), got ${mobileOverflow.headerHeight}px`
+      );
+    }
+    console.log(`✅ Test 11 — Mobile (375px) layout has zero horizontal overflow (header ${Math.round(mobileOverflow.headerHeight)}px, tw=${mobileOverflow.tailwindLoaded})`);
+
+    // 12. Dark Mode Verification (Warm Dark #161513)
+    const darkCheck = await client.eval(`
+      (async () => {
+        if (!isDarkMode) toggleDarkMode();
+        await new Promise(r => setTimeout(r, 240));
+        const hasDarkClass = document.documentElement.classList.contains('dark');
+        const bg = getComputedStyle(document.body).backgroundColor;
+        const color = getComputedStyle(document.body).color;
+        toggleDarkMode(); // restore light
+        return { hasDarkClass, bg, color };
+      })()
+    `);
+    assert.equal(darkCheck.hasDarkClass, true, 'html must have dark class');
+    assert.equal(darkCheck.bg, 'rgb(22, 21, 19)', 'Dark mode body background must be Warm Dark #161513');
+    assert.equal(darkCheck.color, 'rgb(239, 233, 222)', 'Dark mode body text must be Warm Ink #EFE9DE');
+    console.log('✅ Test 12 — Dark mode Warm Ink theme verified');
 
     const finalExceptions = client.events.filter((e) => e.method === 'Runtime.exceptionThrown');
     assert.equal(finalExceptions.length, 0, 'Expected 0 runtime JS exceptions across all E2E tests');
 
-    console.log('\n🎉 ALL 11 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
+    console.log('\n🎉 ALL 12 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
   } finally {
     client.close();
     proc.kill('SIGTERM');
