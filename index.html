@@ -4,7 +4,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0f172a" />
   <title>Language Hub Pro</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="manifest" href="./manifest.json" />
   <script>
     // Tailwind 다크모드 설정
     tailwind = {
@@ -14,8 +17,12 @@
     };
   </script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
   <style>
+    /* 오프라인 폴백 최소 레이아웃 보장 (0-specificity :where()로 온라인 Tailwind 클래스와 충돌 없음) */
+    .hidden { display: none; }
+    :where(.card-front) { background-color: #ffffff; color: #0f172a; border: 1px solid #e2e8f0; }
+    :where(.card-back) { background-color: #0f172a; color: #ffffff; border: 1px solid #0f172a; }
+
     .perspective {
       perspective: 1000px;
     }
@@ -46,6 +53,12 @@
 
     .card-back {
       transform: rotateY(180deg);
+    }
+
+    /* 연속 듣기 현재 재생 항목 강조 */
+    .tts-speaking {
+      outline: 2.5px solid #4f46e5 !important;
+      outline-offset: 2px;
     }
 
     /* 다크모드 스크롤바 */
@@ -135,13 +148,15 @@
     html.e-ink .bg-white,
     html.e-ink .bg-slate-50,
     html.e-ink .bg-slate-100,
-    html.e-ink .bg-slate-800 {
+    html.e-ink .bg-slate-800,
+    html.e-ink .bg-slate-900.modal-panel {
       background-color: #ffffff !important;
       color: #000000 !important;
       border-color: #000000 !important;
     }
 
-    html.e-ink p, html.e-ink span, html.e-ink div, html.e-ink h1, html.e-ink summary, html.e-ink input, html.e-ink select {
+    html.e-ink p, html.e-ink span, html.e-ink div, html.e-ink h1, html.e-ink h2, html.e-ink h3,
+    html.e-ink summary, html.e-ink input, html.e-ink select, html.e-ink textarea, html.e-ink label {
       color: #000000 !important;
       font-weight: 700 !important;
     }
@@ -153,7 +168,9 @@
     html.e-ink .bg-emerald-600,
     html.e-ink .bg-purple-600,
     html.e-ink .bg-emerald-800,
-    html.e-ink .bg-rose-600 {
+    html.e-ink .bg-rose-600,
+    html.e-ink .bg-cyan-700,
+    html.e-ink .eink-solid {
       background-color: #000000 !important;
       color: #ffffff !important;
       border: 2px solid #000000 !important;
@@ -165,11 +182,13 @@
     html.e-ink .bg-emerald-600 *,
     html.e-ink .bg-purple-600 *,
     html.e-ink .bg-emerald-800 *,
-    html.e-ink .bg-rose-600 * {
+    html.e-ink .bg-rose-600 *,
+    html.e-ink .bg-cyan-700 *,
+    html.e-ink .eink-solid * {
       color: #ffffff !important;
     }
 
-    /* 버튼 및 아이콘 흑백 대비 보정 (흐릿한 회색 제거) */
+    /* 버튼 및 아이콘 흑백 대비 보정 */
     html.e-ink button.text-slate-300,
     html.e-ink button.text-slate-400,
     html.e-ink .text-slate-300,
@@ -182,6 +201,9 @@
       color: #000000 !important;
       font-weight: 900 !important;
     }
+    html.e-ink .tts-speaking {
+      outline: 3px solid #000000 !important;
+    }
   </style>
 </head>
 
@@ -190,33 +212,47 @@
   <!-- 상단 네비게이션 -->
   <header class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-30 shadow-sm transition-colors duration-200">
     <div class="max-w-5xl mx-auto px-4 py-2.5 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2">
-      <div class="flex items-center space-x-2 shrink-0">
-        <span class="text-xl sm:text-2xl">⚡</span>
-        <div>
+      <div class="flex items-center space-x-2 shrink-0 min-w-0">
+        <span class="text-xl sm:text-2xl" aria-hidden="true">⚡</span>
+        <div class="min-w-0">
           <h1 class="text-sm sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white leading-tight">Language Hub Pro</h1>
-          <div id="stats" class="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium">데이터 동기화 중...</div>
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <div id="stats" class="text-[10px] sm:text-[11px] text-slate-500 dark:text-slate-400 font-medium truncate max-w-[240px] sm:max-w-none">데이터 동기화 중...</div>
+            <button id="btnManualSync" onclick="manualSync()" title="최신 데이터 다시 불러오기" aria-label="최신 데이터 다시 불러오기"
+              class="text-[11px] text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition px-1 rounded">🔄</button>
+          </div>
         </div>
       </div>
 
-      <div class="flex items-center space-x-2 shrink-0">
+      <div class="flex items-center gap-1.5 flex-wrap justify-end shrink-0">
         <!-- 뷰 모드 전환 (단어 vs 문장 vs 퀴즈) -->
-        <div class="flex bg-slate-100 dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600">
-          <button onclick="switchView('vocab')" id="tab-vocab"
+        <div class="flex bg-slate-100 dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600" role="tablist" aria-label="학습 뷰 전환">
+          <button onclick="switchView('vocab')" id="tab-vocab" role="tab" aria-selected="true"
             class="px-2 sm:px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition whitespace-nowrap">단어 카드</button>
-          <button onclick="switchView('sentence')" id="tab-sentence"
+          <button onclick="switchView('sentence')" id="tab-sentence" role="tab" aria-selected="false"
             class="px-2 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap">학습 문장</button>
-          <button onclick="switchView('quiz')" id="tab-quiz"
+          <button onclick="switchView('quiz')" id="tab-quiz" role="tab" aria-selected="false"
             class="px-2 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap">🎯 퀴즈</button>
         </div>
 
+        <!-- 도구 버튼: 통계, AI Import, 설정, E-Ink, 다크모드 -->
+        <button onclick="openModal('statsModal')" id="btnStatsModal" title="학습 통계 대시보드" aria-label="학습 통계 대시보드"
+          class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0 text-xs">📊</button>
+
+        <button onclick="openModal('importModal')" id="btnImportModal" title="AI JSON 데이터 가져오기 (Quick Import)" aria-label="AI 데이터 가져오기"
+          class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0 text-xs">📥</button>
+
+        <button onclick="openModal('settingsModal')" id="btnSettingsModal" title="설정 · TTS · 백업/복원" aria-label="설정 및 백업"
+          class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0 text-xs">⚙️</button>
+
         <!-- 전자잉크(E-Ink) 모드 토글 버튼 -->
-        <button onclick="toggleEInkMode()" id="btnEInkMode" title="전자잉크(E-Ink) 가독성 모드 전환"
+        <button onclick="toggleEInkMode()" id="btnEInkMode" title="전자잉크(E-Ink) 가독성 모드 전환" aria-label="전자잉크 모드 전환" aria-pressed="false"
           class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0 text-xs font-bold">
           🖋️ E-Ink
         </button>
 
         <!-- 다크 모드 토글 버튼 -->
-        <button onclick="toggleDarkMode()" id="btnDarkMode" title="다크 모드 전환"
+        <button onclick="toggleDarkMode()" id="btnDarkMode" title="다크 모드 전환" aria-label="다크 모드 전환" aria-pressed="false"
           class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0">
           🌙
         </button>
@@ -226,7 +262,7 @@
     <!-- 필터 및 컨트롤 바 -->
     <div id="controlBar" class="max-w-5xl mx-auto px-4 pb-3 flex flex-col gap-2">
       <!-- 1행: 필터 버튼 스크롤 영역 -->
-      <div class="flex items-center gap-1.5 overflow-x-auto py-1 w-full scrollbar-none">
+      <div class="flex items-center gap-1.5 overflow-x-auto py-1 w-full">
         <button onclick="setLangFilter('All')" id="btn-All"
           class="lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 transition">전체</button>
         <button onclick="setLangFilter('English')" id="btn-English"
@@ -235,32 +271,50 @@
           class="lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition">🇩🇪 Deutsch</button>
 
         <!-- 품사(Part of Speech) 필터 Dropdown -->
-        <select id="posFilterSelect" onchange="handlePosFilterChange(this.value)"
+        <select id="posFilterSelect" onchange="handlePosFilterChange(this.value)" aria-label="품사 필터"
           class="shrink-0 px-2.5 py-1 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-slate-700 dark:text-slate-200 font-semibold focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
           <option value="All">품사 전체</option>
           <option value="noun">명사 (Noun)</option>
           <option value="verb">동사 (Verb)</option>
           <option value="adj">형용사 (Adjective)</option>
           <option value="adv">부사 (Adverb)</option>
+          <option value="phrase">숙어/표현 (Phrase)</option>
           <option value="other">기타 품사</option>
         </select>
 
-        <button onclick="toggleNewOnly()" id="btn-NewOnly"
+        <!-- 동적 CEFR 레벨 필터 Dropdown (A2, A2-B1, B1-B2 등) -->
+        <select id="levelFilterSelect" onchange="handleLevelFilterChange(this.value)" aria-label="레벨 필터"
+          class="shrink-0 px-2.5 py-1 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-slate-700 dark:text-slate-200 font-semibold focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
+          <option value="All">레벨 전체</option>
+        </select>
+
+        <!-- 동적 주제 태그 필터 Dropdown -->
+        <select id="tagFilterSelect" onchange="handleTagFilterChange(this.value)" aria-label="주제 태그 필터"
+          class="shrink-0 px-2.5 py-1 text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full text-slate-700 dark:text-slate-200 font-semibold focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
+          <option value="All">주제 전체</option>
+        </select>
+
+        <button onclick="toggleNewOnly()" id="btn-NewOnly" aria-pressed="false"
           class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✨ New만 보기</button>
-        <button onclick="toggleBookmarkedOnly()" id="btn-BookmarkedOnly"
+        <button onclick="toggleBookmarkedOnly()" id="btn-BookmarkedOnly" aria-pressed="false"
           class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">⭐ 즐겨찾기</button>
-        <button onclick="toggleHideMastered()" id="btn-HideMastered"
+        <button onclick="toggleSrsDueOnly()" id="btn-SrsDueOnly" aria-pressed="false"
+          class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">📅 오늘 복습</button>
+        <button onclick="toggleHideMastered()" id="btn-HideMastered" aria-pressed="false"
           class="shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition">✅ 학습 완료 숨기기</button>
       </div>
 
       <!-- 2행: 검색어 및 액션 버튼 영역 -->
       <div class="flex flex-col sm:flex-row items-center justify-between gap-2 w-full">
-        <div class="w-full sm:flex-1">
-          <input type="text" id="searchInput" oninput="handleSearch()" placeholder="단어, 문장, 뜻 검색..."
-            class="w-full px-3 py-1.5 text-xs bg-slate-100 dark:bg-slate-700 dark:text-white border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
+        <div class="relative w-full sm:flex-1">
+          <input type="text" id="searchInput" oninput="handleSearchInput()" placeholder="단어, 문장, 뜻, 태그 검색... (단축키 /)"
+            aria-label="단어, 문장, 뜻 검색"
+            class="w-full pl-3 pr-8 py-1.5 text-xs bg-slate-100 dark:bg-slate-700 dark:text-white border border-slate-200 dark:border-slate-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400" />
+          <button id="btnClearSearch" onclick="clearSearch()" title="검색어 지우기" aria-label="검색어 지우기"
+            class="hidden absolute right-2 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-slate-700 dark:hover:text-white px-1">✕</button>
         </div>
 
-        <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto shrink-0">
+        <div class="flex items-center justify-between sm:justify-end gap-1.5 w-full sm:w-auto flex-wrap sm:flex-nowrap shrink-0">
           <!-- 단어장 레이아웃 선택 (카드 vs 리스트) -->
           <div id="vocabLayoutGroup" class="flex bg-slate-100 dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0">
             <button onclick="setVocabLayout('card')" id="btn-layout-card" title="카드형 레이아웃"
@@ -269,22 +323,57 @@
               class="px-2 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">📋 리스트</button>
           </div>
 
-          <button id="btnShuffle" onclick="toggleShuffle()" title="카드 셔플"
-            class="shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">🔀 셔플</button>
-          <select id="pageSizeSelect" onchange="handlePageSizeChange(this.value)"
-            class="shrink-0 px-2.5 py-1.5 text-xs bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-200 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
+          <!-- 문장 레이아웃 선택 (목록 vs 영↔독 병렬) -->
+          <div id="sentenceLayoutGroup" class="hidden flex bg-slate-100 dark:bg-slate-700 p-0.5 rounded-lg border border-slate-200 dark:border-slate-600 shrink-0">
+            <button onclick="setSentenceLayout('list')" id="btn-slayout-list" title="일반 목록 보기"
+              class="px-2 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition">📄 목록</button>
+            <button onclick="setSentenceLayout('parallel')" id="btn-slayout-parallel" title="영↔독 병렬 비교 보기"
+              class="px-2 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">🔄 병렬</button>
+          </div>
+
+          <!-- 정렬 선택 -->
+          <select id="sortSelect" onchange="handleSortChange(this.value)" aria-label="정렬 방식"
+            class="shrink-0 px-2 py-1.5 text-xs bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-200 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
+            <option value="default">기본순</option>
+            <option value="newest">최신순</option>
+            <option value="oldest">오래된순</option>
+            <option value="alpha">알파벳순</option>
+          </select>
+
+          <div class="inline-flex items-center gap-1 shrink-0">
+            <button id="btnShuffle" onclick="toggleShuffle()" title="Fisher-Yates 무작위 셔플" aria-pressed="false"
+              class="shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">🔀 셔플</button>
+            <button id="btnReshuffle" onclick="reshuffleCurrent()" title="다시 섞기" aria-label="다시 섞기"
+              class="hidden shrink-0 px-2 py-1.5 text-xs font-medium border border-purple-300 dark:border-purple-700 bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-200 rounded-lg hover:bg-purple-100 transition">↻</button>
+          </div>
+
+          <!-- 페이지 연속 듣기 -->
+          <button id="btnAutoplay" onclick="toggleAutoplay()" title="현재 페이지 연속 듣기" aria-pressed="false"
+            class="shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">🔊 듣기</button>
+
+          <select id="pageSizeSelect" onchange="handlePageSizeChange(this.value)" aria-label="페이지당 표시 개수"
+            class="shrink-0 px-2 py-1.5 text-xs bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-700 dark:text-slate-200 font-medium focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer">
             <option value="10">10개씩</option>
             <option value="20" selected>20개씩</option>
             <option value="30">30개씩</option>
             <option value="40">40개씩</option>
             <option value="50">50개씩</option>
           </select>
+
           <button id="btnFlipAll" onclick="toggleAllFlip()"
             class="shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition">전체 뒤집기</button>
         </div>
       </div>
     </div>
   </header>
+
+  <!-- 비침습적 상태 알림 배너 -->
+  <div id="statusBanner" class="hidden max-w-5xl mx-auto px-4 pt-3 w-full">
+    <div id="statusBannerInner" class="px-3.5 py-2 rounded-xl text-xs font-medium flex items-center justify-between gap-2 border bg-amber-50 dark:bg-amber-950/60 border-amber-200 dark:border-amber-800 text-amber-800 dark:text-amber-200">
+      <span id="statusBannerText"></span>
+      <button onclick="hideStatusBanner()" class="text-xs font-bold underline shrink-0">닫기</button>
+    </div>
+  </div>
 
   <!-- 메인 학습 영역 -->
   <main class="max-w-5xl mx-auto px-4 py-6 flex-1 w-full">
@@ -312,27 +401,65 @@
       <div id="vocabGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"></div>
     </div>
 
-    <!-- 2. 문장 리스트 영역 -->
+    <!-- 2. 문장 리스트 / 병렬 영역 -->
     <div id="sentenceSection" class="hidden">
       <div id="sentenceList" class="space-y-3.5"></div>
     </div>
 
     <!-- 3. 퀴즈 모드 영역 -->
-    <div id="quizSection" class="hidden max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 shadow-md">
-      <!-- 퀴즈 종류 선택 (단어 vs 문장) -->
-      <div class="flex items-center justify-between mb-6 pb-4 border-b border-slate-100 dark:border-slate-700">
-        <div class="flex items-center space-x-2">
-          <span class="text-sm font-bold text-slate-800 dark:text-slate-200">퀴즈 유형:</span>
-          <div class="inline-flex p-1 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600">
+    <div id="quizSection" class="hidden max-w-2xl mx-auto bg-white dark:bg-slate-800 rounded-2xl p-5 sm:p-6 border border-slate-200 dark:border-slate-700 shadow-md">
+      <!-- 퀴즈 유형 및 출제 조건 바 -->
+      <div class="flex flex-col gap-3 mb-5 pb-4 border-b border-slate-100 dark:border-slate-700">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div class="inline-flex flex-wrap p-1 bg-slate-100 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 gap-0.5">
             <button id="quiz-type-vocab" onclick="setQuizType('vocab')"
-              class="px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm transition">
-              📖 단어 퀴즈
+              class="px-2.5 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm transition">
+              📖 단어
             </button>
             <button id="quiz-type-sentence" onclick="setQuizType('sentence')"
-              class="px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">
-              💬 문장 퀴즈
+              class="px-2.5 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">
+              💬 문장
+            </button>
+            <button id="quiz-type-cloze" onclick="setQuizType('cloze')"
+              class="px-2.5 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">
+              🧩 빈칸(Cloze)
+            </button>
+            <button id="quiz-type-article" onclick="setQuizType('article')"
+              class="px-2.5 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition">
+              🇩🇪 관사
             </button>
           </div>
+          <button onclick="startQuiz()" class="px-2.5 py-1 text-xs font-semibold rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 hover:bg-slate-100 dark:hover:bg-slate-600 text-slate-700 dark:text-slate-200 transition">
+            🔄 새 문제
+          </button>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <select id="quizLangSelect" onchange="handleQuizOptionChange()" aria-label="퀴즈 언어"
+            class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-medium">
+            <option value="All">언어: 전체</option>
+            <option value="English">🇬🇧 English</option>
+            <option value="German">🇩🇪 Deutsch</option>
+          </select>
+          <select id="quizScopeSelect" onchange="handleQuizOptionChange()" aria-label="퀴즈 출제 범위"
+            class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-medium">
+            <option value="all">범위: 전체</option>
+            <option value="unmastered">미암기만</option>
+            <option value="bookmarked">⭐ 즐겨찾기만</option>
+            <option value="new">✨ New만</option>
+            <option value="due">📅 오늘 복습</option>
+          </select>
+          <select id="quizDirectionSelect" onchange="handleQuizOptionChange()" aria-label="퀴즈 출제 방향"
+            class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-medium">
+            <option value="forward">외국어 → 한국어</option>
+            <option value="reverse">한국어 → 외국어</option>
+          </select>
+          <select id="quizCountSelect" onchange="handleQuizOptionChange()" aria-label="문항 수"
+            class="px-2 py-1 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 font-medium">
+            <option value="5">5문항</option>
+            <option value="10" selected>10문항</option>
+            <option value="20">20문항</option>
+          </select>
         </div>
       </div>
 
@@ -341,50 +468,258 @@
       </div>
     </div>
 
-    <div id="emptyMessage" class="hidden py-20 text-center text-slate-400 dark:text-slate-500 text-sm">
-      조건에 일치하는 학습 항목이 없습니다.
+    <div id="emptyMessage" class="hidden py-16 text-center text-slate-400 dark:text-slate-500 text-sm space-y-3">
+      <p>조건에 일치하는 학습 항목이 없습니다.</p>
+      <button onclick="resetAllFilters()"
+        class="px-4 py-2 text-xs font-semibold rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 transition">
+        모든 필터 초기화
+      </button>
     </div>
 
     <!-- 페이징 영역 -->
     <div id="pagination" class="mt-8 flex items-center justify-center space-x-1.5 flex-wrap gap-y-2"></div>
   </main>
 
-  <script>
-    // ==========================================
-    // ⚙️ 사용 중인 구글 시트 웹 게시 CSV URL 입력
-    // ==========================================
-    const SPREADSHEET_ID = '1qTQXcLjq5--p-qYqG56QQ8JeqiKPWusoe4GkS22HSoI';
-    const VOCAB_GID = '0';
-    const SENTENCE_GID = '765046051';
+  <!-- 단어 상세 팝오버 모달 (문장 내 핵심 단어 칩 클릭 시) -->
+  <div id="wordPopoverModal" role="dialog" aria-modal="true" aria-label="핵심 단어 상세"
+    class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onclick="closeModalOnBackdrop(event, 'wordPopoverModal')">
+    <div class="modal-panel bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-md w-full p-5 shadow-xl space-y-3">
+      <div class="flex items-center justify-between">
+        <h2 id="wordPopoverTitle" class="text-base font-bold text-slate-900 dark:text-white"></h2>
+        <button onclick="closeModal('wordPopoverModal')" aria-label="닫기" class="text-slate-400 hover:text-slate-700 dark:hover:text-white text-sm font-bold px-2 py-1">✕</button>
+      </div>
+      <div id="wordPopoverBody" class="space-y-2.5 text-sm"></div>
+    </div>
+  </div>
 
+  <!-- 학습 통계 대시보드 모달 -->
+  <div id="statsModal" role="dialog" aria-modal="true" aria-label="학습 통계 대시보드"
+    class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onclick="closeModalOnBackdrop(event, 'statsModal')">
+    <div class="modal-panel bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-lg w-full max-h-[85vh] overflow-y-auto p-5 shadow-xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">📊 학습 통계 & 진행률</h2>
+        <button onclick="closeModal('statsModal')" aria-label="닫기" class="text-slate-400 hover:text-slate-700 dark:hover:text-white text-sm font-bold px-2 py-1">✕</button>
+      </div>
+      <div id="statsModalBody" class="space-y-4 text-xs"></div>
+    </div>
+  </div>
+
+  <!-- Track 2: AI JSON Quick Import 모달 -->
+  <div id="importModal" role="dialog" aria-modal="true" aria-label="AI 데이터 가져오기"
+    class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onclick="closeModalOnBackdrop(event, 'importModal')">
+    <div class="modal-panel bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-5 shadow-xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
+        <div>
+          <h2 class="text-base font-bold text-slate-900 dark:text-white">📥 AI JSON 데이터 가져오기 (Quick Import)</h2>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">Gemini가 생성한 JSON을 검증·중복 제거 후 GitHub 레포에 바로 반영합니다.</p>
+        </div>
+        <button onclick="closeModal('importModal')" aria-label="닫기" class="text-slate-400 hover:text-slate-700 dark:hover:text-white text-sm font-bold px-2 py-1">✕</button>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-700 rounded-xl p-3">
+        <span class="text-xs text-slate-600 dark:text-slate-300">기존 단어 중복 방지 목록이 포함된 Gemini 프롬프트를 복사할 수 있습니다.</span>
+        <button onclick="copyGeminiPrompt()" id="btnCopyPrompt"
+          class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg transition shrink-0">
+          📋 Gemini 프롬프트 복사
+        </button>
+      </div>
+
+      <div>
+        <label for="importJsonInput" class="block text-xs font-bold text-slate-700 dark:text-slate-200 mb-1.5">Gemini JSON 붙여넣기</label>
+        <textarea id="importJsonInput" rows="8" placeholder='{"schemaVersion": 1, "date": "2026-11-20", "pairs": [...]}'
+          class="w-full p-3 text-xs font-mono bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-slate-800 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="previewImportJson()"
+          class="px-3.5 py-2 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 text-xs font-bold rounded-lg hover:opacity-90 transition">
+          🔍 검증 및 미리보기
+        </button>
+        <button onclick="applyImportLocal()" id="btnImportLocal" disabled
+          class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-40 text-white text-xs font-bold rounded-lg transition">
+          ⚡ 현재 세션에 반영 + JSON 다운로드
+        </button>
+        <button onclick="commitImportToGitHub()" id="btnImportGitHub" disabled
+          class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 disabled:opacity-40 text-white text-xs font-bold rounded-lg transition">
+          🚀 GitHub 레포에 바로 커밋
+        </button>
+      </div>
+
+      <div id="importPreviewArea" class="hidden p-3.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60 text-xs space-y-2"></div>
+    </div>
+  </div>
+
+  <!-- 설정 / TTS / GitHub PAT / 백업 모달 -->
+  <div id="settingsModal" role="dialog" aria-modal="true" aria-label="설정 및 백업"
+    class="hidden fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4" onclick="closeModalOnBackdrop(event, 'settingsModal')">
+    <div class="modal-panel bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-5 shadow-xl space-y-5 text-xs">
+      <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-700 pb-3">
+        <h2 class="text-base font-bold text-slate-900 dark:text-white">⚙️ 설정 · TTS · 백업/복원</h2>
+        <button onclick="closeModal('settingsModal')" aria-label="닫기" class="text-slate-400 hover:text-slate-700 dark:hover:text-white text-sm font-bold px-2 py-1">✕</button>
+      </div>
+
+      <!-- 1. TTS 속도 설정 -->
+      <section class="space-y-2">
+        <h3 class="font-bold text-slate-800 dark:text-slate-200">🔊 TTS 음성 재생 설정</h3>
+        <div class="flex items-center justify-between gap-3">
+          <label for="ttsRateSelect" class="text-slate-600 dark:text-slate-300">발음 속도</label>
+          <select id="ttsRateSelect" onchange="handleTtsRateChange(this.value)"
+            class="px-2.5 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 text-slate-800 dark:text-slate-100 font-semibold">
+            <option value="0.75">0.75x (천천히)</option>
+            <option value="0.9">0.9x (기본)</option>
+            <option value="1.0">1.0x (보통)</option>
+            <option value="1.2">1.2x (빠르게)</option>
+          </select>
+        </div>
+      </section>
+
+      <!-- 2. 데이터 소스 표시 -->
+      <section class="space-y-2 border-t border-slate-100 dark:border-slate-700 pt-4">
+        <h3 class="font-bold text-slate-800 dark:text-slate-200">📦 데이터 소스</h3>
+        <div id="dataSourceInfo" class="text-slate-600 dark:text-slate-300">확인 중...</div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="switchDataSource('github')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 font-semibold hover:bg-slate-100 dark:hover:bg-slate-600">GitHub JSON (기본)</button>
+          <button onclick="switchDataSource('sheets')" class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 font-semibold hover:bg-slate-100 dark:hover:bg-slate-600">Google Sheets 폴백</button>
+        </div>
+      </section>
+
+      <!-- 3. GitHub API 연동 (Quick Import 1클릭 커밋용) -->
+      <section class="space-y-2 border-t border-slate-100 dark:border-slate-700 pt-4">
+        <h3 class="font-bold text-slate-800 dark:text-slate-200">🐙 GitHub API 설정 (Quick Import 커밋용 · 선택)</h3>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400">이 브라우저의 <code>localStorage</code>에만 저장됩니다. Fine-grained PAT에 <code>Contents: Read and write</code> 권한만 부여하세요.</p>
+        <div class="grid grid-cols-2 gap-2">
+          <input id="ghOwnerInput" type="text" placeholder="Owner (예: RuneKnight)"
+            class="px-2.5 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700" />
+          <input id="ghRepoInput" type="text" placeholder="Repo (예: voca_data)"
+            class="px-2.5 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700" />
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <input id="ghBranchInput" type="text" placeholder="Branch (main)"
+            class="px-2.5 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700" />
+          <input id="ghTokenInput" type="password" placeholder="GitHub PAT (github_pat_...)"
+            class="col-span-2 px-2.5 py-1.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700" />
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="saveGitHubConfig()" class="px-3 py-1.5 bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-bold rounded-lg">설정 저장</button>
+          <button onclick="clearGitHubConfig()" class="px-3 py-1.5 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-600 dark:text-slate-300">토큰 삭제</button>
+          <span id="ghConfigStatus" class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold"></span>
+        </div>
+      </section>
+
+      <!-- 4. 학습 기록 JSON 백업/복원 -->
+      <section class="space-y-2 border-t border-slate-100 dark:border-slate-700 pt-4">
+        <h3 class="font-bold text-slate-800 dark:text-slate-200">💾 학습 기록 백업 및 복원</h3>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400">북마크, 암기 완료, SRS 복습 일정, 학습 로그를 기기 간 이식할 수 있습니다.</p>
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="exportStudyProgress()" class="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg">⬇️ 백업 JSON 다운로드</button>
+          <label class="px-3 py-1.5 border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700 rounded-lg font-semibold cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-600">
+            ⬆️ 병합 복원
+            <input type="file" accept="application/json" class="hidden" onchange="importStudyProgressFile(event, 'merge')" />
+          </label>
+          <label class="px-3 py-1.5 border border-rose-200 dark:border-rose-800 bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-300 rounded-lg font-semibold cursor-pointer">
+            ⬆️ 덮어쓰기 복원
+            <input type="file" accept="application/json" class="hidden" onchange="importStudyProgressFile(event, 'overwrite')" />
+          </label>
+        </div>
+        <div id="backupStatus" class="text-[11px] font-semibold"></div>
+      </section>
+
+      <!-- 5. 키보드 단축키 안내 -->
+      <section class="space-y-1.5 border-t border-slate-100 dark:border-slate-700 pt-4">
+        <h3 class="font-bold text-slate-800 dark:text-slate-200">⌨️ 키보드 / E-Ink 페이지 터너 단축키</h3>
+        <div class="grid grid-cols-2 gap-1 text-[11px] text-slate-600 dark:text-slate-300">
+          <div><kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-mono">←</kbd> / <kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-mono">→</kbd> 이전/다음 페이지</div>
+          <div><kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-mono">Space</kbd> 카드 전체 뒤집기</div>
+          <div><kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-mono">1</kbd>~<kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-mono">4</kbd> 퀴즈 보기 선택</div>
+          <div><kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-mono">Enter</kbd> 퀴즈 다음 문제</div>
+          <div><kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-mono">S</kbd> 현재 퀴즈 발음 듣기</div>
+          <div><kbd class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-mono">/</kbd> 검색창 포커스</div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. Config & Constants (Zero-Build Namespace Architecture)
+    // =========================================================================
+    const Config = {
+      SPREADSHEET_ID: '1qTQXcLjq5--p-qYqG56QQ8JeqiKPWusoe4GkS22HSoI',
+      VOCAB_GID: '0',
+      SENTENCE_GID: '765046051',
+      DEFAULT_GH_OWNER: 'RuneKnight',
+      DEFAULT_GH_REPO: 'voca_data',
+      DEFAULT_GH_BRANCH: 'main',
+      FETCH_TIMEOUT_MS: 10000,
+      SRS_INTERVALS_DAYS: [1, 3, 7, 14, 30],
+    };
+
+    // =========================================================================
+    // 2. Application State
+    // =========================================================================
     let currentView = 'vocab';
     let currentLang = 'All';
     let currentPos = 'All';
-    let vocabLayout = localStorage.getItem('vh_vocabLayout') || 'card'; // 'card' 또는 'list'
+    let currentLevel = 'All';
+    let currentTag = 'All';
+    let currentSort = 'default';
+    let vocabLayout = localStorage.getItem('vh_vocabLayout') || 'card';
+    let sentenceLayout = localStorage.getItem('vh_sentenceLayout') || 'list';
     let currentSearch = '';
     let isNewOnly = false;
     let isBookmarkedOnly = false;
+    let isSrsDueOnly = false;
     let hideMastered = false;
     let isShuffled = false;
     let isAllFlipped = false;
     let isDarkMode = false;
     let isEInkMode = localStorage.getItem('vh_eInkMode') === 'true';
 
-    let itemsPerPage = 20;
+    let itemsPerPage = parseInt(localStorage.getItem('vh_pageSize') || '20', 10) || 20;
     let currentPage = 1;
 
     let vocabData = [];
     let sentenceData = [];
-    let shuffledVocabIndices = [];
+    let vocabById = new Map();
+    let activeDataSource = 'github';
     let lastSyncTime = '';
 
-    // 로컬 스토리지 상태 저장용
-    let bookmarks = new Set(JSON.parse(localStorage.getItem('vh_bookmarks') || '[]'));
-    let mastered = new Set(JSON.parse(localStorage.getItem('vh_mastered') || '[]'));
+    // Fisher-Yates 고정 셔플 순서 맵 (항목 키 -> 순위)
+    let shuffleOrderVocab = new Map();
+    let shuffleOrderSentence = new Map();
 
-    // HTML 엔티티 이스케이프 함수 (XSS 및 특수문자 깨짐 방지)
+    // 검색 디바운스 타이머
+    let searchDebounceTimer = null;
+
+    // 로컬 스토리지 상태 (기존 키 100% 유지)
+    let bookmarks = new Set(safeJsonParse(localStorage.getItem('vh_bookmarks'), []));
+    let mastered = new Set(safeJsonParse(localStorage.getItem('vh_mastered'), []));
+    let srsData = safeJsonParse(localStorage.getItem('vh_srs'), {});
+    let studyLog = safeJsonParse(localStorage.getItem('vh_studyLog'), {});
+    let ttsRate = parseFloat(localStorage.getItem('vh_ttsRate') || '0.9') || 0.9;
+
+    // 현재 페이지 렌더 결과 캐시 (연속 듣기 / 이벤트 위임용)
+    let currentRenderedVocab = [];
+    let currentRenderedSentences = [];
+
+    // Import 검증 완료 임시 배치
+    let pendingImportBatch = null;
+
+    // =========================================================================
+    // 3. Utility & Security Helpers
+    // =========================================================================
+    function safeJsonParse(str, fallback) {
+      if (!str) return fallback;
+      try {
+        const parsed = JSON.parse(str);
+        return parsed === null || parsed === undefined ? fallback : parsed;
+      } catch (_) {
+        return fallback;
+      }
+    }
+
     function escapeHtml(str) {
-      if (!str) return '';
+      if (str === null || str === undefined) return '';
       return String(str)
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
@@ -393,57 +728,646 @@
         .replace(/'/g, '&#039;');
     }
 
-    // JS 인라인 함수 파라미터 이스케이프 함수
-    function escapeJsParam(str) {
-      if (!str) return '';
-      return String(str)
-        .replace(/\\/g, '\\\\')
-        .replace(/'/g, "\\'")
-        .replace(/"/g, '&quot;');
+    function getTodayDateStr() {
+      const now = new Date();
+      const y = now.getFullYear();
+      const m = String(now.getMonth() + 1).padStart(2, '0');
+      const d = String(now.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
     }
 
-    // 아이템 고유 키 생성
+    function addDays(dateStr, days) {
+      const dt = new Date(dateStr + 'T00:00:00');
+      dt.setDate(dt.getDate() + days);
+      const y = dt.getFullYear();
+      const m = String(dt.getMonth() + 1).padStart(2, '0');
+      const d = String(dt.getDate()).padStart(2, '0');
+      return `${y}-${m}-${d}`;
+    }
+
+    // Fisher-Yates 무작위 셔플 (순수 함수)
+    function fisherYatesShuffle(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function rebuildShuffleMaps() {
+      shuffleOrderVocab = new Map();
+      fisherYatesShuffle(vocabData.map((v) => v.id)).forEach((id, idx) => {
+        shuffleOrderVocab.set(id, idx);
+      });
+      shuffleOrderSentence = new Map();
+      fisherYatesShuffle(sentenceData.map((s) => s.id)).forEach((id, idx) => {
+        shuffleOrderSentence.set(id, idx);
+      });
+    }
+
+    // 기존 localStorage(legacyKey)와 신규 id 간 100% 호환 브릿지
     function getItemKey(item) {
-      const mainText = item['Word/Phrase'] || item.Sentence || '';
-      return `${item.Language || ''}:${mainText}`;
+      if (!item) return '';
+      if (item.legacyKey) return item.legacyKey;
+      const lang = item.lang || item.Language || '';
+      const mainText = item.word || item['Word/Phrase'] || item.sentence || item.Sentence || '';
+      return `${lang}:${mainText}`;
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-      // 다크 모드 및 E-Ink 모드 초기화
-      initDarkMode();
-      initEInkMode();
-      initVocabLayout();
+    function isBookmarkedItem(item) {
+      if (!item) return false;
+      return bookmarks.has(item.id) || bookmarks.has(getItemKey(item));
+    }
 
-      // 캐시 데이터 불러오기
-      loadFromCache();
+    function isMasteredItem(item) {
+      if (!item) return false;
+      return mastered.has(item.id) || mastered.has(getItemKey(item));
+    }
 
-      // 구글 시트 최신 데이터 수신
-      let vocabLoaded = false;
-      let sentenceLoaded = false;
+    function toggleBookmarkItem(item) {
+      if (!item) return;
+      const legacy = getItemKey(item);
+      if (isBookmarkedItem(item)) {
+        bookmarks.delete(item.id);
+        bookmarks.delete(legacy);
+      } else {
+        bookmarks.add(item.id || legacy);
+      }
+      localStorage.setItem('vh_bookmarks', JSON.stringify(Array.from(bookmarks)));
+      render();
+    }
 
-      loadGvizData(VOCAB_GID, (data) => {
-        vocabData = data;
-        vocabLoaded = true;
-        checkAllLoaded(vocabLoaded, sentenceLoaded);
-      });
+    function toggleMasteredItem(item) {
+      if (!item) return;
+      const legacy = getItemKey(item);
+      if (isMasteredItem(item)) {
+        mastered.delete(item.id);
+        mastered.delete(legacy);
+      } else {
+        mastered.add(item.id || legacy);
+        SrsService.logActivity('mastered');
+      }
+      localStorage.setItem('vh_mastered', JSON.stringify(Array.from(mastered)));
+      render();
+    }
 
-      loadGvizData(SENTENCE_GID, (data) => {
-        sentenceData = data;
-        sentenceLoaded = true;
-        checkAllLoaded(vocabLoaded, sentenceLoaded);
-      });
-    });
-
-    function checkAllLoaded(vLoaded, sLoaded) {
-      if (vLoaded && sLoaded) {
-        lastSyncTime = new Date().toLocaleString('ko-KR');
-        saveToCache();
-        document.getElementById('skeletonLoader').classList.add('hidden');
-        render();
+    function showStatusBanner(msg) {
+      const el = document.getElementById('statusBanner');
+      const txt = document.getElementById('statusBannerText');
+      if (el && txt) {
+        txt.innerText = msg;
+        el.classList.remove('hidden');
       }
     }
 
-    // 로컬 스토리지 캐싱
+    function hideStatusBanner() {
+      const el = document.getElementById('statusBanner');
+      if (el) el.classList.add('hidden');
+    }
+
+    // =========================================================================
+    // 4. Data Normalizer & DataAdapter (GitHub JSON primary + Google Sheets fallback)
+    // =========================================================================
+    function getPosCategory(item) {
+      const explicitPos = String(item.pos || '').toLowerCase().trim();
+      if (['noun', 'verb', 'adj', 'adv', 'phrase', 'other'].includes(explicitPos)) {
+        return explicitPos;
+      }
+      const posText = String(item.posDetail || item['Part of Speech / Gender'] || '').toLowerCase().trim();
+      const word = String(item.word || item['Word/Phrase'] || '').toLowerCase().trim();
+
+      if (/\b(phrasal\s+verb|verb)\b|\bv\./i.test(posText) || posText.includes('동사')) {
+        if (/^noun\b/i.test(posText)) return 'noun';
+        return 'verb';
+      }
+      if (
+        /\b(noun|nomen|substantiv|maskulin|feminin|neutrum)\b|\bn\./i.test(posText) ||
+        /\((der|die|das)\)/i.test(posText) ||
+        posText.includes('명사') ||
+        /^(der|die|das)\s+/i.test(word)
+      ) {
+        return 'noun';
+      }
+      if (/\b(adjektiv|adjective|adj\.?)\b/i.test(posText) || posText.includes('형용사')) {
+        return 'adj';
+      }
+      if (/\b(adverb|adv\.?)\b/i.test(posText) || posText.includes('부사')) {
+        return 'adv';
+      }
+      if (/\b(phrase|idiom|expression|collocation)\b/i.test(posText) || posText.includes('숙어') || posText.includes('표현')) {
+        return 'phrase';
+      }
+      return 'other';
+    }
+
+    function detectGermanGender(item) {
+      const lang = item.lang || item.Language;
+      if (lang !== 'German') return null;
+      if (['der', 'die', 'das'].includes(item.gender)) return item.gender;
+      const word = String(item.word || item['Word/Phrase'] || '').trim().toLowerCase();
+      const posDetail = String(item.posDetail || item['Part of Speech / Gender'] || '');
+      if (word.startsWith('der ') || /\bmaskulin\b|\(der\)/i.test(posDetail)) return 'der';
+      if (word.startsWith('die ') || /\bfeminin\b|\(die\)/i.test(posDetail)) return 'die';
+      if (word.startsWith('das ') || /\bneutrum\b|\(das\)/i.test(posDetail)) return 'das';
+      return null;
+    }
+
+    function normalizeVocabItem(raw, idx) {
+      const lang = (raw.lang || raw.Language) === 'German' ? 'German' : 'English';
+      const word = String(raw.word || raw['Word/Phrase'] || '').trim();
+      const legacyKey = raw.legacyKey || `${lang}:${word}`;
+      const posDetail = String(raw.posDetail || raw['Part of Speech / Gender'] || '').trim();
+      const item = {
+        id: raw.id || `legacy-v-${idx}-${lang.toLowerCase()}`,
+        legacyKey,
+        lang,
+        level: String(raw.level || raw.Level || (lang === 'German' ? 'B1-B2' : 'A2-B1')).trim(),
+        word,
+        posDetail,
+        pos: raw.pos || '',
+        gender: raw.gender || null,
+        plural: raw.plural || null,
+        meaning: String(raw.meaning || raw.Meaning || '').trim(),
+        example: String(raw.example || raw['Collocation / Example'] || '').trim(),
+        tags: Array.isArray(raw.tags) ? raw.tags : [],
+        reviewStatus: String(raw.reviewStatus || raw['Review Status'] || '').trim(),
+        date: String(raw.date || raw.Date || '').trim(),
+        pairId: raw.pairId || null,
+        // 레거시 필드 별칭 유지
+        Language: lang,
+        Level: String(raw.level || raw.Level || '').trim(),
+        'Word/Phrase': word,
+        'Part of Speech / Gender': posDetail,
+        Meaning: String(raw.meaning || raw.Meaning || '').trim(),
+        'Collocation / Example': String(raw.example || raw['Collocation / Example'] || '').trim(),
+        'Review Status': String(raw.reviewStatus || raw['Review Status'] || '').trim(),
+        Date: String(raw.date || raw.Date || '').trim(),
+      };
+      item.pos = getPosCategory(item);
+      item.gender = detectGermanGender(item);
+      return item;
+    }
+
+    function normalizeSentenceItem(raw, idx) {
+      const lang = (raw.lang || raw.Language) === 'German' ? 'German' : 'English';
+      const sentence = String(raw.sentence || raw.Sentence || '').trim();
+      const legacyKey = raw.legacyKey || `${lang}:${sentence}`;
+      const tags = Array.isArray(raw.tags) ? raw.tags : (raw.topic ? [raw.topic] : []);
+      return {
+        id: raw.id || `legacy-s-${idx}-${lang.toLowerCase()}`,
+        legacyKey,
+        pairId: raw.pairId || null,
+        lang,
+        level: String(raw.level || raw.Level || (lang === 'German' ? 'B1-B2' : 'A2-B1')).trim(),
+        topic: raw.topic || tags[0] || '',
+        tags,
+        sentence,
+        translation: String(raw.translation || raw.Translation || '').trim(),
+        cloze: raw.cloze || null,
+        keyPoints: String(raw.keyPoints || raw['Key Points'] || '').trim(),
+        vocabIds: Array.isArray(raw.vocabIds) ? raw.vocabIds : [],
+        date: String(raw.date || raw.Date || '').trim(),
+        // 레거시 필드 별칭 유지
+        Language: lang,
+        Level: String(raw.level || raw.Level || '').trim(),
+        Sentence: sentence,
+        Translation: String(raw.translation || raw.Translation || '').trim(),
+        'Key Points': String(raw.keyPoints || raw['Key Points'] || '').trim(),
+        Date: String(raw.date || raw.Date || '').trim(),
+      };
+    }
+
+    const DataAdapter = {
+      async fetchJsonWithTimeout(url) {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), Config.FETCH_TIMEOUT_MS);
+        try {
+          const res = await fetch(url, { cache: 'no-cache', signal: controller.signal });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return await res.json();
+        } finally {
+          clearTimeout(timer);
+        }
+      },
+
+      async loadFromGitHubJson() {
+        const [vRes, sRes] = await Promise.allSettled([
+          this.fetchJsonWithTimeout('./data/vocab.json'),
+          this.fetchJsonWithTimeout('./data/sentences.json'),
+        ]);
+        const vOk = vRes.status === 'fulfilled' && Array.isArray(vRes.value) && vRes.value.length > 0;
+        const sOk = sRes.status === 'fulfilled' && Array.isArray(sRes.value) && sRes.value.length > 0;
+        if (!vOk && !sOk) {
+          throw new Error('GitHub JSON data unavailable');
+        }
+        return {
+          vocab: vOk ? vRes.value.map(normalizeVocabItem) : null,
+          sentences: sOk ? sRes.value.map(normalizeSentenceItem) : null,
+          partialError: !vOk || !sOk,
+          source: 'github',
+        };
+      },
+
+      loadGvizSheet(gid) {
+        return new Promise((resolve, reject) => {
+          const callbackName = 'gviz_cb_' + gid.replace(/[^a-zA-Z0-9]/g, '_') + '_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+          let settled = false;
+          const script = document.createElement('script');
+
+          const cleanup = () => {
+            clearTimeout(timer);
+            try { delete window[callbackName]; } catch (_) { window[callbackName] = undefined; }
+            if (script.parentNode) script.parentNode.removeChild(script);
+          };
+
+          const timer = setTimeout(() => {
+            if (settled) return;
+            settled = true;
+            cleanup();
+            reject(new Error(`Google Sheets timeout (gid=${gid})`));
+          }, Config.FETCH_TIMEOUT_MS);
+
+          window[callbackName] = function (resp) {
+            if (settled) return;
+            settled = true;
+            cleanup();
+            if (!resp || !resp.table || !resp.table.rows) {
+              reject(new Error('Invalid Google Sheets response'));
+              return;
+            }
+            const cols = resp.table.cols.map((c) => (c && c.label ? c.label.trim() : ''));
+            const rows = resp.table.rows
+              .map((row) => {
+                const item = {};
+                if (row && row.c) {
+                  row.c.forEach((cell, idx) => {
+                    const key = cols[idx];
+                    if (key) {
+                      const val = cell ? (cell.f !== undefined ? cell.f : (cell.v !== null && cell.v !== undefined ? cell.v : '')) : '';
+                      item[key] = String(val).trim();
+                    }
+                  });
+                }
+                return item;
+              })
+              .filter((r) => Object.values(r).some((v) => v));
+            resolve(rows);
+          };
+
+          script.src = `https://docs.google.com/spreadsheets/d/${Config.SPREADSHEET_ID}/gviz/tq?gid=${gid}&tqx=responseHandler:${callbackName}`;
+          script.onerror = () => {
+            if (settled) return;
+            settled = true;
+            cleanup();
+            reject(new Error(`Google Sheets load failed (gid=${gid})`));
+          };
+          document.body.appendChild(script);
+        });
+      },
+
+      async loadFromGoogleSheets() {
+        const [vRes, sRes] = await Promise.allSettled([
+          this.loadGvizSheet(Config.VOCAB_GID),
+          this.loadGvizSheet(Config.SENTENCE_GID),
+        ]);
+        const vOk = vRes.status === 'fulfilled' && Array.isArray(vRes.value);
+        const sOk = sRes.status === 'fulfilled' && Array.isArray(sRes.value);
+        if (!vOk && !sOk) {
+          throw new Error('Google Sheets load failed');
+        }
+        return {
+          vocab: vOk ? vRes.value.map(normalizeVocabItem) : null,
+          sentences: sOk ? sRes.value.map(normalizeSentenceItem) : null,
+          partialError: !vOk || !sOk,
+          source: 'sheets',
+        };
+      },
+
+      async load(preferredSource) {
+        const urlSource = new URLSearchParams(window.location.search).get('source');
+        const target = preferredSource || urlSource || localStorage.getItem('vh_dataSource') || 'github';
+
+        if (target === 'sheets') {
+          return this.loadFromGoogleSheets();
+        }
+        try {
+          return await this.loadFromGitHubJson();
+        } catch (err) {
+          console.warn('GitHub JSON 로드 실패 → Google Sheets 폴백 시도:', err.message);
+          return this.loadFromGoogleSheets();
+        }
+      },
+    };
+
+    // =========================================================================
+    // 5. SRS & Study Log Service (Opt-in Leitner 5-Box)
+    // =========================================================================
+    const SrsService = {
+      getRecord(item) {
+        if (!item) return null;
+        return srsData[item.id] || srsData[getItemKey(item)] || null;
+      },
+
+      isDue(item) {
+        if (!item || isMasteredItem(item)) return false;
+        const rec = this.getRecord(item);
+        if (!rec) return false;
+        return rec.nextReview <= getTodayDateStr();
+      },
+
+      getDueCount(items) {
+        return items.filter((it) => this.isDue(it)).length;
+      },
+
+      recordReview(item, quality) {
+        // quality: 'again' | 'good' | 'easy'
+        if (!item) return;
+        const today = getTodayDateStr();
+        const key = item.id || getItemKey(item);
+        const prev = this.getRecord(item) || { box: 1, nextReview: today, lapses: 0 };
+        let nextBox = prev.box || 1;
+        let lapses = prev.lapses || 0;
+
+        if (quality === 'again') {
+          nextBox = 1;
+          lapses += 1;
+        } else if (quality === 'good') {
+          nextBox = Math.min(5, nextBox + 1);
+        } else if (quality === 'easy') {
+          nextBox = Math.min(5, nextBox + 2);
+        }
+
+        const intervalDays = Config.SRS_INTERVALS_DAYS[nextBox - 1] || 1;
+        srsData[key] = {
+          box: nextBox,
+          nextReview: addDays(today, intervalDays),
+          lastReview: today,
+          lapses,
+        };
+        localStorage.setItem('vh_srs', JSON.stringify(srsData));
+        this.logActivity('review');
+        updateSrsDueBadge();
+      },
+
+      logActivity(type) {
+        const today = getTodayDateStr();
+        if (!studyLog[today]) studyLog[today] = { review: 0, quiz: 0, mastered: 0 };
+        studyLog[today][type] = (studyLog[today][type] || 0) + 1;
+        localStorage.setItem('vh_studyLog', JSON.stringify(studyLog));
+      },
+
+      getStreak() {
+        const dates = Object.keys(studyLog).sort().reverse();
+        if (dates.length === 0) return 0;
+        let streak = 0;
+        let cursor = getTodayDateStr();
+        if (!studyLog[cursor]) {
+          cursor = addDays(cursor, -1);
+          if (!studyLog[cursor]) return 0;
+        }
+        while (studyLog[cursor]) {
+          streak++;
+          cursor = addDays(cursor, -1);
+        }
+        return streak;
+      },
+    };
+
+    // =========================================================================
+    // 6. TTS Service (Web Speech API + Speed + Voice Matching + Page Autoplay)
+    // =========================================================================
+    const TtsService = {
+      isAutoplaying: false,
+      autoplayQueue: [],
+      autoplayIdx: 0,
+
+      pickVoice(lang) {
+        if (!('speechSynthesis' in window)) return null;
+        const voices = window.speechSynthesis.getVoices() || [];
+        const targetPrefix = lang === 'German' ? 'de' : 'en';
+        const exactLocale = lang === 'German' ? 'de-de' : 'en-us';
+        const candidates = voices.filter((v) => (v.lang || '').toLowerCase().startsWith(targetPrefix));
+        if (candidates.length === 0) return null;
+        return (
+          candidates.find((v) => /google|natural|neural|samantha|anna|markus/i.test(v.name) && v.lang.toLowerCase() === exactLocale) ||
+          candidates.find((v) => v.lang.toLowerCase() === exactLocale) ||
+          candidates[0]
+        );
+      },
+
+      speak(text, lang, onEnd) {
+        if (!text) {
+          if (onEnd) onEnd();
+          return;
+        }
+        if (!('speechSynthesis' in window)) {
+          alert('이 브라우저는 음성 합성을 지원하지 않습니다.');
+          return;
+        }
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = lang === 'German' ? 'de-DE' : 'en-US';
+        utterance.rate = ttsRate;
+        const voice = this.pickVoice(lang);
+        if (voice) utterance.voice = voice;
+        if (onEnd) {
+          utterance.onend = onEnd;
+          utterance.onerror = onEnd;
+        }
+        window.speechSynthesis.speak(utterance);
+      },
+
+      stopAutoplay() {
+        this.isAutoplaying = false;
+        this.autoplayQueue = [];
+        this.autoplayIdx = 0;
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        document.querySelectorAll('.tts-speaking').forEach((el) => el.classList.remove('tts-speaking'));
+        const btn = document.getElementById('btnAutoplay');
+        if (btn) {
+          btn.innerText = '🔊 듣기';
+          btn.setAttribute('aria-pressed', 'false');
+          btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition';
+        }
+      },
+
+      startAutoplay() {
+        if (!('speechSynthesis' in window)) {
+          alert('이 브라우저는 음성 합성을 지원하지 않습니다.');
+          return;
+        }
+        const items = currentView === 'vocab' ? currentRenderedVocab : currentRenderedSentences;
+        if (!items || items.length === 0) return;
+
+        this.isAutoplaying = true;
+        this.autoplayQueue = items.map((it) => ({
+          id: it.id,
+          text: currentView === 'vocab' ? it.word : it.sentence,
+          lang: it.lang,
+        }));
+        this.autoplayIdx = 0;
+
+        const btn = document.getElementById('btnAutoplay');
+        if (btn) {
+          btn.innerText = '⏹ 정지';
+          btn.setAttribute('aria-pressed', 'true');
+          btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-bold bg-indigo-600 text-white rounded-lg transition';
+        }
+        this._playNext();
+      },
+
+      _playNext() {
+        if (!this.isAutoplaying || this.autoplayIdx >= this.autoplayQueue.length) {
+          this.stopAutoplay();
+          return;
+        }
+        document.querySelectorAll('.tts-speaking').forEach((el) => el.classList.remove('tts-speaking'));
+        const entry = this.autoplayQueue[this.autoplayIdx];
+        const el = document.querySelector(`[data-item-id="${CSS.escape(entry.id)}"]`);
+        if (el) {
+          el.classList.add('tts-speaking');
+          el.scrollIntoView({ block: 'nearest', behavior: isEInkMode ? 'instant' : 'smooth' });
+        }
+        this.autoplayIdx++;
+        this.speak(entry.text, entry.lang, () => {
+          if (this.isAutoplaying) {
+            setTimeout(() => this._playNext(), 550);
+          }
+        });
+      },
+    };
+
+    function speakText(text, lang, event) {
+      if (event) event.stopPropagation();
+      if (TtsService.isAutoplaying) TtsService.stopAutoplay();
+      TtsService.speak(text, lang);
+    }
+
+    function toggleAutoplay() {
+      if (TtsService.isAutoplaying) TtsService.stopAutoplay();
+      else TtsService.startAutoplay();
+    }
+
+    // =========================================================================
+    // 7. Initialization & Caching
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      initDarkMode();
+      initEInkMode();
+      initVocabLayout();
+      initSentenceLayout();
+      initPageSizeSelect();
+      initDelegatedListeners();
+      initKeyboardShortcuts();
+      registerServiceWorker();
+
+      // 1) 캐시 선렌더링 (SWR)
+      loadFromCache();
+
+      // 2) 최신 데이터 비동기 로드
+      syncData();
+    });
+
+    function registerServiceWorker() {
+      if ('serviceWorker' in navigator && (window.location.protocol === 'https:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
+      }
+    }
+
+    function rebuildVocabIndex() {
+      vocabById = new Map();
+      vocabData.forEach((v) => vocabById.set(v.id, v));
+    }
+
+    function populateDynamicFilters() {
+      const levels = new Set();
+      const tags = new Set();
+      [...vocabData, ...sentenceData].forEach((it) => {
+        if (it.level) levels.add(it.level);
+        if (Array.isArray(it.tags)) it.tags.forEach((t) => tags.add(t));
+        if (it.topic) tags.add(it.topic);
+      });
+
+      const levelSel = document.getElementById('levelFilterSelect');
+      if (levelSel) {
+        const prev = currentLevel;
+        levelSel.innerHTML = '<option value="All">레벨 전체</option>' +
+          Array.from(levels).sort().map((l) => `<option value="${escapeHtml(l)}">${escapeHtml(l)}</option>`).join('');
+        levelSel.value = levels.has(prev) ? prev : 'All';
+        currentLevel = levelSel.value;
+      }
+
+      const tagSel = document.getElementById('tagFilterSelect');
+      if (tagSel) {
+        const prev = currentTag;
+        const sortedTags = Array.from(tags).filter(Boolean).sort();
+        tagSel.innerHTML = '<option value="All">주제 전체</option>' +
+          sortedTags.map((t) => `<option value="${escapeHtml(t)}">#${escapeHtml(t)}</option>`).join('');
+        tagSel.value = sortedTags.includes(prev) ? prev : 'All';
+        currentTag = tagSel.value;
+        tagSel.classList.toggle('hidden', sortedTags.length === 0);
+      }
+
+      updateSrsDueBadge();
+    }
+
+    function updateSrsDueBadge() {
+      const btn = document.getElementById('btn-SrsDueOnly');
+      if (!btn) return;
+      const dueCount = SrsService.getDueCount(currentView === 'sentence' ? sentenceData : vocabData);
+      btn.innerText = dueCount > 0 ? `📅 오늘 복습 (${dueCount})` : '📅 오늘 복습';
+    }
+
+    async function syncData(preferredSource) {
+      const syncBtn = document.getElementById('btnManualSync');
+      if (syncBtn) syncBtn.disabled = true;
+
+      try {
+        const result = await DataAdapter.load(preferredSource);
+        activeDataSource = result.source;
+        if (result.vocab) vocabData = result.vocab;
+        if (result.sentences) sentenceData = result.sentences;
+
+        rebuildVocabIndex();
+        if (isShuffled) rebuildShuffleMaps();
+        populateDynamicFilters();
+
+        lastSyncTime = new Date().toLocaleString('ko-KR');
+        saveToCache();
+        document.getElementById('skeletonLoader').classList.add('hidden');
+
+        if (result.partialError) {
+          showStatusBanner('일부 데이터 로드에 실패하여 캐시/부분 데이터를 표시 중입니다.');
+        } else {
+          hideStatusBanner();
+        }
+        render();
+      } catch (err) {
+        console.error('데이터 동기화 실패:', err);
+        document.getElementById('skeletonLoader').classList.add('hidden');
+        if (vocabData.length > 0 || sentenceData.length > 0) {
+          showStatusBanner('네트워크 연결 실패 — 오프라인 캐시 데이터로 학습 중입니다.');
+          render();
+        } else {
+          document.getElementById('stats').innerText = '데이터를 불러오지 못했습니다.';
+          showStatusBanner('데이터를 불러오지 못했습니다. 네트워크 연결 후 🔄 버튼을 눌러 재시도하세요.');
+        }
+      } finally {
+        if (syncBtn) syncBtn.disabled = false;
+      }
+    }
+
+    function manualSync() {
+      syncData();
+    }
+
+    function switchDataSource(source) {
+      localStorage.setItem('vh_dataSource', source);
+      closeModal('settingsModal');
+      syncData(source);
+    }
+
     function saveToCache() {
       try {
         localStorage.setItem('vh_vocabData', JSON.stringify(vocabData));
@@ -456,13 +1380,15 @@
 
     function loadFromCache() {
       try {
-        const cachedVocab = localStorage.getItem('vh_vocabData');
-        const cachedSentence = localStorage.getItem('vh_sentenceData');
+        const cachedVocab = safeJsonParse(localStorage.getItem('vh_vocabData'), null);
+        const cachedSentence = safeJsonParse(localStorage.getItem('vh_sentenceData'), null);
         const cachedSync = localStorage.getItem('vh_lastSync');
 
-        if (cachedVocab && cachedSentence) {
-          vocabData = JSON.parse(cachedVocab);
-          sentenceData = JSON.parse(cachedSentence);
+        if (Array.isArray(cachedVocab) && Array.isArray(cachedSentence) && (cachedVocab.length > 0 || cachedSentence.length > 0)) {
+          vocabData = cachedVocab.map(normalizeVocabItem);
+          sentenceData = cachedSentence.map(normalizeSentenceItem);
+          rebuildVocabIndex();
+          populateDynamicFilters();
           lastSyncTime = cachedSync || '이전 기록';
           document.getElementById('skeletonLoader').classList.add('hidden');
           render();
@@ -472,40 +1398,55 @@
       }
     }
 
-    // 다크모드 제어
+    // =========================================================================
+    // 8. Theme, Layout & Filter Controls
+    // =========================================================================
     function initDarkMode() {
       const savedDark = localStorage.getItem('vh_darkMode');
-      if (savedDark === 'true' || (!savedDark && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        isDarkMode = true;
+      isDarkMode = savedDark === 'true' || (!savedDark && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      applyDarkModeUI();
+    }
+
+    function applyDarkModeUI() {
+      const btn = document.getElementById('btnDarkMode');
+      if (isDarkMode && !isEInkMode) {
         document.documentElement.classList.add('dark');
-        document.getElementById('btnDarkMode').innerText = '☀️';
       } else {
-        isDarkMode = false;
         document.documentElement.classList.remove('dark');
-        document.getElementById('btnDarkMode').innerText = '🌙';
+      }
+      if (btn) {
+        btn.innerText = isDarkMode ? '☀️' : '🌙';
+        btn.setAttribute('aria-pressed', String(isDarkMode));
       }
     }
 
     function toggleDarkMode() {
       isDarkMode = !isDarkMode;
-      if (isDarkMode) {
-        document.documentElement.classList.add('dark');
-        document.getElementById('btnDarkMode').innerText = '☀️';
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.getElementById('btnDarkMode').innerText = '🌙';
-      }
       localStorage.setItem('vh_darkMode', isDarkMode);
+      if (isDarkMode && isEInkMode) {
+        isEInkMode = false;
+        localStorage.setItem('vh_eInkMode', 'false');
+        initEInkMode();
+      }
+      applyDarkModeUI();
     }
 
-    // 🖋️ 전자잉크(E-Ink) 가독성 최적화 모드 제어
     function initEInkMode() {
+      const btn = document.getElementById('btnEInkMode');
       if (isEInkMode) {
         document.documentElement.classList.add('e-ink');
-        document.getElementById('btnEInkMode').className = 'p-1.5 rounded-lg border border-slate-900 bg-black text-white shrink-0 text-xs font-bold';
+        document.documentElement.classList.remove('dark');
+        if (btn) {
+          btn.className = 'p-1.5 rounded-lg border border-slate-900 bg-black text-white shrink-0 text-xs font-bold eink-solid';
+          btn.setAttribute('aria-pressed', 'true');
+        }
       } else {
         document.documentElement.classList.remove('e-ink');
-        document.getElementById('btnEInkMode').className = 'p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0 text-xs font-bold';
+        if (btn) {
+          btn.className = 'p-1.5 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-600 transition shrink-0 text-xs font-bold';
+          btn.setAttribute('aria-pressed', 'false');
+        }
+        applyDarkModeUI();
       }
     }
 
@@ -515,7 +1456,6 @@
       initEInkMode();
     }
 
-    // 단어장 레이아웃 (카드형 vs 리스트형) 제어
     function initVocabLayout() {
       updateVocabLayoutButtons();
     }
@@ -524,9 +1464,7 @@
       vocabLayout = layout;
       localStorage.setItem('vh_vocabLayout', vocabLayout);
       updateVocabLayoutButtons();
-      if (currentView === 'vocab') {
-        renderVocab();
-      }
+      if (currentView === 'vocab') renderVocab();
     }
 
     function updateVocabLayoutButtons() {
@@ -546,138 +1484,62 @@
       }
     }
 
-    // 구글 시트 gviz JSONP 로더
-    function loadGvizData(gid, callback) {
-      const callbackName = 'gviz_cb_' + gid.replace(/[^a-zA-Z0-9]/g, '_') + '_' + Date.now();
-      window[callbackName] = function(resp) {
-        delete window[callbackName];
-        if (script.parentNode) script.parentNode.removeChild(script);
-
-        if (!resp || !resp.table || !resp.table.rows) {
-          console.error('구글 시트 응답 데이터 없음:', resp);
-          if (!vocabData.length) {
-            document.getElementById('stats').innerText = '데이터를 불러오지 못했습니다.';
-          }
-          return;
-        }
-
-        const cols = resp.table.cols.map(c => (c && c.label ? c.label.trim() : ''));
-        const rows = resp.table.rows.map(row => {
-          const item = {};
-          if (row && row.c) {
-            row.c.forEach((cell, idx) => {
-              const key = cols[idx];
-              if (key) {
-                const val = cell ? (cell.f !== undefined ? cell.f : (cell.v !== null && cell.v !== undefined ? cell.v : '')) : '';
-                item[key] = String(val).trim();
-              }
-            });
-          }
-          return item;
-        });
-
-        callback(rows.filter(r => Object.values(r).some(v => v)));
-      };
-
-      const script = document.createElement('script');
-      script.src = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?gid=${gid}&tqx=responseHandler:${callbackName}`;
-      script.onerror = function() {
-        console.error('구글 시트 로드 실패 (gid: ' + gid + ')');
-        if (!vocabData.length) {
-          document.getElementById('stats').innerText = '구글 시트 연결 실패 (오프라인 캐시 사용 중)';
-        }
-      };
-      document.body.appendChild(script);
+    function initSentenceLayout() {
+      updateSentenceLayoutButtons();
     }
 
-    // TTS 음성 재생 (Web Speech API)
-    function speakText(text, lang, event) {
-      if (event) event.stopPropagation();
-      if (!('speechSynthesis' in window)) {
-        alert('이 브라우저는 음성 합성을 지원하지 않습니다.');
-        return;
+    function setSentenceLayout(layout) {
+      sentenceLayout = layout;
+      localStorage.setItem('vh_sentenceLayout', sentenceLayout);
+      updateSentenceLayoutButtons();
+      if (currentView === 'sentence') renderSentences();
+    }
+
+    function updateSentenceLayoutButtons() {
+      const activeClass = 'px-2 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition';
+      const inactiveClass = 'px-2 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+      const listBtn = document.getElementById('btn-slayout-list');
+      const parallelBtn = document.getElementById('btn-slayout-parallel');
+      if (listBtn && parallelBtn) {
+        listBtn.className = sentenceLayout === 'list' ? activeClass : inactiveClass;
+        parallelBtn.className = sentenceLayout === 'parallel' ? activeClass : inactiveClass;
       }
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = lang === 'German' ? 'de-DE' : 'en-US';
-      utterance.rate = 0.9;
-      window.speechSynthesis.speak(utterance);
     }
 
-    // 독일어 관사별 스타일 파싱 (der: 파랑, die: 장미/빨강, das: 녹색)
-    function getGermanGenderStyle(word) {
-      const trimmed = (word || '').trim().toLowerCase();
-      if (trimmed.startsWith('der ')) {
+    function initPageSizeSelect() {
+      const sel = document.getElementById('pageSizeSelect');
+      if (sel) sel.value = String(itemsPerPage);
+    }
+
+    function getGermanGenderStyle(item) {
+      const gender = detectGermanGender(item);
+      if (gender === 'der') {
         return { border: 'border-blue-300 dark:border-blue-600', badge: 'bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 border-blue-200 dark:border-blue-800', text: 'der (남성)' };
-      } else if (trimmed.startsWith('die ')) {
+      }
+      if (gender === 'die') {
         return { border: 'border-rose-300 dark:border-rose-600', badge: 'bg-rose-100 dark:bg-rose-900/60 text-rose-800 dark:text-rose-300 border-rose-200 dark:border-rose-800', text: 'die (여성)' };
-      } else if (trimmed.startsWith('das ')) {
+      }
+      if (gender === 'das') {
         return { border: 'border-emerald-300 dark:border-emerald-600', badge: 'bg-emerald-100 dark:bg-emerald-900/60 text-emerald-800 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800', text: 'das (중성)' };
       }
       return { border: 'border-amber-200 dark:border-amber-700', badge: 'bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 border-amber-200 dark:border-amber-800', text: '독일어' };
     }
 
-    // 북마크 토글
-    function toggleBookmark(itemKey, event) {
-      if (event) event.stopPropagation();
-      if (bookmarks.has(itemKey)) {
-        bookmarks.delete(itemKey);
-      } else {
-        bookmarks.add(itemKey);
-      }
-      localStorage.setItem('vh_bookmarks', JSON.stringify(Array.from(bookmarks)));
-      render();
-    }
-
-    // 완숙(암기 완료) 토글
-    function toggleMastered(itemKey, event) {
-      if (event) event.stopPropagation();
-      if (mastered.has(itemKey)) {
-        mastered.delete(itemKey);
-      } else {
-        mastered.add(itemKey);
-      }
-      localStorage.setItem('vh_mastered', JSON.stringify(Array.from(mastered)));
-      render();
-    }
-
-    // 품사 분류 파싱 함수 (Noun, Verb, Adjective, Adverb, Other)
-    function getPosCategory(item) {
-      const posText = (item['Part of Speech / Gender'] || '').toLowerCase().trim();
-      const word = (item['Word/Phrase'] || '').toLowerCase().trim();
-
-      if (posText.includes('n.') || posText.includes('noun') || posText.includes('명사') ||
-          posText.includes('der') || posText.includes('die') || posText.includes('das') ||
-          word.startsWith('der ') || word.startsWith('die ') || word.startsWith('das ')) {
-        return 'noun';
-      }
-      if (posText.includes('adv') || posText.includes('부사')) {
-        return 'adv';
-      }
-      if (posText.includes('v.') || posText.includes('verb') || posText.includes('동사')) {
-        return 'verb';
-      }
-      if (posText.includes('adj') || posText.includes('형용사')) {
-        return 'adj';
-      }
-      return 'other';
-    }
-
-    function handlePosFilterChange(val) {
-      currentPos = val;
-      currentPage = 1;
-      render();
-    }
-
     function switchView(view) {
+      TtsService.stopAutoplay();
       currentView = view;
       currentPage = 1;
-      const tabClassActive = 'px-2.5 sm:px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition';
-      const tabClassInactive = 'px-2.5 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
 
-      document.getElementById('tab-vocab').className = view === 'vocab' ? tabClassActive : tabClassInactive;
-      document.getElementById('tab-sentence').className = view === 'sentence' ? tabClassActive : tabClassInactive;
-      document.getElementById('tab-quiz').className = view === 'quiz' ? tabClassActive : tabClassInactive;
+      const tabClassActive = 'px-2 sm:px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white transition whitespace-nowrap';
+      const tabClassInactive = 'px-2 sm:px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition whitespace-nowrap';
+
+      ['vocab', 'sentence', 'quiz'].forEach((v) => {
+        const el = document.getElementById(`tab-${v}`);
+        if (el) {
+          el.className = view === v ? tabClassActive : tabClassInactive;
+          el.setAttribute('aria-selected', String(view === v));
+        }
+      });
 
       document.getElementById('vocabSection').classList.toggle('hidden', view !== 'vocab');
       document.getElementById('sentenceSection').classList.toggle('hidden', view !== 'sentence');
@@ -685,11 +1547,16 @@
       document.getElementById('controlBar').classList.toggle('hidden', view === 'quiz');
       document.getElementById('pagination').classList.toggle('hidden', view === 'quiz');
       document.getElementById('vocabLayoutGroup').classList.toggle('hidden', view !== 'vocab');
+      document.getElementById('sentenceLayoutGroup').classList.toggle('hidden', view !== 'sentence');
       document.getElementById('posFilterSelect').classList.toggle('hidden', view !== 'vocab');
 
       updateVocabLayoutButtons();
+      updateSentenceLayoutButtons();
+      updateSrsDueBadge();
 
       if (view === 'quiz') {
+        const qLang = document.getElementById('quizLangSelect');
+        if (qLang) qLang.value = currentLang;
         startQuiz();
       } else {
         render();
@@ -699,91 +1566,309 @@
     function setLangFilter(lang) {
       currentLang = lang;
       currentPage = 1;
-      document.querySelectorAll('.lang-btn').forEach(btn => {
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
         btn.className = 'lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition';
       });
-      document.getElementById(`btn-${lang}`).className = 'lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 transition';
-      render();
-    }
-
-    function toggleNewOnly() {
-      isNewOnly = !isNewOnly;
-      currentPage = 1;
-      const btn = document.getElementById('btn-NewOnly');
-      if (isNewOnly) {
-        btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold bg-indigo-600 text-white transition';
-      } else {
-        btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition';
+      const activeBtn = document.getElementById(`btn-${lang}`);
+      if (activeBtn) {
+        activeBtn.className = 'lang-btn shrink-0 whitespace-nowrap px-3 py-1 rounded-full text-xs font-semibold bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 transition';
       }
       render();
     }
 
-    function toggleBookmarkedOnly() {
-      isBookmarkedOnly = !isBookmarkedOnly;
-      currentPage = 1;
-      const btn = document.getElementById('btn-BookmarkedOnly');
-      if (isBookmarkedOnly) {
-        btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500 text-white transition';
+    function handlePosFilterChange(val) { currentPos = val; currentPage = 1; render(); }
+    function handleLevelFilterChange(val) { currentLevel = val; currentPage = 1; render(); }
+    function handleTagFilterChange(val) { currentTag = val; currentPage = 1; render(); }
+    function handleSortChange(val) { currentSort = val; currentPage = 1; render(); }
+
+    function setPillActive(btnId, active, activeBgClass) {
+      const btn = document.getElementById(btnId);
+      if (!btn) return;
+      btn.setAttribute('aria-pressed', String(active));
+      if (active) {
+        btn.className = `shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold ${activeBgClass} text-white transition`;
       } else {
         btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition';
       }
-      render();
     }
 
-    function toggleHideMastered() {
-      hideMastered = !hideMastered;
-      currentPage = 1;
-      const btn = document.getElementById('btn-HideMastered');
-      if (hideMastered) {
-        btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-600 text-white transition';
-      } else {
-        btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1 rounded-full text-xs font-semibold border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition';
-      }
-      render();
-    }
+    function toggleNewOnly() { isNewOnly = !isNewOnly; currentPage = 1; setPillActive('btn-NewOnly', isNewOnly, 'bg-indigo-600'); render(); }
+    function toggleBookmarkedOnly() { isBookmarkedOnly = !isBookmarkedOnly; currentPage = 1; setPillActive('btn-BookmarkedOnly', isBookmarkedOnly, 'bg-amber-500'); render(); }
+    function toggleSrsDueOnly() { isSrsDueOnly = !isSrsDueOnly; currentPage = 1; setPillActive('btn-SrsDueOnly', isSrsDueOnly, 'bg-cyan-700'); render(); }
+    function toggleHideMastered() { hideMastered = !hideMastered; currentPage = 1; setPillActive('btn-HideMastered', hideMastered, 'bg-emerald-600'); render(); }
 
     function toggleShuffle() {
       isShuffled = !isShuffled;
       currentPage = 1;
+      if (isShuffled) rebuildShuffleMaps();
       const btn = document.getElementById('btnShuffle');
-      if (isShuffled) {
-        btn.className = 'whitespace-nowrap px-2.5 py-1 text-xs font-medium bg-purple-600 text-white rounded-lg transition';
-        btn.innerText = '🔀 셔플 중';
-      } else {
-        btn.className = 'whitespace-nowrap px-2.5 py-1 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition';
-        btn.innerText = '🔀 셔플';
+      const reBtn = document.getElementById('btnReshuffle');
+      if (btn) {
+        btn.setAttribute('aria-pressed', String(isShuffled));
+        if (isShuffled) {
+          btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium bg-purple-600 text-white rounded-lg transition';
+          btn.innerText = '🔀 셔플 중';
+        } else {
+          btn.className = 'shrink-0 whitespace-nowrap px-2.5 py-1.5 text-xs font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition';
+          btn.innerText = '🔀 셔플';
+        }
       }
+      if (reBtn) reBtn.classList.toggle('hidden', !isShuffled);
       render();
     }
 
-    function handleSearch() {
-      currentSearch = document.getElementById('searchInput').value.trim().toLowerCase();
+    function reshuffleCurrent() {
+      if (!isShuffled) return;
+      rebuildShuffleMaps();
       currentPage = 1;
       render();
     }
 
+    function handleSearchInput() {
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('btnClearSearch');
+      const rawVal = input ? input.value : '';
+      if (clearBtn) clearBtn.classList.toggle('hidden', !rawVal);
+
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        currentSearch = rawVal.trim().toLowerCase();
+        currentPage = 1;
+        render();
+      }, 150);
+    }
+
+    function clearSearch() {
+      const input = document.getElementById('searchInput');
+      if (input) input.value = '';
+      const clearBtn = document.getElementById('btnClearSearch');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      currentSearch = '';
+      currentPage = 1;
+      render();
+    }
+
+    function resetAllFilters() {
+      setLangFilter('All');
+      currentPos = 'All';
+      currentLevel = 'All';
+      currentTag = 'All';
+      currentSort = 'default';
+      isNewOnly = false;
+      isBookmarkedOnly = false;
+      isSrsDueOnly = false;
+      hideMastered = false;
+      document.getElementById('posFilterSelect').value = 'All';
+      document.getElementById('levelFilterSelect').value = 'All';
+      document.getElementById('tagFilterSelect').value = 'All';
+      document.getElementById('sortSelect').value = 'default';
+      setPillActive('btn-NewOnly', false, 'bg-indigo-600');
+      setPillActive('btn-BookmarkedOnly', false, 'bg-amber-500');
+      setPillActive('btn-SrsDueOnly', false, 'bg-cyan-700');
+      setPillActive('btn-HideMastered', false, 'bg-emerald-600');
+      clearSearch();
+    }
+
     function handlePageSizeChange(size) {
-      itemsPerPage = parseInt(size, 10);
+      itemsPerPage = parseInt(size, 10) || 20;
+      localStorage.setItem('vh_pageSize', String(itemsPerPage));
       currentPage = 1;
       render();
     }
 
     function goToPage(page) {
+      TtsService.stopAutoplay();
       currentPage = page;
       render();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: isEInkMode ? 'instant' : 'smooth' });
     }
 
     function toggleAllFlip() {
       isAllFlipped = !isAllFlipped;
-      document.querySelectorAll('.card-inner').forEach(card => {
-        if (isAllFlipped) card.classList.add('flipped');
-        else card.classList.remove('flipped');
+      document.querySelectorAll('.card-inner').forEach((card) => {
+        card.classList.toggle('flipped', isAllFlipped);
       });
+    }
+
+    // =========================================================================
+    // 9. Event Delegation & Keyboard Shortcuts
+    // =========================================================================
+    function initDelegatedListeners() {
+      const vocabGrid = document.getElementById('vocabGrid');
+      vocabGrid.addEventListener('click', (e) => {
+        const actionBtn = e.target.closest('[data-action]');
+        if (actionBtn) {
+          e.stopPropagation();
+          const action = actionBtn.dataset.action;
+          const id = actionBtn.dataset.id;
+          const item = vocabById.get(id) || vocabData.find((v) => v.id === id);
+          if (!item) return;
+
+          if (action === 'toggle-mastered') toggleMasteredItem(item);
+          else if (action === 'toggle-bookmark') toggleBookmarkItem(item);
+          else if (action === 'speak-word') speakText(item.word, item.lang, e);
+          else if (action === 'speak-example') speakText(item.example, item.lang, e);
+          else if (action === 'srs-rate') {
+            SrsService.recordReview(item, actionBtn.dataset.quality);
+            actionBtn.innerText = '✓ 저장됨';
+            setTimeout(() => render(), 250);
+          }
+          return;
+        }
+        const card = e.target.closest('[data-card-flip]');
+        if (card) {
+          const inner = card.querySelector('.card-inner');
+          if (inner) inner.classList.toggle('flipped');
+        }
+      });
+
+      const sentenceList = document.getElementById('sentenceList');
+      sentenceList.addEventListener('click', (e) => {
+        const actionBtn = e.target.closest('[data-action]');
+        if (!actionBtn) return;
+        e.stopPropagation();
+        const action = actionBtn.dataset.action;
+        const id = actionBtn.dataset.id;
+
+        if (action === 'open-vocab-chip') {
+          openVocabPopover(id);
+          return;
+        }
+        const item = sentenceData.find((s) => s.id === id);
+        if (!item) return;
+        if (action === 'toggle-mastered') toggleMasteredItem(item);
+        else if (action === 'toggle-bookmark') toggleBookmarkItem(item);
+        else if (action === 'speak-sentence') speakText(item.sentence, item.lang, e);
+      });
+
+      const quizContainer = document.getElementById('quizContainer');
+      quizContainer.addEventListener('click', (e) => {
+        const actionBtn = e.target.closest('[data-action]');
+        if (!actionBtn) return;
+        const action = actionBtn.dataset.action;
+
+        if (action === 'quiz-option') {
+          const optIdx = parseInt(actionBtn.dataset.optionIndex, 10);
+          checkQuizAnswer(actionBtn, optIdx);
+        } else if (action === 'quiz-next') {
+          nextQuizQuestion();
+        } else if (action === 'quiz-speak') {
+          const q = quizQuestions[currentQuizIndex];
+          if (q) speakText(q.speakText || q.questionText, q.lang, e);
+        } else if (action === 'quiz-restart') {
+          startQuiz();
+        } else if (action === 'quiz-retry-wrong') {
+          startWrongOnlyQuiz();
+        } else if (action === 'quiz-bookmark-wrong') {
+          const idx = parseInt(actionBtn.dataset.wrongIndex, 10);
+          const wrongQ = quizWrongItems[idx];
+          if (wrongQ && wrongQ.item) {
+            toggleBookmarkItem(wrongQ.item);
+            renderQuizQuestion();
+          }
+        } else if (action === 'quiz-speak-wrong') {
+          const idx = parseInt(actionBtn.dataset.wrongIndex, 10);
+          const wrongQ = quizWrongItems[idx];
+          if (wrongQ) speakText(wrongQ.speakText || wrongQ.questionText, wrongQ.lang, e);
+        }
+      });
+
+      const popoverBody = document.getElementById('wordPopoverBody');
+      popoverBody.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-popover-action]');
+        if (!btn) return;
+        const vid = popoverBody.dataset.vocabId;
+        const v = vocabById.get(vid);
+        if (!v) return;
+        const act = btn.dataset.popoverAction;
+        if (act === 'speak') speakText(v.word, v.lang, e);
+        else if (act === 'bookmark') { toggleBookmarkItem(v); openVocabPopover(vid); }
+        else if (act === 'mastered') { toggleMasteredItem(v); openVocabPopover(vid); }
+      });
+    }
+
+    function initKeyboardShortcuts() {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          ['wordPopoverModal', 'statsModal', 'importModal', 'settingsModal'].forEach(closeModal);
+          return;
+        }
+        const tag = (e.target.tagName || '').toLowerCase();
+        if (tag === 'input' || tag === 'textarea' || tag === 'select' || e.metaKey || e.ctrlKey || e.altKey) {
+          return;
+        }
+        // 모달 열려 있으면 단축키 무시
+        const anyModalOpen = ['wordPopoverModal', 'statsModal', 'importModal', 'settingsModal'].some(
+          (id) => !document.getElementById(id).classList.contains('hidden')
+        );
+        if (anyModalOpen) return;
+
+        if (e.key === '/') {
+          if (currentView !== 'quiz') {
+            e.preventDefault();
+            document.getElementById('searchInput')?.focus();
+          }
+          return;
+        }
+
+        if (currentView === 'quiz') {
+          if (['1', '2', '3', '4'].includes(e.key)) {
+            const idx = parseInt(e.key, 10) - 1;
+            const btn = document.querySelector(`.quiz-opt-btn[data-option-index="${idx}"]`);
+            if (btn && !btn.disabled) btn.click();
+          } else if (e.key === 'Enter') {
+            const nextBtn = document.querySelector('[data-action="quiz-next"]');
+            const feedback = document.getElementById('quizFeedback');
+            if (nextBtn && feedback && !feedback.classList.contains('hidden')) {
+              nextBtn.click();
+            }
+          } else if (e.key.toLowerCase() === 's') {
+            const q = quizQuestions[currentQuizIndex];
+            if (q) speakText(q.speakText || q.questionText, q.lang);
+          }
+          return;
+        }
+
+        if (e.key === 'ArrowLeft') {
+          if (currentPage > 1) {
+            e.preventDefault();
+            goToPage(currentPage - 1);
+          }
+        } else if (e.key === 'ArrowRight') {
+          const totalPages = parseInt(document.getElementById('pagination').dataset.totalPages || '1', 10);
+          if (currentPage < totalPages) {
+            e.preventDefault();
+            goToPage(currentPage + 1);
+          }
+        } else if (e.key === ' ' && currentView === 'vocab' && vocabLayout === 'card') {
+          e.preventDefault();
+          toggleAllFlip();
+        }
+      });
+    }
+
+    // =========================================================================
+    // 10. Filtering, Sorting & Rendering
+    // =========================================================================
+    function applySortAndShuffle(items, shuffleMap, primaryTextKey) {
+      if (isShuffled) {
+        return [...items].sort((a, b) => (shuffleMap.get(a.id) ?? 999999) - (shuffleMap.get(b.id) ?? 999999));
+      }
+      if (currentSort === 'newest') {
+        return [...items].sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      }
+      if (currentSort === 'oldest') {
+        return [...items].sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+      }
+      if (currentSort === 'alpha') {
+        return [...items].sort((a, b) => (a[primaryTextKey] || '').localeCompare(b[primaryTextKey] || ''));
+      }
+      return items;
     }
 
     function render() {
       document.getElementById('skeletonLoader').classList.add('hidden');
+      updateSrsDueBadge();
       if (currentView === 'vocab') renderVocab();
       else if (currentView === 'sentence') renderSentences();
     }
@@ -792,31 +1877,26 @@
     function renderVocab() {
       const grid = document.getElementById('vocabGrid');
       grid.innerHTML = '';
+      grid.className = vocabLayout === 'list' ? 'space-y-2.5' : 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4';
 
-      if (vocabLayout === 'list') {
-        grid.className = 'space-y-2.5';
-      } else {
-        grid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4';
-      }
+      let filtered = vocabData.filter((d) => {
+        if (currentLang !== 'All' && d.lang !== currentLang) return false;
+        if (currentPos !== 'All' && getPosCategory(d) !== currentPos) return false;
+        if (currentLevel !== 'All' && d.level !== currentLevel) return false;
+        if (currentTag !== 'All' && !(Array.isArray(d.tags) && d.tags.includes(currentTag))) return false;
+        if (isNewOnly && (d.reviewStatus || '').toLowerCase() !== 'new') return false;
+        if (isBookmarkedOnly && !isBookmarkedItem(d)) return false;
+        if (isSrsDueOnly && !SrsService.isDue(d)) return false;
+        if (hideMastered && isMasteredItem(d)) return false;
 
-      let filtered = vocabData.filter(d => {
-        const langMatch = currentLang === 'All' || d.Language === currentLang;
-        const posMatch = currentPos === 'All' || getPosCategory(d) === currentPos;
-        const newMatch = !isNewOnly || (d['Review Status'] || '').toLowerCase() === 'new';
-        const itemKey = getItemKey(d);
-        const bookmarkMatch = !isBookmarkedOnly || bookmarks.has(itemKey);
-        const masteredMatch = !hideMastered || !mastered.has(itemKey);
-
-        const word = (d['Word/Phrase'] || '').toLowerCase();
-        const meaning = (d.Meaning || '').toLowerCase();
-        const colloc = (d['Collocation / Example'] || '').toLowerCase();
-        const searchMatch = !currentSearch || word.includes(currentSearch) || meaning.includes(currentSearch) || colloc.includes(currentSearch);
-        return langMatch && posMatch && newMatch && bookmarkMatch && masteredMatch && searchMatch;
+        if (currentSearch) {
+          const hay = `${d.word} ${d.meaning} ${d.example} ${d.posDetail} ${(d.tags || []).join(' ')}`.toLowerCase();
+          if (!hay.includes(currentSearch)) return false;
+        }
+        return true;
       });
 
-      if (isShuffled) {
-        filtered = [...filtered].sort(() => Math.sin(filtered.length) - 0.5);
-      }
+      filtered = applySortAndShuffle(filtered, shuffleOrderVocab, 'word');
 
       const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
       if (currentPage > totalPages) currentPage = totalPages;
@@ -825,26 +1905,27 @@
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = Math.min(startIndex + itemsPerPage, filtered.length);
       const pageItems = filtered.slice(startIndex, endIndex);
+      currentRenderedVocab = pageItems;
 
       updateStats(filtered.length, '단어', startIndex, endIndex, currentPage, totalPages);
       toggleEmpty(filtered.length === 0);
       renderPagination(totalPages);
 
-      pageItems.forEach(item => {
-        const isGerman = item.Language === 'German';
-        const wordText = item['Word/Phrase'] || '';
-        const itemKey = getItemKey(item);
-        const isBookmarked = bookmarks.has(itemKey);
-        const isMastered = mastered.has(itemKey);
-
-        const genderStyle = isGerman ? getGermanGenderStyle(wordText) : null;
+      const frag = document.createDocumentFragment();
+      pageItems.forEach((item) => {
+        const isGerman = item.lang === 'German';
+        const isBookmarked = isBookmarkedItem(item);
+        const isMastered = isMasteredItem(item);
+        const genderStyle = isGerman ? getGermanGenderStyle(item) : null;
         const borderClass = isGerman ? genderStyle.border : 'border-slate-200 dark:border-slate-700';
+        const pluralBadge = isGerman && item.plural ? ` · Pl. ${escapeHtml(item.plural)}` : '';
+        const srsRec = SrsService.getRecord(item);
+        const srsBadge = srsRec ? `<span class="text-[10px] px-1.5 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950 text-cyan-700 dark:text-cyan-300 border border-cyan-200 dark:border-cyan-800 font-semibold">Box ${srsRec.box}</span>` : '';
 
         if (vocabLayout === 'list') {
-          // 리스트형 레이아웃 렌더링
           const listCard = document.createElement('div');
+          listCard.dataset.itemId = item.id;
           listCard.className = `bg-white dark:bg-slate-800 border ${borderClass} rounded-xl p-3 shadow-sm hover:border-slate-400 dark:hover:border-slate-500 transition ${isMastered ? 'opacity-60 hover:opacity-100' : ''}`;
-
           listCard.innerHTML = `
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div class="flex items-center gap-2 flex-wrap min-w-0">
@@ -854,45 +1935,42 @@
                   </span>
                 ` : `
                   <span class="px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-[10px] sm:text-[11px] font-semibold shrink-0">
-                    🇬🇧 ${escapeHtml(item.Level || 'A2')}
+                    🇬🇧 ${escapeHtml(item.level || 'A2')}
                   </span>
                 `}
-                <span class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">${escapeHtml(wordText)}</span>
-                <span class="text-xs text-slate-400 font-normal">(${escapeHtml(item['Part of Speech / Gender'] || '')})</span>
-                ${item['Review Status'] === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold shrink-0">NEW</span>' : ''}
+                <span class="font-bold text-sm sm:text-base text-slate-900 dark:text-white">${escapeHtml(item.word)}</span>
+                <span class="text-xs text-slate-400 font-normal">(${escapeHtml(item.posDetail || item.pos)}${pluralBadge})</span>
+                ${item.reviewStatus === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold shrink-0">NEW</span>' : ''}
+                ${srsBadge}
               </div>
 
               <div class="flex items-center justify-between sm:justify-end gap-3 border-t sm:border-t-0 border-slate-100 dark:border-slate-700 pt-2 sm:pt-0">
-                <span class="text-sm font-bold text-indigo-600 dark:text-indigo-400 break-words">${escapeHtml(item.Meaning || '')}</span>
+                <span class="text-sm font-bold text-indigo-600 dark:text-indigo-400 break-words">${escapeHtml(item.meaning)}</span>
                 <div class="flex items-center space-x-1 shrink-0">
-                  <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">
-                    ✓
-                  </button>
-                  <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">
-                    ★
-                  </button>
-                  <button title="발음 듣기" onclick="speakText('${escapeJsParam(wordText)}', '${escapeJsParam(item.Language)}', event)" class="p-1 rounded-full text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
-                    🔊
-                  </button>
+                  <button data-action="toggle-mastered" data-id="${escapeHtml(item.id)}" title="암기 체크" aria-label="암기 체크"
+                    class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">✓</button>
+                  <button data-action="toggle-bookmark" data-id="${escapeHtml(item.id)}" title="북마크" aria-label="북마크"
+                    class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">★</button>
+                  <button data-action="speak-word" data-id="${escapeHtml(item.id)}" title="발음 듣기" aria-label="발음 듣기"
+                    class="p-1 rounded-full text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">🔊</button>
                 </div>
               </div>
             </div>
-            ${item['Collocation / Example'] ? `
+            ${item.example ? `
               <div class="mt-2 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-700 px-2.5 py-1.5 rounded-lg flex items-center justify-between gap-2">
-                <span>💡 ${escapeHtml(item['Collocation / Example'])}</span>
-                <button title="예문 발음 듣기" onclick="speakText('${escapeJsParam(item['Collocation / Example'])}', '${escapeJsParam(item.Language)}', event)" class="text-slate-400 hover:text-indigo-600 transition shrink-0">
-                  🔊
-                </button>
+                <span>💡 ${escapeHtml(item.example)}</span>
+                <button data-action="speak-example" data-id="${escapeHtml(item.id)}" title="예문 발음 듣기" aria-label="예문 발음 듣기"
+                  class="text-slate-400 hover:text-indigo-600 transition shrink-0">🔊</button>
               </div>
             ` : ''}
           `;
-          grid.appendChild(listCard);
+          frag.appendChild(listCard);
         } else {
-          // 카드형 레이아웃 렌더링
           const card = document.createElement('div');
-          card.className = `perspective h-52 cursor-pointer select-none ${isMastered ? 'opacity-60 hover:opacity-100 transition-opacity' : ''}`;
-          card.onclick = () => card.querySelector('.card-inner').classList.toggle('flipped');
-
+          card.dataset.itemId = item.id;
+          card.dataset.cardFlip = '1';
+          card.tabIndex = 0;
+          card.className = `perspective h-56 cursor-pointer select-none focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-xl ${isMastered ? 'opacity-60 hover:opacity-100 transition-opacity' : ''}`;
           card.innerHTML = `
             <div class="card-inner ${isAllFlipped ? 'flipped' : ''}">
               <!-- 앞면 -->
@@ -904,78 +1982,110 @@
                     </span>
                   ` : `
                     <span class="px-2 py-0.5 rounded-md border border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/60 text-blue-700 dark:text-blue-300 text-[10px] sm:text-[11px] font-semibold shrink-0">
-                      🇬🇧 ${escapeHtml(item.Level || 'A2')}
+                      🇬🇧 ${escapeHtml(item.level || 'A2')}
                     </span>
                   `}
                   <div class="flex items-center space-x-1 shrink-0">
-                    ${item['Review Status'] === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold">NEW</span>' : ''}
-                    <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">
-                      ✓
-                    </button>
-                    <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">
-                      ★
-                    </button>
-                    <button title="발음 듣기" onclick="speakText('${escapeJsParam(wordText)}', '${escapeJsParam(item.Language)}', event)" class="p-1 rounded-full text-slate-400 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">
-                      🔊
-                    </button>
+                    ${item.reviewStatus === 'New' ? '<span class="text-[10px] bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800 px-1.5 py-0.2 rounded font-bold">NEW</span>' : ''}
+                    <button data-action="toggle-mastered" data-id="${escapeHtml(item.id)}" title="암기 체크" aria-label="암기 체크"
+                      class="p-1 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition">✓</button>
+                    <button data-action="toggle-bookmark" data-id="${escapeHtml(item.id)}" title="북마크" aria-label="북마크"
+                      class="p-1 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition">★</button>
+                    <button data-action="speak-word" data-id="${escapeHtml(item.id)}" title="발음 듣기" aria-label="발음 듣기"
+                      class="p-1 rounded-full text-slate-400 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition">🔊</button>
                   </div>
                 </div>
 
                 <div class="my-auto py-1.5 flex flex-col justify-center">
-                  <div class="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight break-words leading-snug">${escapeHtml(wordText)}</div>
-                  <div class="text-[11px] text-slate-400 dark:text-slate-400 mt-0.5">${escapeHtml(item['Part of Speech / Gender'] || '')}</div>
+                  <div class="font-bold text-base sm:text-lg text-slate-900 dark:text-white tracking-tight break-words leading-snug">${escapeHtml(item.word)}</div>
+                  <div class="text-[11px] text-slate-400 dark:text-slate-400 mt-0.5">${escapeHtml(item.posDetail || item.pos)}${pluralBadge}</div>
                 </div>
 
-                <div class="text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 shrink-0">클릭하여 뜻 확인 👆</div>
+                <div class="flex items-center justify-between text-[10px] sm:text-[11px] text-slate-400 dark:text-slate-500 shrink-0">
+                  <span>클릭하여 뜻 확인 👆</span>
+                  ${srsBadge}
+                </div>
               </div>
 
               <!-- 뒷면 -->
               <div class="card-back bg-slate-900 dark:bg-slate-950 border border-slate-900 dark:border-slate-800 rounded-xl p-3.5 text-white shadow-sm">
                 <div class="flex justify-between items-center text-xs text-slate-400 shrink-0">
                   <span>한국어 의미</span>
-                  <span class="text-[10px] font-mono text-slate-500">${escapeHtml(item.Date || '')}</span>
+                  <span class="text-[10px] font-mono text-slate-500">${escapeHtml(item.date)}</span>
                 </div>
 
-                <div class="my-auto py-1.5 flex flex-col justify-center overflow-hidden">
-                  <div class="text-sm sm:text-base font-bold text-amber-300 dark:text-amber-400 break-words leading-snug">${escapeHtml(item.Meaning || '')}</div>
-                  ${item['Collocation / Example'] ? `
+                <div class="my-auto py-1 flex flex-col justify-center overflow-hidden">
+                  <div class="text-sm sm:text-base font-bold text-amber-300 dark:text-amber-400 break-words leading-snug">${escapeHtml(item.meaning)}</div>
+                  ${item.example ? `
                     <div class="mt-2 text-xs text-slate-200 dark:text-slate-300 bg-slate-800/90 dark:bg-slate-900 border border-slate-700 px-2.5 py-1.5 rounded-lg text-left flex items-start justify-between gap-1.5 max-w-full">
-                      <span class="break-words line-clamp-3 leading-relaxed">💡 ${escapeHtml(item['Collocation / Example'])}</span>
-                      <button title="예문 발음 듣기" onclick="speakText('${escapeJsParam(item['Collocation / Example'])}', '${escapeJsParam(item.Language)}', event)" class="text-slate-400 hover:text-amber-300 transition shrink-0 mt-0.5">
-                        🔊
-                      </button>
+                      <span class="break-words line-clamp-3 leading-relaxed">💡 ${escapeHtml(item.example)}</span>
+                      <button data-action="speak-example" data-id="${escapeHtml(item.id)}" title="예문 발음 듣기" aria-label="예문 발음 듣기"
+                        class="text-slate-400 hover:text-amber-300 transition shrink-0 mt-0.5">🔊</button>
                     </div>
                   ` : ''}
                 </div>
 
-                <div class="text-[10px] sm:text-[11px] text-slate-500 shrink-0">클릭하여 단어로 복귀</div>
+                <!-- 옵트인 SRS 복습 난이도 피드백 -->
+                <div class="flex items-center justify-between gap-1 shrink-0 pt-1">
+                  <div class="flex items-center gap-1">
+                    <button data-action="srs-rate" data-quality="again" data-id="${escapeHtml(item.id)}" title="1일 뒤 다시 복습"
+                      class="px-2 py-0.5 text-[10px] font-semibold rounded border border-slate-600 bg-slate-800 text-rose-300 hover:bg-slate-700">다시</button>
+                    <button data-action="srs-rate" data-quality="good" data-id="${escapeHtml(item.id)}" title="다음 SRS 단계로 이동"
+                      class="px-2 py-0.5 text-[10px] font-semibold rounded border border-slate-600 bg-slate-800 text-emerald-300 hover:bg-slate-700">보통</button>
+                    <button data-action="srs-rate" data-quality="easy" data-id="${escapeHtml(item.id)}" title="2단계 건너뛰기"
+                      class="px-2 py-0.5 text-[10px] font-semibold rounded border border-slate-600 bg-slate-800 text-sky-300 hover:bg-slate-700">쉬움</button>
+                  </div>
+                  <span class="text-[10px] text-slate-500">클릭 복귀</span>
+                </div>
               </div>
             </div>`;
-          grid.appendChild(card);
+          frag.appendChild(card);
         }
       });
+      grid.appendChild(frag);
     }
 
-    // 2. 문장 렌더링
+    function renderVocabChipsHtml(vocabIds) {
+      if (!Array.isArray(vocabIds) || vocabIds.length === 0) return '';
+      const chips = vocabIds
+        .map((vid) => vocabById.get(vid))
+        .filter(Boolean)
+        .map((v) => `
+          <button data-action="open-vocab-chip" data-id="${escapeHtml(v.id)}"
+            class="px-2 py-0.5 rounded-full text-[11px] font-semibold border border-indigo-200 dark:border-indigo-800 bg-indigo-50/70 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300 hover:bg-indigo-100 dark:hover:bg-indigo-900 transition">
+            🔗 ${escapeHtml(v.word)}
+          </button>
+        `)
+        .join('');
+      if (!chips) return '';
+      return `<div class="mt-2.5 flex items-center gap-1.5 flex-wrap">${chips}</div>`;
+    }
+
+    // 2. 문장 렌더링 (일반 목록 + 영↔독 병렬 비교 뷰)
     function renderSentences() {
       const list = document.getElementById('sentenceList');
       list.innerHTML = '';
 
-      let filtered = sentenceData.filter(d => {
-        const langMatch = currentLang === 'All' || d.Language === currentLang;
-        const itemKey = getItemKey(d);
-        const bookmarkMatch = !isBookmarkedOnly || bookmarks.has(itemKey);
-        const masteredMatch = !hideMastered || !mastered.has(itemKey);
+      let filtered = sentenceData.filter((d) => {
+        if (sentenceLayout !== 'parallel' && currentLang !== 'All' && d.lang !== currentLang) return false;
+        if (currentLevel !== 'All' && d.level !== currentLevel) return false;
+        if (currentTag !== 'All' && !(Array.isArray(d.tags) && d.tags.includes(currentTag)) && d.topic !== currentTag) return false;
+        if (isBookmarkedOnly && !isBookmarkedItem(d)) return false;
+        if (isSrsDueOnly && !SrsService.isDue(d)) return false;
+        if (hideMastered && isMasteredItem(d)) return false;
 
-        const text = (d.Sentence || '').toLowerCase();
-        const trans = (d.Translation || '').toLowerCase();
-        const points = (d['Key Points'] || '').toLowerCase();
-        const searchMatch = !currentSearch || text.includes(currentSearch) || trans.includes(currentSearch) || points.includes(currentSearch);
-        return langMatch && bookmarkMatch && masteredMatch && searchMatch;
+        if (currentSearch) {
+          const hay = `${d.sentence} ${d.translation} ${d.keyPoints} ${d.topic} ${(d.tags || []).join(' ')}`.toLowerCase();
+          if (!hay.includes(currentSearch)) return false;
+        }
+        return true;
       });
 
-      if (isShuffled) {
-        filtered = [...filtered].sort(() => Math.sin(filtered.length) - 0.5);
+      filtered = applySortAndShuffle(filtered, shuffleOrderSentence, 'sentence');
+
+      if (sentenceLayout === 'parallel') {
+        renderParallelSentences(list, filtered);
+        return;
       }
 
       const totalPages = Math.ceil(filtered.length / itemsPerPage) || 1;
@@ -985,40 +2095,41 @@
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = Math.min(startIndex + itemsPerPage, filtered.length);
       const pageItems = filtered.slice(startIndex, endIndex);
+      currentRenderedSentences = pageItems;
 
       updateStats(filtered.length, '문장', startIndex, endIndex, currentPage, totalPages);
       toggleEmpty(filtered.length === 0);
       renderPagination(totalPages);
 
+      const frag = document.createDocumentFragment();
       pageItems.forEach((item) => {
-        const isGerman = item.Language === 'German';
-        const sentenceText = item.Sentence || '';
-        const itemKey = getItemKey(item);
-        const isBookmarked = bookmarks.has(itemKey);
-        const isMastered = mastered.has(itemKey);
+        const isGerman = item.lang === 'German';
+        const isBookmarked = isBookmarkedItem(item);
+        const isMastered = isMasteredItem(item);
 
         const el = document.createElement('div');
+        el.dataset.itemId = item.id;
         el.className = `bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-3.5 sm:p-4 shadow-sm hover:border-slate-300 dark:hover:border-slate-600 transition ${isMastered ? 'opacity-60' : ''}`;
         el.innerHTML = `
           <div class="flex flex-wrap items-center justify-between gap-2 text-xs mb-2">
-            <span class="px-2 py-0.5 rounded-md ${isGerman ? 'bg-amber-50 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800' : 'bg-blue-50 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800'} font-semibold shrink-0">
-              ${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${escapeHtml(item.Level || '')}
-            </span>
-            <div class="flex items-center space-x-2 shrink-0">
-              <span class="text-slate-400 dark:text-slate-500 text-[11px] font-mono">${escapeHtml(item.Date || '')}</span>
-              <button title="암기 체크" onclick="toggleMastered('${escapeJsParam(itemKey)}', event)" class="p-1.5 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition min-w-[32px] min-h-[32px] flex items-center justify-center">
-                ✓
-              </button>
-              <button title="북마크" onclick="toggleBookmark('${escapeJsParam(itemKey)}', event)" class="p-1.5 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition min-w-[32px] min-h-[32px] flex items-center justify-center">
-                ★
-              </button>
-              <button title="문장 듣기" onclick="speakText('${escapeJsParam(sentenceText)}', '${escapeJsParam(item.Language)}', event)" class="p-1.5 rounded-full text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition min-w-[32px] min-h-[32px] flex items-center justify-center">
-                🔊
-              </button>
+            <div class="flex items-center gap-1.5 flex-wrap">
+              <span class="px-2 py-0.5 rounded-md ${isGerman ? 'bg-amber-50 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800' : 'bg-blue-50 dark:bg-blue-950 text-blue-800 dark:text-blue-300 border border-blue-200 dark:border-blue-800'} font-semibold shrink-0">
+                ${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${escapeHtml(item.level)}
+              </span>
+              ${item.topic ? `<span class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-[10px] font-semibold">#${escapeHtml(item.topic)}</span>` : ''}
+            </div>
+            <div class="flex items-center space-x-1.5 shrink-0">
+              <span class="text-slate-400 dark:text-slate-500 text-[11px] font-mono">${escapeHtml(item.date)}</span>
+              <button data-action="toggle-mastered" data-id="${escapeHtml(item.id)}" title="암기 체크" aria-label="암기 체크"
+                class="p-1.5 rounded-full ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'} transition min-w-[32px] min-h-[32px] flex items-center justify-center">✓</button>
+              <button data-action="toggle-bookmark" data-id="${escapeHtml(item.id)}" title="북마크" aria-label="북마크"
+                class="p-1.5 rounded-full ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'} transition min-w-[32px] min-h-[32px] flex items-center justify-center">★</button>
+              <button data-action="speak-sentence" data-id="${escapeHtml(item.id)}" title="문장 듣기" aria-label="문장 듣기"
+                class="p-1.5 rounded-full text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100 dark:hover:bg-slate-700 transition min-w-[32px] min-h-[32px] flex items-center justify-center">🔊</button>
             </div>
           </div>
 
-          <p class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-relaxed mb-3 break-words">"${escapeHtml(sentenceText)}"</p>
+          <p class="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-relaxed mb-3 break-words">"${escapeHtml(item.sentence)}"</p>
 
           <!-- 3초 인출 아코디언 토글 -->
           <details class="group border-t border-slate-100 dark:border-slate-700 pt-2">
@@ -1026,129 +2137,380 @@
               👉 한국어 해석 및 Key Point 보기
             </summary>
             <div class="mt-2.5 space-y-1.5">
-              <p class="text-sm font-medium text-slate-700 dark:text-slate-300">${escapeHtml(item.Translation || '')}</p>
-              ${item['Key Points'] ? `
+              <p class="text-sm font-medium text-slate-700 dark:text-slate-300">${escapeHtml(item.translation)}</p>
+              ${item.keyPoints ? `
                 <div class="text-xs bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-700 p-2.5 rounded-lg text-slate-600 dark:text-slate-400">
-                  <span class="font-bold text-slate-800 dark:text-slate-200">📌 Key Point:</span> ${escapeHtml(item['Key Points'])}
+                  <span class="font-bold text-slate-800 dark:text-slate-200">📌 Key Point:</span> ${escapeHtml(item.keyPoints)}
                 </div>
               ` : ''}
             </div>
           </details>
+          ${renderVocabChipsHtml(item.vocabIds)}
         `;
-        list.appendChild(el);
+        frag.appendChild(el);
       });
+      list.appendChild(frag);
     }
 
-    // 3. 퀴즈 모드
-    let quizType = 'vocab'; // 'vocab' 또는 'sentence'
+    function renderParallelSentences(list, filtered) {
+      // pairId 기준으로 EN / DE 병렬 그룹핑
+      const pairMap = new Map();
+      const orderedKeys = [];
+
+      filtered.forEach((item) => {
+        const key = item.pairId || `single-${item.id}`;
+        if (!pairMap.has(key)) {
+          pairMap.set(key, { key, date: item.date, topic: item.topic, en: null, de: null });
+          orderedKeys.push(key);
+        }
+        const entry = pairMap.get(key);
+        if (item.lang === 'English' && !entry.en) entry.en = item;
+        else if (item.lang === 'German' && !entry.de) entry.de = item;
+      });
+
+      const pairs = orderedKeys.map((k) => pairMap.get(k));
+      const totalPages = Math.ceil(pairs.length / itemsPerPage) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, pairs.length);
+      const pagePairs = pairs.slice(startIndex, endIndex);
+      currentRenderedSentences = pagePairs.flatMap((p) => [p.en, p.de].filter(Boolean));
+
+      updateStats(pairs.length, '병렬 세트', startIndex, endIndex, currentPage, totalPages);
+      toggleEmpty(pairs.length === 0);
+      renderPagination(totalPages);
+
+      const renderSideCard = (item, isGerman) => {
+        if (!item) {
+          return `<div class="p-3 rounded-xl border border-dashed border-slate-200 dark:border-slate-700 text-xs text-slate-400 flex items-center justify-center">짝 문장 없음</div>`;
+        }
+        const isBookmarked = isBookmarkedItem(item);
+        const isMastered = isMasteredItem(item);
+        return `
+          <div data-item-id="${escapeHtml(item.id)}" class="p-3 rounded-xl border ${isGerman ? 'border-amber-200/80 dark:border-amber-800/70 bg-amber-50/30 dark:bg-amber-950/20' : 'border-blue-200/80 dark:border-blue-800/70 bg-blue-50/30 dark:bg-blue-950/20'} flex flex-col justify-between gap-2 ${isMastered ? 'opacity-60' : ''}">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1.5 text-xs">
+                <span class="font-bold ${isGerman ? 'text-amber-800 dark:text-amber-300' : 'text-blue-800 dark:text-blue-300'}">${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${escapeHtml(item.level)}</span>
+                <div class="flex items-center gap-1">
+                  <button data-action="toggle-mastered" data-id="${escapeHtml(item.id)}" title="암기 체크" aria-label="암기 체크" class="p-1 ${isMastered ? 'text-emerald-500' : 'text-slate-300 dark:text-slate-600 hover:text-emerald-500'}">✓</button>
+                  <button data-action="toggle-bookmark" data-id="${escapeHtml(item.id)}" title="북마크" aria-label="북마크" class="p-1 ${isBookmarked ? 'text-amber-400' : 'text-slate-300 dark:text-slate-600 hover:text-amber-400'}">★</button>
+                  <button data-action="speak-sentence" data-id="${escapeHtml(item.id)}" title="문장 듣기" aria-label="문장 듣기" class="p-1 text-slate-400 hover:text-indigo-600">🔊</button>
+                </div>
+              </div>
+              <p class="text-sm font-bold text-slate-900 dark:text-white leading-relaxed break-words">"${escapeHtml(item.sentence)}"</p>
+            </div>
+            <details class="border-t border-slate-200/60 dark:border-slate-700 pt-1.5">
+              <summary class="text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold cursor-pointer select-none">해석 & Key Point</summary>
+              <div class="mt-1.5 space-y-1 text-xs">
+                <p class="text-slate-700 dark:text-slate-300">${escapeHtml(item.translation)}</p>
+                ${item.keyPoints ? `<p class="text-[11px] text-slate-500 dark:text-slate-400">📌 ${escapeHtml(item.keyPoints)}</p>` : ''}
+              </div>
+            </details>
+            ${renderVocabChipsHtml(item.vocabIds)}
+          </div>
+        `;
+      };
+
+      const frag = document.createDocumentFragment();
+      pagePairs.forEach((pair) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-3.5 shadow-sm space-y-2.5';
+        card.innerHTML = `
+          <div class="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-slate-700 dark:text-slate-200">🔄 영↔독 병렬 비교</span>
+              ${pair.topic ? `<span class="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-700 font-semibold">#${escapeHtml(pair.topic)}</span>` : ''}
+            </div>
+            <span class="font-mono">${escapeHtml(pair.date)}</span>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            ${renderSideCard(pair.en, false)}
+            ${renderSideCard(pair.de, true)}
+          </div>
+        `;
+        frag.appendChild(card);
+      });
+      list.appendChild(frag);
+    }
+
+    function openVocabPopover(vocabId) {
+      const v = vocabById.get(vocabId);
+      if (!v) return;
+      document.getElementById('wordPopoverTitle').innerText = v.word;
+      const isGerman = v.lang === 'German';
+      const pluralTxt = isGerman && v.plural ? ` · Pl. ${escapeHtml(v.plural)}` : '';
+      const body = document.getElementById('wordPopoverBody');
+      body.dataset.vocabId = v.id;
+      body.innerHTML = `
+        <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+          <span>${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${escapeHtml(v.level)} · ${escapeHtml(v.posDetail || v.pos)}${pluralTxt}</span>
+          <button data-popover-action="speak" class="px-2 py-1 rounded bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold">🔊 듣기</button>
+        </div>
+        <div class="text-base font-bold text-indigo-600 dark:text-indigo-400">${escapeHtml(v.meaning)}</div>
+        ${v.example ? `<div class="text-xs p-2.5 rounded-lg bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300">💡 ${escapeHtml(v.example)}</div>` : ''}
+        <div class="flex items-center gap-2 pt-2">
+          <button data-popover-action="bookmark"
+            class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-600 text-xs font-semibold">
+            ${isBookmarkedItem(v) ? '⭐ 즐겨찾기 해제' : '☆ 즐겨찾기 추가'}
+          </button>
+          <button data-popover-action="mastered"
+            class="px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-600 text-xs font-semibold">
+            ${isMasteredItem(v) ? '✅ 암기 완료 해제' : '✓ 암기 완료 체크'}
+          </button>
+        </div>
+      `;
+      openModal('wordPopoverModal');
+    }
+
+    // =========================================================================
+    // 11. Enhanced Quiz Engine (Vocab, Sentence, Cloze, German Article, Wrong Notes)
+    // =========================================================================
+    let quizType = 'vocab'; // 'vocab' | 'sentence' | 'cloze' | 'article'
     let quizQuestions = [];
     let currentQuizIndex = 0;
     let quizScore = 0;
+    let quizWrongItems = [];
 
     function setQuizType(type) {
       quizType = type;
-      const btnVocab = document.getElementById('quiz-type-vocab');
-      const btnSentence = document.getElementById('quiz-type-sentence');
-      const activeClass = 'px-3 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm transition';
-      const inactiveClass = 'px-3 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
+      const activeClass = 'px-2.5 py-1 text-xs font-bold rounded-md bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 shadow-sm transition';
+      const inactiveClass = 'px-2.5 py-1 text-xs font-semibold rounded-md text-slate-500 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition';
 
-      if (type === 'vocab') {
-        btnVocab.className = activeClass;
-        btnSentence.className = inactiveClass;
-      } else {
-        btnVocab.className = inactiveClass;
-        btnSentence.className = activeClass;
-      }
+      ['vocab', 'sentence', 'cloze', 'article'].forEach((t) => {
+        const btn = document.getElementById(`quiz-type-${t}`);
+        if (btn) btn.className = t === type ? activeClass : inactiveClass;
+      });
+
+      const dirSel = document.getElementById('quizDirectionSelect');
+      if (dirSel) dirSel.classList.toggle('hidden', type === 'cloze' || type === 'article');
+
       startQuiz();
     }
 
-    function startQuiz() {
-      const dataSet = quizType === 'vocab' ? vocabData : sentenceData;
-      const available = dataSet.filter(d => currentLang === 'All' || d.Language === currentLang);
-      const minRequired = 4;
-      const typeLabel = quizType === 'vocab' ? '단어' : '문장';
+    function handleQuizOptionChange() {
+      startQuiz();
+    }
 
-      if (available.length < minRequired) {
+    function filterQuizPool(items, lang, scope) {
+      return items.filter((d) => {
+        if (lang !== 'All' && d.lang !== lang) return false;
+        if (scope === 'unmastered' && isMasteredItem(d)) return false;
+        if (scope === 'bookmarked' && !isBookmarkedItem(d)) return false;
+        if (scope === 'new' && (d.reviewStatus || '').toLowerCase() !== 'new') return false;
+        if (scope === 'due' && !SrsService.isDue(d)) return false;
+        return true;
+      });
+    }
+
+    function startQuiz(customQuestions) {
+      if (Array.isArray(customQuestions) && customQuestions.length > 0) {
+        quizQuestions = customQuestions;
+        currentQuizIndex = 0;
+        quizScore = 0;
+        quizWrongItems = [];
+        renderQuizQuestion();
+        return;
+      }
+
+      const qLang = document.getElementById('quizLangSelect')?.value || currentLang;
+      const qScope = document.getElementById('quizScopeSelect')?.value || 'all';
+      const qDir = document.getElementById('quizDirectionSelect')?.value || 'forward';
+      const qCount = parseInt(document.getElementById('quizCountSelect')?.value || '10', 10) || 10;
+
+      let pool = [];
+      let distractorPool = [];
+
+      if (quizType === 'vocab') {
+        pool = filterQuizPool(vocabData, qLang, qScope).filter((v) => v.word && v.meaning);
+        distractorPool = vocabData.filter((v) => (qLang === 'All' || v.lang === qLang) && v.word && v.meaning);
+      } else if (quizType === 'sentence') {
+        pool = filterQuizPool(sentenceData, qLang, qScope).filter((s) => s.sentence && s.translation);
+        distractorPool = sentenceData.filter((s) => (qLang === 'All' || s.lang === qLang) && s.sentence && s.translation);
+      } else if (quizType === 'cloze') {
+        pool = filterQuizPool(sentenceData, qLang, qScope).filter((s) => s.sentence && s.cloze && s.sentence.toLowerCase().includes(s.cloze.toLowerCase()));
+        distractorPool = sentenceData.filter((s) => (qLang === 'All' || s.lang === qLang) && s.cloze);
+      } else if (quizType === 'article') {
+        pool = filterQuizPool(vocabData, 'German', qScope).filter((v) => ['der', 'die', 'das'].includes(detectGermanGender(v)));
+        distractorPool = pool;
+      }
+
+      const minRequired = quizType === 'article' ? 1 : 4;
+      if (pool.length < 1 || distractorPool.length < minRequired) {
         document.getElementById('quizContainer').innerHTML = `
-          <div class="text-center py-8 text-slate-500 dark:text-slate-400">
-            <p class="text-base">${typeLabel} 퀴즈를 진행하기 위한 데이터가 부족합니다 (최소 ${minRequired}개 필요).</p>
+          <div class="text-center py-8 text-slate-500 dark:text-slate-400 space-y-2">
+            <p class="text-sm font-semibold">선택한 조건에 맞는 퀴즈 데이터가 부족합니다 (최소 ${minRequired}개 필요).</p>
+            <p class="text-xs">상단에서 언어 또는 출제 범위를 '전체'로 변경해보세요.</p>
           </div>`;
         return;
       }
 
-      // 10문제 무작위 추출
-      const shuffled = [...available].sort(() => Math.random() - 0.5);
-      const questionCount = Math.min(10, shuffled.length);
+      const selected = fisherYatesShuffle(pool).slice(0, Math.min(qCount, pool.length));
 
-      quizQuestions = shuffled.slice(0, questionCount).map(item => {
-        const questionText = quizType === 'vocab' ? (item['Word/Phrase'] || '') : (item.Sentence || '');
-        const correctVal = quizType === 'vocab' ? (item.Meaning || '') : (item.Translation || '');
+      quizQuestions = selected.map((item) => {
+        if (quizType === 'article') {
+          const gender = detectGermanGender(item);
+          const bareNoun = item.word.replace(/^(der|die|das)\s+/i, '').trim();
+          const options = ['der', 'die', 'das'];
+          return {
+            item,
+            lang: 'German',
+            badge: '🇩🇪 관사 퀴즈',
+            questionText: `___ ${bareNoun}`,
+            subText: `${item.meaning}${item.plural ? ` · Pl. ${item.plural}` : ''}`,
+            speakText: item.word,
+            options,
+            correctIndex: options.indexOf(gender),
+          };
+        }
 
-        // 보기 4개 생성 (정답 1개 + 오답 3개)
-        const wrongOptions = available
-          .map(d => quizType === 'vocab' ? (d.Meaning || '') : (d.Translation || ''))
-          .filter(val => val && val !== correctVal)
-          .filter((val, idx, self) => self.indexOf(val) === idx)
-          .sort(() => Math.random() - 0.5)
-          .slice(0, 3);
+        if (quizType === 'cloze') {
+          const escapedCloze = item.cloze.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const blanked = item.sentence.replace(new RegExp(escapedCloze, 'i'), '________');
+          const wrongClozes = fisherYatesShuffle(
+            [...new Set(distractorPool.filter((d) => d.lang === item.lang && d.cloze && d.cloze.toLowerCase() !== item.cloze.toLowerCase()).map((d) => d.cloze))]
+          ).slice(0, 3);
+          const options = fisherYatesShuffle([item.cloze, ...wrongClozes]);
+          return {
+            item,
+            lang: item.lang,
+            badge: '🧩 빈칸(Cloze) 퀴즈',
+            questionText: blanked,
+            subText: item.translation,
+            speakText: item.sentence,
+            options,
+            correctIndex: options.indexOf(item.cloze),
+          };
+        }
 
-        const options = [correctVal, ...wrongOptions].sort(() => Math.random() - 0.5);
+        const isVocab = quizType === 'vocab';
+        const foreignText = isVocab ? item.word : item.sentence;
+        const koreanText = isVocab ? item.meaning : item.translation;
+        const isReverse = qDir === 'reverse';
+
+        const questionText = isReverse ? koreanText : foreignText;
+        const correctVal = isReverse ? foreignText : koreanText;
+
+        const wrongCandidates = [
+          ...new Set(
+            distractorPool
+              .filter((d) => d.lang === item.lang)
+              .map((d) => (isReverse ? (isVocab ? d.word : d.sentence) : (isVocab ? d.meaning : d.translation)))
+              .filter((val) => val && val !== correctVal)
+          ),
+        ];
+        const wrongOptions = fisherYatesShuffle(wrongCandidates).slice(0, 3);
+        const options = fisherYatesShuffle([correctVal, ...wrongOptions]);
+
         return {
-          item: item,
-          questionText: questionText,
-          options: options,
-          correctAnswer: correctVal
+          item,
+          lang: item.lang,
+          badge: isVocab ? '📖 단어 퀴즈' : '💬 문장 퀴즈',
+          questionText,
+          subText: `${item.lang === 'German' ? '🇩🇪 Deutsch' : '🇬🇧 English'} · ${item.posDetail || item.level || ''}`,
+          speakText: foreignText,
+          options,
+          correctIndex: options.indexOf(correctVal),
         };
       });
 
       currentQuizIndex = 0;
       quizScore = 0;
+      quizWrongItems = [];
       renderQuizQuestion();
+    }
+
+    function startWrongOnlyQuiz() {
+      if (quizWrongItems.length === 0) return;
+      const retryQuestions = quizWrongItems.map((q) => {
+        const correctVal = q.options[q.correctIndex];
+        const reshuffled = q.badge.includes('관사') ? ['der', 'die', 'das'] : fisherYatesShuffle(q.options);
+        return { ...q, options: reshuffled, correctIndex: reshuffled.indexOf(correctVal) };
+      });
+      startQuiz(retryQuestions);
     }
 
     function renderQuizQuestion() {
       const quizContainer = document.getElementById('quizContainer');
+
       if (currentQuizIndex >= quizQuestions.length) {
-        // 결과 화면
+        SrsService.logActivity('quiz');
+        const accuracy = quizQuestions.length > 0 ? Math.round((quizScore / quizQuestions.length) * 100) : 0;
+        const wrongSectionHtml = quizWrongItems.length > 0 ? `
+          <div class="mt-6 text-left border-t border-slate-100 dark:border-slate-700 pt-4 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-bold text-rose-600 dark:text-rose-400">📝 오답 노트 (${quizWrongItems.length}문항)</h3>
+              <button data-action="quiz-retry-wrong"
+                class="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold rounded-lg transition">
+                🔁 틀린 문제만 다시 풀기
+              </button>
+            </div>
+            <div class="space-y-2 max-h-64 overflow-y-auto">
+              ${quizWrongItems.map((wq, idx) => `
+                <div class="p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60 flex items-start justify-between gap-2 text-xs">
+                  <div class="space-y-0.5 min-w-0">
+                    <div class="font-bold text-slate-900 dark:text-white break-words">${escapeHtml(wq.questionText)}</div>
+                    <div class="text-emerald-700 dark:text-emerald-400 font-semibold">정답: ${escapeHtml(wq.options[wq.correctIndex])}</div>
+                  </div>
+                  <div class="flex items-center gap-1 shrink-0">
+                    <button data-action="quiz-speak-wrong" data-wrong-index="${idx}" title="발음 듣기" aria-label="발음 듣기"
+                      class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800">🔊</button>
+                    <button data-action="quiz-bookmark-wrong" data-wrong-index="${idx}" title="즐겨찾기 토글" aria-label="즐겨찾기 토글"
+                      class="p-1.5 rounded-lg border border-slate-200 dark:border-slate-600 bg-white dark:bg-slate-800 ${isBookmarkedItem(wq.item) ? 'text-amber-400' : 'text-slate-400'}">★</button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        ` : `<p class="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mb-4">모든 문항을 완벽하게 맞혔습니다! 🏆</p>`;
+
         quizContainer.innerHTML = `
-          <div class="text-center py-6">
-            <div class="text-4xl mb-3">🎉</div>
-            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-2">퀴즈 완료!</h2>
-            <p class="text-slate-600 dark:text-slate-300 text-sm mb-6">
-              총 ${quizQuestions.length}문항 중 <span class="font-bold text-indigo-600 dark:text-indigo-400 text-lg">${quizScore}</span>개 정답!
+          <div class="text-center py-4">
+            <div class="text-4xl mb-2">🎉</div>
+            <h2 class="text-xl font-bold text-slate-900 dark:text-white mb-1">퀴즈 완료!</h2>
+            <p class="text-slate-600 dark:text-slate-300 text-sm mb-4">
+              총 ${quizQuestions.length}문항 중 <span class="font-bold text-indigo-600 dark:text-indigo-400 text-lg">${quizScore}</span>개 정답 (${accuracy}%)
             </p>
-            <button onclick="startQuiz()" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-md transition">
-              다시 도전하기
-            </button>
+            <div class="flex items-center justify-center gap-2">
+              <button data-action="quiz-restart" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-md transition">
+                다시 도전하기
+              </button>
+            </div>
+            ${wrongSectionHtml}
           </div>
         `;
         return;
       }
 
       const q = quizQuestions[currentQuizIndex];
-      const isGerman = q.item.Language === 'German';
-      const typeLabel = quizType === 'vocab' ? '단어' : '문장';
+      const progressPct = Math.round(((currentQuizIndex) / quizQuestions.length) * 100);
 
       quizContainer.innerHTML = `
-        <div class="flex justify-between items-center text-xs mb-4">
+        <div class="flex justify-between items-center text-xs mb-2">
           <span class="text-slate-500 dark:text-slate-400 font-semibold">
-            <span class="bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 px-2 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 mr-1.5">${typeLabel} 퀴즈</span>
+            <span class="bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 px-2 py-0.5 rounded border border-indigo-200 dark:border-indigo-800 mr-1.5">${escapeHtml(q.badge)}</span>
             문제 ${currentQuizIndex + 1} / ${quizQuestions.length}
           </span>
           <span class="text-slate-500 dark:text-slate-400 font-mono font-medium">현재 점수: <strong class="text-indigo-600 dark:text-indigo-400">${quizScore}</strong></span>
         </div>
 
-        <div class="bg-slate-50 dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-700 text-center mb-5 shadow-inner">
-          <div class="flex justify-center items-center gap-2 mb-1">
-            <span class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-relaxed break-words">${escapeHtml(q.questionText)}</span>
-            <button onclick="speakText('${escapeJsParam(q.questionText)}', '${escapeJsParam(q.item.Language)}', event)" class="text-slate-400 hover:text-indigo-600 transition shrink-0">🔊</button>
+        <!-- 진행률 바 -->
+        <div class="w-full h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden mb-4 border border-slate-200/60 dark:border-slate-600">
+          <div class="h-full bg-indigo-600 eink-solid transition-all duration-300" style="width: ${progressPct}%"></div>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-900 p-5 sm:p-6 rounded-xl border border-slate-200 dark:border-slate-700 text-center mb-5 shadow-inner">
+          <div class="flex justify-center items-center gap-2 mb-1.5">
+            <span class="text-base sm:text-xl font-bold text-slate-900 dark:text-white leading-relaxed break-words">${escapeHtml(q.questionText)}</span>
+            <button data-action="quiz-speak" title="발음 듣기 (단축키 S)" aria-label="발음 듣기" class="text-slate-400 hover:text-indigo-600 transition shrink-0">🔊</button>
           </div>
-          <span class="text-xs text-slate-400 font-medium">${isGerman ? '🇩🇪 Deutsch' : '🇬🇧 English'} ${escapeHtml(q.item['Part of Speech / Gender'] || q.item.Level || '')}</span>
+          <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">${escapeHtml(q.subText || '')}</span>
         </div>
 
         <div class="grid grid-cols-1 gap-3 mb-4" id="quizOptions">
           ${q.options.map((opt, idx) => `
-            <button data-opt="${escapeHtml(opt)}" onclick="checkQuizAnswer(this, '${escapeJsParam(opt)}', '${escapeJsParam(q.correctAnswer)}')"
+            <button data-action="quiz-option" data-option-index="${idx}"
               class="quiz-opt-btn p-3.5 sm:p-4 text-left text-xs sm:text-sm font-medium border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-700 disabled:opacity-100 disabled:cursor-default transition min-h-[50px] break-words flex items-center justify-between group">
               <div class="flex items-center gap-2.5 flex-1 pr-2">
                 <span class="opt-num inline-flex items-center justify-center w-6 h-6 bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400 font-mono text-xs font-bold rounded-md shrink-0 transition">${idx + 1}</span>
@@ -1160,10 +2522,10 @@
         </div>
 
         <!-- 정답 / 오답 피드백 영역 -->
-        <div id="quizFeedback" class="hidden mb-5 p-3.5 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between gap-3 transition-all">
+        <div id="quizFeedback" class="hidden mb-2 p-3.5 rounded-xl text-xs sm:text-sm font-medium flex items-center justify-between gap-3 transition-all">
           <div id="quizFeedbackText" class="flex items-center gap-2"></div>
           <div id="quizNextArea" class="shrink-0">
-            <button onclick="nextQuizQuestion()" class="px-4 py-2 bg-slate-900 dark:bg-slate-100 hover:opacity-90 text-white dark:text-slate-900 text-xs font-bold rounded-lg shadow transition">
+            <button data-action="quiz-next" class="px-4 py-2 bg-slate-900 dark:bg-slate-100 hover:opacity-90 text-white dark:text-slate-900 text-xs font-bold rounded-lg shadow transition">
               다음 문제 👉
             </button>
           </div>
@@ -1171,48 +2533,51 @@
       `;
     }
 
-    function checkQuizAnswer(btn, selected, correct) {
-      const allBtns = document.querySelectorAll('.quiz-opt-btn');
-      allBtns.forEach(b => b.disabled = true);
+    function checkQuizAnswer(btn, selectedIndex) {
+      const q = quizQuestions[currentQuizIndex];
+      if (!q) return;
 
-      const isCorrect = (selected === correct);
+      const allBtns = document.querySelectorAll('.quiz-opt-btn');
+      allBtns.forEach((b) => (b.disabled = true));
+
+      const isCorrect = selectedIndex === q.correctIndex;
+      const correctText = q.options[q.correctIndex];
       const feedbackEl = document.getElementById('quizFeedback');
       const feedbackTextEl = document.getElementById('quizFeedbackText');
 
       if (isCorrect) {
         quizScore++;
-        btn.className = 'quiz-opt-btn p-3.5 sm:p-4 text-left text-xs sm:text-sm font-semibold border-2 border-emerald-600 bg-emerald-600 text-white rounded-xl shadow-md disabled:opacity-100 disabled:cursor-default transition min-h-[50px] break-words flex items-center justify-between';
+        if (q.item) SrsService.recordReview(q.item, 'good');
 
+        btn.className = 'quiz-opt-btn p-3.5 sm:p-4 text-left text-xs sm:text-sm font-semibold border-2 border-emerald-600 bg-emerald-600 text-white rounded-xl shadow-md disabled:opacity-100 disabled:cursor-default transition min-h-[50px] break-words flex items-center justify-between';
         const numSpan = btn.querySelector('.opt-num');
         if (numSpan) numSpan.className = 'opt-num inline-flex items-center justify-center w-6 h-6 bg-emerald-800 text-white font-mono text-xs font-bold rounded-md shrink-0';
-
         const badge = btn.querySelector('.opt-badge');
         if (badge) {
           badge.innerText = '✅ 정답';
           badge.className = 'opt-badge text-xs font-bold shrink-0 px-2.5 py-1 rounded-md bg-emerald-800 text-white';
         }
-
-        feedbackEl.className = 'mb-5 p-3.5 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 flex items-center justify-between gap-3';
+        feedbackEl.className = 'mb-2 p-3.5 rounded-xl text-xs sm:text-sm font-semibold bg-emerald-50 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-200 border border-emerald-200 dark:border-emerald-800 flex items-center justify-between gap-3';
         feedbackTextEl.innerHTML = `<span class="text-base sm:text-lg">🎉</span> <span><strong>정답입니다!</strong> 훌륭해요!</span>`;
       } else {
-        btn.className = 'quiz-opt-btn p-3.5 sm:p-4 text-left text-xs sm:text-sm font-semibold border-2 border-rose-600 bg-rose-600 text-white rounded-xl shadow-md disabled:opacity-100 disabled:cursor-default transition min-h-[50px] break-words flex items-center justify-between';
+        quizWrongItems.push(q);
+        if (q.item) SrsService.recordReview(q.item, 'again');
 
+        btn.className = 'quiz-opt-btn p-3.5 sm:p-4 text-left text-xs sm:text-sm font-semibold border-2 border-rose-600 bg-rose-600 text-white rounded-xl shadow-md disabled:opacity-100 disabled:cursor-default transition min-h-[50px] break-words flex items-center justify-between';
         const wrongNumSpan = btn.querySelector('.opt-num');
         if (wrongNumSpan) wrongNumSpan.className = 'opt-num inline-flex items-center justify-center w-6 h-6 bg-rose-800 text-white font-mono text-xs font-bold rounded-md shrink-0';
-
         const wrongBadge = btn.querySelector('.opt-badge');
         if (wrongBadge) {
           wrongBadge.innerText = '❌ 내가 선택한 오답';
           wrongBadge.className = 'opt-badge text-xs font-bold shrink-0 px-2.5 py-1 rounded-md bg-rose-800 text-white';
         }
 
-        allBtns.forEach(b => {
-          if (b.getAttribute('data-opt') === correct) {
+        allBtns.forEach((b) => {
+          const bIdx = parseInt(b.dataset.optionIndex, 10);
+          if (bIdx === q.correctIndex) {
             b.className = 'quiz-opt-btn p-3.5 sm:p-4 text-left text-xs sm:text-sm font-bold border-2 border-emerald-500 bg-emerald-50 dark:bg-emerald-950 text-emerald-900 dark:text-emerald-100 rounded-xl shadow-md disabled:opacity-100 disabled:cursor-default transition min-h-[50px] break-words flex items-center justify-between';
-
             const rightNumSpan = b.querySelector('.opt-num');
             if (rightNumSpan) rightNumSpan.className = 'opt-num inline-flex items-center justify-center w-6 h-6 bg-emerald-200 dark:bg-emerald-800 text-emerald-900 dark:text-emerald-100 font-mono text-xs font-bold rounded-md shrink-0';
-
             const rightBadge = b.querySelector('.opt-badge');
             if (rightBadge) {
               rightBadge.innerText = '✅ 올바른 정답';
@@ -1223,8 +2588,8 @@
           }
         });
 
-        feedbackEl.className = 'mb-5 p-3.5 rounded-xl text-xs sm:text-sm font-semibold bg-rose-50 dark:bg-rose-950/80 text-rose-800 dark:text-rose-200 border border-rose-200 dark:border-rose-800 flex items-center justify-between gap-3';
-        feedbackTextEl.innerHTML = `<span class="text-base sm:text-lg">💡</span> <span><strong>오답입니다!</strong> 정답: <span class="underline decoration-2 font-bold">${escapeHtml(correct)}</span></span>`;
+        feedbackEl.className = 'mb-2 p-3.5 rounded-xl text-xs sm:text-sm font-semibold bg-rose-50 dark:bg-rose-950/80 text-rose-800 dark:text-rose-200 border border-rose-200 dark:border-rose-800 flex items-center justify-between gap-3';
+        feedbackTextEl.innerHTML = `<span class="text-base sm:text-lg">💡</span> <span><strong>오답입니다!</strong> 정답: <span class="underline decoration-2 font-bold">${escapeHtml(correctText)}</span></span>`;
       }
 
       feedbackEl.classList.remove('hidden');
@@ -1235,12 +2600,433 @@
       renderQuizQuestion();
     }
 
+    // =========================================================================
+    // 12. Modals: Stats Dashboard, Quick Import (Track 2), Settings & Backup
+    // =========================================================================
+    function openModal(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.classList.remove('hidden');
+      if (id === 'statsModal') renderStatsModal();
+      if (id === 'settingsModal') renderSettingsModal();
+    }
+
+    function closeModal(id) {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('hidden');
+    }
+
+    function closeModalOnBackdrop(event, id) {
+      if (event.target.id === id) closeModal(id);
+    }
+
+    function renderStatsModal() {
+      const body = document.getElementById('statsModalBody');
+      const totalV = vocabData.length;
+      const masteredV = vocabData.filter(isMasteredItem).length;
+      const bookmarkedV = vocabData.filter(isBookmarkedItem).length;
+      const dueV = SrsService.getDueCount(vocabData);
+      const totalS = sentenceData.length;
+      const masteredS = sentenceData.filter(isMasteredItem).length;
+      const streak = SrsService.getStreak();
+
+      const langs = ['English', 'German'];
+      const langBars = langs.map((lang) => {
+        const items = vocabData.filter((v) => v.lang === lang);
+        const done = items.filter(isMasteredItem).length;
+        const pct = items.length ? Math.round((done / items.length) * 100) : 0;
+        return `
+          <div class="space-y-1">
+            <div class="flex justify-between font-semibold">
+              <span>${lang === 'German' ? '🇩🇪 Deutsch' : '🇬🇧 English'}</span>
+              <span>${done} / ${items.length} (${pct}%)</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-700 overflow-hidden border border-slate-200 dark:border-slate-600">
+              <div class="h-full bg-indigo-600 eink-solid" style="width:${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      body.innerHTML = `
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-center">
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+            <div class="text-lg font-extrabold text-indigo-600 dark:text-indigo-400">${streak}일</div>
+            <div class="text-[11px] text-slate-500">연속 학습</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+            <div class="text-lg font-extrabold text-emerald-600 dark:text-emerald-400">${masteredV}/${totalV}</div>
+            <div class="text-[11px] text-slate-500">단어 암기</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+            <div class="text-lg font-extrabold text-amber-500">${bookmarkedV}</div>
+            <div class="text-[11px] text-slate-500">즐겨찾기</div>
+          </div>
+          <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700">
+            <div class="text-lg font-extrabold text-cyan-600 dark:text-cyan-400">${dueV}</div>
+            <div class="text-[11px] text-slate-500">오늘 SRS 복습</div>
+          </div>
+        </div>
+        <div class="space-y-3">
+          <h3 class="font-bold text-slate-800 dark:text-slate-200">언어별 단어 암기율</h3>
+          ${langBars}
+        </div>
+        <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 flex justify-between">
+          <span class="font-semibold">학습 문장 암기 현황</span>
+          <span class="font-bold">${masteredS} / ${totalS} 문장</span>
+        </div>
+      `;
+    }
+
+    function renderSettingsModal() {
+      const rateSel = document.getElementById('ttsRateSelect');
+      if (rateSel) rateSel.value = String(ttsRate);
+
+      const srcInfo = document.getElementById('dataSourceInfo');
+      if (srcInfo) {
+        srcInfo.innerText = `현재 활성 소스: ${activeDataSource === 'github' ? 'GitHub Repo JSON (./data/*.json)' : 'Google Sheets (GViz 폴백)'} · 단어 ${vocabData.length}개 / 문장 ${sentenceData.length}개`;
+      }
+
+      const gh = safeJsonParse(localStorage.getItem('vh_ghConfig'), {});
+      document.getElementById('ghOwnerInput').value = gh.owner || Config.DEFAULT_GH_OWNER;
+      document.getElementById('ghRepoInput').value = gh.repo || Config.DEFAULT_GH_REPO;
+      document.getElementById('ghBranchInput').value = gh.branch || Config.DEFAULT_GH_BRANCH;
+      document.getElementById('ghTokenInput').value = gh.token || '';
+      document.getElementById('ghConfigStatus').innerText = gh.token ? '✓ 토큰 저장됨' : '';
+    }
+
+    function handleTtsRateChange(val) {
+      ttsRate = parseFloat(val) || 0.9;
+      localStorage.setItem('vh_ttsRate', String(ttsRate));
+    }
+
+    function saveGitHubConfig() {
+      const cfg = {
+        owner: document.getElementById('ghOwnerInput').value.trim() || Config.DEFAULT_GH_OWNER,
+        repo: document.getElementById('ghRepoInput').value.trim() || Config.DEFAULT_GH_REPO,
+        branch: document.getElementById('ghBranchInput').value.trim() || Config.DEFAULT_GH_BRANCH,
+        token: document.getElementById('ghTokenInput').value.trim(),
+      };
+      localStorage.setItem('vh_ghConfig', JSON.stringify(cfg));
+      document.getElementById('ghConfigStatus').innerText = '✓ 저장 완료';
+    }
+
+    function clearGitHubConfig() {
+      localStorage.removeItem('vh_ghConfig');
+      document.getElementById('ghTokenInput').value = '';
+      document.getElementById('ghConfigStatus').innerText = '삭제됨';
+    }
+
+    // Track 2: Gemini 프롬프트 1클릭 복사
+    async function copyGeminiPrompt() {
+      const today = getTodayDateStr();
+      const compactDate = today.replace(/-/g, '');
+      const enWords = vocabData.filter((v) => v.lang === 'English').slice(0, 150).map((v) => v.word).join(', ');
+      const deWords = vocabData.filter((v) => v.lang === 'German').slice(0, 150).map((v) => v.word).join(', ');
+
+      const prompt = `당신은 영어(A2-B1)와 독일어(B1-B2)를 함께 학습하는 한국인 개발자를 위한 어학 콘텐츠 생성기입니다.
+오늘 날짜(${today})의 새 학습 세트를 단일 JSON 코드 블록으로만 생성하세요.
+
+[생성 규칙]
+1. 5개의 실용적 상황(개발/업무 2, 일상 2, 취미/자전거/건강 1)을 선정해 pairs 배열에 담으세요.
+2. 각 pair는 동일한 상황/의미를 자연스러운 영어(A2-B1)와 독일어(B1-B2) 문장으로 1:1 병렬 작성하세요.
+3. pairId는 "${compactDate}-01" 형식, topic은 영문 소문자 태그(dev, work, daily, cycling, health 등)로 작성하세요.
+4. 각 pair마다 핵심 단어 2~4개를 vocab 배열로 추출하세요.
+5. 독일어 명사는 관사 포함 원형(예: "die Prüfung"), gender("der"|"die"|"das"), 복수형(plural)을 기입하고 명사가 아니면 null로 두세요.
+6. pos는 noun | verb | adj | adv | phrase | other 중 하나만 사용하세요.
+7. cloze는 해당 sentence 원문에 정확히 등장하는 핵심 표현 1개를 그대로 적으세요.
+8. 아래 기존 학습 단어와 중복되지 않도록 생성하세요:
+- 영어: ${enWords}
+- 독일어: ${deWords}
+
+[JSON 출력 형식]
+{"schemaVersion":1,"date":"${today}","pairs":[{"pairId":"${compactDate}-01","topic":"dev","en":{"level":"A2-B1","sentence":"...","translation":"...","cloze":"...","keyPoints":"..."},"de":{"level":"B1-B2","sentence":"...","translation":"...","cloze":"...","keyPoints":"..."},"vocab":[{"id":"en-example","lang":"English","level":"B1","word":"...","pos":"verb","gender":null,"plural":null,"meaning":"...","example":"...","tags":["dev"]}]}]}`;
+
+      try {
+        await navigator.clipboard.writeText(prompt);
+        const btn = document.getElementById('btnCopyPrompt');
+        const orig = btn.innerText;
+        btn.innerText = '✅ 프롬프트 복사 완료!';
+        setTimeout(() => (btn.innerText = orig), 2000);
+      } catch (_) {
+        document.getElementById('importJsonInput').value = prompt;
+        alert('클립보드 자동 복사가 차단되어 입력창에 프롬프트를 표시했습니다.');
+      }
+    }
+
+    function slugifyClient(lang, text, prefix = '') {
+      const lp = lang === 'German' ? 'de' : 'en';
+      const slug = String(text || '')
+        .toLowerCase()
+        .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+        .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48);
+      return [prefix, lp, slug || 'item'].filter(Boolean).join('-');
+    }
+
+    function previewImportJson() {
+      const raw = document.getElementById('importJsonInput').value.trim();
+      const previewEl = document.getElementById('importPreviewArea');
+      const btnLocal = document.getElementById('btnImportLocal');
+      const btnGh = document.getElementById('btnImportGitHub');
+      previewEl.classList.remove('hidden');
+
+      // 마크다운 ```json ... ``` 코드 펜스 자동 제거
+      const cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/i, '').trim();
+      let parsed;
+      try {
+        parsed = JSON.parse(cleaned);
+      } catch (err) {
+        pendingImportBatch = null;
+        btnLocal.disabled = true;
+        btnGh.disabled = true;
+        previewEl.innerHTML = `<div class="text-rose-600 dark:text-rose-400 font-bold">❌ JSON 구문 오류: ${escapeHtml(err.message)}</div>`;
+        return;
+      }
+
+      if (!parsed || !Array.isArray(parsed.pairs) || parsed.pairs.length === 0) {
+        pendingImportBatch = null;
+        btnLocal.disabled = true;
+        btnGh.disabled = true;
+        previewEl.innerHTML = `<div class="text-rose-600 dark:text-rose-400 font-bold">❌ <code>pairs</code> 배열이 비어 있거나 올바르지 않습니다.</div>`;
+        return;
+      }
+
+      const date = parsed.date || getTodayDateStr();
+      const existingVKeys = new Set(vocabData.map((v) => `${v.lang}::${v.word.toLowerCase()}`));
+      const existingSKeys = new Set(sentenceData.map((s) => `${s.lang}::${s.sentence.toLowerCase()}`));
+      const usedVIds = new Set(vocabData.map((v) => v.id));
+      const usedSIds = new Set(sentenceData.map((s) => s.id));
+
+      const uniqueId = (base, set) => {
+        let id = base;
+        let n = 2;
+        while (set.has(id)) { id = `${base}-${n++}`; }
+        set.add(id);
+        return id;
+      };
+
+      const newVocab = [];
+      const newSentences = [];
+      let dupVocab = 0;
+      let dupSent = 0;
+
+      parsed.pairs.forEach((pair, pIdx) => {
+        const pairId = pair.pairId || `${date.replace(/-/g, '')}-${String(pIdx + 1).padStart(2, '0')}`;
+        const topic = String(pair.topic || 'daily').toLowerCase();
+        const linkedIds = { English: [], German: [] };
+
+        (pair.vocab || []).forEach((v) => {
+          const lang = v.lang === 'German' ? 'German' : 'English';
+          const word = String(v.word || '').trim();
+          const meaning = String(v.meaning || '').trim();
+          if (!word || !meaning) return;
+          const dk = `${lang}::${word.toLowerCase()}`;
+          if (existingVKeys.has(dk)) { dupVocab++; return; }
+          existingVKeys.add(dk);
+          const id = uniqueId(v.id || slugifyClient(lang, word), usedVIds);
+          const norm = normalizeVocabItem({ ...v, id, lang, word, meaning, date, pairId, tags: v.tags || [topic], reviewStatus: 'New' }, newVocab.length);
+          newVocab.push(norm);
+          linkedIds[lang].push(id);
+        });
+
+        [['en', 'English'], ['de', 'German']].forEach(([key, lang]) => {
+          const side = pair[key];
+          if (!side || !side.sentence || !side.translation) return;
+          const sk = `${lang}::${side.sentence.trim().toLowerCase()}`;
+          if (existingSKeys.has(sk)) { dupSent++; return; }
+          existingSKeys.add(sk);
+          const id = uniqueId(slugifyClient(lang, `${pairId}-${side.sentence.slice(0, 24)}`, 's'), usedSIds);
+          newSentences.push(normalizeSentenceItem({
+            id,
+            pairId,
+            lang,
+            level: side.level || (lang === 'German' ? 'B1-B2' : 'A2-B1'),
+            topic,
+            tags: [topic],
+            sentence: side.sentence.trim(),
+            translation: side.translation.trim(),
+            cloze: side.cloze || null,
+            keyPoints: side.keyPoints || '',
+            vocabIds: linkedIds[lang],
+            date,
+          }, newSentences.length));
+        });
+      });
+
+      pendingImportBatch = { newVocab, newSentences, date };
+      btnLocal.disabled = newVocab.length === 0 && newSentences.length === 0;
+      btnGh.disabled = btnLocal.disabled;
+
+      previewEl.innerHTML = `
+        <div class="font-bold text-emerald-700 dark:text-emerald-400">
+          ✅ 검증 통과! 신규 단어 ${newVocab.length}개 (중복 제외 ${dupVocab}개) · 신규 문장 ${newSentences.length}개 (중복 제외 ${dupSent}개)
+        </div>
+        <div class="text-[11px] text-slate-600 dark:text-slate-300 space-y-1 max-h-40 overflow-y-auto">
+          ${newVocab.slice(0, 12).map((v) => `<div>• [${v.lang}] <strong>${escapeHtml(v.word)}</strong> — ${escapeHtml(v.meaning)}</div>`).join('')}
+          ${newVocab.length > 12 ? `<div>... 외 ${newVocab.length - 12}개 단어</div>` : ''}
+        </div>
+      `;
+    }
+
+    function applyImportLocal() {
+      if (!pendingImportBatch) return;
+      vocabData = [...pendingImportBatch.newVocab, ...vocabData];
+      sentenceData = [...pendingImportBatch.newSentences, ...sentenceData];
+      rebuildVocabIndex();
+      populateDynamicFilters();
+      lastSyncTime = new Date().toLocaleString('ko-KR');
+      saveToCache();
+      render();
+
+      downloadJsonFile(`vocab-${pendingImportBatch.date}.json`, vocabData);
+      document.getElementById('importPreviewArea').innerHTML += `<div class="text-indigo-600 dark:text-indigo-400 font-bold mt-2">⚡ 현재 세션에 반영되었고 병합된 vocab JSON을 다운로드했습니다.</div>`;
+    }
+
+    async function commitFileToGitHub(cfg, path, contentObj, message) {
+      const apiBase = `https://api.github.com/repos/${encodeURIComponent(cfg.owner)}/${encodeURIComponent(cfg.repo)}/contents/${path}`;
+      const headers = {
+        Authorization: `Bearer ${cfg.token}`,
+        Accept: 'application/vnd.github+json',
+        'Content-Type': 'application/json',
+      };
+      let sha;
+      const getRes = await fetch(`${apiBase}?ref=${encodeURIComponent(cfg.branch)}`, { headers });
+      if (getRes.ok) {
+        const meta = await getRes.json();
+        sha = meta.sha;
+      }
+      const jsonStr = JSON.stringify(contentObj, null, 2) + '\n';
+      const bytes = new TextEncoder().encode(jsonStr);
+      let bin = '';
+      bytes.forEach((b) => (bin += String.fromCharCode(b)));
+      const b64 = btoa(bin);
+
+      const putRes = await fetch(apiBase, {
+        method: 'PUT',
+        headers,
+        body: JSON.stringify({ message, content: b64, branch: cfg.branch, ...(sha ? { sha } : {}) }),
+      });
+      if (!putRes.ok) {
+        const err = await putRes.text();
+        throw new Error(`GitHub API ${putRes.status}: ${err.slice(0, 200)}`);
+      }
+    }
+
+    async function commitImportToGitHub() {
+      if (!pendingImportBatch) return;
+      const cfg = safeJsonParse(localStorage.getItem('vh_ghConfig'), {});
+      if (!cfg.token) {
+        alert('⚙️ 설정 모달에서 GitHub Fine-grained PAT를 먼저 등록해주세요.');
+        openModal('settingsModal');
+        return;
+      }
+      const previewEl = document.getElementById('importPreviewArea');
+      const btnGh = document.getElementById('btnImportGitHub');
+      btnGh.disabled = true;
+      previewEl.innerHTML += `<div class="text-indigo-600 font-semibold mt-2">🚀 GitHub 레포에 커밋 중...</div>`;
+
+      try {
+        const mergedVocab = [...pendingImportBatch.newVocab, ...vocabData];
+        const mergedSentences = [...pendingImportBatch.newSentences, ...sentenceData];
+        const msg = `chore(data): import Gemini batch (${pendingImportBatch.date})`;
+
+        await commitFileToGitHub(cfg, 'data/vocab.json', mergedVocab, msg);
+        await commitFileToGitHub(cfg, 'data/sentences.json', mergedSentences, msg);
+
+        vocabData = mergedVocab;
+        sentenceData = mergedSentences;
+        rebuildVocabIndex();
+        populateDynamicFilters();
+        lastSyncTime = new Date().toLocaleString('ko-KR');
+        saveToCache();
+        render();
+
+        previewEl.innerHTML += `<div class="text-emerald-600 dark:text-emerald-400 font-bold mt-1">✅ GitHub 레포 커밋 완료! 곧 GitHub Pages에 자동 반영됩니다.</div>`;
+      } catch (err) {
+        previewEl.innerHTML += `<div class="text-rose-600 dark:text-rose-400 font-bold mt-1">❌ 커밋 실패: ${escapeHtml(err.message)}</div>`;
+      } finally {
+        btnGh.disabled = false;
+      }
+    }
+
+    function downloadJsonFile(filename, data) {
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function exportStudyProgress() {
+      const payload = {
+        schemaVersion: 1,
+        exportedAt: new Date().toISOString(),
+        bookmarks: Array.from(bookmarks),
+        mastered: Array.from(mastered),
+        srs: srsData,
+        studyLog,
+        preferences: {
+          darkMode: isDarkMode,
+          eInkMode: isEInkMode,
+          vocabLayout,
+          sentenceLayout,
+          ttsRate,
+          pageSize: itemsPerPage,
+        },
+      };
+      downloadJsonFile(`langhub-progress-${getTodayDateStr()}.json`, payload);
+      document.getElementById('backupStatus').innerText = '✅ 백업 JSON 파일이 다운로드되었습니다.';
+    }
+
+    function importStudyProgressFile(event, mode) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          if (!data || !Array.isArray(data.bookmarks) || !Array.isArray(data.mastered)) {
+            throw new Error('올바른 Language Hub 백업 파일이 아닙니다.');
+          }
+          if (mode === 'overwrite') {
+            bookmarks = new Set(data.bookmarks);
+            mastered = new Set(data.mastered);
+            srsData = data.srs || {};
+            studyLog = data.studyLog || {};
+          } else {
+            data.bookmarks.forEach((b) => bookmarks.add(b));
+            data.mastered.forEach((m) => mastered.add(m));
+            srsData = { ...srsData, ...(data.srs || {}) };
+            studyLog = { ...studyLog, ...(data.studyLog || {}) };
+          }
+          localStorage.setItem('vh_bookmarks', JSON.stringify(Array.from(bookmarks)));
+          localStorage.setItem('vh_mastered', JSON.stringify(Array.from(mastered)));
+          localStorage.setItem('vh_srs', JSON.stringify(srsData));
+          localStorage.setItem('vh_studyLog', JSON.stringify(studyLog));
+          render();
+          document.getElementById('backupStatus').innerText = `✅ 학습 기록 복원 완료 (${mode === 'merge' ? '병합' : '덮어쓰기'})!`;
+        } catch (err) {
+          document.getElementById('backupStatus').innerText = `❌ 복원 실패: ${err.message}`;
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    // =========================================================================
+    // 13. Stats & Pagination
+    // =========================================================================
     function toggleEmpty(isEmpty) {
       document.getElementById('emptyMessage').classList.toggle('hidden', !isEmpty);
     }
 
     function updateStats(totalCount, type, startIndex, endIndex, page, totalPages) {
-      const syncStr = lastSyncTime ? ` (최근 동기화: ${lastSyncTime})` : '';
+      const syncStr = lastSyncTime ? ` (동기화: ${lastSyncTime})` : '';
       if (totalCount === 0) {
         document.getElementById('stats').innerText = `0개 ${type}${syncStr}`;
       } else {
@@ -1249,27 +3035,19 @@
     }
 
     function getPageNumbers(current, total) {
-      if (total <= 7) {
-        return Array.from({ length: total }, (_, i) => i + 1);
-      }
-      if (current <= 4) {
-        return [1, 2, 3, 4, 5, '...', total];
-      }
-      if (current >= total - 3) {
-        return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
-      }
+      if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+      if (current <= 4) return [1, 2, 3, 4, 5, '...', total];
+      if (current >= total - 3) return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
       return [1, '...', current - 1, current, current + 1, '...', total];
     }
 
     function renderPagination(totalPages) {
       const paginationContainer = document.getElementById('pagination');
       paginationContainer.innerHTML = '';
+      paginationContainer.dataset.totalPages = String(totalPages);
 
-      if (totalPages <= 1) {
-        return;
-      }
+      if (totalPages <= 1) return;
 
-      // 이전 버튼
       const prevBtn = document.createElement('button');
       prevBtn.innerText = '이전';
       prevBtn.disabled = currentPage === 1;
@@ -1277,9 +3055,7 @@
       prevBtn.onclick = () => goToPage(currentPage - 1);
       paginationContainer.appendChild(prevBtn);
 
-      // 페이지 번호들
-      const pageNumbers = getPageNumbers(currentPage, totalPages);
-      pageNumbers.forEach(p => {
+      getPageNumbers(currentPage, totalPages).forEach((p) => {
         if (p === '...') {
           const dots = document.createElement('span');
           dots.className = 'px-2 py-1 text-xs text-slate-400 dark:text-slate-500 select-none';
@@ -1298,7 +3074,6 @@
         }
       });
 
-      // 다음 버튼
       const nextBtn = document.createElement('button');
       nextBtn.innerText = '다음';
       nextBtn.disabled = currentPage === totalPages;
