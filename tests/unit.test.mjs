@@ -214,23 +214,20 @@ test('assets/app.css and inline style cover 100% of CSS classes used in index.ht
 
   // Extract all static class tokens from HTML attributes and JS className assignments
   const usedClasses = new Set();
-  for (const m of html.matchAll(/\bclass="([^"]+)"/g)) {
-    const raw = m[1];
+  const extractClassTokens = (raw) => {
     raw.replace(/\$\{[^}]+\}/g, ' ').split(/\s+/).filter(Boolean).forEach((c) => usedClasses.add(c));
-    for (const q of raw.matchAll(/\$\{[^}]+\}/g)) {
-      for (const lit of q[0].matchAll(/['"]([^'"]+)['"]/g)) {
+    for (const q of raw.matchAll(/\$\{([^}]+)\}/g)) {
+      const expr = q[1];
+      const qIdx = expr.indexOf('?');
+      if (qIdx === -1) continue;
+      for (const lit of expr.slice(qIdx + 1).matchAll(/['"]([^'"]+)['"]/g)) {
         lit[1].split(/\s+/).filter(Boolean).forEach((c) => usedClasses.add(c));
       }
     }
-  }
+  };
+  for (const m of html.matchAll(/\bclass="([^"]+)"/g)) extractClassTokens(m[1]);
   for (const m of html.matchAll(/\bclassName\s*=\s*(?:'([^']*)'|"([^"]*)"|`([^`]*)`)/g)) {
-    const raw = m[1] ?? m[2] ?? m[3] ?? '';
-    raw.replace(/\$\{[^}]+\}/g, ' ').split(/\s+/).filter(Boolean).forEach((c) => usedClasses.add(c));
-    for (const q of raw.matchAll(/\$\{[^}]+\}/g)) {
-      for (const lit of q[0].matchAll(/['"]([^'"]+)['"]/g)) {
-        lit[1].split(/\s+/).filter(Boolean).forEach((c) => usedClasses.add(c));
-      }
-    }
+    extractClassTokens(m[1] ?? m[2] ?? m[3] ?? '');
   }
 
   // Pure JS/DOM hook classes that intentionally have no dedicated style rule
@@ -277,6 +274,31 @@ test('formatStepSummaryMarkdown produces GitHub Actions summary table and sample
   assert.ok(md.includes('+6 (skip 0)'));
   assert.ok(md.includes('**puppy**'));
   assert.ok(md.includes('The puppy runs fast.'));
+});
+
+test('resolveDailyTopicPlan selects KST weekday topics, series themes, and honors manual overrides', async () => {
+  const { getKstWeekdayKey, resolveDailyTopicPlan } = await import('../scripts/generate-daily.mjs');
+  const cfg = JSON.parse(await readFile(resolve(process.cwd(), 'data/profiles.json'), 'utf8'));
+  const byId = Object.fromEntries(cfg.profiles.map((p) => [p.id, p]));
+
+  // 2026-11-16 is Monday, 2026-11-20 is Friday, 2026-11-21 is Saturday
+  assert.equal(getKstWeekdayKey('2026-11-16'), 'mon');
+  assert.equal(getKstWeekdayKey('2026-11-20'), 'fri');
+  assert.equal(getKstWeekdayKey('2026-11-21'), 'sat');
+
+  const wifeMon = resolveDailyTopicPlan(byId.wife, '2026-11-16');
+  assert.equal(wifeMon.source, 'weekday:mon');
+  assert.ok(wifeMon.topics.includes('공항'));
+  assert.ok(wifeMon.seriesTheme.includes('해외여행'));
+
+  const kidWed = resolveDailyTopicPlan(byId.kid, '2026-11-18');
+  assert.equal(kidWed.source, 'weekday:wed');
+  assert.ok(kidWed.topics.includes('코코의 모험 3화'));
+  assert.ok(kidWed.seriesTheme.includes('코코'));
+
+  const overridden = resolveDailyTopicPlan(byId.me, '2026-11-20', '커스텀 주제 5');
+  assert.equal(overridden.source, 'override');
+  assert.equal(overridden.topics, '커스텀 주제 5');
 });
 
 test('data/profiles.json defines me, wife, and kid profiles with distinct dataDirs and storagePrefixes', async () => {

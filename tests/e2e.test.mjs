@@ -559,10 +559,192 @@ async function runTests() {
     assert.equal(swBannerCheck.hiddenAfterClick, true, 'Banner must close after clicking 지금 반영');
     console.log('✅ Test 14 — SW DATA_UPDATED active-profile banner & one-click refresh verified');
 
+    // 15. Audio Shadowing Player Bar (controls, shadowing toggle, rate cycle, cleanup)
+    const audioCheck = await client.eval(`
+      (() => {
+        // Mock speechSynthesis so autoplay runs deterministically in headless Chromium
+        window.speechSynthesis.cancel = () => {};
+        window.speechSynthesis.speak = () => {};
+        switchView('vocab');
+        TtsService.startAutoplay();
+        const barVisible = !document.getElementById('audioPlayerBar').classList.contains('hidden');
+        const initialRate = ttsRate;
+        TtsService.toggleShadowingMode();
+        const shadowPressed = document.getElementById('btnShadowToggle').getAttribute('aria-pressed');
+        TtsService.cycleRate();
+        const rateChanged = ttsRate !== initialRate;
+        TtsService.toggleLoop();
+        const loopPressed = document.getElementById('btnAudioLoopToggle').getAttribute('aria-pressed');
+        TtsService.nextTrack();
+        const progText = document.getElementById('audioProgressText').innerText;
+        TtsService.stopAutoplay();
+        const barHiddenAfterStop = document.getElementById('audioPlayerBar').classList.contains('hidden');
+        // Restore defaults
+        handleTtsRateChange(String(initialRate));
+        if (TtsService.isShadowing) TtsService.toggleShadowingMode();
+        if (TtsService.isLooping) TtsService.toggleLoop();
+        return { barVisible, shadowPressed, rateChanged, loopPressed, progText, barHiddenAfterStop };
+      })()
+    `);
+    assert.equal(audioCheck.barVisible, true, 'Floating audio player bar must open on autoplay');
+    assert.equal(audioCheck.shadowPressed, 'true', 'Shadowing toggle must reflect active state');
+    assert.equal(audioCheck.rateChanged, true, 'Rate cycle must update ttsRate');
+    assert.equal(audioCheck.loopPressed, 'true', 'Loop toggle must reflect active state');
+    assert.ok(audioCheck.progText.startsWith('2/'), `nextTrack must advance index, got ${audioCheck.progText}`);
+    assert.equal(audioCheck.barHiddenAfterStop, true, 'Audio bar must close on stopAutoplay');
+    console.log('✅ Test 15 — Audio Shadowing Player bar, rate cycle, loop & cleanup verified');
+
+    // 16. Kid Mode: Daily Goal & Stamps, Block Assembly Quiz, and 4-Digit PIN Safety Lock
+    const kidModeCheck = await client.eval(`
+      (async () => {
+        await switchProfile('kid');
+        const goalBarVisible = !document.getElementById('kidGoalBar').classList.contains('hidden');
+
+        // Earn daily goal (3 activities) -> should award today's stamp
+        SrsService.logActivity('review');
+        SrsService.logActivity('review');
+        SrsService.logActivity('review');
+        const hasTodayStamp = kidStamps.has(getTodayDateStr());
+        const goalText = document.getElementById('kidGoalText').innerText;
+
+        // Open Block Assembly Quiz (sentence word-block mode) and assemble exact answer
+        openKidBlockQuiz();
+        const q = quizQuestions[0];
+        const isBlock = Boolean(q && q.isBlockQuiz);
+        const remaining = q.shuffledTiles.map((t, idx) => ({ t, idx, used: false }));
+        for (const targetTok of q.targetTokens) {
+          const match = remaining.find((r) => !r.used && r.t === targetTok);
+          if (match) { match.used = true; handleBlockPick(match.idx); }
+        }
+        checkBlockQuizAnswer();
+        const blockScore = quizScore;
+        const blockFeedback = document.getElementById('quizFeedbackText')?.innerText || '';
+
+        // Test 4-digit PIN Safety Lock
+        openModal('settingsModal');
+        document.getElementById('kidPinInput').value = '4321';
+        toggleKidSafetyLock();
+        closeModal('settingsModal');
+        const lockActive = kidLockActive;
+        const selectDisabled = document.getElementById('profileSelect').disabled;
+        const importHidden = document.getElementById('btnImportModal').classList.contains('hidden');
+
+        // Trying to open Settings while locked must open PIN unlock modal instead
+        openModal('settingsModal');
+        const pinPromptOpened = !document.getElementById('pinLockModal').classList.contains('hidden');
+        const settingsBlocked = document.getElementById('settingsModal').classList.contains('hidden');
+
+        // Wrong PIN rejected
+        document.getElementById('pinUnlockInput').value = '0000';
+        submitPinUnlock();
+        const wrongPinBlocked = !document.getElementById('pinUnlockError').classList.contains('hidden');
+
+        // Correct PIN unlocks Settings, then disable lock and restore me profile
+        document.getElementById('pinUnlockInput').value = '4321';
+        submitPinUnlock();
+        const unlockedSettings = !document.getElementById('settingsModal').classList.contains('hidden');
+        toggleKidSafetyLock();
+        closeModal('settingsModal');
+        switchView('vocab');
+        await switchProfile('me');
+
+        return {
+          goalBarVisible, hasTodayStamp, goalText, isBlock, blockScore, blockFeedback,
+          lockActive, selectDisabled, importHidden, pinPromptOpened, settingsBlocked, wrongPinBlocked, unlockedSettings,
+        };
+      })()
+    `);
+    assert.equal(kidModeCheck.goalBarVisible, true, 'Kid daily goal bar must appear on kid profile');
+    assert.equal(kidModeCheck.hasTodayStamp, true, 'Completing 3 activities on kid profile must award today stamp');
+    assert.ok(kidModeCheck.goalText.includes('달성'), `Goal bar must show 달성, got ${kidModeCheck.goalText}`);
+    assert.equal(kidModeCheck.isBlock, true, 'openKidBlockQuiz must start Block Assembly Quiz');
+    assert.equal(kidModeCheck.blockScore, 1, 'Assembling all blocks in order must score +1');
+    assert.ok(kidModeCheck.blockFeedback.includes('정답'), `Expected 정답 feedback, got ${kidModeCheck.blockFeedback}`);
+    assert.equal(kidModeCheck.lockActive, true);
+    assert.equal(kidModeCheck.selectDisabled, true, 'Profile selector must be disabled when Kid Lock is on');
+    assert.equal(kidModeCheck.importHidden, true, 'Import button must be hidden when Kid Lock is on');
+    assert.equal(kidModeCheck.pinPromptOpened, true, 'Locked Settings must prompt PIN modal');
+    assert.equal(kidModeCheck.settingsBlocked, true, 'Settings must stay hidden before PIN verification');
+    assert.equal(kidModeCheck.wrongPinBlocked, true, 'Wrong PIN must display error');
+    assert.equal(kidModeCheck.unlockedSettings, true, 'Correct PIN must open Settings modal');
+    console.log('✅ Test 16 — Kid Mode (Daily Goal/Stamps, Block Assembly Quiz, 4-Digit PIN Lock) verified');
+
+    // 17. Private GitHub Gist Sync (mergeProgressPayloads + mocked private Gist create/patch roundtrip)
+    const gistCheck = await client.eval(`
+      (async () => {
+        const merged = mergeProgressPayloads(
+          {
+            profileId: 'me',
+            bookmarks: ['English:localWord'],
+            mastered: ['English:m1'],
+            srs: { k1: { box: 2, lastReview: '2026-11-18', nextReview: '2026-11-21', lapses: 0 } },
+            studyLog: { '2026-11-20': { review: 2, quiz: 1, mastered: 1 } },
+            kidStamps: ['2026-11-19'],
+          },
+          {
+            profileId: 'me',
+            bookmarks: ['English:remoteWord'],
+            mastered: ['English:m2'],
+            srs: { k1: { box: 3, lastReview: '2026-11-20', nextReview: '2026-11-27', lapses: 0 } },
+            studyLog: { '2026-11-20': { review: 5, quiz: 0, mastered: 2 } },
+            kidStamps: ['2026-11-20'],
+          }
+        );
+
+        // Mock GitHub Gists API to verify private Gist creation payload
+        const origFetch = window.fetch;
+        let capturedPostBody = null;
+        window.fetch = async (url, opts) => {
+          if (String(url) === 'https://api.github.com/gists' && opts?.method === 'POST') {
+            capturedPostBody = JSON.parse(opts.body);
+            return new Response(JSON.stringify({ id: 'mock_private_gist_123' }), {
+              status: 201,
+              headers: { 'Content-Type': 'application/json' },
+            });
+          }
+          return origFetch(url, opts);
+        };
+
+        openModal('settingsModal');
+        document.getElementById('gistTokenInput').value = 'ghp_test_token';
+        document.getElementById('gistIdInput').value = '';
+        await syncProgressWithGist('merge');
+        const savedGistId = document.getElementById('gistIdInput').value;
+        const statusText = document.getElementById('gistSyncStatus').innerText;
+        closeModal('settingsModal');
+        window.fetch = origFetch;
+        localStorage.removeItem('vh_gistSyncConfig');
+
+        return {
+          bookmarksLen: merged.bookmarks.length,
+          masteredLen: merged.mastered.length,
+          srsBox: merged.srs.k1.box,
+          logReview: merged.studyLog['2026-11-20'].review,
+          logQuiz: merged.studyLog['2026-11-20'].quiz,
+          stampsLen: merged.kidStamps.length,
+          isPrivateGist: capturedPostBody?.public === false,
+          hasProfileFile: Boolean(capturedPostBody?.files?.['progress-me.json']),
+          savedGistId,
+          statusText,
+        };
+      })()
+    `);
+    assert.equal(gistCheck.bookmarksLen, 2, 'Bookmarks must union across devices');
+    assert.equal(gistCheck.masteredLen, 2, 'Mastered items must union across devices');
+    assert.equal(gistCheck.srsBox, 3, 'Newer SRS review must win');
+    assert.equal(gistCheck.logReview, 5, 'Study log must take max review count');
+    assert.equal(gistCheck.logQuiz, 1, 'Study log must preserve higher local quiz count');
+    assert.equal(gistCheck.stampsLen, 2, 'Stamps must union across devices');
+    assert.equal(gistCheck.isPrivateGist, true, 'Created Gist must strictly be private (public: false)');
+    assert.equal(gistCheck.hasProfileFile, true, 'Gist must write progress-me.json file');
+    assert.equal(gistCheck.savedGistId, 'mock_private_gist_123');
+    assert.ok(gistCheck.statusText.includes('동기화 완료'));
+    console.log('✅ Test 17 — Private GitHub Gist cross-device merge & API sync verified');
+
     const finalExceptions = client.events.filter((e) => e.method === 'Runtime.exceptionThrown');
     assert.equal(finalExceptions.length, 0, 'Expected 0 runtime JS exceptions across all E2E tests');
 
-    console.log('\n🎉 ALL 14 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
+    console.log('\n🎉 ALL 17 HEADLESS CHROMIUM E2E REGRESSION TESTS PASSED!');
   } finally {
     client.close();
     proc.kill('SIGTERM');

@@ -108,7 +108,49 @@ function buildResponseSchema(languages) {
   };
 }
 
-function buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topics) {
+const WEEKDAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+
+export function getKstWeekdayKey(targetDate) {
+  const m = String(targetDate || '').match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!m) {
+    const kst = new Date(Date.now() + 9 * 60 * 60 * 1000);
+    return WEEKDAY_KEYS[kst.getUTCDay()];
+  }
+  const dt = new Date(Date.UTC(Number(m[1]), Number(m[2]) - 1, Number(m[3])));
+  return WEEKDAY_KEYS[dt.getUTCDay()];
+}
+
+export function resolveDailyTopicPlan(profile, targetDate, overrideTopics = '') {
+  const weekdayKey = getKstWeekdayKey(targetDate);
+  const trimmedOverride = String(overrideTopics || '').trim();
+  if (trimmedOverride) {
+    return {
+      weekdayKey,
+      topics: trimmedOverride,
+      seriesTheme: '',
+      source: 'override',
+    };
+  }
+  const weekdayTopics = profile?.daily?.weekdayTopics;
+  if (weekdayTopics && typeof weekdayTopics === 'object' && weekdayTopics[weekdayKey]) {
+    return {
+      weekdayKey,
+      topics: String(weekdayTopics[weekdayKey]).trim(),
+      seriesTheme: String(profile?.daily?.seriesTheme || '').trim(),
+      source: `weekday:${weekdayKey}`,
+    };
+  }
+  return {
+    weekdayKey,
+    topics: String(profile?.daily?.topics || '일상 회화').trim(),
+    seriesTheme: String(profile?.daily?.seriesTheme || '').trim(),
+    source: 'default',
+  };
+}
+
+function buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topicPlan) {
+  const topics = typeof topicPlan === 'string' ? topicPlan : topicPlan.topics;
+  const seriesTheme = typeof topicPlan === 'string' ? '' : (topicPlan.seriesTheme || '');
   const languages = profile.languages || ['English'];
   const hasEn = languages.includes('English');
   const hasDe = languages.includes('German');
@@ -133,6 +175,10 @@ function buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topics
     ? `5. 독일어 명사는 반드시 관사 포함 원형(예: "die Prüfung"), gender("der"|"die"|"das"), 복수형(예: "die Prüfungen" 또는 "-en")을 기입하세요. 독일어 명사가 아니면 gender와 plural은 null로 두세요.`
     : `5. 영어 단어는 gender와 plural을 null로 두세요.`;
 
+  const seriesSection = seriesTheme
+    ? `\n[시리즈 맥락]\n${seriesTheme}\n`
+    : '';
+
   const existingSection = [
     hasEn ? `[기존 영어 단어 일부]\n${enSample || '(없음)'}` : '',
     hasDe ? `[기존 독일어 단어 일부]\n${deSample || '(없음)'}` : '',
@@ -142,7 +188,7 @@ function buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topics
 
   return `당신은 ${persona}를 위한 맞춤형 어학 콘텐츠 생성기입니다.
 오늘 날짜(${targetDate})의 새 학습 세트를 JSON으로 생성하세요.
-
+${seriesSection}
 [생성 규칙]
 1. 정확히 ${pairCount}개의 실용적 상황(${topics})을 선정해 pairs 배열에 담으세요.
 2. ${langRule}
@@ -244,6 +290,9 @@ export function formatStepSummaryMarkdown(results = [], { targetDate = '', dryRu
       const hasSamples = (r.sampleWords && r.sampleWords.length > 0) || (r.sampleSentences && r.sampleSentences.length > 0);
       if (!hasSamples) continue;
       lines.push(`<details>`, `<summary><strong>${escapeMdCell(r.name)} (${escapeMdCell(r.id)})</strong> 오늘 생성 미리보기</summary>`, '');
+      if (r.resolvedTopics) {
+        lines.push(`- **오늘의 주제** (\`${escapeMdCell(r.topicSource || 'default')}\`): ${escapeMdCell(r.resolvedTopics)}`, '');
+      }
       if (r.sampleWords && r.sampleWords.length > 0) {
         lines.push('**신규 단어 (최대 6개)**');
         for (const w of r.sampleWords.slice(0, 6)) {
@@ -299,11 +348,12 @@ async function generateForProfile(profile, targetDate) {
     1,
     Math.min(10, OVERRIDE_PAIR_COUNT || profile.daily?.pairCount || 3)
   );
-  const topics = OVERRIDE_TOPICS || profile.daily?.topics || '일상 회화';
+  const topicPlan = resolveDailyTopicPlan(profile, targetDate, OVERRIDE_TOPICS);
   const model = OVERRIDE_MODEL || profile.daily?.model || 'gemini-3.5-flash-lite';
+  console.log(`🗓️ [${profile.id}] Topic plan (${topicPlan.source}): ${topicPlan.topics}`);
 
   const schema = buildResponseSchema(profile.languages || ['English']);
-  const prompt = buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topics);
+  const prompt = buildPromptForProfile(profile, targetDate, wordIndex, pairCount, topicPlan);
   const { rawText, usedModel, durationMs } = await callGeminiWithFallback(
     model,
     prompt,
@@ -346,6 +396,8 @@ async function generateForProfile(profile, targetDate) {
     name: profile.name || profile.id,
     dataDir: profile.dataDir || 'data',
     languages: profile.languages || ['English'],
+    resolvedTopics: topicPlan.topics,
+    topicSource: topicPlan.source,
     usedModel,
     durationMs,
     addedVocabCount: merged.addedVocabCount,
