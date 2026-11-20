@@ -15,9 +15,9 @@ on:
         required: false
         default: '5'
       model:
-        description: 'Gemini 모델명'
+        description: 'Gemini 모델명 (무료 티어: gemini-3.8-flash, gemini-3.5-flash-lite, gemini-3.6-flash)'
         required: false
-        default: 'gemini-2.5-flash'
+        default: 'gemini-3.8-flash'
       dry_run:
         description: 'Dry run (true면 검증만 수행하고 커밋하지 않음)'
         required: false
@@ -50,7 +50,7 @@ jobs:
       - name: Generate daily vocabulary & parallel sentences via Gemini API
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          GEMINI_MODEL: ${{ github.event.inputs.model || 'gemini-2.5-flash' }}
+          GEMINI_MODEL: ${{ github.event.inputs.model || 'gemini-3.8-flash' }}
           PAIR_COUNT: ${{ github.event.inputs.pair_count || '5' }}
           DAILY_TOPICS: ${{ github.event.inputs.topics || '개발/업무 2, 일상 2, 취미/자전거/건강 1' }}
           DRY_RUN: ${{ github.event.inputs.dry_run || 'false' }}

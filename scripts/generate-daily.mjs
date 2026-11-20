@@ -23,7 +23,8 @@ import {
 } from './schema.mjs';
 
 const API_KEY = process.env.GEMINI_API_KEY;
-const MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+const PRIMARY_MODEL = process.env.GEMINI_MODEL || 'gemini-3.8-flash';
+const FALLBACK_MODELS = ['gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-3.6-flash'];
 const PAIR_COUNT = Math.max(1, Math.min(10, parseInt(process.env.PAIR_COUNT || '5', 10) || 5));
 const DAILY_TOPICS = (process.env.DAILY_TOPICS || '개발/업무 2, 일상 2, 취미/자전거/건강 1').trim();
 const DRY_RUN = process.env.DRY_RUN === 'true';
@@ -141,29 +142,50 @@ async function main() {
   const targetDate = getKstDateString();
   const prompt = buildPrompt(targetDate, wordIndex);
 
-  console.log(`🤖 Calling Gemini API (${MODEL}) for ${targetDate} (${PAIR_COUNT} pairs)...`);
-  const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(MODEL)}:generateContent?key=${encodeURIComponent(API_KEY)}`;
+  const candidateModels = [...new Set([PRIMARY_MODEL, ...FALLBACK_MODELS])];
+  let apiResp = null;
+  let usedModel = null;
+  let lastError = null;
 
-  const res = await fetch(endpoint, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.7,
-        responseMimeType: 'application/json',
-        responseSchema: RESPONSE_SCHEMA,
-      },
-    }),
-  });
+  for (const model of candidateModels) {
+    console.log(`🤖 Calling Gemini API (${model}) for ${targetDate} (${PAIR_COUNT} pairs)...`);
+    const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(API_KEY)}`;
 
-  if (!res.ok) {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ role: 'user', parts: [{ text: prompt }] }],
+        generationConfig: {
+          responseMimeType: 'application/json',
+          responseSchema: RESPONSE_SCHEMA,
+        },
+      }),
+    });
+
+    if (res.ok) {
+      apiResp = await res.json();
+      usedModel = model;
+      break;
+    }
+
     const errText = await res.text();
-    throw new Error(`Gemini API HTTP ${res.status}: ${errText.slice(0, 500)}`);
+    lastError = new Error(`Gemini API (${model}) HTTP ${res.status}: ${errText.slice(0, 500)}`);
+    if ([404, 429, 503].includes(res.status)) {
+      console.warn(`⚠️ ${model} unavailable (HTTP ${res.status}), trying next free-tier fallback model...`);
+      continue;
+    }
+    throw lastError;
   }
 
-  const apiResp = await res.json();
-  const rawText = apiResp?.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!apiResp) {
+    throw lastError || new Error('All Gemini models failed.');
+  }
+
+  console.log(`✅ Received response from ${usedModel}`);
+  const parts = apiResp?.candidates?.[0]?.content?.parts || [];
+  const textPart = parts.find((p) => !p.thought && typeof p.text === 'string' && p.text.trim()) || parts.find((p) => typeof p.text === 'string');
+  const rawText = textPart?.text;
   if (!rawText) {
     throw new Error('Gemini API returned empty content.');
   }
