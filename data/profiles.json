@@ -8,7 +8,10 @@
       "description": "영어(A2-B1) · 독일어(B1-B2) 병렬 학습",
       "dataDir": "data",
       "storagePrefix": "",
-      "languages": ["English", "German"],
+      "languages": [
+        "English",
+        "German"
+      ],
       "levels": {
         "English": "A2-B1",
         "German": "B1-B2"
@@ -38,7 +41,9 @@
       "description": "실생활 영어 회화 (A2-B1)",
       "dataDir": "data/profiles/wife",
       "storagePrefix": "p_wife_",
-      "languages": ["English"],
+      "languages": [
+        "English"
+      ],
       "levels": {
         "English": "A2-B1"
       },
@@ -68,7 +73,9 @@
       "description": "초등 기초 영어 (Pre-A1-A1)",
       "dataDir": "data/profiles/kid",
       "storagePrefix": "p_kid_",
-      "languages": ["English"],
+      "languages": [
+        "English"
+      ],
       "levels": {
         "English": "Pre-A1-A1"
       },
