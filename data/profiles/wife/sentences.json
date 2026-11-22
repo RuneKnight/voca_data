@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-wife-20261122-01-i-just-want-to-wrap-myse",
+    "legacyKey": "English:I just want to wrap myself in a cozy blanket and unwind on the sofa.",
+    "pairId": "wife-20261122-01",
+    "lang": "English",
+    "level": "A2",
+    "topic": "relaxation",
+    "tags": [
+      "relaxation"
+    ],
+    "sentence": "I just want to wrap myself in a cozy blanket and unwind on the sofa.",
+    "translation": "나는 그냥 아늑한 담요로 몸을 감싸고 소파에서 긴장을 풀고 쉬고 싶어.",
+    "cloze": "unwind",
+    "keyPoints": "unwind는 하루 끝에 지친 몸과 마음의 긴장을 풀 때 아주 자연스럽게 쓰는 표현입니다.",
+    "vocabIds": [
+      "en-unwind-01",
+      "en-cozy-02"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-en-wife-20261122-02-the-evening-breeze-feels",
+    "legacyKey": "English:The evening breeze feels so refreshing after a warm afternoon.",
+    "pairId": "wife-20261122-02",
+    "lang": "English",
+    "level": "B1",
+    "topic": "home",
+    "tags": [
+      "home"
+    ],
+    "sentence": "The evening breeze feels so refreshing after a warm afternoon.",
+    "translation": "따뜻한 오후가 지난 후에 저녁 산들바람이 아주 상쾌하게 느껴진다.",
+    "cloze": "refreshing",
+    "keyPoints": "refreshing은 날씨, 음료, 휴식 등이 주는 상쾌함을 표현할 때 유용합니다.",
+    "vocabIds": [
+      "en-refreshing-01",
+      "en-breeze-02"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-en-wife-20261122-03-i-am-feeling-kind-of-exh",
+    "legacyKey": "English:I am feeling kind of exhausted, so I think I will call it a day early.",
+    "pairId": "wife-20261122-03",
+    "lang": "English",
+    "level": "B1",
+    "topic": "idiom",
+    "tags": [
+      "idiom"
+    ],
+    "sentence": "I am feeling kind of exhausted, so I think I will call it a day early.",
+    "translation": "나 좀 녹초가 된 것 같아서, 오늘 일찍 하루를 마무리하고 쉬어야겠어.",
+    "cloze": "call it a day",
+    "keyPoints": "call it a day는 '오늘 일은 여기까지 하자'라고 할 때 원어민들이 가장 자주 쓰는 관용 표현입니다.",
+    "vocabIds": [
+      "en-call-it-a-day-01",
+      "en-exhausted-02"
+    ],
+    "date": "2026-11-22"
+  },
+  {
     "id": "s-en-wife-20261120-01-could-i-get-an-iced-oat",
     "legacyKey": "English:Could I get an iced oat latte with less ice, please?",
     "pairId": "wife-20261120-01",

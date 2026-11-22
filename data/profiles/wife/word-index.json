@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T04:36:00.325Z",
+  "updatedAt": "2026-11-22T02:53:07.059Z",
   "counts": {
-    "vocab": 12,
-    "sentences": 6,
-    "englishVocab": 12,
+    "vocab": 18,
+    "sentences": 9,
+    "englishVocab": 18,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "unwind",
+      "cozy",
+      "refreshing",
+      "breeze",
+      "call it a day",
+      "exhausted",
       "oat milk",
       "less ice",
       "luggage",
@@ -25,6 +31,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "I just want to wrap myself in a cozy blanket and unwind on the sofa."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "The evening breeze feels so refreshing after a warm afternoon."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "I am feeling kind of exhausted, so I think I will call it a day early."
+    },
     {
       "date": "2026-11-20",
       "lang": "English",

@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-kid-20261122-01-coco-smells-a-sunny-yell",
+    "legacyKey": "English:Coco smells a sunny yellow flower.",
+    "pairId": "kid-20261122-01",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "nature",
+    "tags": [
+      "nature"
+    ],
+    "sentence": "Coco smells a sunny yellow flower.",
+    "translation": "코코가 햇살 가득한 노란 꽃의 냄새를 맡아요.",
+    "cloze": "yellow flower",
+    "keyPoints": "강아지 코코가 날씨 좋은 날 예쁜 꽃을 구경하는 상상을 해보세요!",
+    "vocabIds": [
+      "en-vocab-01",
+      "en-vocab-02"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-en-kid-20261122-02-coco-rests-his-head-on-a",
+    "legacyKey": "English:Coco rests his head on a soft pillow.",
+    "pairId": "kid-20261122-02",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "home",
+    "tags": [
+      "home"
+    ],
+    "sentence": "Coco rests his head on a soft pillow.",
+    "translation": "코코가 부드러운 베개 위에 머리를 대고 쉬어요.",
+    "cloze": "soft pillow",
+    "keyPoints": "집에서 포근한 베개와 함께 휴식을 취하는 코코의 모습이에요.",
+    "vocabIds": [
+      "en-vocab-03",
+      "en-vocab-04"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-en-kid-20261122-03-coco-wags-his-tail-and-s",
+    "legacyKey": "English:Coco wags his tail and says thank you for the cookie.",
+    "pairId": "kid-20261122-03",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "politeness",
+    "tags": [
+      "politeness"
+    ],
+    "sentence": "Coco wags his tail and says thank you for the cookie.",
+    "translation": "코코가 꼬리를 흔들며 쿠키를 준 것에 대해 고맙다고 말해요.",
+    "cloze": "thank you",
+    "keyPoints": "간식을 받고 기뻐하며 감사 인사를 나누는 착한 표현이에요.",
+    "vocabIds": [
+      "en-vocab-05",
+      "en-vocab-06"
+    ],
+    "date": "2026-11-22"
+  },
+  {
     "id": "s-en-kid-20261120-01-the-little-puppy-likes-t",
     "legacyKey": "English:The little puppy likes to chase the red ball in the park.",
     "pairId": "kid-20261120-01",

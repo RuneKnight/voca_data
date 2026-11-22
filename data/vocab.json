@@ -1,5 +1,295 @@
 [
   {
+    "id": "en-20261122-01-fatigue",
+    "legacyKey": "English:eye fatigue",
+    "lang": "English",
+    "level": "B1",
+    "word": "eye fatigue",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "눈의 피로",
+    "example": "Taking regular breaks helps reduce eye fatigue from monitor screens.",
+    "tags": [
+      "health",
+      "developer",
+      "wellness"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-01"
+  },
+  {
+    "id": "de-20261122-01-ueberanstrengung",
+    "legacyKey": "German:die Überanstrengung",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Überanstrengung",
+    "pos": "noun",
+    "posDetail": "Feminin (die Überanstrengungen)",
+    "gender": "die",
+    "plural": "die Überanstrengungen",
+    "meaning": "과로, 지나친 피로",
+    "example": "Die Überanstrengung der Augen lässt sich durch Bildschirmpausen vermeiden.",
+    "tags": [
+      "health",
+      "body",
+      "noun"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-01"
+  },
+  {
+    "id": "de-20261122-01-vorbeugen",
+    "legacyKey": "German:vorbeugen",
+    "lang": "German",
+    "level": "B2",
+    "word": "vorbeugen",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "예방하다, 방지하다 (3격 지배)",
+    "example": "Regelmäßige Bewegung beugt körperlichen Verspannungen vor.",
+    "tags": [
+      "health",
+      "verbs"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-01"
+  },
+  {
+    "id": "en-20261122-02-noticeably",
+    "legacyKey": "English:noticeably",
+    "lang": "English",
+    "level": "B1",
+    "word": "noticeably",
+    "pos": "adv",
+    "posDetail": "Adverb",
+    "gender": null,
+    "plural": null,
+    "meaning": "눈에 띄게, 확연히",
+    "example": "My concentration improved noticeably after getting adequate rest.",
+    "tags": [
+      "lifestyle",
+      "adverb"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-02"
+  },
+  {
+    "id": "de-20261122-02-kamillentee",
+    "legacyKey": "German:der Kamillentee",
+    "lang": "German",
+    "level": "B1",
+    "word": "der Kamillentee",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Kamillentees)",
+    "gender": "der",
+    "plural": "die Kamillentees",
+    "meaning": "카모마일 차",
+    "example": "Der warme Kamillentee beruhigt den Magen vor dem Schlafengehen.",
+    "tags": [
+      "drinks",
+      "health",
+      "noun"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-02"
+  },
+  {
+    "id": "de-20261122-02-spuerbar",
+    "legacyKey": "German:spürbar",
+    "lang": "German",
+    "level": "B2",
+    "word": "spürbar",
+    "pos": "adv",
+    "posDetail": "Adverb",
+    "gender": null,
+    "plural": null,
+    "meaning": "눈에 띄게, 뚜렷하게",
+    "example": "Die Erholung wirkte sich spürbar auf meine Laune aus.",
+    "tags": [
+      "lifestyle",
+      "adverb"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-02"
+  },
+  {
+    "id": "en-20261122-03-hearty",
+    "legacyKey": "English:hearty",
+    "lang": "English",
+    "level": "B1",
+    "word": "hearty",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "푸짐한, 영양가 있고 든든한",
+    "example": "We prepared a hearty meal for the cold evening.",
+    "tags": [
+      "cooking",
+      "food",
+      "adjective"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-03"
+  },
+  {
+    "id": "de-20261122-03-schnippeln",
+    "legacyKey": "German:schnippeln",
+    "lang": "German",
+    "level": "B1",
+    "word": "schnippeln",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "잘게 썰다, 다듬다 (구어)",
+    "example": "Wir schnippeln das Gemüse für das gemeinsame Abendessen.",
+    "tags": [
+      "cooking",
+      "daily",
+      "verbs"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-03"
+  },
+  {
+    "id": "de-20261122-03-gemuesesuppe",
+    "legacyKey": "German:die Gemüsesuppe",
+    "lang": "German",
+    "level": "A2",
+    "word": "die Gemüsesuppe",
+    "pos": "noun",
+    "posDetail": "Feminin (die Gemüsesuppen)",
+    "gender": "die",
+    "plural": "die Gemüsesuppen",
+    "meaning": "야채수프",
+    "example": "Die frische Gemüsesuppe kocht bereits auf dem Herd.",
+    "tags": [
+      "food",
+      "cooking",
+      "noun"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-03"
+  },
+  {
+    "id": "en-20261122-04-sort-out",
+    "legacyKey": "English:sort out",
+    "lang": "English",
+    "level": "B1",
+    "word": "sort out",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "가려내다, 정리하다",
+    "example": "I need to sort out clothes that I no longer wear.",
+    "tags": [
+      "chores",
+      "daily",
+      "phrasal-verb"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-04"
+  },
+  {
+    "id": "de-20261122-04-aussortieren",
+    "legacyKey": "German:aussortieren",
+    "lang": "German",
+    "level": "B1",
+    "word": "aussortieren",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "선별하여 정리하다, 처분하다",
+    "example": "Vor dem Umzug sortieren wir überflüssige Gegenstände aus.",
+    "tags": [
+      "chores",
+      "household",
+      "verbs"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-04"
+  },
+  {
+    "id": "de-20261122-04-aufbewahrungsbox",
+    "legacyKey": "German:die Aufbewahrungsbox",
+    "lang": "German",
+    "level": "B1",
+    "word": "die Aufbewahrungsbox",
+    "pos": "noun",
+    "posDetail": "Feminin (die Aufbewahrungsboxen)",
+    "gender": "die",
+    "plural": "die Aufbewahrungsboxen",
+    "meaning": "수납함, 보관 상자",
+    "example": "Die warme Kleidung lagert sauber in der Aufbewahrungsbox.",
+    "tags": [
+      "household",
+      "storage",
+      "noun"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-04"
+  },
+  {
+    "id": "de-20261122-05-einplanen",
+    "legacyKey": "German:einplanen",
+    "lang": "German",
+    "level": "B2",
+    "word": "einplanen",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "계획에 반영하다, 시간을 미리 배정하다",
+    "example": "Für das nächste Release müssen wir zusätzliche Tests einplanen.",
+    "tags": [
+      "work",
+      "planning",
+      "verbs"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-05"
+  },
+  {
+    "id": "de-20261122-05-anstehend",
+    "legacyKey": "German:anstehend",
+    "lang": "German",
+    "level": "B1",
+    "word": "anstehend",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "곧 닥쳐올, 예정된",
+    "example": "Die anstehende Aufgabe erfordert genaue Absprache im Team.",
+    "tags": [
+      "work",
+      "adjective"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "20261122-05"
+  },
+  {
     "id": "en-memory-consumption",
     "legacyKey": "English:memory consumption",
     "lang": "English",

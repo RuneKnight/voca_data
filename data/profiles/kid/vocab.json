@@ -1,5 +1,125 @@
 [
   {
+    "id": "en-vocab-01",
+    "legacyKey": "English:sunny",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "sunny",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "구름 없이 맑고 햇살이 비치는 날씨예요.",
+    "example": "The sky is sunny and nice today.",
+    "tags": [
+      "weather",
+      "nature"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "kid-20261122-01"
+  },
+  {
+    "id": "en-vocab-02",
+    "legacyKey": "English:flower",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "flower",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "예쁘고 향기로운 꽃이에요.",
+    "example": "Look at the small red flower.",
+    "tags": [
+      "nature",
+      "plants"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "kid-20261122-01"
+  },
+  {
+    "id": "en-vocab-03",
+    "legacyKey": "English:pillow",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "pillow",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "잠을 잘 때 베고 자는 폭신한 베개예요.",
+    "example": "My pillow is very soft.",
+    "tags": [
+      "home",
+      "bedroom"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "kid-20261122-02"
+  },
+  {
+    "id": "en-vocab-04",
+    "legacyKey": "English:sleepy",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "sleepy",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "잠이 오거나 졸려하는 상태예요.",
+    "example": "The little puppy is sleepy now.",
+    "tags": [
+      "feeling",
+      "home"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "kid-20261122-02"
+  },
+  {
+    "id": "en-vocab-05",
+    "legacyKey": "English:thank",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "thank",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "고마운 마음을 전할 때 사용하는 말이에요.",
+    "example": "I want to thank my friend.",
+    "tags": [
+      "politeness",
+      "social"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "kid-20261122-03"
+  },
+  {
+    "id": "en-vocab-06",
+    "legacyKey": "English:cookie",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "cookie",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "달콤하고 바삭한 간식 과자에요.",
+    "example": "May I have one sweet cookie?",
+    "tags": [
+      "food",
+      "snack"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "kid-20261122-03"
+  },
+  {
     "id": "en-puppy",
     "legacyKey": "English:puppy",
     "lang": "English",

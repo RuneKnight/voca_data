@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T04:36:00.331Z",
+  "updatedAt": "2026-11-22T02:53:13.079Z",
   "counts": {
-    "vocab": 12,
-    "sentences": 6,
-    "englishVocab": 12,
+    "vocab": 18,
+    "sentences": 9,
+    "englishVocab": 18,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "sunny",
+      "flower",
+      "pillow",
+      "sleepy",
+      "thank",
+      "cookie",
       "puppy",
       "chase",
       "share",
@@ -25,6 +31,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "Coco smells a sunny yellow flower."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "Coco rests his head on a soft pillow."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "Coco wags his tail and says thank you for the cookie."
+    },
     {
       "date": "2026-11-20",
       "lang": "English",

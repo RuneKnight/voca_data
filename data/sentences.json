@@ -1,5 +1,200 @@
 [
   {
+    "id": "s-en-20261122-01-to-prevent-eye-fatigue-f",
+    "legacyKey": "English:To prevent eye fatigue from staring at monitors all day, I decided to take a short break in the hallway.",
+    "pairId": "20261122-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "wellness",
+    "tags": [
+      "wellness"
+    ],
+    "sentence": "To prevent eye fatigue from staring at monitors all day, I decided to take a short break in the hallway.",
+    "translation": "하루 종일 모니터를 보며 생기는 눈의 피로를 예방하기 위해, 복도에서 짧은 휴식을 취하기로 했다.",
+    "cloze": "eye fatigue",
+    "keyPoints": "'To prevent ~'는 목적을 나타내는 to부정사 표현이며, 'stare at'은 집중해서 응시하다라는 의미입니다.",
+    "vocabIds": [
+      "en-20261122-01-fatigue"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-de-20261122-01-um-der-ueberanstrengung-d",
+    "legacyKey": "German:Um der Überanstrengung der Augen durch stundenlange Bildschirmarbeit vorzubeugen, beschloss ich, eine kurze Pause auf dem Flur einzulegen.",
+    "pairId": "20261122-01",
+    "lang": "German",
+    "level": "B2",
+    "topic": "wellness",
+    "tags": [
+      "wellness"
+    ],
+    "sentence": "Um der Überanstrengung der Augen durch stundenlange Bildschirmarbeit vorzubeugen, beschloss ich, eine kurze Pause auf dem Flur einzulegen.",
+    "translation": "장시간의 화면 작업으로 인한 눈의 과로를 예방하기 위해, 나는 복도에서 잠시 휴식을 취하기로 결정했다.",
+    "cloze": "Überanstrengung der Augen",
+    "keyPoints": "'vorbeugen'은 3격(Dativ) 목적어를 취하는 분리동사이며, 'eine Pause einlegen'은 휴식을 취하다라는 관용적 표현입니다.",
+    "vocabIds": [
+      "de-20261122-01-ueberanstrengung",
+      "de-20261122-01-vorbeugen"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-en-20261122-02-drinking-warm-chamomile",
+    "legacyKey": "English:Drinking warm chamomile tea before bedtime noticeably improved my sleep quality.",
+    "pairId": "20261122-02",
+    "lang": "English",
+    "level": "A2",
+    "topic": "relaxation",
+    "tags": [
+      "relaxation"
+    ],
+    "sentence": "Drinking warm chamomile tea before bedtime noticeably improved my sleep quality.",
+    "translation": "잠들기 전에 따뜻한 카모마일 차를 마신 덕분에 수면의 질이 눈에 띄게 향상되었다.",
+    "cloze": "sleep quality",
+    "keyPoints": "동명사 주어 'Drinking warm chamomile tea'와 동사를 수식하는 부사 'noticeably'가 쓰였습니다.",
+    "vocabIds": [
+      "en-20261122-02-noticeably"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-de-20261122-02-das-trinken-von-warmem-k",
+    "legacyKey": "German:Das Trinken von warmem Kamillentee vor dem Zubettgehen verbesserte meine Schlafqualität spürbar.",
+    "pairId": "20261122-02",
+    "lang": "German",
+    "level": "B1",
+    "topic": "relaxation",
+    "tags": [
+      "relaxation"
+    ],
+    "sentence": "Das Trinken von warmem Kamillentee vor dem Zubettgehen verbesserte meine Schlafqualität spürbar.",
+    "translation": "취침 전 따뜻한 카모마일 차를 마신 것은 내 수면의 질을 눈에 띄게 향상시켰다.",
+    "cloze": "Schlafqualität",
+    "keyPoints": "전치사 'vor' 뒤에 3격 중성 명사화 표현인 'dem Zubettgehen(취침)'이 쓰였으며, 'spürbar'가 부사적으로 수식합니다.",
+    "vocabIds": [
+      "de-20261122-02-kamillentee",
+      "de-20261122-02-spuerbar"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-en-20261122-03-my-partner-and-i-chopped",
+    "legacyKey": "English:My partner and I chopped fresh carrots and potatoes together to prepare a hearty soup.",
+    "pairId": "20261122-03",
+    "lang": "English",
+    "level": "A2",
+    "topic": "cooking",
+    "tags": [
+      "cooking"
+    ],
+    "sentence": "My partner and I chopped fresh carrots and potatoes together to prepare a hearty soup.",
+    "translation": "나와 내 파트너는 든든한 수프를 만들기 위해 신선한 당근과 감자를 함께 썰었다.",
+    "cloze": "hearty soup",
+    "keyPoints": "'chop'은 요리 재료를 잘게 썰다라는 동사이며, 'hearty'는 음식이 푸짐하고 따뜻할 때 자주 쓰입니다.",
+    "vocabIds": [
+      "en-20261122-03-hearty"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-de-20261122-03-mein-partner-und-ich-sch",
+    "legacyKey": "German:Mein Partner und ich schnippelten gemeinsam frische Karotten und Kartoffeln, um eine herzhafte Gemüsesuppe zuzubereiten.",
+    "pairId": "20261122-03",
+    "lang": "German",
+    "level": "B1",
+    "topic": "cooking",
+    "tags": [
+      "cooking"
+    ],
+    "sentence": "Mein Partner und ich schnippelten gemeinsam frische Karotten und Kartoffeln, um eine herzhafte Gemüsesuppe zuzubereiten.",
+    "translation": "내 파트너와 나는 든든한 야채수프를 준비하기 위해 신선한 당근과 감자를 함께 깍둑썰기했다.",
+    "cloze": "herzhafte Gemüsesuppe",
+    "keyPoints": "일상 구어체 동사 'schnippeln'과 'um ... zuzubereiten(준비하기 위해)' 형태의 분리동사 to부정사 구문입니다.",
+    "vocabIds": [
+      "de-20261122-03-schnippeln",
+      "de-20261122-03-gemuesesuppe"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-en-20261122-04-this-afternoon-we-sorted",
+    "legacyKey": "English:This afternoon we sorted out outgrown winter clothes and packed the heavy coats into a storage box.",
+    "pairId": "20261122-04",
+    "lang": "English",
+    "level": "B1",
+    "topic": "chores",
+    "tags": [
+      "chores"
+    ],
+    "sentence": "This afternoon we sorted out outgrown winter clothes and packed the heavy coats into a storage box.",
+    "translation": "오늘 오후 우리는 작아진 겨울옷들을 골라내고 두꺼운 외투들을 보관 상자에 정리해 넣었다.",
+    "cloze": "sorted out",
+    "keyPoints": "'sort out'은 불필요한 것을 골라 정리하다는 의미이며, 'outgrown'은 몸이 자라 맞지 않게 된 의류를 나타냅니다.",
+    "vocabIds": [
+      "en-20261122-04-sort-out"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-de-20261122-04-heute-nachmittag-sortier",
+    "legacyKey": "German:Heute Nachmittag sortierten wir zu klein gewordene Winterkleidung aus und verstauten die schweren Mäntel in einer Aufbewahrungsbox.",
+    "pairId": "20261122-04",
+    "lang": "German",
+    "level": "B1",
+    "topic": "chores",
+    "tags": [
+      "chores"
+    ],
+    "sentence": "Heute Nachmittag sortierten wir zu klein gewordene Winterkleidung aus und verstauten die schweren Mäntel in einer Aufbewahrungsbox.",
+    "translation": "오늘 오후 우리는 작아진 겨울옷을 분류해 정리하고 무거운 외투들을 보관 상자에 집어넣었다.",
+    "cloze": "sortierten wir zu klein gewordene Winterkleidung aus",
+    "keyPoints": "분리동사 'aussortieren'의 과거형 문장 분리 구조와 물건을 빈틈없이 넣어두다를 뜻하는 'verstauen'의 쓰임새입니다.",
+    "vocabIds": [
+      "de-20261122-04-aussortieren",
+      "de-20261122-04-aufbewahrungsbox"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-en-20261122-05-before-starting-the-busy",
+    "legacyKey": "English:Before starting the busy week, I checked my calendar to schedule time for the upcoming code reviews.",
+    "pairId": "20261122-05",
+    "lang": "English",
+    "level": "B1",
+    "topic": "planning",
+    "tags": [
+      "planning"
+    ],
+    "sentence": "Before starting the busy week, I checked my calendar to schedule time for the upcoming code reviews.",
+    "translation": "바쁜 한 주를 시작하기 전에, 다가오는 코드 리뷰 일정을 잡기 위해 달력을 확인했다.",
+    "cloze": "upcoming code reviews",
+    "keyPoints": "'schedule time for ~'는 특정한 일정을 위해 여유 시간을 확보해 두다라는 유용한 표현입니다.",
+    "vocabIds": [
+      "en-schedule"
+    ],
+    "date": "2026-11-22"
+  },
+  {
+    "id": "s-de-20261122-05-vor-dem-beginn-der-anstr",
+    "legacyKey": "German:Vor dem Beginn der anstrengenden Woche überprüfte ich meinen Kalender, um ausreichend Zeit für anstehende Code-Reviews einzuplanen.",
+    "pairId": "20261122-05",
+    "lang": "German",
+    "level": "B2",
+    "topic": "planning",
+    "tags": [
+      "planning"
+    ],
+    "sentence": "Vor dem Beginn der anstrengenden Woche überprüfte ich meinen Kalender, um ausreichend Zeit für anstehende Code-Reviews einzuplanen.",
+    "translation": "힘든 한 주가 시작되기 전에, 다가오는 코드 리뷰를 위한 충분한 시간을 배정하고자 달력을 검토했다.",
+    "cloze": "anstehende Code-Reviews",
+    "keyPoints": "분리동사 'einplanen'의 목적 절 형태 'um ... einzuplanen'과 'anstehend(예정된, 임박한)'의 명사 수식 어미 변화입니다.",
+    "vocabIds": [
+      "de-20261122-05-einplanen",
+      "de-20261122-05-anstehend"
+    ],
+    "date": "2026-11-22"
+  },
+  {
     "id": "s-en-20261120-01-we-need-to-monitor-the-m",
     "legacyKey": "English:We need to monitor the memory consumption of the new service closely.",
     "pairId": "20261120-01",

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T04:28:35.594Z",
+  "updatedAt": "2026-11-22T02:53:00.738Z",
   "counts": {
-    "vocab": 519,
-    "sentences": 328,
-    "pairs": 158
+    "vocab": 533,
+    "sentences": 338,
+    "pairs": 163
   },
   "languages": [
     "English",
@@ -18,25 +18,42 @@
     "B2"
   ],
   "tags": [
+    "adjective",
     "admin",
+    "adverb",
+    "body",
+    "chores",
+    "cooking",
     "cycling",
     "daily",
     "dev",
+    "developer",
+    "drinks",
+    "food",
     "health",
+    "household",
+    "lifestyle",
+    "noun",
     "performance",
+    "phrasal-verb",
+    "planning",
+    "relaxation",
+    "storage",
+    "verbs",
+    "wellness",
     "work"
   ],
-  "latestDate": "2026-11-20",
+  "latestDate": "2026-11-22",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-22",
+    "cutoffIso": "2026-08-24",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 27,
-        "sentenceCount": 20
+        "vocabCount": 41,
+        "sentenceCount": 30
       },
       {
         "month": "2026-10",

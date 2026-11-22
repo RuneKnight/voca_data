@@ -1,5 +1,125 @@
 [
   {
+    "id": "en-unwind-01",
+    "legacyKey": "English:unwind",
+    "lang": "English",
+    "level": "B1",
+    "word": "unwind",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "긴장을 풀고 쉬다",
+    "example": "I like to listen to jazz music to unwind after a long day.",
+    "tags": [
+      "daily",
+      "relaxation"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "wife-20261122-01"
+  },
+  {
+    "id": "en-cozy-02",
+    "legacyKey": "English:cozy",
+    "lang": "English",
+    "level": "A2",
+    "word": "cozy",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "아늑한, 포근한",
+    "example": "This blanket is so cozy and warm.",
+    "tags": [
+      "daily",
+      "home"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "wife-20261122-01"
+  },
+  {
+    "id": "en-refreshing-01",
+    "legacyKey": "English:refreshing",
+    "lang": "English",
+    "level": "A2",
+    "word": "refreshing",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "상쾌한, 기운을 북돋아 주는",
+    "example": "A cold glass of lemonade is really refreshing.",
+    "tags": [
+      "daily",
+      "drink"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "wife-20261122-02"
+  },
+  {
+    "id": "en-breeze-02",
+    "legacyKey": "English:breeze",
+    "lang": "English",
+    "level": "B1",
+    "word": "breeze",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "산들바람, 미풍",
+    "example": "A gentle breeze came through the open window.",
+    "tags": [
+      "weather",
+      "nature"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "wife-20261122-02"
+  },
+  {
+    "id": "en-call-it-a-day-01",
+    "legacyKey": "English:call it a day",
+    "lang": "English",
+    "level": "B1",
+    "word": "call it a day",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "하루 일을 마치다, 끝내다",
+    "example": "We have worked hard enough, let's call it a day.",
+    "tags": [
+      "idiom",
+      "work"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "wife-20261122-03"
+  },
+  {
+    "id": "en-exhausted-02",
+    "legacyKey": "English:exhausted",
+    "lang": "English",
+    "level": "A2",
+    "word": "exhausted",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "기진맥진한, 녹초가 된",
+    "example": "She was completely exhausted after the trip.",
+    "tags": [
+      "feeling",
+      "health"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-22",
+    "pairId": "wife-20261122-03"
+  },
+  {
     "id": "en-oat-milk",
     "legacyKey": "English:oat milk",
     "lang": "English",

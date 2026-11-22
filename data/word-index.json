@@ -1,14 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T04:28:35.593Z",
+  "updatedAt": "2026-11-22T02:53:00.737Z",
   "counts": {
-    "vocab": 519,
-    "sentences": 328,
-    "englishVocab": 226,
-    "germanVocab": 293
+    "vocab": 533,
+    "sentences": 338,
+    "englishVocab": 230,
+    "germanVocab": 303
   },
   "words": {
     "English": [
+      "eye fatigue",
+      "noticeably",
+      "hearty",
+      "sort out",
       "memory consumption",
       "status report",
       "stop by",
@@ -237,6 +241,16 @@
       "relaxing"
     ],
     "German": [
+      "die Überanstrengung",
+      "vorbeugen",
+      "der Kamillentee",
+      "spürbar",
+      "schnippeln",
+      "die Gemüsesuppe",
+      "aussortieren",
+      "die Aufbewahrungsbox",
+      "einplanen",
+      "anstehend",
       "der Statusbericht",
       "vorbeigehen",
       "aufräumen",
@@ -534,6 +548,56 @@
   },
   "recentSentences": [
     {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "To prevent eye fatigue from staring at monitors all day, I decided to take a short break in the hallway."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "German",
+      "sentence": "Um der Überanstrengung der Augen durch stundenlange Bildschirmarbeit vorzubeugen, beschloss ich, eine kurze Pause auf dem Flur einzulegen."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "Drinking warm chamomile tea before bedtime noticeably improved my sleep quality."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "German",
+      "sentence": "Das Trinken von warmem Kamillentee vor dem Zubettgehen verbesserte meine Schlafqualität spürbar."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "My partner and I chopped fresh carrots and potatoes together to prepare a hearty soup."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "German",
+      "sentence": "Mein Partner und ich schnippelten gemeinsam frische Karotten und Kartoffeln, um eine herzhafte Gemüsesuppe zuzubereiten."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "This afternoon we sorted out outgrown winter clothes and packed the heavy coats into a storage box."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "German",
+      "sentence": "Heute Nachmittag sortierten wir zu klein gewordene Winterkleidung aus und verstauten die schweren Mäntel in einer Aufbewahrungsbox."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "English",
+      "sentence": "Before starting the busy week, I checked my calendar to schedule time for the upcoming code reviews."
+    },
+    {
+      "date": "2026-11-22",
+      "lang": "German",
+      "sentence": "Vor dem Beginn der anstrengenden Woche überprüfte ich meinen Kalender, um ausreichend Zeit für anstehende Code-Reviews einzuplanen."
+    },
+    {
       "date": "2026-11-20",
       "lang": "English",
       "sentence": "We need to monitor the memory consumption of the new service closely."
@@ -632,56 +696,6 @@
       "date": "2026-11-20",
       "lang": "German",
       "sentence": "Vor unserem Wochenendausflug habe ich die Reifen aufgepumpt und die Bremszüge an meinem Faltrad neu eingestellt."
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "English",
-      "sentence": "We are monitoring memory utilization closely during the overnight batch settlement to catch potential memory leaks early."
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "English",
-      "sentence": "I pushed a patch for the transaction retry logic; could you review the error handling when you have a moment?"
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "English",
-      "sentence": "Doing fifteen minutes of gentle core exercises after work eases the lower back tension from sitting at my desk all day."
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "English",
-      "sentence": "We brewed a fresh pot of herbal tea after dinner and talked about our favorite weekend outdoor plans."
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "English",
-      "sentence": "It is almost three in the afternoon; let's take a quick breather and grab a handful of roasted nuts."
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "German",
-      "sentence": "Während des nächtlichen Abrechnungslaufs überwachen wir die Speicherauslastung genau, um eventuelle Speicherlecks frühzeitig abzufangen."
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "German",
-      "sentence": "Ich habe eine Korrektur für die Wiederholungslogik hochgeladen; könnten Sie die Fehlerbehandlung kurz ansehen, sobald Sie Zeit haben?"
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "German",
-      "sentence": "Nach einem langen Arbeitstag am Schreibtisch mache ich fünfzehn Minuten leichte Gymnastik, um die Rückenmuskulatur spürbar zu entlasten."
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "German",
-      "sentence": "Nach dem Abendessen haben wir eine Kanne Kräutertee aufgesetzt und entspannt über unsere Pläne fürs Wochenende gesprochen."
-    },
-    {
-      "date": "2026-10-29",
-      "lang": "German",
-      "sentence": "Gegen drei Uhr nachmittags tut eine kurze Verschnaufpause mit einer Handvoll Nüssen richtig gut, um neue Energie zu tanken."
     }
   ]
 }

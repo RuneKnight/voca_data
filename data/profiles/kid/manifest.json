@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T04:36:00.331Z",
+  "updatedAt": "2026-11-22T02:53:13.079Z",
   "counts": {
-    "vocab": 12,
-    "sentences": 6,
-    "pairs": 6
+    "vocab": 18,
+    "sentences": 9,
+    "pairs": 9
   },
   "languages": [
     "English",
@@ -17,22 +17,30 @@
   ],
   "tags": [
     "animals",
+    "bedroom",
+    "feeling",
     "food",
+    "home",
     "nature",
+    "plants",
     "play",
-    "school"
+    "politeness",
+    "school",
+    "snack",
+    "social",
+    "weather"
   ],
-  "latestDate": "2026-11-20",
+  "latestDate": "2026-11-22",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-22",
+    "cutoffIso": "2026-08-24",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 12,
-        "sentenceCount": 6
+        "vocabCount": 18,
+        "sentenceCount": 9
       }
     ]
   }
