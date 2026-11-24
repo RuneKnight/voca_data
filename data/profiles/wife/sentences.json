@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-wife-20261124-01-is-it-possible-to-get-a",
+    "legacyKey": "English:Is it possible to get a room upgrade with a complimentary breakfast?",
+    "pairId": "wife-20261124-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "hotel",
+    "tags": [
+      "hotel"
+    ],
+    "sentence": "Is it possible to get a room upgrade with a complimentary breakfast?",
+    "translation": "무료 조식이 포함된 방 업그레이드를 받을 수 있을까요?",
+    "cloze": "complimentary breakfast",
+    "keyPoints": "호텔 체크인 시 방 업그레이드와 무료 서비스 혜택을 공손하게 문의할 때 유용한 표현입니다.",
+    "vocabIds": [
+      "en-vocab-upgrade",
+      "en-vocab-complimentary"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-en-wife-20261124-02-could-you-please-send-so",
+    "legacyKey": "English:Could you please send some extra towels to our room?",
+    "pairId": "wife-20261124-02",
+    "lang": "English",
+    "level": "A2",
+    "topic": "request",
+    "tags": [
+      "request"
+    ],
+    "sentence": "Could you please send some extra towels to our room?",
+    "translation": "저희 방으로 여분의 수건을 좀 올려다 주실 수 있나요?",
+    "cloze": "extra towels",
+    "keyPoints": "호텔 객실 내 필요한 물품을 프런트에 요청할 때 정중하게 사용하는 패턴입니다.",
+    "vocabIds": [
+      "en-vocab-extra",
+      "en-vocab-towels"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-en-wife-20261124-03-do-you-have-any-good-res",
+    "legacyKey": "English:Do you have any good restaurants you can recommend in this neighborhood?",
+    "pairId": "wife-20261124-03",
+    "lang": "English",
+    "level": "B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "Do you have any good restaurants you can recommend in this neighborhood?",
+    "translation": "이 동네에서 추천해주실 만한 맛집이 있나요?",
+    "cloze": "recommend",
+    "keyPoints": "현지인이나 호텔 직원에게 주변의 좋은 장소를 추천받고 싶을 때 자주 쓰이는 표현입니다.",
+    "vocabIds": [
+      "en-vocab-recommend",
+      "en-vocab-neighborhood"
+    ],
+    "date": "2026-11-24"
+  },
+  {
     "id": "s-en-wife-20261122-01-i-just-want-to-wrap-myse",
     "legacyKey": "English:I just want to wrap myself in a cozy blanket and unwind on the sofa.",
     "pairId": "wife-20261122-01",

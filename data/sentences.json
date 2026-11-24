@@ -1,5 +1,195 @@
 [
   {
+    "id": "s-en-20261124-01-we-should-perform-a-cana",
+    "legacyKey": "English:We should perform a canary deployment to minimize production risks.",
+    "pairId": "20261124-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "backend",
+    "tags": [
+      "backend"
+    ],
+    "sentence": "We should perform a canary deployment to minimize production risks.",
+    "translation": "운영 환경의 위험을 최소화하기 위해 카나리 배포를 수행해야 합니다.",
+    "cloze": "canary deployment",
+    "keyPoints": "Use 'perform a canary deployment' when talking about rolling out changes safely to a subset of users.",
+    "vocabIds": [
+      "en-canary"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-de-20261124-01-wir-sollten-eine-kanarie",
+    "legacyKey": "German:Wir sollten eine Kanarienvogel-Bereitstellung durchführen, um Produktionsrisiken zu minimieren.",
+    "pairId": "20261124-01",
+    "lang": "German",
+    "level": "B2",
+    "topic": "backend",
+    "tags": [
+      "backend"
+    ],
+    "sentence": "Wir sollten eine Kanarienvogel-Bereitstellung durchführen, um Produktionsrisiken zu minimieren.",
+    "translation": "운영 위험을 최소화하기 위해 카나리 배포를 수행해야 합니다.",
+    "cloze": "Kanarienvogel-Bereitstellung",
+    "keyPoints": "Use 'eine Kanarienvogel-Bereitstellung durchführen' for safe, incremental releases.",
+    "vocabIds": [
+      "de-canary"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-en-20261124-02-we-need-an-immediate-mit",
+    "legacyKey": "English:We need an immediate mitigation plan to handle the server crash.",
+    "pairId": "20261124-02",
+    "lang": "English",
+    "level": "B1",
+    "topic": "incident",
+    "tags": [
+      "incident"
+    ],
+    "sentence": "We need an immediate mitigation plan to handle the server crash.",
+    "translation": "서버 다운에 대처하기 위한 즉각적인 대응 계획이 필요합니다.",
+    "cloze": "mitigation plan",
+    "keyPoints": "A 'mitigation plan' outlines actions to reduce the severity of an ongoing incident.",
+    "vocabIds": [
+      "en-mitigation"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-de-20261124-02-wir-brauchen-einen-sofor",
+    "legacyKey": "German:Wir brauchen einen sofortigen Notfallplan, um den Serverabsturz zu bewältigen.",
+    "pairId": "20261124-02",
+    "lang": "German",
+    "level": "B1",
+    "topic": "incident",
+    "tags": [
+      "incident"
+    ],
+    "sentence": "Wir brauchen einen sofortigen Notfallplan, um den Serverabsturz zu bewältigen.",
+    "translation": "서버 다운을 처리하기 위해 즉각적인 비상 계획이 필요합니다.",
+    "cloze": "Notfallplan",
+    "keyPoints": "Use 'einen Notfallplan brauchen' when preparing for urgent system failures.",
+    "vocabIds": [
+      "de-mitigation"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-en-20261124-03-let-us-cook-some-warm-pa",
+    "legacyKey": "English:Let us cook some warm pancakes for breakfast today.",
+    "pairId": "20261124-03",
+    "lang": "English",
+    "level": "A2",
+    "topic": "lifestyle",
+    "tags": [
+      "lifestyle"
+    ],
+    "sentence": "Let us cook some warm pancakes for breakfast today.",
+    "translation": "오늘 아침 식사로 따뜻한 팬케이크를 좀 요리하자.",
+    "cloze": "pancakes",
+    "keyPoints": "Use 'cook some pancakes' when preparing a classic morning meal.",
+    "vocabIds": [
+      "en-pancake"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-de-20261124-03-lass-uns-heute-einige-wa",
+    "legacyKey": "German:Lass uns heute einige warme Pfannkuchen zum Frühstück backen.",
+    "pairId": "20261124-03",
+    "lang": "German",
+    "level": "B1",
+    "topic": "lifestyle",
+    "tags": [
+      "lifestyle"
+    ],
+    "sentence": "Lass uns heute einige warme Pfannkuchen zum Frühstück backen.",
+    "translation": "오늘 아침으로 따뜻한 팬케이크를 좀 구워보자.",
+    "cloze": "Pfannkuchen",
+    "keyPoints": "Use 'Pfannkuchen backen' for baking or frying pancakes.",
+    "vocabIds": [
+      "de-pfannkuchen"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-en-20261124-04-we-can-sit-on-the-balcon",
+    "legacyKey": "English:We can sit on the balcony and enjoy the quiet evening.",
+    "pairId": "20261124-04",
+    "lang": "English",
+    "level": "A2",
+    "topic": "lifestyle",
+    "tags": [
+      "lifestyle"
+    ],
+    "sentence": "We can sit on the balcony and enjoy the quiet evening.",
+    "translation": "우리는 발코니에 앉아 조용한 저녁을 즐길 수 있다.",
+    "cloze": "balcony",
+    "keyPoints": "Use 'sit on the balcony' to describe relaxing outdoors at home.",
+    "vocabIds": [
+      "en-balcony"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-de-20261124-04-wir-koennen-auf-dem-balko",
+    "legacyKey": "German:Wir können auf dem Balkon sitzen und den ruhigen Abend genießen.",
+    "pairId": "20261124-04",
+    "lang": "German",
+    "level": "B1",
+    "topic": "lifestyle",
+    "tags": [
+      "lifestyle"
+    ],
+    "sentence": "Wir können auf dem Balkon sitzen und den ruhigen Abend genießen.",
+    "translation": "우리는 발코니에 앉아 조용한 저녁을 즐길 수 있다.",
+    "cloze": "Balkon",
+    "keyPoints": "Use 'auf dem Balkon sitzen' (dative) when relaxing on the balcony.",
+    "vocabIds": [
+      "de-balkon"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-en-20261124-05-make-sure-to-wear-a-stur",
+    "legacyKey": "English:Make sure to wear a sturdy helmet during your mountain bike ride.",
+    "pairId": "20261124-05",
+    "lang": "English",
+    "level": "A2",
+    "topic": "sports",
+    "tags": [
+      "sports"
+    ],
+    "sentence": "Make sure to wear a sturdy helmet during your mountain bike ride.",
+    "translation": "산악 자전거를 탈 때는 튼튼한 헬멧을 꼭 착용하세요.",
+    "cloze": "helmet",
+    "keyPoints": "Use 'wear a helmet' for vital safety instructions in sports.",
+    "vocabIds": [
+      "en-helmet"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-de-20261124-05-trage-waehrend-deiner-mou",
+    "legacyKey": "German:Trage während deiner Mountainbiketour unbedingt einen festen Helm.",
+    "pairId": "20261124-05",
+    "lang": "German",
+    "level": "B1",
+    "topic": "sports",
+    "tags": [
+      "sports"
+    ],
+    "sentence": "Trage während deiner Mountainbiketour unbedingt einen festen Helm.",
+    "translation": "산악 자전거 투어 중에는 반드시 튼튼한 헬멧을 착용해라.",
+    "cloze": "Helm",
+    "keyPoints": "Use 'einen Helm tragen' to express wearing protective gear.",
+    "vocabIds": [
+      "de-helm"
+    ],
+    "date": "2026-11-24"
+  },
+  {
     "id": "s-en-20261122-01-to-prevent-eye-fatigue-f",
     "legacyKey": "English:To prevent eye fatigue from staring at monitors all day, I decided to take a short break in the hallway.",
     "pairId": "20261122-01",

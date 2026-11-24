@@ -1,5 +1,205 @@
 [
   {
+    "id": "en-canary",
+    "legacyKey": "English:canary deployment",
+    "lang": "English",
+    "level": "B1",
+    "word": "canary deployment",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "소프트웨어 변경 사항을 일부 사용자에게 먼저 배포하여 위험을 테스트하는 방식",
+    "example": "We should use a canary deployment for this risky database migration.",
+    "tags": [
+      "backend",
+      "deployment"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-01"
+  },
+  {
+    "id": "de-canary",
+    "legacyKey": "German:die Kanarienvogel-Bereitstellung",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Kanarienvogel-Bereitstellung",
+    "pos": "noun",
+    "posDetail": "Feminin (die Kanarienvogel-Bereitstellungen)",
+    "gender": "die",
+    "plural": "die Kanarienvogel-Bereitstellungen",
+    "meaning": "카나리 배포",
+    "example": "Die Kanarienvogel-Bereitstellung hilft uns, Fehler frühzeitig zu erkennen.",
+    "tags": [
+      "backend",
+      "deployment"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-01"
+  },
+  {
+    "id": "en-mitigation",
+    "legacyKey": "English:mitigation plan",
+    "lang": "English",
+    "level": "B1",
+    "word": "mitigation plan",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "장애나 위험의 영향을 줄이기 위한 대응 계획",
+    "example": "Do you have a mitigation plan ready for this security vulnerability?",
+    "tags": [
+      "incident",
+      "management"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-02"
+  },
+  {
+    "id": "de-mitigation",
+    "legacyKey": "German:der Notfallplan",
+    "lang": "German",
+    "level": "B1",
+    "word": "der Notfallplan",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Notfallpläne)",
+    "gender": "der",
+    "plural": "die Notfallpläne",
+    "meaning": "비상 계획, 완화 계획",
+    "example": "Wir müssen den Notfallplan sofort aktivieren.",
+    "tags": [
+      "incident",
+      "management"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-02"
+  },
+  {
+    "id": "en-pancake",
+    "legacyKey": "English:pancake",
+    "lang": "English",
+    "level": "A2",
+    "word": "pancake",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "팬케이크",
+    "example": "I love making sweet pancakes on Sunday mornings.",
+    "tags": [
+      "food",
+      "morning"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-03"
+  },
+  {
+    "id": "de-pfannkuchen",
+    "legacyKey": "German:der Pfannkuchen",
+    "lang": "German",
+    "level": "B1",
+    "word": "der Pfannkuchen",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Pfannkuchen)",
+    "gender": "der",
+    "plural": "die Pfannkuchen",
+    "meaning": "팬케이크",
+    "example": "Er backt gerne frische Pfannkuchen zum Frühstück.",
+    "tags": [
+      "food",
+      "morning"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-03"
+  },
+  {
+    "id": "en-balcony",
+    "legacyKey": "English:balcony",
+    "lang": "English",
+    "level": "A2",
+    "word": "balcony",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "발코니, 베란다",
+    "example": "She is reading a novel on the sunny balcony.",
+    "tags": [
+      "home",
+      "relax"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-04"
+  },
+  {
+    "id": "de-balkon",
+    "legacyKey": "German:der Balkon",
+    "lang": "German",
+    "level": "B1",
+    "word": "der Balkon",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Balkone)",
+    "gender": "der",
+    "plural": "die Balkone",
+    "meaning": "발코니",
+    "example": "Wir trinken unseren Nachmittagskaffee auf dem Balkon.",
+    "tags": [
+      "home",
+      "relax"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-04"
+  },
+  {
+    "id": "en-helmet",
+    "legacyKey": "English:helmet",
+    "lang": "English",
+    "level": "A2",
+    "word": "helmet",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "헬멧, 안전모",
+    "example": "Always wear your helmet before riding your bicycle.",
+    "tags": [
+      "cycling",
+      "safety"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-05"
+  },
+  {
+    "id": "de-helm",
+    "legacyKey": "German:der Helm",
+    "lang": "German",
+    "level": "B1",
+    "word": "der Helm",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Helme)",
+    "gender": "der",
+    "plural": "die Helme",
+    "meaning": "헬멧",
+    "example": "Der Fahrradhelm schützt dich vor schweren Verletzungen.",
+    "tags": [
+      "cycling",
+      "safety"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "20261124-05"
+  },
+  {
     "id": "en-20261122-01-fatigue",
     "legacyKey": "English:eye fatigue",
     "lang": "English",

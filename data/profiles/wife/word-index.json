@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-22T02:53:07.059Z",
+  "updatedAt": "2026-11-24T07:23:57.248Z",
   "counts": {
-    "vocab": 18,
-    "sentences": 9,
-    "englishVocab": 18,
+    "vocab": 24,
+    "sentences": 12,
+    "englishVocab": 24,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "upgrade",
+      "complimentary",
+      "extra",
+      "towels",
+      "recommend",
+      "neighborhood",
       "unwind",
       "cozy",
       "refreshing",
@@ -31,6 +37,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "Is it possible to get a room upgrade with a complimentary breakfast?"
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "Could you please send some extra towels to our room?"
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "Do you have any good restaurants you can recommend in this neighborhood?"
+    },
     {
       "date": "2026-11-22",
       "lang": "English",

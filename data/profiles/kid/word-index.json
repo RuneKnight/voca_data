@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-22T02:53:13.079Z",
+  "updatedAt": "2026-11-24T07:24:03.123Z",
   "counts": {
-    "vocab": 18,
-    "sentences": 9,
-    "englishVocab": 18,
+    "vocab": 24,
+    "sentences": 12,
+    "englishVocab": 24,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "backpack",
+      "bus",
+      "paper",
+      "glue",
+      "slide",
+      "jump",
       "sunny",
       "flower",
       "pillow",
@@ -31,6 +37,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "Coco wears a big backpack and waits for the school bus."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "Coco puts glue on the paper to make a nice card."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "Coco climbs up and has fun on the slide."
+    },
     {
       "date": "2026-11-22",
       "lang": "English",

@@ -1,5 +1,123 @@
 [
   {
+    "id": "en-vocab-upgrade",
+    "legacyKey": "English:upgrade",
+    "lang": "English",
+    "level": "B1",
+    "word": "upgrade",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "더 좋은 것으로 바꾸어 주다",
+    "example": "We can upgrade your room to a suite for a small fee.",
+    "tags": [
+      "travel",
+      "hotel"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "wife-20261124-01"
+  },
+  {
+    "id": "en-vocab-complimentary",
+    "legacyKey": "English:complimentary",
+    "lang": "English",
+    "level": "B1",
+    "word": "complimentary",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "무료의, 서비스의",
+    "example": "Breakfast is complimentary for all hotel guests.",
+    "tags": [
+      "travel",
+      "hotel"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "wife-20261124-01"
+  },
+  {
+    "id": "en-vocab-extra",
+    "legacyKey": "English:extra",
+    "lang": "English",
+    "level": "A2",
+    "word": "extra",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "추가의, 여분의",
+    "example": "Could we have an extra blanket, please?",
+    "tags": [
+      "hotel",
+      "service"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "wife-20261124-02"
+  },
+  {
+    "id": "en-vocab-towels",
+    "legacyKey": "English:towels",
+    "lang": "English",
+    "level": "A2",
+    "word": "towels",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "수건들",
+    "example": "Please leave fresh towels outside the door.",
+    "tags": [
+      "hotel"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "wife-20261124-02"
+  },
+  {
+    "id": "en-vocab-recommend",
+    "legacyKey": "English:recommend",
+    "lang": "English",
+    "level": "A2",
+    "word": "recommend",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "추천하다",
+    "example": "Can you recommend a good local restaurant nearby?",
+    "tags": [
+      "daily",
+      "travel"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "wife-20261124-03"
+  },
+  {
+    "id": "en-vocab-neighborhood",
+    "legacyKey": "English:neighborhood",
+    "lang": "English",
+    "level": "B1",
+    "word": "neighborhood",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "동네, 이웃 지역",
+    "example": "This neighborhood is very quiet and safe at night.",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-24",
+    "pairId": "wife-20261124-03"
+  },
+  {
     "id": "en-unwind-01",
     "legacyKey": "English:unwind",
     "lang": "English",

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-22T02:53:00.738Z",
+  "updatedAt": "2026-11-24T07:23:51.157Z",
   "counts": {
-    "vocab": 533,
-    "sentences": 338,
-    "pairs": 163
+    "vocab": 543,
+    "sentences": 348,
+    "pairs": 168
   },
   "languages": [
     "English",
@@ -21,39 +21,48 @@
     "adjective",
     "admin",
     "adverb",
+    "backend",
     "body",
     "chores",
     "cooking",
     "cycling",
     "daily",
+    "deployment",
     "dev",
     "developer",
     "drinks",
     "food",
     "health",
+    "home",
     "household",
+    "incident",
     "lifestyle",
+    "management",
+    "morning",
     "noun",
     "performance",
     "phrasal-verb",
     "planning",
+    "relax",
     "relaxation",
+    "safety",
+    "sports",
     "storage",
     "verbs",
     "wellness",
     "work"
   ],
-  "latestDate": "2026-11-22",
+  "latestDate": "2026-11-24",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-24",
+    "cutoffIso": "2026-08-26",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 41,
-        "sentenceCount": 30
+        "vocabCount": 51,
+        "sentenceCount": 40
       },
       {
         "month": "2026-10",

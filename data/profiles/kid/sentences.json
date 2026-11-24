@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-kid-20261124-01-coco-wears-a-big-backpac",
+    "legacyKey": "English:Coco wears a big backpack and waits for the school bus.",
+    "pairId": "kid-20261124-01",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "school",
+    "tags": [
+      "school"
+    ],
+    "sentence": "Coco wears a big backpack and waits for the school bus.",
+    "translation": "코코는 커다란 가방을 메고 스쿨버스를 기다려요.",
+    "cloze": "backpack",
+    "keyPoints": "등굣길에 필요한 가방(backpack)과 버스(bus)를 배워요.",
+    "vocabIds": [
+      "en-vocab-backpack",
+      "en-vocab-bus"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-en-kid-20261124-02-coco-puts-glue-on-the-pa",
+    "legacyKey": "English:Coco puts glue on the paper to make a nice card.",
+    "pairId": "kid-20261124-02",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "classroom",
+    "tags": [
+      "classroom"
+    ],
+    "sentence": "Coco puts glue on the paper to make a nice card.",
+    "translation": "코코는 멋진 카드를 만들기 위해 종이에 풀을 발라요.",
+    "cloze": "glue",
+    "keyPoints": "미술 시간에 쓰는 종이(paper)와 풀(glue)을 알아봐요.",
+    "vocabIds": [
+      "en-vocab-paper",
+      "en-vocab-glue"
+    ],
+    "date": "2026-11-24"
+  },
+  {
+    "id": "s-en-kid-20261124-03-coco-climbs-up-and-has-f",
+    "legacyKey": "English:Coco climbs up and has fun on the slide.",
+    "pairId": "kid-20261124-03",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "playtime",
+    "tags": [
+      "playtime"
+    ],
+    "sentence": "Coco climbs up and has fun on the slide.",
+    "translation": "코코는 기어올라가서 미끄럼틀에서 즐겁게 놀아요.",
+    "cloze": "slide",
+    "keyPoints": "놀이터에서 타는 미끄럼틀(slide)과 신나는 행동(jump)을 배워요.",
+    "vocabIds": [
+      "en-vocab-slide",
+      "en-vocab-jump"
+    ],
+    "date": "2026-11-24"
+  },
+  {
     "id": "s-en-kid-20261122-01-coco-smells-a-sunny-yell",
     "legacyKey": "English:Coco smells a sunny yellow flower.",
     "pairId": "kid-20261122-01",

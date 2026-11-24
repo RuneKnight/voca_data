@@ -1,14 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-22T02:53:00.737Z",
+  "updatedAt": "2026-11-24T07:23:51.156Z",
   "counts": {
-    "vocab": 533,
-    "sentences": 338,
-    "englishVocab": 230,
-    "germanVocab": 303
+    "vocab": 543,
+    "sentences": 348,
+    "englishVocab": 235,
+    "germanVocab": 308
   },
   "words": {
     "English": [
+      "canary deployment",
+      "mitigation plan",
+      "pancake",
+      "balcony",
+      "helmet",
       "eye fatigue",
       "noticeably",
       "hearty",
@@ -241,6 +246,11 @@
       "relaxing"
     ],
     "German": [
+      "die Kanarienvogel-Bereitstellung",
+      "der Notfallplan",
+      "der Pfannkuchen",
+      "der Balkon",
+      "der Helm",
       "die Überanstrengung",
       "vorbeugen",
       "der Kamillentee",
@@ -548,6 +558,56 @@
   },
   "recentSentences": [
     {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "We should perform a canary deployment to minimize production risks."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "German",
+      "sentence": "Wir sollten eine Kanarienvogel-Bereitstellung durchführen, um Produktionsrisiken zu minimieren."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "We need an immediate mitigation plan to handle the server crash."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "German",
+      "sentence": "Wir brauchen einen sofortigen Notfallplan, um den Serverabsturz zu bewältigen."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "Let us cook some warm pancakes for breakfast today."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "German",
+      "sentence": "Lass uns heute einige warme Pfannkuchen zum Frühstück backen."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "We can sit on the balcony and enjoy the quiet evening."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "German",
+      "sentence": "Wir können auf dem Balkon sitzen und den ruhigen Abend genießen."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "English",
+      "sentence": "Make sure to wear a sturdy helmet during your mountain bike ride."
+    },
+    {
+      "date": "2026-11-24",
+      "lang": "German",
+      "sentence": "Trage während deiner Mountainbiketour unbedingt einen festen Helm."
+    },
+    {
       "date": "2026-11-22",
       "lang": "English",
       "sentence": "To prevent eye fatigue from staring at monitors all day, I decided to take a short break in the hallway."
@@ -646,56 +706,6 @@
       "date": "2026-11-20",
       "lang": "German",
       "sentence": "Vergewissern Sie sich vor einer langen Radtour, dass Reifen und Bremsen in Ordnung sind."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "We checked the cryptographic checksums of all mirrored libraries in our offline repository before compiling the upgraded Java module."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Wir haben die kryptografischen Prüfsummen aller gespiegelten Bibliotheken in unserem lokalen Paketspiegel geprüft, bevor wir das aktualisierte Java-Modul kompiliert haben."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "I updated the sequence diagram today to illustrate how the gateway handles slow responses during peak hours."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Ich habe heute das Sequenzdiagramm aktualisiert, um anschaulich darzustellen, wie das Gateway zu Spitzenzeiten auf langsame Antworten reagiert."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "After dinner, I wiped the dining table and steeped a warm mug of barley tea for our family."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Nach dem Essen habe ich den Esstisch abgewischt und einen warmen Becher Gerstentee für unsere Familie aufgegossen."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "I highlighted three thought-provoking passages in my philosophy book to share at our monthly reading group."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Ich habe drei nachdenkliche Textstellen in meinem Philosophiebuch markiert, um sie in unserem monatlichen Lesekreis zu teilen."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "Before our weekend ride, I pumped up the tires and adjusted the brake cables on my folding bicycle."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Vor unserem Wochenendausflug habe ich die Reifen aufgepumpt und die Bremszüge an meinem Faltrad neu eingestellt."
     }
   ]
 }
