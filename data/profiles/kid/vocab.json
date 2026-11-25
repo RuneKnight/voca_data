@@ -1,5 +1,119 @@
 [
   {
+    "id": "en-duck-01",
+    "legacyKey": "English:duck",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "duck",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "오리",
+    "example": "The duck swims in the water.",
+    "tags": [
+      "animals"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "kid-20261125-01"
+  },
+  {
+    "id": "en-pond-01",
+    "legacyKey": "English:pond",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "pond",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "연못",
+    "example": "The pond is very clear.",
+    "tags": [
+      "nature"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "kid-20261125-01"
+  },
+  {
+    "id": "en-squirrel-01",
+    "legacyKey": "English:squirrel",
+    "lang": "English",
+    "level": "A1",
+    "word": "squirrel",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "다람쥐",
+    "example": "The squirrel eats a nut.",
+    "tags": [
+      "animals"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "kid-20261125-02"
+  },
+  {
+    "id": "en-tree-01",
+    "legacyKey": "English:tree",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "tree",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "나무",
+    "example": "The tree has green leaves.",
+    "tags": [
+      "nature"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "kid-20261125-02"
+  },
+  {
+    "id": "en-happy-01",
+    "legacyKey": "English:happy",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "happy",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "행복한, 기쁜",
+    "example": "I am happy to see you.",
+    "tags": [
+      "emotions"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "kid-20261125-03"
+  },
+  {
+    "id": "en-feel-01",
+    "legacyKey": "English:feel",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "feel",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "느끼다, ~한 기분이 들다",
+    "example": "I feel good today.",
+    "tags": [
+      "verbs"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "kid-20261125-03"
+  },
+  {
     "id": "en-vocab-backpack",
     "legacyKey": "English:backpack",
     "lang": "English",

@@ -1,5 +1,125 @@
 [
   {
+    "id": "en-vocab-substitute",
+    "legacyKey": "English:substitute",
+    "lang": "English",
+    "level": "B1",
+    "word": "substitute",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "다른 것으로 대체하다",
+    "example": "Can you substitute regular milk with almond milk?",
+    "tags": [
+      "cafe",
+      "order"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "wife-20261125-01"
+  },
+  {
+    "id": "en-vocab-signature",
+    "legacyKey": "English:signature",
+    "lang": "English",
+    "level": "B1",
+    "word": "signature",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "대표 메뉴의, 시그니처의",
+    "example": "What is your signature drink here?",
+    "tags": [
+      "cafe",
+      "menu"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "wife-20261125-01"
+  },
+  {
+    "id": "en-vocab-overwhelmed",
+    "legacyKey": "English:overwhelmed",
+    "lang": "English",
+    "level": "B1",
+    "word": "overwhelmed",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "압도된, 벅찬, 어쩔 줄 몰라 하는",
+    "example": "I felt a bit overwhelmed by the amount of work.",
+    "tags": [
+      "emotion",
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "wife-20261125-02"
+  },
+  {
+    "id": "en-vocab-wind-down",
+    "legacyKey": "English:wind down",
+    "lang": "English",
+    "level": "B1",
+    "word": "wind down",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "긴장을 풀고 쉬다",
+    "example": "I like to read a book to wind down before bed.",
+    "tags": [
+      "habit",
+      "relax"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "wife-20261125-02"
+  },
+  {
+    "id": "en-vocab-reschedule",
+    "legacyKey": "English:reschedule",
+    "lang": "English",
+    "level": "B1",
+    "word": "reschedule",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "일정을 변경하다",
+    "example": "We need to reschedule our meeting to next week.",
+    "tags": [
+      "plans",
+      "schedule"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "wife-20261125-03"
+  },
+  {
+    "id": "en-vocab-work-out",
+    "legacyKey": "English:work out",
+    "lang": "English",
+    "level": "A2",
+    "word": "work out",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "잘 풀리다, 해결되다",
+    "example": "Don't worry, everything will work out fine.",
+    "tags": [
+      "encouragement",
+      "general"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "wife-20261125-03"
+  },
+  {
     "id": "en-vocab-upgrade",
     "legacyKey": "English:upgrade",
     "lang": "English",

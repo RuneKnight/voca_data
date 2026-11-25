@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-24T07:24:03.123Z",
+  "updatedAt": "2026-11-25T05:16:45.431Z",
   "counts": {
-    "vocab": 24,
-    "sentences": 12,
-    "pairs": 12
+    "vocab": 30,
+    "sentences": 15,
+    "pairs": 15
   },
   "languages": [
     "English",
@@ -23,6 +23,7 @@
     "bedroom",
     "classroom",
     "craft",
+    "emotions",
     "feeling",
     "food",
     "home",
@@ -36,19 +37,20 @@
     "snack",
     "social",
     "transport",
+    "verbs",
     "weather"
   ],
-  "latestDate": "2026-11-24",
+  "latestDate": "2026-11-25",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-26",
+    "cutoffIso": "2026-08-27",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 24,
-        "sentenceCount": 12
+        "vocabCount": 30,
+        "sentenceCount": 15
       }
     ]
   }

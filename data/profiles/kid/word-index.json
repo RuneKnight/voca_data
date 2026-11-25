@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-24T07:24:03.123Z",
+  "updatedAt": "2026-11-25T05:16:45.431Z",
   "counts": {
-    "vocab": 24,
-    "sentences": 12,
-    "englishVocab": 24,
+    "vocab": 30,
+    "sentences": 15,
+    "englishVocab": 30,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "duck",
+      "pond",
+      "squirrel",
+      "tree",
+      "happy",
+      "feel",
       "backpack",
       "bus",
       "paper",
@@ -37,6 +43,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "Coco meets a cute duck by the pond."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "A small squirrel climbs up the big tree."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "Coco feels very happy today."
+    },
     {
       "date": "2026-11-24",
       "lang": "English",

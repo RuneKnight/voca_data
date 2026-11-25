@@ -1,14 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-24T07:23:51.156Z",
+  "updatedAt": "2026-11-25T05:16:21.254Z",
   "counts": {
-    "vocab": 543,
-    "sentences": 348,
-    "englishVocab": 235,
-    "germanVocab": 308
+    "vocab": 553,
+    "sentences": 358,
+    "englishVocab": 240,
+    "germanVocab": 313
   },
   "words": {
     "English": [
+      "progressive",
+      "refactoring",
+      "convincing",
+      "gratitude",
+      "hydration",
       "canary deployment",
       "mitigation plan",
       "pancake",
@@ -246,6 +251,11 @@
       "relaxing"
     ],
     "German": [
+      "die Rollout-Phase",
+      "die Code-Bereinigung",
+      "die Argumentation",
+      "die Dankbarkeit",
+      "die Flüssigkeitszufuhr",
       "die Kanarienvogel-Bereitstellung",
       "der Notfallplan",
       "der Pfannkuchen",
@@ -558,6 +568,56 @@
   },
   "recentSentences": [
     {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "We will initiate the progressive rollout phase for the new service."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "German",
+      "sentence": "Wir werden die schrittweise Rollout-Phase für den neuen Dienst einleiten."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "Let us schedule a quick review before starting the refactoring."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "German",
+      "sentence": "Lassen Sie uns vor der Code-Bereinigung eine kurze Durchsicht planen."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "I found his suggestion quite convincing during the meeting."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "German",
+      "sentence": "Ich fand seine Argumentation während der Besprechung sehr überzeugend."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "We should show our gratitude to the team for their hard work."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "German",
+      "sentence": "Wir sollten dem Team für die harte Arbeit unsere Dankbarkeit zeigen."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "Maintaining good hydration helps you stay focused while coding."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "German",
+      "sentence": "Eine ausreichende Flüssigkeitszufuhr hilft Ihnen, beim Programmieren konzentriert zu bleiben."
+    },
+    {
       "date": "2026-11-24",
       "lang": "English",
       "sentence": "We should perform a canary deployment to minimize production risks."
@@ -656,56 +716,6 @@
       "date": "2026-11-22",
       "lang": "German",
       "sentence": "Vor dem Beginn der anstrengenden Woche überprüfte ich meinen Kalender, um ausreichend Zeit für anstehende Code-Reviews einzuplanen."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "We need to monitor the memory consumption of the new service closely."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Wir müssen die Speicherauslastung des neuen Dienstes genau überwachen."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "Please submit your weekly status report by Friday afternoon."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Bitte reichen Sie Ihren wöchentlichen Statusbericht bis Freitagmittag ein."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "I usually stop by the local bakery on my way home."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Ich gehe auf dem Heimweg meistens kurz in der Bäckerei vorbei."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "Could you please help me tidy up the living room before guests arrive?"
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Könntest du bitte das Wohnzimmer aufräumen, bevor die Gäste kommen?"
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "English",
-      "sentence": "Make sure to check your bicycle tires and brakes before heading out for a long ride."
-    },
-    {
-      "date": "2026-11-20",
-      "lang": "German",
-      "sentence": "Vergewissern Sie sich vor einer langen Radtour, dass Reifen und Bremsen in Ordnung sind."
     }
   ]
 }

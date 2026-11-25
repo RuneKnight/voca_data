@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-wife-20261125-01-could-you-substitute-oat",
+    "legacyKey": "English:Could you substitute oat milk for regular milk in my iced latte, and what is your signature pastry?",
+    "pairId": "wife-20261125-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "cafe",
+    "tags": [
+      "cafe"
+    ],
+    "sentence": "Could you substitute oat milk for regular milk in my iced latte, and what is your signature pastry?",
+    "translation": "아이스 라떼에 일반 우유 대신 오트밀크로 바꿔주실 수 있나요? 그리고 여기 대표 페이스트리는 무엇인가요?",
+    "cloze": "substitute",
+    "keyPoints": "카페에서 우유 종류를 변경하거나 대표 메뉴를 물어볼 때 유용한 표현입니다.",
+    "vocabIds": [
+      "en-vocab-substitute",
+      "en-vocab-signature"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-en-wife-20261125-02-after-a-long-and-busy-we",
+    "legacyKey": "English:After a long and busy week, I just want to stay home and wind down completely.",
+    "pairId": "wife-20261125-02",
+    "lang": "English",
+    "level": "B1",
+    "topic": "routine",
+    "tags": [
+      "routine"
+    ],
+    "sentence": "After a long and busy week, I just want to stay home and wind down completely.",
+    "translation": "길고 바쁜 한 주가 지난 후에, 나는 그냥 집에 머물며 완전히 긴장을 풀고 쉬고 싶다.",
+    "cloze": "wind down",
+    "keyPoints": "하루의 끝이나 주말에 피로를 풀고 휴식을 취할 때 쓰는 자연스러운 표현입니다.",
+    "vocabIds": [
+      "en-vocab-overwhelmed",
+      "en-vocab-wind-down"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-en-wife-20261125-03-don-t-worry-about-the-su",
+    "legacyKey": "English:Don't worry about the sudden delay; everything will work out and we can reschedule our dinner.",
+    "pairId": "wife-20261125-03",
+    "lang": "English",
+    "level": "A2",
+    "topic": "social",
+    "tags": [
+      "social"
+    ],
+    "sentence": "Don't worry about the sudden delay; everything will work out and we can reschedule our dinner.",
+    "translation": "갑작스러운 지연에 대해 걱정하지 마세요. 다 잘 풀릴 거고 우리 저녁 약속도 다시 잡으면 돼요.",
+    "cloze": "work out",
+    "keyPoints": "상대방을 안심시키며 상황이 잘 해결될 것이라고 말할 때 자주 쓰입니다.",
+    "vocabIds": [
+      "en-vocab-reschedule",
+      "en-vocab-work-out"
+    ],
+    "date": "2026-11-25"
+  },
+  {
     "id": "s-en-wife-20261124-01-is-it-possible-to-get-a",
     "legacyKey": "English:Is it possible to get a room upgrade with a complimentary breakfast?",
     "pairId": "wife-20261124-01",

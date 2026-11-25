@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-24T07:23:57.248Z",
+  "updatedAt": "2026-11-25T05:16:27.371Z",
   "counts": {
-    "vocab": 24,
-    "sentences": 12,
-    "englishVocab": 24,
+    "vocab": 30,
+    "sentences": 15,
+    "englishVocab": 30,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "substitute",
+      "signature",
+      "overwhelmed",
+      "wind down",
+      "reschedule",
+      "work out",
       "upgrade",
       "complimentary",
       "extra",
@@ -37,6 +43,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "Could you substitute oat milk for regular milk in my iced latte, and what is your signature pastry?"
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "After a long and busy week, I just want to stay home and wind down completely."
+    },
+    {
+      "date": "2026-11-25",
+      "lang": "English",
+      "sentence": "Don't worry about the sudden delay; everything will work out and we can reschedule our dinner."
+    },
     {
       "date": "2026-11-24",
       "lang": "English",

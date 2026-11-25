@@ -1,5 +1,195 @@
 [
   {
+    "id": "en-canary-tag",
+    "legacyKey": "English:progressive",
+    "lang": "English",
+    "level": "B1",
+    "word": "progressive",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "점진적인",
+    "example": "We applied a progressive rollout strategy.",
+    "tags": [
+      "deployment"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-01"
+  },
+  {
+    "id": "de-rollout-phase",
+    "legacyKey": "German:die Rollout-Phase",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Rollout-Phase",
+    "pos": "noun",
+    "posDetail": "Feminin (die Rollout-Phasen)",
+    "gender": "die",
+    "plural": "die Rollout-Phasen",
+    "meaning": "배포 단계",
+    "example": "Die Rollout-Phase läuft stabil.",
+    "tags": [
+      "deployment"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-01"
+  },
+  {
+    "id": "en-refactoring",
+    "legacyKey": "English:refactoring",
+    "lang": "English",
+    "level": "B1",
+    "word": "refactoring",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "리팩토링",
+    "example": "Code refactoring improves readability.",
+    "tags": [
+      "code"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-02"
+  },
+  {
+    "id": "de-code-cleanup",
+    "legacyKey": "German:die Code-Bereinigung",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Code-Bereinigung",
+    "pos": "noun",
+    "posDetail": "Feminin (die Code-Bereinigungen)",
+    "gender": "die",
+    "plural": "die Code-Bereinigungen",
+    "meaning": "코드 정리",
+    "example": "Die Code-Bereinigung ist heute fällig.",
+    "tags": [
+      "code"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-02"
+  },
+  {
+    "id": "en-convincing",
+    "legacyKey": "English:convincing",
+    "lang": "English",
+    "level": "B1",
+    "word": "convincing",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "설득력 있는",
+    "example": "That is a convincing argument.",
+    "tags": [
+      "opinion"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-03"
+  },
+  {
+    "id": "de-argumentation",
+    "legacyKey": "German:die Argumentation",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Argumentation",
+    "pos": "noun",
+    "posDetail": "Feminin (die Argumentationen)",
+    "gender": "die",
+    "plural": "die Argumentationen",
+    "meaning": "논증, 논거",
+    "example": "Ihre Argumentation ist logisch.",
+    "tags": [
+      "opinion"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-03"
+  },
+  {
+    "id": "en-gratitude",
+    "legacyKey": "English:gratitude",
+    "lang": "English",
+    "level": "B1",
+    "word": "gratitude",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "감사",
+    "example": "I want to express my gratitude.",
+    "tags": [
+      "emotion"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-04"
+  },
+  {
+    "id": "de-dankbarkeit",
+    "legacyKey": "German:die Dankbarkeit",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Dankbarkeit",
+    "pos": "noun",
+    "posDetail": "Feminin",
+    "gender": "die",
+    "plural": null,
+    "meaning": "감사함",
+    "example": "Sie zeigte große Dankbarkeit.",
+    "tags": [
+      "emotion"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-04"
+  },
+  {
+    "id": "en-hydration",
+    "legacyKey": "English:hydration",
+    "lang": "English",
+    "level": "B1",
+    "word": "hydration",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "수분 공급",
+    "example": "Proper hydration is essential.",
+    "tags": [
+      "health"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-05"
+  },
+  {
+    "id": "de-fluessigkeitszufuhr",
+    "legacyKey": "German:die Flüssigkeitszufuhr",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Flüssigkeitszufuhr",
+    "pos": "noun",
+    "posDetail": "Feminin",
+    "gender": "die",
+    "plural": null,
+    "meaning": "수분 섭취",
+    "example": "Eine gute Flüssigkeitszufuhr ist wichtig.",
+    "tags": [
+      "health"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-25",
+    "pairId": "20261125-05"
+  },
+  {
     "id": "en-canary",
     "legacyKey": "English:canary deployment",
     "lang": "English",

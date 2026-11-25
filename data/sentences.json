@@ -1,5 +1,195 @@
 [
   {
+    "id": "s-en-20261125-01-we-will-initiate-the-pro",
+    "legacyKey": "English:We will initiate the progressive rollout phase for the new service.",
+    "pairId": "20261125-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "deployment",
+    "tags": [
+      "deployment"
+    ],
+    "sentence": "We will initiate the progressive rollout phase for the new service.",
+    "translation": "새로운 서비스를 위한 점진적 배포 단계를 시작하겠습니다.",
+    "cloze": "progressive rollout phase",
+    "keyPoints": "Use 'progressive rollout phase' to describe staged software releases.",
+    "vocabIds": [
+      "en-canary-tag"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-de-20261125-01-wir-werden-die-schrittwe",
+    "legacyKey": "German:Wir werden die schrittweise Rollout-Phase für den neuen Dienst einleiten.",
+    "pairId": "20261125-01",
+    "lang": "German",
+    "level": "B2",
+    "topic": "deployment",
+    "tags": [
+      "deployment"
+    ],
+    "sentence": "Wir werden die schrittweise Rollout-Phase für den neuen Dienst einleiten.",
+    "translation": "새로운 서비스를 위해 단계별 배포 단계를 시작하겠습니다.",
+    "cloze": "Rollout-Phase",
+    "keyPoints": "Use 'die Rollout-Phase' when referring to release stages in German.",
+    "vocabIds": [
+      "de-rollout-phase"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-en-20261125-02-let-us-schedule-a-quick",
+    "legacyKey": "English:Let us schedule a quick review before starting the refactoring.",
+    "pairId": "20261125-02",
+    "lang": "English",
+    "level": "B1",
+    "topic": "code",
+    "tags": [
+      "code"
+    ],
+    "sentence": "Let us schedule a quick review before starting the refactoring.",
+    "translation": "리팩토링을 시작하기 전에 간단한 검토 일정을 잡읍시다.",
+    "cloze": "refactoring",
+    "keyPoints": "Discussing code improvements and review timing.",
+    "vocabIds": [
+      "en-refactoring"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-de-20261125-02-lassen-sie-uns-vor-der-c",
+    "legacyKey": "German:Lassen Sie uns vor der Code-Bereinigung eine kurze Durchsicht planen.",
+    "pairId": "20261125-02",
+    "lang": "German",
+    "level": "B2",
+    "topic": "code",
+    "tags": [
+      "code"
+    ],
+    "sentence": "Lassen Sie uns vor der Code-Bereinigung eine kurze Durchsicht planen.",
+    "translation": "코드 정리를 시작하기 전에 간단한 검토를 계획합시다.",
+    "cloze": "Code-Bereinigung",
+    "keyPoints": "Using 'die Code-Bereinigung' for code cleanup tasks.",
+    "vocabIds": [
+      "de-code-cleanup"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-en-20261125-03-i-found-his-suggestion-q",
+    "legacyKey": "English:I found his suggestion quite convincing during the meeting.",
+    "pairId": "20261125-03",
+    "lang": "English",
+    "level": "B1",
+    "topic": "opinion",
+    "tags": [
+      "opinion"
+    ],
+    "sentence": "I found his suggestion quite convincing during the meeting.",
+    "translation": "나는 회의 중에 그의 제안이 꽤 설득력 있다고 생각했다.",
+    "cloze": "convincing",
+    "keyPoints": "Expressing agreement and evaluation of ideas.",
+    "vocabIds": [
+      "en-convincing"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-de-20261125-03-ich-fand-seine-argumenta",
+    "legacyKey": "German:Ich fand seine Argumentation während der Besprechung sehr überzeugend.",
+    "pairId": "20261125-03",
+    "lang": "German",
+    "level": "B2",
+    "topic": "opinion",
+    "tags": [
+      "opinion"
+    ],
+    "sentence": "Ich fand seine Argumentation während der Besprechung sehr überzeugend.",
+    "translation": "나는 회의 중에 그의 논거가 매우 설득력 있다고 생각했다.",
+    "cloze": "Argumentation",
+    "keyPoints": "Using 'die Argumentation' to discuss viewpoints.",
+    "vocabIds": [
+      "de-argumentation"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-en-20261125-04-we-should-show-our-grati",
+    "legacyKey": "English:We should show our gratitude to the team for their hard work.",
+    "pairId": "20261125-04",
+    "lang": "English",
+    "level": "B1",
+    "topic": "emotion",
+    "tags": [
+      "emotion"
+    ],
+    "sentence": "We should show our gratitude to the team for their hard work.",
+    "translation": "우리는 팀의 노고에 대해 감사를 표해야 합니다.",
+    "cloze": "gratitude",
+    "keyPoints": "Expressing appreciation in professional settings.",
+    "vocabIds": [
+      "en-gratitude"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-de-20261125-04-wir-sollten-dem-team-fuer",
+    "legacyKey": "German:Wir sollten dem Team für die harte Arbeit unsere Dankbarkeit zeigen.",
+    "pairId": "20261125-04",
+    "lang": "German",
+    "level": "B2",
+    "topic": "emotion",
+    "tags": [
+      "emotion"
+    ],
+    "sentence": "Wir sollten dem Team für die harte Arbeit unsere Dankbarkeit zeigen.",
+    "translation": "우리는 팀의 노고에 대해 감사를 표해야 합니다.",
+    "cloze": "Dankbarkeit",
+    "keyPoints": "Using 'die Dankbarkeit' for expressing sincere thanks.",
+    "vocabIds": [
+      "de-dankbarkeit"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-en-20261125-05-maintaining-good-hydrati",
+    "legacyKey": "English:Maintaining good hydration helps you stay focused while coding.",
+    "pairId": "20261125-05",
+    "lang": "English",
+    "level": "B1",
+    "topic": "health",
+    "tags": [
+      "health"
+    ],
+    "sentence": "Maintaining good hydration helps you stay focused while coding.",
+    "translation": "충분한 수분 유지는 코딩하는 동안 집중력을 유지하는 데 도움이 됩니다.",
+    "cloze": "hydration",
+    "keyPoints": "Talking about daily health habits and wellness.",
+    "vocabIds": [
+      "en-hydration"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-de-20261125-05-eine-ausreichende-fluessi",
+    "legacyKey": "German:Eine ausreichende Flüssigkeitszufuhr hilft Ihnen, beim Programmieren konzentriert zu bleiben.",
+    "pairId": "20261125-05",
+    "lang": "German",
+    "level": "B2",
+    "topic": "health",
+    "tags": [
+      "health"
+    ],
+    "sentence": "Eine ausreichende Flüssigkeitszufuhr hilft Ihnen, beim Programmieren konzentriert zu bleiben.",
+    "translation": "충분한 수분 섭취는 프로그래밍하는 동안 집중력을 유지하는 데 도움이 됩니다.",
+    "cloze": "Flüssigkeitszufuhr",
+    "keyPoints": "Using 'die Flüssigkeitszufuhr' for fluid intake.",
+    "vocabIds": [
+      "de-fluessigkeitszufuhr"
+    ],
+    "date": "2026-11-25"
+  },
+  {
     "id": "s-en-20261124-01-we-should-perform-a-cana",
     "legacyKey": "English:We should perform a canary deployment to minimize production risks.",
     "pairId": "20261124-01",

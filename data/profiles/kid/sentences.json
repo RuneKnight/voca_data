@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-kid-20261125-01-coco-meets-a-cute-duck-b",
+    "legacyKey": "English:Coco meets a cute duck by the pond.",
+    "pairId": "kid-20261125-01",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "park",
+    "tags": [
+      "park"
+    ],
+    "sentence": "Coco meets a cute duck by the pond.",
+    "translation": "코코는 연못가에서 귀여운 오리를 만나요.",
+    "cloze": "duck",
+    "keyPoints": "meet는 '만나다'라는 뜻이고, duck은 '오리'를 말해요.",
+    "vocabIds": [
+      "en-duck-01",
+      "en-pond-01"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-en-kid-20261125-02-a-small-squirrel-climbs",
+    "legacyKey": "English:A small squirrel climbs up the big tree.",
+    "pairId": "kid-20261125-02",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "nature",
+    "tags": [
+      "nature"
+    ],
+    "sentence": "A small squirrel climbs up the big tree.",
+    "translation": "작은 다람쥐가 큰 나무 위로 올라가요.",
+    "cloze": "squirrel",
+    "keyPoints": "squirrel은 '다람쥐'이고, climb up은 '위로 올라가다'라는 뜻이에요.",
+    "vocabIds": [
+      "en-squirrel-01",
+      "en-tree-01"
+    ],
+    "date": "2026-11-25"
+  },
+  {
+    "id": "s-en-kid-20261125-03-coco-feels-very-happy-to",
+    "legacyKey": "English:Coco feels very happy today.",
+    "pairId": "kid-20261125-03",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "emotions",
+    "tags": [
+      "emotions"
+    ],
+    "sentence": "Coco feels very happy today.",
+    "translation": "코코는 오늘 기분이 정말 좋아요.",
+    "cloze": "happy",
+    "keyPoints": "feel은 '~한 기분이 들다', happy는 '행복한, 기쁜'이라는 뜻이에요.",
+    "vocabIds": [
+      "en-happy-01",
+      "en-feel-01"
+    ],
+    "date": "2026-11-25"
+  },
+  {
     "id": "s-en-kid-20261124-01-coco-wears-a-big-backpac",
     "legacyKey": "English:Coco wears a big backpack and waits for the school bus.",
     "pairId": "kid-20261124-01",
