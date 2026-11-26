@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T05:16:21.255Z",
+  "updatedAt": "2026-11-26T04:53:35.142Z",
   "counts": {
-    "vocab": 553,
-    "sentences": 358,
-    "pairs": 173
+    "vocab": 563,
+    "sentences": 368,
+    "pairs": 178
   },
   "languages": [
     "English",
@@ -21,6 +21,8 @@
     "adjective",
     "admin",
     "adverb",
+    "analysis",
+    "analytics",
     "backend",
     "body",
     "chores",
@@ -31,6 +33,7 @@
     "deployment",
     "dev",
     "developer",
+    "dining",
     "drinks",
     "emotion",
     "food",
@@ -43,9 +46,11 @@
     "morning",
     "noun",
     "opinion",
+    "outing",
     "performance",
     "phrasal-verb",
     "planning",
+    "reading",
     "relax",
     "relaxation",
     "safety",
@@ -55,17 +60,17 @@
     "wellness",
     "work"
   ],
-  "latestDate": "2026-11-25",
+  "latestDate": "2026-11-26",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-27",
+    "cutoffIso": "2026-08-28",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 61,
-        "sentenceCount": 50
+        "vocabCount": 71,
+        "sentenceCount": 60
       },
       {
         "month": "2026-10",

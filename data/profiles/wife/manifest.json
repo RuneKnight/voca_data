@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T05:16:27.371Z",
+  "updatedAt": "2026-11-26T04:53:41.874Z",
   "counts": {
-    "vocab": 30,
-    "sentences": 15,
-    "pairs": 15
+    "vocab": 36,
+    "sentences": 18,
+    "pairs": 18
   },
   "languages": [
     "English",
@@ -17,7 +17,9 @@
   ],
   "tags": [
     "cafe",
+    "clothes",
     "daily",
+    "directions",
     "drink",
     "emotion",
     "encouragement",
@@ -44,17 +46,17 @@
     "weather",
     "work"
   ],
-  "latestDate": "2026-11-25",
+  "latestDate": "2026-11-26",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-27",
+    "cutoffIso": "2026-08-28",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 30,
-        "sentenceCount": 15
+        "vocabCount": 36,
+        "sentenceCount": 18
       }
     ]
   }

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T05:16:45.431Z",
+  "updatedAt": "2026-11-26T04:55:17.622Z",
   "counts": {
-    "vocab": 30,
-    "sentences": 15,
-    "pairs": 15
+    "vocab": 36,
+    "sentences": 18,
+    "pairs": 18
   },
   "languages": [
     "English",
@@ -26,31 +26,39 @@
     "emotions",
     "feeling",
     "food",
+    "friendship",
     "home",
+    "kindness",
+    "lunch",
+    "manner",
     "nature",
+    "object",
     "park",
+    "picnic",
     "plants",
     "play",
     "playtime",
     "politeness",
     "school",
+    "sharing",
     "snack",
     "social",
+    "taste",
     "transport",
     "verbs",
     "weather"
   ],
-  "latestDate": "2026-11-25",
+  "latestDate": "2026-11-26",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-27",
+    "cutoffIso": "2026-08-28",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 30,
-        "sentenceCount": 15
+        "vocabCount": 36,
+        "sentenceCount": 18
       }
     ]
   }

@@ -1,5 +1,121 @@
 [
   {
+    "id": "en-vocab-fitting-room",
+    "legacyKey": "English:fitting room",
+    "lang": "English",
+    "level": "A2",
+    "word": "fitting room",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "탈의실",
+    "example": "Excuse me, where is the fitting room?",
+    "tags": [
+      "shopping",
+      "clothes"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "wife-20261126-01"
+  },
+  {
+    "id": "en-vocab-available",
+    "legacyKey": "English:available",
+    "lang": "English",
+    "level": "A2",
+    "word": "available",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "이용 가능한, 비어 있는",
+    "example": "Is this jacket available in a medium?",
+    "tags": [
+      "shopping"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "wife-20261126-01"
+  },
+  {
+    "id": "en-vocab-straight",
+    "legacyKey": "English:straight",
+    "lang": "English",
+    "level": "A2",
+    "word": "straight",
+    "pos": "adv",
+    "posDetail": "Adverb",
+    "gender": null,
+    "plural": null,
+    "meaning": "곧장, 똑바로",
+    "example": "Go straight down this street.",
+    "tags": [
+      "directions"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "wife-20261126-02"
+  },
+  {
+    "id": "en-vocab-turn",
+    "legacyKey": "English:turn",
+    "lang": "English",
+    "level": "A2",
+    "word": "turn",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "돌다, 방향을 바꾸다",
+    "example": "Turn left at the next corner.",
+    "tags": [
+      "directions"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "wife-20261126-02"
+  },
+  {
+    "id": "en-vocab-productive",
+    "legacyKey": "English:productive",
+    "lang": "English",
+    "level": "B1",
+    "word": "productive",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "생산적인",
+    "example": "I had a very productive morning.",
+    "tags": [
+      "daily",
+      "work"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "wife-20261126-03"
+  },
+  {
+    "id": "en-vocab-accomplish",
+    "legacyKey": "English:accomplish",
+    "lang": "English",
+    "level": "B1",
+    "word": "accomplish",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "성취하다, 해내다",
+    "example": "We accomplished a lot today.",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "wife-20261126-03"
+  },
+  {
     "id": "en-vocab-substitute",
     "legacyKey": "English:substitute",
     "lang": "English",

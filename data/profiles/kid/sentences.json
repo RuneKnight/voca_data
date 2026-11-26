@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-kid-20261126-01-coco-opens-a-big-basket",
+    "legacyKey": "English:Coco opens a big basket on the grass.",
+    "pairId": "kid-20261126-01",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "picnic",
+    "tags": [
+      "picnic"
+    ],
+    "sentence": "Coco opens a big basket on the grass.",
+    "translation": "코코가 잔디밭 위에서 커다란 바구니를 열어요.",
+    "cloze": "basket",
+    "keyPoints": "주어 Coco가 3인칭 단수이므로 동사 open 뒤에 s가 붙어 opens가 됩니다. on the grass는 '잔디 위에서'라는 장소를 나타냅니다.",
+    "vocabIds": [
+      "en-basket",
+      "en-grass"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-en-kid-20261126-02-he-sees-a-sandwich-and-s",
+    "legacyKey": "English:He sees a sandwich and sweet grapes.",
+    "pairId": "kid-20261126-02",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "food",
+    "tags": [
+      "food"
+    ],
+    "sentence": "He sees a sandwich and sweet grapes.",
+    "translation": "코코는 샌드위치와 달콤한 포도를 보아요.",
+    "cloze": "grapes",
+    "keyPoints": "sees는 '보다(see)'의 3인칭 단수형입니다. 형용사 sweet가 명사 grapes(포도)를 앞에서 꾸며주어 '달콤한 포도'라는 뜻이 됩니다.",
+    "vocabIds": [
+      "en-sandwich",
+      "en-sweet"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-en-kid-20261126-03-he-gives-food-to-his-fri",
+    "legacyKey": "English:He gives food to his friend to eat together.",
+    "pairId": "kid-20261126-03",
+    "lang": "English",
+    "level": "A1",
+    "topic": "sharing",
+    "tags": [
+      "sharing"
+    ],
+    "sentence": "He gives food to his friend to eat together.",
+    "translation": "코코는 함께 먹으려고 친구에게 음식을 주어요.",
+    "cloze": "together",
+    "keyPoints": "give A to B는 'A를 B에게 주다'라는 표현입니다. 뒤에 붙은 to eat together는 '함께 먹기 위해서'라는 목적을 나타냅니다.",
+    "vocabIds": [
+      "en-give",
+      "en-together"
+    ],
+    "date": "2026-11-26"
+  },
+  {
     "id": "s-en-kid-20261125-01-coco-meets-a-cute-duck-b",
     "legacyKey": "English:Coco meets a cute duck by the pond.",
     "pairId": "kid-20261125-01",

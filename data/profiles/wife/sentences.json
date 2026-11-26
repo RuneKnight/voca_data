@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-wife-20261126-01-excuse-me-could-you-tel",
+    "legacyKey": "English:Excuse me, could you tell me where the fitting room is?",
+    "pairId": "wife-20261126-01",
+    "lang": "English",
+    "level": "A2",
+    "topic": "shopping",
+    "tags": [
+      "shopping"
+    ],
+    "sentence": "Excuse me, could you tell me where the fitting room is?",
+    "translation": "실례지만, 탈의실이 어디에 있는지 알려주시겠어요?",
+    "cloze": "fitting room",
+    "keyPoints": "매장에서 옷을 입어보기 위해 탈의실 위치를 정중하게 물어볼 때 쓰는 필수 표현입니다.",
+    "vocabIds": [
+      "en-vocab-fitting-room",
+      "en-vocab-available"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-en-wife-20261126-02-go-straight-for-two-bloc",
+    "legacyKey": "English:Go straight for two blocks and then turn left at the traffic light.",
+    "pairId": "wife-20261126-02",
+    "lang": "English",
+    "level": "A2",
+    "topic": "directions",
+    "tags": [
+      "directions"
+    ],
+    "sentence": "Go straight for two blocks and then turn left at the traffic light.",
+    "translation": "두 블록을 곧장 가신 다음에 신호등에서 왼쪽으로 도세요.",
+    "cloze": "Go straight",
+    "keyPoints": "길을 안내하거나 물어볼 때 방향을 지시하는 가장 기본적인 동사구입니다.",
+    "vocabIds": [
+      "en-vocab-straight",
+      "en-vocab-turn"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-en-wife-20261126-03-i-feel-like-i-accomplish",
+    "legacyKey": "English:I feel like I accomplished a lot today, which makes me happy.",
+    "pairId": "wife-20261126-03",
+    "lang": "English",
+    "level": "B1",
+    "topic": "routine",
+    "tags": [
+      "routine"
+    ],
+    "sentence": "I feel like I accomplished a lot today, which makes me happy.",
+    "translation": "오늘 많은 것을 해낸 것 같아서 기분이 좋네요.",
+    "cloze": "accomplished",
+    "keyPoints": "하루를 마무리하며 자신이 이룬 성취감이나 뿌듯함을 표현할 때 유용한 단어입니다.",
+    "vocabIds": [
+      "en-vocab-productive",
+      "en-vocab-accomplish"
+    ],
+    "date": "2026-11-26"
+  },
+  {
     "id": "s-en-wife-20261125-01-could-you-substitute-oat",
     "legacyKey": "English:Could you substitute oat milk for regular milk in my iced latte, and what is your signature pastry?",
     "pairId": "wife-20261125-01",

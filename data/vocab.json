@@ -1,5 +1,199 @@
 [
   {
+    "id": "en-vocab-1",
+    "legacyKey": "English:profiling",
+    "lang": "English",
+    "level": "B1",
+    "word": "profiling",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "성능 측정 및 분석",
+    "example": "Profiling helps identify slow database queries.",
+    "tags": [
+      "performance",
+      "analysis"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-01"
+  },
+  {
+    "id": "de-vocab-1",
+    "legacyKey": "German:die Profilerstellung",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Profilerstellung",
+    "pos": "noun",
+    "posDetail": "Feminin (die Profilerstellungen)",
+    "gender": "die",
+    "plural": "die Profilerstellungen",
+    "meaning": "프로파일링, 성능 분석",
+    "example": "Die Profilerstellung zeigt die rechenintensiven Funktionen.",
+    "tags": [
+      "performance",
+      "analysis"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-01"
+  },
+  {
+    "id": "en-vocab-2",
+    "legacyKey": "English:dashboard",
+    "lang": "English",
+    "level": "A2",
+    "word": "dashboard",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "대시보드, 현황판",
+    "example": "Check the dashboard for real-time metrics.",
+    "tags": [
+      "analytics"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-02"
+  },
+  {
+    "id": "de-vocab-2",
+    "legacyKey": "German:das Anzeigefenster",
+    "lang": "German",
+    "level": "B1",
+    "word": "das Anzeigefenster",
+    "pos": "noun",
+    "posDetail": "Neutrum (die Anzeigefenster)",
+    "gender": "das",
+    "plural": "die Anzeigefenster",
+    "meaning": "표시창, 대시보드 화면",
+    "example": "Das Anzeigefenster aktualisiert sich automatisch.",
+    "tags": [
+      "analytics"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-02"
+  },
+  {
+    "id": "en-vocab-3",
+    "legacyKey": "English:errand",
+    "lang": "English",
+    "level": "A2",
+    "word": "errand",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "심부름, 볼일",
+    "example": "I have to run a few errands after work.",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-03"
+  },
+  {
+    "id": "de-vocab-3",
+    "legacyKey": "German:die Besorgung",
+    "lang": "German",
+    "level": "B1",
+    "word": "die Besorgung",
+    "pos": "noun",
+    "posDetail": "Feminin (die Besorgungen)",
+    "gender": "die",
+    "plural": "die Besorgungen",
+    "meaning": "볼일, 구입",
+    "example": "Ich muss noch schnell eine Besorgung machen.",
+    "tags": [
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-03"
+  },
+  {
+    "id": "en-vocab-4",
+    "legacyKey": "English:reservation",
+    "lang": "English",
+    "level": "B1",
+    "word": "reservation",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "예약",
+    "example": "I made a reservation for four people.",
+    "tags": [
+      "outing",
+      "dining"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-04"
+  },
+  {
+    "id": "de-vocab-4",
+    "legacyKey": "German:die Tischreservierung",
+    "lang": "German",
+    "level": "B1",
+    "word": "die Tischreservierung",
+    "pos": "noun",
+    "posDetail": "Feminin (die Tischreservierungen)",
+    "gender": "die",
+    "plural": "die Tischreservierungen",
+    "meaning": "테이블 예약",
+    "example": "Die Tischreservierung gilt für Freitagabend.",
+    "tags": [
+      "outing",
+      "dining"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-04"
+  },
+  {
+    "id": "en-vocab-5",
+    "legacyKey": "English:bookmark",
+    "lang": "English",
+    "level": "B1",
+    "word": "bookmark",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "책갈피",
+    "example": "She placed a paper bookmark between the pages.",
+    "tags": [
+      "reading"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-05"
+  },
+  {
+    "id": "de-vocab-5",
+    "legacyKey": "German:das Lesezeichen",
+    "lang": "German",
+    "level": "B1",
+    "word": "das Lesezeichen",
+    "pos": "noun",
+    "posDetail": "Neutrum (die Lesezeichen)",
+    "gender": "das",
+    "plural": "die Lesezeichen",
+    "meaning": "책갈피, 북마크",
+    "example": "Er hat das Lesezeichen in den Roman gelegt.",
+    "tags": [
+      "reading"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-26",
+    "pairId": "20261126-05"
+  },
+  {
     "id": "en-canary-tag",
     "legacyKey": "English:progressive",
     "lang": "English",

@@ -1,14 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T05:16:21.254Z",
+  "updatedAt": "2026-11-26T04:53:35.141Z",
   "counts": {
-    "vocab": 553,
-    "sentences": 358,
-    "englishVocab": 240,
-    "germanVocab": 313
+    "vocab": 563,
+    "sentences": 368,
+    "englishVocab": 245,
+    "germanVocab": 318
   },
   "words": {
     "English": [
+      "profiling",
+      "dashboard",
+      "errand",
+      "reservation",
+      "bookmark",
       "progressive",
       "refactoring",
       "convincing",
@@ -251,6 +256,11 @@
       "relaxing"
     ],
     "German": [
+      "die Profilerstellung",
+      "das Anzeigefenster",
+      "die Besorgung",
+      "die Tischreservierung",
+      "das Lesezeichen",
       "die Rollout-Phase",
       "die Code-Bereinigung",
       "die Argumentation",
@@ -568,6 +578,56 @@
   },
   "recentSentences": [
     {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "Profiling the application revealed a hidden memory leak in the background worker."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "German",
+      "sentence": "Die Profilerstellung der Anwendung offenbarte ein verstecktes Speicherleck im Hintergrundprozess."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "We need to update the analytics dashboard with the latest user engagement metrics."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "German",
+      "sentence": "Wir müssen das Anzeigefenster für die Analysen mit den neuesten Kennzahlen aktualisieren."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "I will step out briefly to run an errand during my lunch break."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "German",
+      "sentence": "Ich gehe in der Mittagspause kurz hinaus, um eine dringende Besorgung zu erledigen."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "Could you please confirm our restaurant reservation for this Friday evening?"
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "German",
+      "sentence": "Könnten Sie bitte unsere Tischreservierung für diesen Freitagabend bestätigen?"
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "I always use a leather bookmark so I do not lose track of my chapter."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "German",
+      "sentence": "Ich verwende immer ein schönes Lesezeichen, damit ich die aktuelle Seite wiederfinde."
+    },
+    {
       "date": "2026-11-25",
       "lang": "English",
       "sentence": "We will initiate the progressive rollout phase for the new service."
@@ -666,56 +726,6 @@
       "date": "2026-11-24",
       "lang": "German",
       "sentence": "Trage während deiner Mountainbiketour unbedingt einen festen Helm."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "English",
-      "sentence": "To prevent eye fatigue from staring at monitors all day, I decided to take a short break in the hallway."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "German",
-      "sentence": "Um der Überanstrengung der Augen durch stundenlange Bildschirmarbeit vorzubeugen, beschloss ich, eine kurze Pause auf dem Flur einzulegen."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "English",
-      "sentence": "Drinking warm chamomile tea before bedtime noticeably improved my sleep quality."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "German",
-      "sentence": "Das Trinken von warmem Kamillentee vor dem Zubettgehen verbesserte meine Schlafqualität spürbar."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "English",
-      "sentence": "My partner and I chopped fresh carrots and potatoes together to prepare a hearty soup."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "German",
-      "sentence": "Mein Partner und ich schnippelten gemeinsam frische Karotten und Kartoffeln, um eine herzhafte Gemüsesuppe zuzubereiten."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "English",
-      "sentence": "This afternoon we sorted out outgrown winter clothes and packed the heavy coats into a storage box."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "German",
-      "sentence": "Heute Nachmittag sortierten wir zu klein gewordene Winterkleidung aus und verstauten die schweren Mäntel in einer Aufbewahrungsbox."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "English",
-      "sentence": "Before starting the busy week, I checked my calendar to schedule time for the upcoming code reviews."
-    },
-    {
-      "date": "2026-11-22",
-      "lang": "German",
-      "sentence": "Vor dem Beginn der anstrengenden Woche überprüfte ich meinen Kalender, um ausreichend Zeit für anstehende Code-Reviews einzuplanen."
     }
   ]
 }

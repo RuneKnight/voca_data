@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T05:16:45.431Z",
+  "updatedAt": "2026-11-26T04:55:17.622Z",
   "counts": {
-    "vocab": 30,
-    "sentences": 15,
-    "englishVocab": 30,
+    "vocab": 36,
+    "sentences": 18,
+    "englishVocab": 36,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "basket",
+      "grass",
+      "sandwich",
+      "sweet",
+      "give",
+      "together",
       "duck",
       "pond",
       "squirrel",
@@ -43,6 +49,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "Coco opens a big basket on the grass."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "He sees a sandwich and sweet grapes."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "He gives food to his friend to eat together."
+    },
     {
       "date": "2026-11-25",
       "lang": "English",

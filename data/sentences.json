@@ -1,5 +1,195 @@
 [
   {
+    "id": "s-en-20261126-01-profiling-the-applicatio",
+    "legacyKey": "English:Profiling the application revealed a hidden memory leak in the background worker.",
+    "pairId": "20261126-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "performance",
+    "tags": [
+      "performance"
+    ],
+    "sentence": "Profiling the application revealed a hidden memory leak in the background worker.",
+    "translation": "애플리케이션을 프로파일링한 결과 백그라운드 워커에서 숨겨진 메모리 누수가 드러났습니다.",
+    "cloze": "Profiling",
+    "keyPoints": "Use 'revealed' to express discovering an issue after analysis.",
+    "vocabIds": [
+      "en-vocab-1"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-de-20261126-01-die-profilerstellung-der",
+    "legacyKey": "German:Die Profilerstellung der Anwendung offenbarte ein verstecktes Speicherleck im Hintergrundprozess.",
+    "pairId": "20261126-01",
+    "lang": "German",
+    "level": "B2",
+    "topic": "performance",
+    "tags": [
+      "performance"
+    ],
+    "sentence": "Die Profilerstellung der Anwendung offenbarte ein verstecktes Speicherleck im Hintergrundprozess.",
+    "translation": "애플리케이션 프로파일링을 통해 백그라운드 프로세스에서 숨겨진 메모리 누수가 밝혀졌습니다.",
+    "cloze": "Die Profilerstellung",
+    "keyPoints": "Use 'offenbarte' for formal revelation of findings.",
+    "vocabIds": [
+      "de-vocab-1"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-en-20261126-02-we-need-to-update-the-an",
+    "legacyKey": "English:We need to update the analytics dashboard with the latest user engagement metrics.",
+    "pairId": "20261126-02",
+    "lang": "English",
+    "level": "A2",
+    "topic": "analytics",
+    "tags": [
+      "analytics"
+    ],
+    "sentence": "We need to update the analytics dashboard with the latest user engagement metrics.",
+    "translation": "최신 사용자 참여 지표로 분석 대시보드를 업데이트해야 합니다.",
+    "cloze": "dashboard",
+    "keyPoints": "Combining 'analytics' and 'dashboard' for data visualization.",
+    "vocabIds": [
+      "en-vocab-2"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-de-20261126-02-wir-muessen-das-anzeigefe",
+    "legacyKey": "German:Wir müssen das Anzeigefenster für die Analysen mit den neuesten Kennzahlen aktualisieren.",
+    "pairId": "20261126-02",
+    "lang": "German",
+    "level": "B1",
+    "topic": "analytics",
+    "tags": [
+      "analytics"
+    ],
+    "sentence": "Wir müssen das Anzeigefenster für die Analysen mit den neuesten Kennzahlen aktualisieren.",
+    "translation": "최신 핵심 지표를 반영하여 분석용 표시창을 업데이트해야 합니다.",
+    "cloze": "Anzeigefenster",
+    "keyPoints": "Use 'Kennzahlen' for metrics or key figures.",
+    "vocabIds": [
+      "de-vocab-2"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-en-20261126-03-i-will-step-out-briefly",
+    "legacyKey": "English:I will step out briefly to run an errand during my lunch break.",
+    "pairId": "20261126-03",
+    "lang": "English",
+    "level": "A2",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "I will step out briefly to run an errand during my lunch break.",
+    "translation": "점심 시간에 잠시 볼일을 보러 나갔다 오겠습니다.",
+    "cloze": "errand",
+    "keyPoints": "Use 'run an errand' as a standard collocation.",
+    "vocabIds": [
+      "en-vocab-3"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-de-20261126-03-ich-gehe-in-der-mittagsp",
+    "legacyKey": "German:Ich gehe in der Mittagspause kurz hinaus, um eine dringende Besorgung zu erledigen.",
+    "pairId": "20261126-03",
+    "lang": "German",
+    "level": "B1",
+    "topic": "daily",
+    "tags": [
+      "daily"
+    ],
+    "sentence": "Ich gehe in der Mittagspause kurz hinaus, um eine dringende Besorgung zu erledigen.",
+    "translation": "급한 볼일을 처리하기 위해 점심 시간에 잠시 나갑니다.",
+    "cloze": "Besorgung",
+    "keyPoints": "Use 'erledigen' to mean completing a task or errand.",
+    "vocabIds": [
+      "de-vocab-3"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-en-20261126-04-could-you-please-confirm",
+    "legacyKey": "English:Could you please confirm our restaurant reservation for this Friday evening?",
+    "pairId": "20261126-04",
+    "lang": "English",
+    "level": "B1",
+    "topic": "outing",
+    "tags": [
+      "outing"
+    ],
+    "sentence": "Could you please confirm our restaurant reservation for this Friday evening?",
+    "translation": "이번 금요일 저녁 식당 예약을 확인해 주시겠어요?",
+    "cloze": "reservation",
+    "keyPoints": "Use 'confirm' when checking existing bookings.",
+    "vocabIds": [
+      "en-vocab-4"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-de-20261126-04-koennten-sie-bitte-unsere",
+    "legacyKey": "German:Könnten Sie bitte unsere Tischreservierung für diesen Freitagabend bestätigen?",
+    "pairId": "20261126-04",
+    "lang": "German",
+    "level": "B1",
+    "topic": "outing",
+    "tags": [
+      "outing"
+    ],
+    "sentence": "Könnten Sie bitte unsere Tischreservierung für diesen Freitagabend bestätigen?",
+    "translation": "이번 금요일 저녁 테이블 예약을 확인해 주시겠습니까?",
+    "cloze": "Tischreservierung",
+    "keyPoints": "Use 'bestätigen' for confirmation.",
+    "vocabIds": [
+      "de-vocab-4"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-en-20261126-05-i-always-use-a-leather-b",
+    "legacyKey": "English:I always use a leather bookmark so I do not lose track of my chapter.",
+    "pairId": "20261126-05",
+    "lang": "English",
+    "level": "B1",
+    "topic": "reading",
+    "tags": [
+      "reading"
+    ],
+    "sentence": "I always use a leather bookmark so I do not lose track of my chapter.",
+    "translation": "챕터를 놓치지 않으려고 항상 가죽 책갈피를 사용합니다.",
+    "cloze": "bookmark",
+    "keyPoints": "Use 'lose track of' to mean forgetting where you were.",
+    "vocabIds": [
+      "en-vocab-5"
+    ],
+    "date": "2026-11-26"
+  },
+  {
+    "id": "s-de-20261126-05-ich-verwende-immer-ein-s",
+    "legacyKey": "German:Ich verwende immer ein schönes Lesezeichen, damit ich die aktuelle Seite wiederfinde.",
+    "pairId": "20261126-05",
+    "lang": "German",
+    "level": "B1",
+    "topic": "reading",
+    "tags": [
+      "reading"
+    ],
+    "sentence": "Ich verwende immer ein schönes Lesezeichen, damit ich die aktuelle Seite wiederfinde.",
+    "translation": "현재 페이지를 다시 찾을 수 있도록 항상 예쁜 책갈피를 사용합니다.",
+    "cloze": "Lesezeichen",
+    "keyPoints": "Use 'wiederfinde' to indicate finding something again.",
+    "vocabIds": [
+      "de-vocab-5"
+    ],
+    "date": "2026-11-26"
+  },
+  {
     "id": "s-en-20261125-01-we-will-initiate-the-pro",
     "legacyKey": "English:We will initiate the progressive rollout phase for the new service.",
     "pairId": "20261125-01",

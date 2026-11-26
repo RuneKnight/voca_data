@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-25T05:16:27.371Z",
+  "updatedAt": "2026-11-26T04:53:41.874Z",
   "counts": {
-    "vocab": 30,
-    "sentences": 15,
-    "englishVocab": 30,
+    "vocab": 36,
+    "sentences": 18,
+    "englishVocab": 36,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "fitting room",
+      "available",
+      "straight",
+      "turn",
+      "productive",
+      "accomplish",
       "substitute",
       "signature",
       "overwhelmed",
@@ -43,6 +49,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "Excuse me, could you tell me where the fitting room is?"
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "Go straight for two blocks and then turn left at the traffic light."
+    },
+    {
+      "date": "2026-11-26",
+      "lang": "English",
+      "sentence": "I feel like I accomplished a lot today, which makes me happy."
+    },
     {
       "date": "2026-11-25",
       "lang": "English",
