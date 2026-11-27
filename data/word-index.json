@@ -1,14 +1,19 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-26T04:53:35.141Z",
+  "updatedAt": "2026-11-27T04:49:05.028Z",
   "counts": {
-    "vocab": 563,
-    "sentences": 368,
-    "englishVocab": 245,
-    "germanVocab": 318
+    "vocab": 573,
+    "sentences": 378,
+    "englishVocab": 250,
+    "germanVocab": 323
   },
   "words": {
     "English": [
+      "hindsight",
+      "trajectory",
+      "pantry",
+      "anticipation",
+      "terrain",
       "profiling",
       "dashboard",
       "errand",
@@ -256,6 +261,11 @@
       "relaxing"
     ],
     "German": [
+      "die Nachbetrachtung",
+      "die Kurskorrektur",
+      "der Vorratsschrank",
+      "die Vorfreude",
+      "das Wegstück",
       "die Profilerstellung",
       "das Anzeigefenster",
       "die Besorgung",
@@ -578,6 +588,56 @@
   },
   "recentSentences": [
     {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "With hindsight, our technical debt was the main reason for the delay."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "German",
+      "sentence": "In der Nachbetrachtung war unsere technische Schuld der Hauptgrund für die Verzögerung."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "Let us review the project trajectory before finalising next month's roadmap."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "German",
+      "sentence": "Lass uns die Kurskorrektur im Projektplan vornehmen, bevor der nächste Monat beginnt."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "Stocking up the pantry ensures we have enough food for a quiet weekend at home."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "German",
+      "sentence": "Wir füllen den Vorratsschrank auf, um für das ruhige Wochenende gerüstet zu sein."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "Preparing a slow meal on Saturday brings a pleasant anticipation for the evening."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "German",
+      "sentence": "Die Vorfreude auf das entspannte Kochen am Samstagabend macht den Tag besonders."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "Navigating rough terrain during our cycling trip tested our gear thoroughly."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "German",
+      "sentence": "Auf unserer Radtour durch das unwegsame Gelände haben wir jedes Wegstück genossen."
+    },
+    {
       "date": "2026-11-26",
       "lang": "English",
       "sentence": "Profiling the application revealed a hidden memory leak in the background worker."
@@ -676,56 +736,6 @@
       "date": "2026-11-25",
       "lang": "German",
       "sentence": "Eine ausreichende Flüssigkeitszufuhr hilft Ihnen, beim Programmieren konzentriert zu bleiben."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "English",
-      "sentence": "We should perform a canary deployment to minimize production risks."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "German",
-      "sentence": "Wir sollten eine Kanarienvogel-Bereitstellung durchführen, um Produktionsrisiken zu minimieren."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "English",
-      "sentence": "We need an immediate mitigation plan to handle the server crash."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "German",
-      "sentence": "Wir brauchen einen sofortigen Notfallplan, um den Serverabsturz zu bewältigen."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "English",
-      "sentence": "Let us cook some warm pancakes for breakfast today."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "German",
-      "sentence": "Lass uns heute einige warme Pfannkuchen zum Frühstück backen."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "English",
-      "sentence": "We can sit on the balcony and enjoy the quiet evening."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "German",
-      "sentence": "Wir können auf dem Balkon sitzen und den ruhigen Abend genießen."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "English",
-      "sentence": "Make sure to wear a sturdy helmet during your mountain bike ride."
-    },
-    {
-      "date": "2026-11-24",
-      "lang": "German",
-      "sentence": "Trage während deiner Mountainbiketour unbedingt einen festen Helm."
     }
   ]
 }

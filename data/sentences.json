@@ -1,5 +1,195 @@
 [
   {
+    "id": "s-en-20261127-01-with-hindsight-our-tech",
+    "legacyKey": "English:With hindsight, our technical debt was the main reason for the delay.",
+    "pairId": "20261127-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "retroactive",
+    "tags": [
+      "retroactive"
+    ],
+    "sentence": "With hindsight, our technical debt was the main reason for the delay.",
+    "translation": "지나고 나서 보니, 우리의 기술 부채가 지연의 주요 원인이었다.",
+    "cloze": "technical debt",
+    "keyPoints": "Use 'With hindsight' to introduce a retrospective realization about past technical decisions.",
+    "vocabIds": [
+      "en-vocab-01"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-de-20261127-01-in-der-nachbetrachtung-w",
+    "legacyKey": "German:In der Nachbetrachtung war unsere technische Schuld der Hauptgrund für die Verzögerung.",
+    "pairId": "20261127-01",
+    "lang": "German",
+    "level": "B2",
+    "topic": "retroactive",
+    "tags": [
+      "retroactive"
+    ],
+    "sentence": "In der Nachbetrachtung war unsere technische Schuld der Hauptgrund für die Verzögerung.",
+    "translation": "사후 검토에서 우리의 기술적 부채가 지연의 주요 원인이었다.",
+    "cloze": "technische Schuld",
+    "keyPoints": "Use 'technische Schuld' to refer to software code debt during a sprint retrospective.",
+    "vocabIds": [
+      "de-vocab-01"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-en-20261127-02-let-us-review-the-projec",
+    "legacyKey": "English:Let us review the project trajectory before finalising next month's roadmap.",
+    "pairId": "20261127-02",
+    "lang": "English",
+    "level": "B1",
+    "topic": "planning",
+    "tags": [
+      "planning"
+    ],
+    "sentence": "Let us review the project trajectory before finalising next month's roadmap.",
+    "translation": "다음 달 로드맵을 확정하기 전에 프로젝트 진행 방향을 검토하자.",
+    "cloze": "project trajectory",
+    "keyPoints": "Discussing broad project movement and milestone progression.",
+    "vocabIds": [
+      "en-vocab-02"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-de-20261127-02-lass-uns-die-kurskorrekt",
+    "legacyKey": "German:Lass uns die Kurskorrektur im Projektplan vornehmen, bevor der nächste Monat beginnt.",
+    "pairId": "20261127-02",
+    "lang": "German",
+    "level": "B2",
+    "topic": "planning",
+    "tags": [
+      "planning"
+    ],
+    "sentence": "Lass uns die Kurskorrektur im Projektplan vornehmen, bevor der nächste Monat beginnt.",
+    "translation": "다음 달이 시작되기 전에 프로젝트 계획의 방향 수정을 수행하자.",
+    "cloze": "Kurskorrektur",
+    "keyPoints": "Expressing the need for strategic realignment in professional planning.",
+    "vocabIds": [
+      "de-vocab-02"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-en-20261127-03-stocking-up-the-pantry-e",
+    "legacyKey": "English:Stocking up the pantry ensures we have enough food for a quiet weekend at home.",
+    "pairId": "20261127-03",
+    "lang": "English",
+    "level": "A2",
+    "topic": "weekend",
+    "tags": [
+      "weekend"
+    ],
+    "sentence": "Stocking up the pantry ensures we have enough food for a quiet weekend at home.",
+    "translation": "식료품 저장실을 채워두면 집에서 조용한 주말을 보낼 충분한 음식을 확보할 수 있다.",
+    "cloze": "pantry",
+    "keyPoints": "Describing domestic food stocking routines for weekend relaxation.",
+    "vocabIds": [
+      "en-vocab-03"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-de-20261127-03-wir-fuellen-den-vorratssc",
+    "legacyKey": "German:Wir füllen den Vorratsschrank auf, um für das ruhige Wochenende gerüstet zu sein.",
+    "pairId": "20261127-03",
+    "lang": "German",
+    "level": "B1",
+    "topic": "weekend",
+    "tags": [
+      "weekend"
+    ],
+    "sentence": "Wir füllen den Vorratsschrank auf, um für das ruhige Wochenende gerüstet zu sein.",
+    "translation": "우리는 조용한 주말을 대비하기 위해 식료품 저장장을 채운다.",
+    "cloze": "Vorratsschrank",
+    "keyPoints": "Using reflexive preparation phrases like 'gerüstet sein'.",
+    "vocabIds": [
+      "de-vocab-03"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-en-20261127-04-preparing-a-slow-meal-on",
+    "legacyKey": "English:Preparing a slow meal on Saturday brings a pleasant anticipation for the evening.",
+    "pairId": "20261127-04",
+    "lang": "English",
+    "level": "B1",
+    "topic": "weekend",
+    "tags": [
+      "weekend"
+    ],
+    "sentence": "Preparing a slow meal on Saturday brings a pleasant anticipation for the evening.",
+    "translation": "토요일에 느긋한 식사를 준비하는 것은 저녁에 대한 기분 좋은 기대감을 가져다준다.",
+    "cloze": "pleasant anticipation",
+    "keyPoints": "Expressing positive expectations for weekend culinary activities.",
+    "vocabIds": [
+      "en-vocab-04"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-de-20261127-04-die-vorfreude-auf-das-en",
+    "legacyKey": "German:Die Vorfreude auf das entspannte Kochen am Samstagabend macht den Tag besonders.",
+    "pairId": "20261127-04",
+    "lang": "German",
+    "level": "B2",
+    "topic": "weekend",
+    "tags": [
+      "weekend"
+    ],
+    "sentence": "Die Vorfreude auf das entspannte Kochen am Samstagabend macht den Tag besonders.",
+    "translation": "토요일 저녁의 여유로운 요리에 대한 기대감이 그 날을 특별하게 만든다.",
+    "cloze": "Vorfreude",
+    "keyPoints": "Using the distinct German concept word 'Vorfreude'.",
+    "vocabIds": [
+      "de-vocab-04"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-en-20261127-05-navigating-rough-terrain",
+    "legacyKey": "English:Navigating rough terrain during our cycling trip tested our gear thoroughly.",
+    "pairId": "20261127-05",
+    "lang": "English",
+    "level": "B1",
+    "topic": "cycling",
+    "tags": [
+      "cycling"
+    ],
+    "sentence": "Navigating rough terrain during our cycling trip tested our gear thoroughly.",
+    "translation": "자전거 여행 중 거친 지형을 통과하는 것은 우리의 장비를 철저히 시험했다.",
+    "cloze": "rough terrain",
+    "keyPoints": "Describing physical landscapes encountered during outdoor adventures.",
+    "vocabIds": [
+      "en-vocab-05"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-de-20261127-05-auf-unserer-radtour-durc",
+    "legacyKey": "German:Auf unserer Radtour durch das unwegsame Gelände haben wir jedes Wegstück genossen.",
+    "pairId": "20261127-05",
+    "lang": "German",
+    "level": "B2",
+    "topic": "cycling",
+    "tags": [
+      "cycling"
+    ],
+    "sentence": "Auf unserer Radtour durch das unwegsame Gelände haben wir jedes Wegstück genossen.",
+    "translation": "험준한 지형을 통과하는 자전거 여행에서 우리는 모든 구간을 즐겼다.",
+    "cloze": "unwegsame Gelände",
+    "keyPoints": "Using advanced topographical terms like 'unwegsame Gelände'.",
+    "vocabIds": [
+      "de-vocab-05"
+    ],
+    "date": "2026-11-27"
+  },
+  {
     "id": "s-en-20261126-01-profiling-the-applicatio",
     "legacyKey": "English:Profiling the application revealed a hidden memory leak in the background worker.",
     "pairId": "20261126-01",

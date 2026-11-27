@@ -1,5 +1,125 @@
 [
   {
+    "id": "en-vocab-swing",
+    "legacyKey": "English:swing",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "swing",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "그네",
+    "example": "Coco rides the swing high.",
+    "tags": [
+      "playground",
+      "action"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "kid-20261127-01"
+  },
+  {
+    "id": "en-vocab-laugh",
+    "legacyKey": "English:laugh",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "laugh",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "웃다",
+    "example": "Puppy Coco and kids laugh.",
+    "tags": [
+      "emotion",
+      "play"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "kid-20261127-01"
+  },
+  {
+    "id": "en-vocab-ball",
+    "legacyKey": "English:ball",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "ball",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "공",
+    "example": "Coco runs to the ball.",
+    "tags": [
+      "toy",
+      "game"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "kid-20261127-02"
+  },
+  {
+    "id": "en-vocab-catch",
+    "legacyKey": "English:catch",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "catch",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "잡다",
+    "example": "Can Coco catch the ball?",
+    "tags": [
+      "action",
+      "play"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "kid-20261127-02"
+  },
+  {
+    "id": "en-vocab-star",
+    "legacyKey": "English:star",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "star",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "별",
+    "example": "Look at the night star.",
+    "tags": [
+      "night",
+      "sky"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "kid-20261127-03"
+  },
+  {
+    "id": "en-vocab-sleep",
+    "legacyKey": "English:sleep",
+    "lang": "English",
+    "level": "Pre-A1",
+    "word": "sleep",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "자다",
+    "example": "Coco goes to sleep.",
+    "tags": [
+      "night",
+      "rest"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "kid-20261127-03"
+  },
+  {
     "id": "en-basket",
     "legacyKey": "English:basket",
     "lang": "English",

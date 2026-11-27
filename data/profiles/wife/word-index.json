@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-26T04:53:41.874Z",
+  "updatedAt": "2026-11-27T04:49:11.043Z",
   "counts": {
-    "vocab": 36,
-    "sentences": 18,
-    "englishVocab": 36,
+    "vocab": 42,
+    "sentences": 21,
+    "englishVocab": 42,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "extend",
+      "storage",
+      "brunch",
+      "sleep in",
+      "stock up",
+      "organic",
       "fitting room",
       "available",
       "straight",
@@ -49,6 +55,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "Could I leave my bags in storage for a few hours after I check out?"
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "I just want to sleep in and enjoy a relaxing brunch this weekend."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "I need to drop by the supermarket to stock up on some groceries for next week."
+    },
     {
       "date": "2026-11-26",
       "lang": "English",

@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-26T04:55:17.622Z",
+  "updatedAt": "2026-11-27T04:49:16.652Z",
   "counts": {
-    "vocab": 36,
-    "sentences": 18,
-    "englishVocab": 36,
+    "vocab": 42,
+    "sentences": 21,
+    "englishVocab": 42,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "swing",
+      "laugh",
+      "ball",
+      "catch",
+      "star",
+      "sleep",
       "basket",
       "grass",
       "sandwich",
@@ -49,6 +55,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "Coco rides the swing and laughs."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "Coco runs to catch the red ball."
+    },
+    {
+      "date": "2026-11-27",
+      "lang": "English",
+      "sentence": "Coco dreams under a bright star."
+    },
     {
       "date": "2026-11-26",
       "lang": "English",

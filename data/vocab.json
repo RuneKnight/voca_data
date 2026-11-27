@@ -1,5 +1,205 @@
 [
   {
+    "id": "en-vocab-01",
+    "legacyKey": "English:hindsight",
+    "lang": "English",
+    "level": "B1",
+    "word": "hindsight",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "사후에 명백히 알게 됨, 지나고 나서 보면 알 수 있는 일",
+    "example": "With hindsight, we should have automated that test earlier.",
+    "tags": [
+      "work",
+      "reflection"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-01"
+  },
+  {
+    "id": "de-vocab-01",
+    "legacyKey": "German:die Nachbetrachtung",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Nachbetrachtung",
+    "pos": "noun",
+    "posDetail": "Feminin (die Nachbetrachtungen)",
+    "gender": "die",
+    "plural": "die Nachbetrachtungen",
+    "meaning": "사후 검토, 회고",
+    "example": "In der heutigen Nachbetrachtung analysieren wir die Sprint-Ergebnisse.",
+    "tags": [
+      "work",
+      "reflection"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-01"
+  },
+  {
+    "id": "en-vocab-02",
+    "legacyKey": "English:trajectory",
+    "lang": "English",
+    "level": "B1",
+    "word": "trajectory",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "궤도, 진행 방향, 발전 추세",
+    "example": "We need to adjust our development trajectory for the next quarter.",
+    "tags": [
+      "work",
+      "planning"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-02"
+  },
+  {
+    "id": "de-vocab-02",
+    "legacyKey": "German:die Kurskorrektur",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Kurskorrektur",
+    "pos": "noun",
+    "posDetail": "Feminin (die Kurskorrekturen)",
+    "gender": "die",
+    "plural": "die Kurskorrekturen",
+    "meaning": "방향 수정, 진로 변경",
+    "example": "Eine sofortige Kurskorrektur im Projektplan ist notwendig.",
+    "tags": [
+      "work",
+      "planning"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-02"
+  },
+  {
+    "id": "en-vocab-03",
+    "legacyKey": "English:pantry",
+    "lang": "English",
+    "level": "A2",
+    "word": "pantry",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "식료품 저장실, 찬장",
+    "example": "I must check the pantry before going to the supermarket.",
+    "tags": [
+      "weekend",
+      "preparation"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-03"
+  },
+  {
+    "id": "de-vocab-03",
+    "legacyKey": "German:der Vorratsschrank",
+    "lang": "German",
+    "level": "B1",
+    "word": "der Vorratsschrank",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Vorratsschränke)",
+    "gender": "der",
+    "plural": "die Vorratsschränke",
+    "meaning": "식료품 저장장, 찬장",
+    "example": "Der Vorratsschrank ist fast leer für das Wochenende.",
+    "tags": [
+      "weekend",
+      "preparation"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-03"
+  },
+  {
+    "id": "en-vocab-04",
+    "legacyKey": "English:anticipation",
+    "lang": "English",
+    "level": "B1",
+    "word": "anticipation",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "기대, 고대",
+    "example": "There is a quiet anticipation for Sunday evening.",
+    "tags": [
+      "weekend",
+      "relaxation"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-04"
+  },
+  {
+    "id": "de-vocab-04",
+    "legacyKey": "German:die Vorfreude",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Vorfreude",
+    "pos": "noun",
+    "posDetail": "Feminin",
+    "gender": "die",
+    "plural": null,
+    "meaning": "앞서 느끼는 즐거움, 기대감",
+    "example": "Die Vorfreude auf das gemeinsame Kochen am Samstag ist groß.",
+    "tags": [
+      "weekend",
+      "relaxation"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-04"
+  },
+  {
+    "id": "en-vocab-05",
+    "legacyKey": "English:terrain",
+    "lang": "English",
+    "level": "B1",
+    "word": "terrain",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "지형, 지역",
+    "example": "The mountainous terrain requires a sturdy bicycle and good stamina.",
+    "tags": [
+      "travel",
+      "cycling"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-05"
+  },
+  {
+    "id": "de-vocab-05",
+    "legacyKey": "German:das Wegstück",
+    "lang": "German",
+    "level": "B2",
+    "word": "das Wegstück",
+    "pos": "noun",
+    "posDetail": "Neutrum (die Wegstücke)",
+    "gender": "das",
+    "plural": "die Wegstücke",
+    "meaning": "구간, 거리의 일부",
+    "example": "Dieses steile Wegstück erfordert eine hohe Konzentration beim Radfahren.",
+    "tags": [
+      "travel",
+      "cycling"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "20261127-05"
+  },
+  {
     "id": "en-vocab-1",
     "legacyKey": "English:profiling",
     "lang": "English",

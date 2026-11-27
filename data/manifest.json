@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-26T04:53:35.142Z",
+  "updatedAt": "2026-11-27T04:49:05.029Z",
   "counts": {
-    "vocab": 563,
-    "sentences": 368,
-    "pairs": 178
+    "vocab": 573,
+    "sentences": 378,
+    "pairs": 183
   },
   "languages": [
     "English",
@@ -50,27 +50,32 @@
     "performance",
     "phrasal-verb",
     "planning",
+    "preparation",
     "reading",
+    "reflection",
     "relax",
     "relaxation",
+    "retroactive",
     "safety",
     "sports",
     "storage",
+    "travel",
     "verbs",
+    "weekend",
     "wellness",
     "work"
   ],
-  "latestDate": "2026-11-26",
+  "latestDate": "2026-11-27",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-28",
+    "cutoffIso": "2026-08-29",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 71,
-        "sentenceCount": 60
+        "vocabCount": 81,
+        "sentenceCount": 70
       },
       {
         "month": "2026-10",

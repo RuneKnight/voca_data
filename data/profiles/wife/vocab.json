@@ -1,5 +1,125 @@
 [
   {
+    "id": "en-vocab-extend",
+    "legacyKey": "English:extend",
+    "lang": "English",
+    "level": "B1",
+    "word": "extend",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "기간이나 시간을 연장하다",
+    "example": "Can I extend my stay by one more night?",
+    "tags": [
+      "hotel",
+      "travel"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "wife-20261127-01"
+  },
+  {
+    "id": "en-vocab-storage",
+    "legacyKey": "English:storage",
+    "lang": "English",
+    "level": "B1",
+    "word": "storage",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "보관소, 저장",
+    "example": "Is there luggage storage available after checking out?",
+    "tags": [
+      "hotel",
+      "service"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "wife-20261127-01"
+  },
+  {
+    "id": "en-vocab-brunch",
+    "legacyKey": "English:brunch",
+    "lang": "English",
+    "level": "A2",
+    "word": "brunch",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "아침 겸 점심 식사",
+    "example": "Let us meet up for brunch this Sunday.",
+    "tags": [
+      "weekend",
+      "food"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "wife-20261127-02"
+  },
+  {
+    "id": "en-vocab-sleepin",
+    "legacyKey": "English:sleep in",
+    "lang": "English",
+    "level": "B1",
+    "word": "sleep in",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "늦잠을 자다",
+    "example": "I plan to sleep in on Saturday morning.",
+    "tags": [
+      "weekend",
+      "routine"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "wife-20261127-02"
+  },
+  {
+    "id": "en-vocab-stockup",
+    "legacyKey": "English:stock up",
+    "lang": "English",
+    "level": "B1",
+    "word": "stock up",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "물건을 쟁여두다, 잔뜩 사다",
+    "example": "We need to stock up on fresh vegetables.",
+    "tags": [
+      "shopping",
+      "daily"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "wife-20261127-03"
+  },
+  {
+    "id": "en-vocab-organic",
+    "legacyKey": "English:organic",
+    "lang": "English",
+    "level": "A2",
+    "word": "organic",
+    "pos": "adj",
+    "posDetail": "Adjective",
+    "gender": null,
+    "plural": null,
+    "meaning": "유기농의",
+    "example": "She prefers buying organic fruits.",
+    "tags": [
+      "health",
+      "grocery"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-27",
+    "pairId": "wife-20261127-03"
+  },
+  {
     "id": "en-vocab-fitting-room",
     "legacyKey": "English:fitting room",
     "lang": "English",

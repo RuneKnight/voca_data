@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-wife-20261127-01-could-i-leave-my-bags-in",
+    "legacyKey": "English:Could I leave my bags in storage for a few hours after I check out?",
+    "pairId": "wife-20261127-01",
+    "lang": "English",
+    "level": "B1",
+    "topic": "checkout",
+    "tags": [
+      "checkout"
+    ],
+    "sentence": "Could I leave my bags in storage for a few hours after I check out?",
+    "translation": "체크아웃한 후에 가방을 몇 시간 동안 보관소에 맡겨도 될까요?",
+    "cloze": "leave my bags in storage",
+    "keyPoints": "여행 마지막 날 체크아웃 후 짐을 잠시 맡아달라고 부탁할 때 유용한 표현입니다.",
+    "vocabIds": [
+      "en-vocab-extend",
+      "en-vocab-storage"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-en-wife-20261127-02-i-just-want-to-sleep-in",
+    "legacyKey": "English:I just want to sleep in and enjoy a relaxing brunch this weekend.",
+    "pairId": "wife-20261127-02",
+    "lang": "English",
+    "level": "A2",
+    "topic": "weekend",
+    "tags": [
+      "weekend"
+    ],
+    "sentence": "I just want to sleep in and enjoy a relaxing brunch this weekend.",
+    "translation": "이번 주말에는 그냥 늦잠 자고 여유로운 브런치를 즐기고 싶어요.",
+    "cloze": "sleep in",
+    "keyPoints": "주말에 특별한 일정 없이 푹 쉬고 싶을 때 쓸 수 있는 자연스러운 표현입니다.",
+    "vocabIds": [
+      "en-vocab-brunch",
+      "en-vocab-sleepin"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-en-wife-20261127-03-i-need-to-drop-by-the-su",
+    "legacyKey": "English:I need to drop by the supermarket to stock up on some groceries for next week.",
+    "pairId": "wife-20261127-03",
+    "lang": "English",
+    "level": "B1",
+    "topic": "grocery",
+    "tags": [
+      "grocery"
+    ],
+    "sentence": "I need to drop by the supermarket to stock up on some groceries for next week.",
+    "translation": "다음 주를 위해 장을 좀 보러 슈퍼마켓에 들러야 해요.",
+    "cloze": "stock up",
+    "keyPoints": "식료품이나 생필품을 대량으로 구매하거나 미리 채워둘 때 사용하는 표현입니다.",
+    "vocabIds": [
+      "en-vocab-stockup",
+      "en-vocab-organic"
+    ],
+    "date": "2026-11-27"
+  },
+  {
     "id": "s-en-wife-20261126-01-excuse-me-could-you-tel",
     "legacyKey": "English:Excuse me, could you tell me where the fitting room is?",
     "pairId": "wife-20261126-01",

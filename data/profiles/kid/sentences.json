@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-kid-20261127-01-coco-rides-the-swing-and",
+    "legacyKey": "English:Coco rides the swing and laughs.",
+    "pairId": "kid-20261127-01",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "playground",
+    "tags": [
+      "playground"
+    ],
+    "sentence": "Coco rides the swing and laughs.",
+    "translation": "코코는 그네를 타고 웃어요.",
+    "cloze": "swing",
+    "keyPoints": "놀이터에서 그네를 타며 즐겁게 웃는 코코의 행동을 표현해요.",
+    "vocabIds": [
+      "en-vocab-swing",
+      "en-vocab-laugh"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-en-kid-20261127-02-coco-runs-to-catch-the-r",
+    "legacyKey": "English:Coco runs to catch the red ball.",
+    "pairId": "kid-20261127-02",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "sport",
+    "tags": [
+      "sport"
+    ],
+    "sentence": "Coco runs to catch the red ball.",
+    "translation": "코코는 빨간 공을 잡으려고 달려요.",
+    "cloze": "catch",
+    "keyPoints": "공을 향해 달려가서 잡는 활기찬 운동 시간을 나타내요.",
+    "vocabIds": [
+      "en-vocab-ball",
+      "en-vocab-catch"
+    ],
+    "date": "2026-11-27"
+  },
+  {
+    "id": "s-en-kid-20261127-03-coco-dreams-under-a-brig",
+    "legacyKey": "English:Coco dreams under a bright star.",
+    "pairId": "kid-20261127-03",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "weekend",
+    "tags": [
+      "weekend"
+    ],
+    "sentence": "Coco dreams under a bright star.",
+    "translation": "코코는 반짝이는 별 아래서 꿈을 꾸어요.",
+    "cloze": "star",
+    "keyPoints": "주말을 기대하며 편안하게 잠드는 밤의 풍경을 그려요.",
+    "vocabIds": [
+      "en-vocab-star",
+      "en-vocab-sleep"
+    ],
+    "date": "2026-11-27"
+  },
+  {
     "id": "s-en-kid-20261126-01-coco-opens-a-big-basket",
     "legacyKey": "English:Coco opens a big basket on the grass.",
     "pairId": "kid-20261126-01",

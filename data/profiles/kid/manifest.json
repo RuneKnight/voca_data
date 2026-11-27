@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-26T04:55:17.622Z",
+  "updatedAt": "2026-11-27T04:49:16.652Z",
   "counts": {
-    "vocab": 36,
-    "sentences": 18,
-    "pairs": 18
+    "vocab": 42,
+    "sentences": 21,
+    "pairs": 21
   },
   "languages": [
     "English",
@@ -23,42 +23,51 @@
     "bedroom",
     "classroom",
     "craft",
+    "emotion",
     "emotions",
     "feeling",
     "food",
     "friendship",
+    "game",
     "home",
     "kindness",
     "lunch",
     "manner",
     "nature",
+    "night",
     "object",
     "park",
     "picnic",
     "plants",
     "play",
+    "playground",
     "playtime",
     "politeness",
+    "rest",
     "school",
     "sharing",
+    "sky",
     "snack",
     "social",
+    "sport",
     "taste",
+    "toy",
     "transport",
     "verbs",
-    "weather"
+    "weather",
+    "weekend"
   ],
-  "latestDate": "2026-11-26",
+  "latestDate": "2026-11-27",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-28",
+    "cutoffIso": "2026-08-29",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 36,
-        "sentenceCount": 18
+        "vocabCount": 42,
+        "sentenceCount": 21
       }
     ]
   }

@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-26T04:53:41.874Z",
+  "updatedAt": "2026-11-27T04:49:11.043Z",
   "counts": {
-    "vocab": 36,
-    "sentences": 18,
-    "pairs": 18
+    "vocab": 42,
+    "sentences": 21,
+    "pairs": 21
   },
   "languages": [
     "English",
@@ -17,6 +17,7 @@
   ],
   "tags": [
     "cafe",
+    "checkout",
     "clothes",
     "daily",
     "directions",
@@ -24,7 +25,9 @@
     "emotion",
     "encouragement",
     "feeling",
+    "food",
     "general",
+    "grocery",
     "habit",
     "health",
     "home",
@@ -44,19 +47,20 @@
     "social",
     "travel",
     "weather",
+    "weekend",
     "work"
   ],
-  "latestDate": "2026-11-26",
+  "latestDate": "2026-11-27",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-28",
+    "cutoffIso": "2026-08-29",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 36,
-        "sentenceCount": 18
+        "vocabCount": 42,
+        "sentenceCount": 21
       }
     ]
   }
