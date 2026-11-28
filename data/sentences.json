@@ -1,5 +1,195 @@
 [
   {
+    "id": "s-en-20261128-01-we-attached-a-trailer-to",
+    "legacyKey": "English:We attached a trailer to the bicycle to carry extra gear for our weekend trip.",
+    "pairId": "20261128-01",
+    "lang": "English",
+    "level": "A2",
+    "topic": "cycling",
+    "tags": [
+      "cycling"
+    ],
+    "sentence": "We attached a trailer to the bicycle to carry extra gear for our weekend trip.",
+    "translation": "우리는 주말 여행을 위한 추가 장비를 싣기 위해 자전거에 트레일러를 연결했습니다.",
+    "cloze": "trailer",
+    "keyPoints": "Use 'attach ... to ...' for connecting equipment.",
+    "vocabIds": [
+      "en-01-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-de-20261128-01-wir-haben-einen-fahrrada",
+    "legacyKey": "German:Wir haben einen Fahrradanhänger an das Rad montiert, um zusätzliches Gepäck für den Wochenendausflug zu transportieren.",
+    "pairId": "20261128-01",
+    "lang": "German",
+    "level": "B1",
+    "topic": "cycling",
+    "tags": [
+      "cycling"
+    ],
+    "sentence": "Wir haben einen Fahrradanhänger an das Rad montiert, um zusätzliches Gepäck für den Wochenendausflug zu transportieren.",
+    "translation": "우리는 주말 여행을 위한 추가 수하물을 운반하기 위해 자전거에 자전거 트레일러를 장착했습니다.",
+    "cloze": "Fahrradanhänger",
+    "keyPoints": "Compound noun 'der Fahrradanhänger' combined with 'montieren'.",
+    "vocabIds": [
+      "de-01-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-en-20261128-02-we-followed-a-quiet-dirt",
+    "legacyKey": "English:We followed a quiet dirt road that led us deeper into the mountain forest.",
+    "pairId": "20261128-02",
+    "lang": "English",
+    "level": "B1",
+    "topic": "hiking",
+    "tags": [
+      "hiking"
+    ],
+    "sentence": "We followed a quiet dirt road that led us deeper into the mountain forest.",
+    "translation": "우리는 산림 속으로 더 깊이 이끄는 조용한 비포장도로를 따라갔습니다.",
+    "cloze": "dirt road",
+    "keyPoints": "Describing rural paths and hiking routes.",
+    "vocabIds": [
+      "en-02-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-de-20261128-02-wir-sind-einem-ruhigen-f",
+    "legacyKey": "German:Wir sind einem ruhigen Feldweg gefolgt, der uns tiefer in den Bergwald führte.",
+    "pairId": "20261128-02",
+    "lang": "German",
+    "level": "B1",
+    "topic": "hiking",
+    "tags": [
+      "hiking"
+    ],
+    "sentence": "Wir sind einem ruhigen Feldweg gefolgt, der uns tiefer in den Bergwald führte.",
+    "translation": "우리는 산림 속으로 더 깊이 이끄는 조용한 농로를 따라갔습니다.",
+    "cloze": "Feldweg",
+    "keyPoints": "Use 'folgen' with dative case ('einem Feldweg').",
+    "vocabIds": [
+      "de-02-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-en-20261128-03-let-us-take-a-short-coff",
+    "legacyKey": "English:Let us take a short coffee break and enjoy a sweet pastry together.",
+    "pairId": "20261128-03",
+    "lang": "English",
+    "level": "A2",
+    "topic": "cafe",
+    "tags": [
+      "cafe"
+    ],
+    "sentence": "Let us take a short coffee break and enjoy a sweet pastry together.",
+    "translation": "잠깐 커피 타임을 가지며 달콤한 페이스트리를 함께 즐깁시다.",
+    "cloze": "coffee break",
+    "keyPoints": "Common social expression for taking a break.",
+    "vocabIds": [
+      "en-pastry"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-de-20261128-03-lass-uns-eine-kurze-kaff",
+    "legacyKey": "German:Lass uns eine kurze Kaffeepause einlegen und zusammen ein süßes Gebäck genießen.",
+    "pairId": "20261128-03",
+    "lang": "German",
+    "level": "B1",
+    "topic": "cafe",
+    "tags": [
+      "cafe"
+    ],
+    "sentence": "Lass uns eine kurze Kaffeepause einlegen und zusammen ein süßes Gebäck genießen.",
+    "translation": "잠깐 커피 타임을 갖고 함께 달콤한 과자를 즐기자.",
+    "cloze": "Kaffeepause",
+    "keyPoints": "Collocation 'eine Kaffeepause einlegen' (to take a coffee break).",
+    "vocabIds": [
+      "de-03-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-en-20261128-04-we-ordered-a-shared-appe",
+    "legacyKey": "English:We ordered a shared appetizer before our main course arrived at the table.",
+    "pairId": "20261128-04",
+    "lang": "English",
+    "level": "B1",
+    "topic": "dining",
+    "tags": [
+      "dining"
+    ],
+    "sentence": "We ordered a shared appetizer before our main course arrived at the table.",
+    "translation": "우리는 메인 코스가 테이블에 도착하기 전에 함께 먹을 에피타이저를 주문했습니다.",
+    "cloze": "main course",
+    "keyPoints": "Restaurant ordering terminology.",
+    "vocabIds": [
+      "en-04-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-de-20261128-04-wir-haben-eine-vorspeise",
+    "legacyKey": "German:Wir haben eine Vorspeise zum Teilen bestellt, bevor unsere Hauptspeise serviert wurde.",
+    "pairId": "20261128-04",
+    "lang": "German",
+    "level": "B2",
+    "topic": "dining",
+    "tags": [
+      "dining"
+    ],
+    "sentence": "Wir haben eine Vorspeise zum Teilen bestellt, bevor unsere Hauptspeise serviert wurde.",
+    "translation": "우리의 메인 요리가 서빙되기 전에 함께 나눌 에피타이저를 주문했습니다.",
+    "cloze": "Hauptspeise",
+    "keyPoints": "Use passive structure 'wurde serviert' for restaurant context.",
+    "vocabIds": [
+      "de-04-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-en-20261128-05-if-we-proceed-step-by-st",
+    "legacyKey": "English:If we proceed step by step, complex problems become much easier to handle.",
+    "pairId": "20261128-05",
+    "lang": "English",
+    "level": "B1",
+    "topic": "idiom",
+    "tags": [
+      "idiom"
+    ],
+    "sentence": "If we proceed step by step, complex problems become much easier to handle.",
+    "translation": "단계별로 진행하면 복잡한 문제들이 훨씬 다루기 쉬워집니다.",
+    "cloze": "step by step",
+    "keyPoints": "Useful phrasal adverbial for iterative problem solving.",
+    "vocabIds": [
+      "en-05-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-de-20261128-05-wenn-wir-schritt-fuer-sch",
+    "legacyKey": "German:Wenn wir Schritt für Schritt vorgehen, verliert selbst eine schwere Aufgabe ihren Schrecken.",
+    "pairId": "20261128-05",
+    "lang": "German",
+    "level": "B2",
+    "topic": "idiom",
+    "tags": [
+      "idiom"
+    ],
+    "sentence": "Wenn wir Schritt für Schritt vorgehen, verliert selbst eine schwere Aufgabe ihren Schrecken.",
+    "translation": "단계별로 진행하면 어려운 과제조차도 두려움을 잃게 됩니다.",
+    "cloze": "Schritt für Schritt",
+    "keyPoints": "Idiomatic phrase 'Schritt für Schritt' combined with 'vorgehen'.",
+    "vocabIds": [
+      "de-05-1"
+    ],
+    "date": "2026-11-28"
+  },
+  {
     "id": "s-en-20261127-01-with-hindsight-our-tech",
     "legacyKey": "English:With hindsight, our technical debt was the main reason for the delay.",
     "pairId": "20261127-01",

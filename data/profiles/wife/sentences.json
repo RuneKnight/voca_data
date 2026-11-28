@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-wife-20261128-01-could-i-have-a-medium-de",
+    "legacyKey": "English:Could I have a medium decaf latte to go, please?",
+    "pairId": "wife-20261128-01",
+    "lang": "English",
+    "level": "A2",
+    "topic": "cafe",
+    "tags": [
+      "cafe"
+    ],
+    "sentence": "Could I have a medium decaf latte to go, please?",
+    "translation": "따뜻한 미디엄 사이즈 디카페인 라테 포장으로 하나 주시겠어요?",
+    "cloze": "to go",
+    "keyPoints": "주문 시 포장 여부를 묻고 답할 때 자주 쓰는 표현입니다.",
+    "vocabIds": [
+      "en-vocab-01",
+      "en-vocab-02"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-en-wife-20261128-02-how-about-taking-a-gentl",
+    "legacyKey": "English:How about taking a gentle stroll by the river this afternoon?",
+    "pairId": "wife-20261128-02",
+    "lang": "English",
+    "level": "B1",
+    "topic": "weekend",
+    "tags": [
+      "weekend"
+    ],
+    "sentence": "How about taking a gentle stroll by the river this afternoon?",
+    "translation": "오늘 오후에 강가 따라 가볍게 산책하는 거 어때?",
+    "cloze": "gentle stroll",
+    "keyPoints": "주말에 상대방에게 부드럽게 산책을 제안할 때 유용한 표현입니다.",
+    "vocabIds": [
+      "en-vocab-03",
+      "en-vocab-04"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-en-wife-20261128-03-something-in-the-oven-sm",
+    "legacyKey": "English:Something in the oven smells absolutely delicious today.",
+    "pairId": "wife-20261128-03",
+    "lang": "English",
+    "level": "A2",
+    "topic": "family",
+    "tags": [
+      "family"
+    ],
+    "sentence": "Something in the oven smells absolutely delicious today.",
+    "translation": "오늘 오븐에서 나는 무언가의 냄새가 정말 맛있게 나네.",
+    "cloze": "smells absolutely delicious",
+    "keyPoints": "집안에서 요리나 제빵 중일 때 냄새를 칭찬하며 대화를 시작하는 표현입니다.",
+    "vocabIds": [
+      "en-vocab-05",
+      "en-vocab-06"
+    ],
+    "date": "2026-11-28"
+  },
+  {
     "id": "s-en-wife-20261127-01-could-i-leave-my-bags-in",
     "legacyKey": "English:Could I leave my bags in storage for a few hours after I check out?",
     "pairId": "wife-20261127-01",

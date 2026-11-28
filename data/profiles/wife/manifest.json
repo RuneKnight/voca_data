@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T04:49:11.043Z",
+  "updatedAt": "2026-11-28T04:34:34.369Z",
   "counts": {
-    "vocab": 42,
-    "sentences": 21,
-    "pairs": 21
+    "vocab": 48,
+    "sentences": 24,
+    "pairs": 24
   },
   "languages": [
     "English",
@@ -16,32 +16,40 @@
     "B1"
   ],
   "tags": [
+    "activity",
+    "agreement",
     "cafe",
     "checkout",
     "clothes",
+    "conversation",
     "daily",
     "directions",
     "drink",
     "emotion",
     "encouragement",
+    "family",
     "feeling",
     "food",
     "general",
     "grocery",
     "habit",
     "health",
+    "hobby",
     "home",
     "hotel",
     "idiom",
+    "kitchen",
     "menu",
     "nature",
     "order",
+    "ordering",
     "plans",
     "relax",
     "relaxation",
     "request",
     "routine",
     "schedule",
+    "senses",
     "service",
     "shopping",
     "social",
@@ -50,17 +58,17 @@
     "weekend",
     "work"
   ],
-  "latestDate": "2026-11-27",
+  "latestDate": "2026-11-28",
   "chunks": {
     "recentDays": 90,
-    "cutoffIso": "2026-08-29",
+    "cutoffIso": "2026-08-30",
     "recent": null,
     "archiveMonths": [],
     "monthsSummary": [
       {
         "month": "2026-11",
-        "vocabCount": 42,
-        "sentenceCount": 21
+        "vocabCount": 48,
+        "sentenceCount": 24
       }
     ]
   }

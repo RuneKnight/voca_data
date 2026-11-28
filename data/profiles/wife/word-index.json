@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T04:49:11.043Z",
+  "updatedAt": "2026-11-28T04:34:34.369Z",
   "counts": {
-    "vocab": 42,
-    "sentences": 21,
-    "englishVocab": 42,
+    "vocab": 48,
+    "sentences": 24,
+    "englishVocab": 48,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "decaf",
+      "to go",
+      "stroll",
+      "sounds good",
+      "baking",
+      "smell",
       "extend",
       "storage",
       "brunch",
@@ -55,6 +61,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "Could I have a medium decaf latte to go, please?"
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "How about taking a gentle stroll by the river this afternoon?"
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "Something in the oven smells absolutely delicious today."
+    },
     {
       "date": "2026-11-27",
       "lang": "English",

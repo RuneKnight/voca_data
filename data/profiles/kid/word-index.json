@@ -1,14 +1,20 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T04:49:16.652Z",
+  "updatedAt": "2026-11-28T04:34:39.884Z",
   "counts": {
-    "vocab": 42,
-    "sentences": 21,
-    "englishVocab": 42,
+    "vocab": 48,
+    "sentences": 24,
+    "englishVocab": 48,
     "germanVocab": 0
   },
   "words": {
     "English": [
+      "monkey",
+      "banana",
+      "balloon",
+      "three",
+      "hide",
+      "box",
       "swing",
       "laugh",
       "ball",
@@ -55,6 +61,21 @@
     "German": []
   },
   "recentSentences": [
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "Coco sees a funny monkey with a yellow banana."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "Coco has three red balloons in the sky."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "Coco likes to hide in a big paper box."
+    },
     {
       "date": "2026-11-27",
       "lang": "English",

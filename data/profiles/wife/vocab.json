@@ -1,5 +1,125 @@
 [
   {
+    "id": "en-vocab-01",
+    "legacyKey": "English:decaf",
+    "lang": "English",
+    "level": "B1",
+    "word": "decaf",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "디카페인 커피",
+    "example": "Can I get a medium decaf with vanilla syrup?",
+    "tags": [
+      "cafe",
+      "drink"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "wife-20261128-01"
+  },
+  {
+    "id": "en-vocab-02",
+    "legacyKey": "English:to go",
+    "lang": "English",
+    "level": "A2",
+    "word": "to go",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "포장해 가는",
+    "example": "Is this iced americano to go?",
+    "tags": [
+      "cafe",
+      "ordering"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "wife-20261128-01"
+  },
+  {
+    "id": "en-vocab-03",
+    "legacyKey": "English:stroll",
+    "lang": "English",
+    "level": "B1",
+    "word": "stroll",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "산책",
+    "example": "We took a long stroll in the park.",
+    "tags": [
+      "weekend",
+      "activity"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "wife-20261128-02"
+  },
+  {
+    "id": "en-vocab-04",
+    "legacyKey": "English:sounds good",
+    "lang": "English",
+    "level": "A2",
+    "word": "sounds good",
+    "pos": "phrase",
+    "posDetail": "Phrase",
+    "gender": null,
+    "plural": null,
+    "meaning": "좋네요, 그렇게 해요",
+    "example": "Let's meet at noon. - Sounds good!",
+    "tags": [
+      "conversation",
+      "agreement"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "wife-20261128-02"
+  },
+  {
+    "id": "en-vocab-05",
+    "legacyKey": "English:baking",
+    "lang": "English",
+    "level": "B1",
+    "word": "baking",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "제빵, 빵굽기",
+    "example": "She loves baking cookies on weekends.",
+    "tags": [
+      "family",
+      "hobby"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "wife-20261128-03"
+  },
+  {
+    "id": "en-vocab-06",
+    "legacyKey": "English:smell",
+    "lang": "English",
+    "level": "A2",
+    "word": "smell",
+    "pos": "verb",
+    "posDetail": "Verb",
+    "gender": null,
+    "plural": null,
+    "meaning": "냄새가 나다",
+    "example": "Dinner smells amazing.",
+    "tags": [
+      "senses",
+      "kitchen"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "wife-20261128-03"
+  },
+  {
     "id": "en-vocab-extend",
     "legacyKey": "English:extend",
     "lang": "English",

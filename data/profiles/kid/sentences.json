@@ -1,5 +1,65 @@
 [
   {
+    "id": "s-en-kid-20261128-01-coco-sees-a-funny-monkey",
+    "legacyKey": "English:Coco sees a funny monkey with a yellow banana.",
+    "pairId": "kid-20261128-01",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "zoo",
+    "tags": [
+      "zoo"
+    ],
+    "sentence": "Coco sees a funny monkey with a yellow banana.",
+    "translation": "코코는 노란 바나나를 든 재미있는 원숭이를 봐요.",
+    "cloze": "monkey",
+    "keyPoints": "귀여운 동물 친구를 묘사하는 기초 단어와 색깔을 배워요.",
+    "vocabIds": [
+      "en-vocab-monkey-01",
+      "en-vocab-banana-01"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-en-kid-20261128-02-coco-has-three-red-ballo",
+    "legacyKey": "English:Coco has three red balloons in the sky.",
+    "pairId": "kid-20261128-02",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "colors",
+    "tags": [
+      "colors"
+    ],
+    "sentence": "Coco has three red balloons in the sky.",
+    "translation": "코코는 하늘에 빨간 풍선 세 개를 가지고 있어요.",
+    "cloze": "three",
+    "keyPoints": "숫자와 색깔을 함께 표현하는 방법을 익혀요.",
+    "vocabIds": [
+      "en-vocab-balloon-01",
+      "en-vocab-three-01"
+    ],
+    "date": "2026-11-28"
+  },
+  {
+    "id": "s-en-kid-20261128-03-coco-likes-to-hide-in-a",
+    "legacyKey": "English:Coco likes to hide in a big paper box.",
+    "pairId": "kid-20261128-03",
+    "lang": "English",
+    "level": "Pre-A1",
+    "topic": "play",
+    "tags": [
+      "play"
+    ],
+    "sentence": "Coco likes to hide in a big paper box.",
+    "translation": "코코는 커다란 종이 상자 안에 숨는 것을 좋아해요.",
+    "cloze": "hide",
+    "keyPoints": "즐거운 놀이 속 행동을 나타내는 동사와 사물 이름을 배워요.",
+    "vocabIds": [
+      "en-vocab-hide-01",
+      "en-vocab-box-01"
+    ],
+    "date": "2026-11-28"
+  },
+  {
     "id": "s-en-kid-20261127-01-coco-rides-the-swing-and",
     "legacyKey": "English:Coco rides the swing and laughs.",
     "pairId": "kid-20261127-01",

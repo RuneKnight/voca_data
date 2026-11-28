@@ -1,14 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-27T04:49:05.028Z",
+  "updatedAt": "2026-11-28T04:34:28.388Z",
   "counts": {
-    "vocab": 573,
-    "sentences": 378,
-    "englishVocab": 250,
-    "germanVocab": 323
+    "vocab": 582,
+    "sentences": 388,
+    "englishVocab": 254,
+    "germanVocab": 328
   },
   "words": {
     "English": [
+      "trailer",
+      "dirt road",
+      "main course",
+      "step by step",
       "hindsight",
       "trajectory",
       "pantry",
@@ -261,6 +265,11 @@
       "relaxing"
     ],
     "German": [
+      "der Fahrradanhänger",
+      "der Feldweg",
+      "die Kaffeepause",
+      "die Hauptspeise",
+      "die Geduld",
       "die Nachbetrachtung",
       "die Kurskorrektur",
       "der Vorratsschrank",
@@ -588,6 +597,56 @@
   },
   "recentSentences": [
     {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "We attached a trailer to the bicycle to carry extra gear for our weekend trip."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "German",
+      "sentence": "Wir haben einen Fahrradanhänger an das Rad montiert, um zusätzliches Gepäck für den Wochenendausflug zu transportieren."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "We followed a quiet dirt road that led us deeper into the mountain forest."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "German",
+      "sentence": "Wir sind einem ruhigen Feldweg gefolgt, der uns tiefer in den Bergwald führte."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "Let us take a short coffee break and enjoy a sweet pastry together."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "German",
+      "sentence": "Lass uns eine kurze Kaffeepause einlegen und zusammen ein süßes Gebäck genießen."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "We ordered a shared appetizer before our main course arrived at the table."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "German",
+      "sentence": "Wir haben eine Vorspeise zum Teilen bestellt, bevor unsere Hauptspeise serviert wurde."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "English",
+      "sentence": "If we proceed step by step, complex problems become much easier to handle."
+    },
+    {
+      "date": "2026-11-28",
+      "lang": "German",
+      "sentence": "Wenn wir Schritt für Schritt vorgehen, verliert selbst eine schwere Aufgabe ihren Schrecken."
+    },
+    {
       "date": "2026-11-27",
       "lang": "English",
       "sentence": "With hindsight, our technical debt was the main reason for the delay."
@@ -686,56 +745,6 @@
       "date": "2026-11-26",
       "lang": "German",
       "sentence": "Ich verwende immer ein schönes Lesezeichen, damit ich die aktuelle Seite wiederfinde."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "English",
-      "sentence": "We will initiate the progressive rollout phase for the new service."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "German",
-      "sentence": "Wir werden die schrittweise Rollout-Phase für den neuen Dienst einleiten."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "English",
-      "sentence": "Let us schedule a quick review before starting the refactoring."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "German",
-      "sentence": "Lassen Sie uns vor der Code-Bereinigung eine kurze Durchsicht planen."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "English",
-      "sentence": "I found his suggestion quite convincing during the meeting."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "German",
-      "sentence": "Ich fand seine Argumentation während der Besprechung sehr überzeugend."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "English",
-      "sentence": "We should show our gratitude to the team for their hard work."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "German",
-      "sentence": "Wir sollten dem Team für die harte Arbeit unsere Dankbarkeit zeigen."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "English",
-      "sentence": "Maintaining good hydration helps you stay focused while coding."
-    },
-    {
-      "date": "2026-11-25",
-      "lang": "German",
-      "sentence": "Eine ausreichende Flüssigkeitszufuhr hilft Ihnen, beim Programmieren konzentriert zu bleiben."
     }
   ]
 }

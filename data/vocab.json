@@ -1,5 +1,185 @@
 [
   {
+    "id": "de-01-1",
+    "legacyKey": "German:der Fahrradanhänger",
+    "lang": "German",
+    "level": "B1",
+    "word": "der Fahrradanhänger",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Fahrradanhänger)",
+    "gender": "der",
+    "plural": "die Fahrradanhänger",
+    "meaning": "bicycle trailer",
+    "example": "Wir transportieren das Gepäck im Fahrradanhänger.",
+    "tags": [
+      "outdoor",
+      "transport"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-01"
+  },
+  {
+    "id": "en-01-1",
+    "legacyKey": "English:trailer",
+    "lang": "English",
+    "level": "A2",
+    "word": "trailer",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "a vehicle hauled by another",
+    "example": "We packed all our camping gear into the bicycle trailer.",
+    "tags": [
+      "outdoor",
+      "transport"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-01"
+  },
+  {
+    "id": "de-02-1",
+    "legacyKey": "German:der Feldweg",
+    "lang": "German",
+    "level": "B2",
+    "word": "der Feldweg",
+    "pos": "noun",
+    "posDetail": "Maskulin (die Feldwege)",
+    "gender": "der",
+    "plural": "die Feldwege",
+    "meaning": "dirt road, field path",
+    "example": "Der schlammige Feldweg führt direkt zum Waldrand.",
+    "tags": [
+      "outdoor",
+      "nature"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-02"
+  },
+  {
+    "id": "en-02-1",
+    "legacyKey": "English:dirt road",
+    "lang": "English",
+    "level": "B1",
+    "word": "dirt road",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "an unpaved road",
+    "example": "We walked along a quiet dirt road surrounded by fields.",
+    "tags": [
+      "outdoor",
+      "nature"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-02"
+  },
+  {
+    "id": "de-03-1",
+    "legacyKey": "German:die Kaffeepause",
+    "lang": "German",
+    "level": "B1",
+    "word": "die Kaffeepause",
+    "pos": "noun",
+    "posDetail": "Feminin (die Kaffeepausen)",
+    "gender": "die",
+    "plural": "die Kaffeepausen",
+    "meaning": "coffee break",
+    "example": "Nach der langen Arbeit machen wir eine Kaffeepause.",
+    "tags": [
+      "cafe",
+      "routine"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-03"
+  },
+  {
+    "id": "de-04-1",
+    "legacyKey": "German:die Hauptspeise",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Hauptspeise",
+    "pos": "noun",
+    "posDetail": "Feminin (die Hauptspeisen)",
+    "gender": "die",
+    "plural": "die Hauptspeisen",
+    "meaning": "main course",
+    "example": "Als Hauptspeise wähle ich das vegetarische Gericht.",
+    "tags": [
+      "restaurant",
+      "food"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-04"
+  },
+  {
+    "id": "en-04-1",
+    "legacyKey": "English:main course",
+    "lang": "English",
+    "level": "B1",
+    "word": "main course",
+    "pos": "noun",
+    "posDetail": "Noun",
+    "gender": null,
+    "plural": null,
+    "meaning": "the primary dish of a meal",
+    "example": "The main course was both delicious and filling.",
+    "tags": [
+      "restaurant",
+      "food"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-04"
+  },
+  {
+    "id": "de-05-1",
+    "legacyKey": "German:die Geduld",
+    "lang": "German",
+    "level": "B2",
+    "word": "die Geduld",
+    "pos": "noun",
+    "posDetail": "Feminin",
+    "gender": "die",
+    "plural": null,
+    "meaning": "patience",
+    "example": "Man braucht viel Geduld bei diesem Projekt.",
+    "tags": [
+      "idiom",
+      "mindset"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-05"
+  },
+  {
+    "id": "en-05-1",
+    "legacyKey": "English:step by step",
+    "lang": "English",
+    "level": "B1",
+    "word": "step by step",
+    "pos": "adv",
+    "posDetail": "Adverb",
+    "gender": null,
+    "plural": null,
+    "meaning": "gradually, progressing steadily",
+    "example": "We will solve the coding bug step by step.",
+    "tags": [
+      "idiom",
+      "process"
+    ],
+    "reviewStatus": "New",
+    "date": "2026-11-28",
+    "pairId": "20261128-05"
+  },
+  {
     "id": "en-vocab-01",
     "legacyKey": "English:hindsight",
     "lang": "English",
